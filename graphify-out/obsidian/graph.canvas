@@ -1,0 +1,4115 @@
+{
+  "nodes": [
+    {
+      "id": "g0",
+      "type": "group",
+      "label": "Sign Video Processing",
+      "x": 0,
+      "y": 0,
+      "width": 1760,
+      "height": 820,
+      "color": "1"
+    },
+    {
+      "id": "n_backend_services_video_processor_rationale_1047",
+      "type": "file",
+      "file": "FastAPI-friendly preprocessing function. Input video path or existing .npz\u2026.md",
+      "x": 20,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_py_path",
+      "type": "file",
+      "file": "Path_4.md",
+      "x": 220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_rationale_207",
+      "type": "file",
+      "file": "Uniformly sample or pad any sequence to TARGET_FRAMES. Important for long\u2026.md",
+      "x": 420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_body_normalize_keypoints",
+      "type": "file",
+      "file": "body_normalize_keypoints().md",
+      "x": 620,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_build_aux_v3",
+      "type": "file",
+      "file": "build_aux_v3().md",
+      "x": 820,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_build_dominant_hand_view",
+      "type": "file",
+      "file": "build_dominant_hand_view().md",
+      "x": 1020,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_build_motion_aux",
+      "type": "file",
+      "file": "build_motion_aux().md",
+      "x": 1220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_build_rtmpose_inferencer",
+      "type": "file",
+      "file": "build_rtmpose_inferencer().md",
+      "x": 1420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_build_windows",
+      "type": "file",
+      "file": "build_windows().md",
+      "x": 20,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_choose_best_person_instance",
+      "type": "file",
+      "file": "choose_best_person_instance().md",
+      "x": 220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_compute_hand_center_and_scale",
+      "type": "file",
+      "file": "compute_hand_center_and_scale().md",
+      "x": 420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_compute_motion_score",
+      "type": "file",
+      "file": "compute_motion_score().md",
+      "x": 620,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_compute_robust_center_scale_angle",
+      "type": "file",
+      "file": "compute_robust_center_scale_angle().md",
+      "x": 820,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_compute_velocity",
+      "type": "file",
+      "file": "compute_velocity().md",
+      "x": 1020,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_decide_dominant_hand",
+      "type": "file",
+      "file": "decide_dominant_hand().md",
+      "x": 1220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_ensure_64_frames",
+      "type": "file",
+      "file": "ensure_64_frames().md",
+      "x": 1420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_extract_lr_hands_from_body_norm",
+      "type": "file",
+      "file": "extract_lr_hands_from_body_norm().md",
+      "x": 20,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_extract_or_create_masks",
+      "type": "file",
+      "file": "extract_or_create_masks().md",
+      "x": 220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_extract_rtmpose_keypoints_from_video",
+      "type": "file",
+      "file": "extract_rtmpose_keypoints_from_video().md",
+      "x": 420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_extract_upper49",
+      "type": "file",
+      "file": "extract_upper49().md",
+      "x": 620,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_extract_wholebody_from_frame",
+      "type": "file",
+      "file": "extract_wholebody_from_frame().md",
+      "x": 820,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_fill_invalid_scalar",
+      "type": "file",
+      "file": "fill_invalid_scalar().md",
+      "x": 1020,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_fill_invalid_vector",
+      "type": "file",
+      "file": "fill_invalid_vector().md",
+      "x": 1220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_get_instance_score",
+      "type": "file",
+      "file": "get_instance_score().md",
+      "x": 1420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_get_rtmpose_inferencer",
+      "type": "file",
+      "file": "get_rtmpose_inferencer().md",
+      "x": 20,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_get_video_info",
+      "type": "file",
+      "file": "get_video_info()_1.md",
+      "x": 220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_hand_local_normalize_raw",
+      "type": "file",
+      "file": "hand_local_normalize_raw().md",
+      "x": 420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_load_aux_stats",
+      "type": "file",
+      "file": "load_aux_stats().md",
+      "x": 620,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_load_raw_keypoints_npz",
+      "type": "file",
+      "file": "load_raw_keypoints_npz().md",
+      "x": 820,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_make_10a_features_from_64_raw",
+      "type": "file",
+      "file": "make_10A_features_from_64_raw().md",
+      "x": 1020,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_make_adjacency",
+      "type": "file",
+      "file": "make_adjacency().md",
+      "x": 1220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_make_landmark_mask",
+      "type": "file",
+      "file": "make_landmark_mask().md",
+      "x": 1420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_max_speed_per_frame",
+      "type": "file",
+      "file": "max_speed_per_frame().md",
+      "x": 20,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_mean_speed_per_frame",
+      "type": "file",
+      "file": "mean_speed_per_frame().md",
+      "x": 220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_mirror_raw_wholebody",
+      "type": "file",
+      "file": "mirror_raw_wholebody().md",
+      "x": 420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ndarray",
+      "type": "file",
+      "file": "ndarray.md",
+      "x": 620,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_normalize_angle",
+      "type": "file",
+      "file": "normalize_angle().md",
+      "x": 820,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_point_speed_per_frame",
+      "type": "file",
+      "file": "point_speed_per_frame().md",
+      "x": 1020,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_preprocess_video",
+      "type": "file",
+      "file": "preprocess_video().md",
+      "x": 1220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_resolve_input_to_npz",
+      "type": "file",
+      "file": "resolve_input_to_npz().md",
+      "x": 1420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_rotation_matrix",
+      "type": "file",
+      "file": "rotation_matrix().md",
+      "x": 20,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_safe_bbox_scale",
+      "type": "file",
+      "file": "safe_bbox_scale().md",
+      "x": 220,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_safe_center",
+      "type": "file",
+      "file": "safe_center().md",
+      "x": 420,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_safe_distance",
+      "type": "file",
+      "file": "safe_distance().md",
+      "x": 620,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_safe_open_video",
+      "type": "file",
+      "file": "safe_open_video().md",
+      "x": 820,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_sanitize_numeric",
+      "type": "file",
+      "file": "sanitize_numeric().md",
+      "x": 1020,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_speed_from_velocity",
+      "type": "file",
+      "file": "speed_from_velocity().md",
+      "x": 1220,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_standardize_aux",
+      "type": "file",
+      "file": "standardize_aux().md",
+      "x": 1420,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_valid_point",
+      "type": "file",
+      "file": "valid_point().md",
+      "x": 20,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor",
+      "type": "file",
+      "file": "video_processor.py.md",
+      "x": 220,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g1",
+      "type": "group",
+      "label": "HF-SMCA Model",
+      "x": 1840,
+      "y": 0,
+      "width": 1540,
+      "height": 820,
+      "color": "2"
+    },
+    {
+      "id": "n_backend_services_model_architecture_auxreliabilitybranch_init",
+      "type": "file",
+      "file": "dot-__init__()_12.md",
+      "x": 1860,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_fourwaygatedfusion_init",
+      "type": "file",
+      "file": "dot-__init__()_13.md",
+      "x": 2060,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_graphconvlayer_init",
+      "type": "file",
+      "file": "dot-__init__()_4.md",
+      "x": 2260,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_graphframeencoder_init",
+      "type": "file",
+      "file": "dot-__init__()_5.md",
+      "x": 2460,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_handbodycrossattentionbranch_init",
+      "type": "file",
+      "file": "dot-__init__()_11.md",
+      "x": 2660,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_hfsmcahybridmodel_init",
+      "type": "file",
+      "file": "dot-__init__()_14.md",
+      "x": 2860,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_maskedattentionpooling_init",
+      "type": "file",
+      "file": "dot-__init__()_3.md",
+      "x": 3060,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_multiscaletcnblock_init",
+      "type": "file",
+      "file": "dot-__init__()_8.md",
+      "x": 1860,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_multiscaletemporalmotionbranch_init",
+      "type": "file",
+      "file": "dot-__init__()_10.md",
+      "x": 2060,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_positionalencoding_init",
+      "type": "file",
+      "file": "dot-__init__()_6.md",
+      "x": 2260,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_statichandshapetransformerbranch_init",
+      "type": "file",
+      "file": "dot-__init__()_9.md",
+      "x": 2460,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_temporaltransformerencoder_init",
+      "type": "file",
+      "file": "dot-__init__()_7.md",
+      "x": 2660,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_auxreliabilitybranch_forward",
+      "type": "file",
+      "file": "dot-forward()_9.md",
+      "x": 2860,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_fourwaygatedfusion_forward",
+      "type": "file",
+      "file": "dot-forward()_10.md",
+      "x": 3060,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_graphconvlayer_forward",
+      "type": "file",
+      "file": "dot-forward()_1.md",
+      "x": 1860,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_graphframeencoder_forward",
+      "type": "file",
+      "file": "dot-forward()_2.md",
+      "x": 2060,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_handbodycrossattentionbranch_forward",
+      "type": "file",
+      "file": "dot-forward()_8.md",
+      "x": 2260,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_hfsmcahybridmodel_forward",
+      "type": "file",
+      "file": "dot-forward()_11.md",
+      "x": 2460,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_maskedattentionpooling_forward",
+      "type": "file",
+      "file": "dot-forward().md",
+      "x": 2660,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_multiscaletcnblock_forward",
+      "type": "file",
+      "file": "dot-forward()_5.md",
+      "x": 2860,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_multiscaletemporalmotionbranch_forward",
+      "type": "file",
+      "file": "dot-forward()_7.md",
+      "x": 3060,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_positionalencoding_forward",
+      "type": "file",
+      "file": "dot-forward()_3.md",
+      "x": 1860,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_statichandshapetransformerbranch_forward",
+      "type": "file",
+      "file": "dot-forward()_6.md",
+      "x": 2060,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_temporaltransformerencoder_forward",
+      "type": "file",
+      "file": "dot-forward()_4.md",
+      "x": 2260,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_auxreliabilitybranch",
+      "type": "file",
+      "file": "AuxReliabilityBranch.md",
+      "x": 2460,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataframe",
+      "type": "file",
+      "file": "DataFrame.md",
+      "x": 2660,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_fourwaygatedfusion",
+      "type": "file",
+      "file": "FourWayGatedFusion.md",
+      "x": 2860,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_graphconvlayer",
+      "type": "file",
+      "file": "GraphConvLayer.md",
+      "x": 3060,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_graphframeencoder",
+      "type": "file",
+      "file": "GraphFrameEncoder.md",
+      "x": 1860,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_hfsmcahybridmodel",
+      "type": "file",
+      "file": "HFSMCAHybridModel.md",
+      "x": 2060,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_handbodycrossattentionbranch",
+      "type": "file",
+      "file": "HandBodyCrossAttentionBranch.md",
+      "x": 2260,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_maskedattentionpooling",
+      "type": "file",
+      "file": "MaskedAttentionPooling.md",
+      "x": 2460,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_multiscaletcnblock",
+      "type": "file",
+      "file": "MultiScaleTCNBlock.md",
+      "x": 2660,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_multiscaletemporalmotionbranch",
+      "type": "file",
+      "file": "MultiScaleTemporalMotionBranch.md",
+      "x": 2860,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_positionalencoding",
+      "type": "file",
+      "file": "PositionalEncoding.md",
+      "x": 3060,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_statichandshapetransformerbranch",
+      "type": "file",
+      "file": "StaticHandshapeTransformerBranch.md",
+      "x": 1860,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture_temporaltransformerencoder",
+      "type": "file",
+      "file": "TemporalTransformerEncoder.md",
+      "x": 2060,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_video_processor_features_to_torch_batch",
+      "type": "file",
+      "file": "features_to_torch_batch().md",
+      "x": 2260,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_load_labels",
+      "type": "file",
+      "file": "load_labels().md",
+      "x": 2460,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_load_model",
+      "type": "file",
+      "file": "load_model().md",
+      "x": 2660,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_model_architecture",
+      "type": "file",
+      "file": "model_architecture.py.md",
+      "x": 2860,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_no_grad",
+      "type": "file",
+      "file": "no_grad.md",
+      "x": 3060,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_predict_features",
+      "type": "file",
+      "file": "predict_features().md",
+      "x": 1860,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor",
+      "type": "file",
+      "file": "sign_predictor.py.md",
+      "x": 2060,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g2",
+      "type": "group",
+      "label": "Sign-to-Text API",
+      "x": 3460,
+      "y": 0,
+      "width": 1320,
+      "height": 720,
+      "color": "3"
+    },
+    {
+      "id": "n_any",
+      "type": "file",
+      "file": "Any.md",
+      "x": 3480,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_rationale_257",
+      "type": "file",
+      "file": "Approximate full-sentence video pipeline. Input One video containing multiple\u2026.md",
+      "x": 3680,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_rationale_114",
+      "type": "file",
+      "file": "Choose best prediction across windows and mirrororiginal candidates..md",
+      "x": 3880,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_rationale_55",
+      "type": "file",
+      "file": "Cut a short video segment using OpenCV..md",
+      "x": 4080,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_rationale_96",
+      "type": "file",
+      "file": "Extract the real wordconfidencemargin from predict_sign(). Important Your\u2026.md",
+      "x": 4280,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_full_sentence_video_py_path",
+      "type": "file",
+      "file": "Path.md",
+      "x": 4480,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_sign_to_text_py_path",
+      "type": "file",
+      "file": "Path_1.md",
+      "x": 3480,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_py_path",
+      "type": "file",
+      "file": "Path_3.md",
+      "x": 3680,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_rationale_21",
+      "type": "file",
+      "file": "Read basic video metadata..md",
+      "x": 3880,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_rationale_165",
+      "type": "file",
+      "file": "Reduce repeated words from overlapping segments. Idea - Ignore weak\u2026.md",
+      "x": 4080,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_rationale_228",
+      "type": "file",
+      "file": "Return small response objects instead of huge nested prediction JSON..md",
+      "x": 4280,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_full_sentence_video_py_uploadfile",
+      "type": "file",
+      "file": "UploadFile_1.md",
+      "x": 4480,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_sign_to_text_py_uploadfile",
+      "type": "file",
+      "file": "UploadFile_2.md",
+      "x": 3480,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_word_from_top1",
+      "type": "file",
+      "file": "_word_from_top1().md",
+      "x": 3680,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_build_words_from_segments",
+      "type": "file",
+      "file": "build_words_from_segments().md",
+      "x": 3880,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_cut_video_segment",
+      "type": "file",
+      "file": "cut_video_segment().md",
+      "x": 4080,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "type": "file",
+      "file": "extract_prediction_summary().md",
+      "x": 4280,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_full_sentence_video",
+      "type": "file",
+      "file": "full_sentence_video.py.md",
+      "x": 4480,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "type": "file",
+      "file": "full_sentence_video_endpoint().md",
+      "x": 3480,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service",
+      "type": "file",
+      "file": "full_sentence_video_service.py.md",
+      "x": 3680,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_get_video_info",
+      "type": "file",
+      "file": "get_video_info().md",
+      "x": 3880,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_make_compact_segments",
+      "type": "file",
+      "file": "make_compact_segments().md",
+      "x": 4080,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_nlp_refiner",
+      "type": "file",
+      "file": "nlp_refiner.py.md",
+      "x": 4280,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_full_sentence_video_py_post",
+      "type": "file",
+      "file": "post_1.md",
+      "x": 4480,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_sign_to_text_py_post",
+      "type": "file",
+      "file": "post_2.md",
+      "x": 3480,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "type": "file",
+      "file": "predict_full_sentence_video().md",
+      "x": 3680,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_predict_sign",
+      "type": "file",
+      "file": "predict_sign().md",
+      "x": 3880,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_nlp_refiner_refine_to_egyptian",
+      "type": "file",
+      "file": "refine_to_egyptian().md",
+      "x": 4080,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_full_sentence_video_save_full_sentence_upload",
+      "type": "file",
+      "file": "save_full_sentence_upload().md",
+      "x": 4280,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_sign_to_text_save_upload_file",
+      "type": "file",
+      "file": "save_upload_file().md",
+      "x": 4480,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_sign_predictor_selection_score",
+      "type": "file",
+      "file": "selection_score().md",
+      "x": 3480,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "type": "file",
+      "file": "sign_to_text().md",
+      "x": 3680,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_sign_to_text",
+      "type": "file",
+      "file": "sign_to_text.py.md",
+      "x": 3880,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g3",
+      "type": "group",
+      "label": "Platform Concepts",
+      "x": 4860,
+      "y": 0,
+      "width": 1320,
+      "height": 720,
+      "color": "4"
+    },
+    {
+      "id": "n_backendREADME_arabic_nlp",
+      "type": "file",
+      "file": "Arabic NLP.md",
+      "x": 4880,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_backend",
+      "type": "file",
+      "file": "Backend.md",
+      "x": 5080,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_computer_vision",
+      "type": "file",
+      "file": "Computer Vision.md",
+      "x": 5280,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_deep_learning",
+      "type": "file",
+      "file": "Deep Learning Sign Recognition.md",
+      "x": 5480,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_egyptian_arabic",
+      "type": "file",
+      "file": "Egyptian Arabic.md",
+      "x": 5680,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_egyptian_arabic",
+      "type": "file",
+      "file": "Egyptian Arabic_1.md",
+      "x": 5880,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_full_sentence_video",
+      "type": "file",
+      "file": "Full Sentence Video Mode.md",
+      "x": 4880,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_full_sentence_service",
+      "type": "file",
+      "file": "Full Sentence Video Service.md",
+      "x": 5080,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_gpt4o_mini",
+      "type": "file",
+      "file": "GPT-4o-mini.md",
+      "x": 5280,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_hf_smca",
+      "type": "file",
+      "file": "HF-SMCA Model.md",
+      "x": 5480,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_fastapi_backend",
+      "type": "file",
+      "file": "Isharati FastAPI Backend.md",
+      "x": 5680,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_mmpose",
+      "type": "file",
+      "file": "MMPose.md",
+      "x": 5880,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_model_architecture",
+      "type": "file",
+      "file": "Model Architecture.md",
+      "x": 4880,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_nlp_refiner",
+      "type": "file",
+      "file": "NLP Refiner.md",
+      "x": 5080,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_openrouter",
+      "type": "file",
+      "file": "OpenRouter.md",
+      "x": 5280,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_openrouter",
+      "type": "file",
+      "file": "OpenRouter_1.md",
+      "x": 5480,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_endpoint_sign_to_text",
+      "type": "file",
+      "file": "POST sign-to-text.md",
+      "x": 5680,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_endpoint_full_sentence",
+      "type": "file",
+      "file": "POST sign-to-textfull-sentence-video.md",
+      "x": 5880,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_pose_retrieval_smoothing",
+      "type": "file",
+      "file": "Pose Retrieval and Smoothing.md",
+      "x": 4880,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_rtmpose",
+      "type": "file",
+      "file": "RTMPose.md",
+      "x": 5080,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_rtmpose",
+      "type": "file",
+      "file": "RTMPose_1.md",
+      "x": 5280,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_sign_predictor",
+      "type": "file",
+      "file": "Sign Predictor.md",
+      "x": 5480,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_sign_recognition_model",
+      "type": "file",
+      "file": "Sign Recognition Model (502 Classes).md",
+      "x": 5680,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_sign_video_text_api",
+      "type": "file",
+      "file": "Sign Video to Arabic Text API.md",
+      "x": 5880,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_sign_to_text",
+      "type": "file",
+      "file": "Sign to Text.md",
+      "x": 4880,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_text_speech_sign_api",
+      "type": "file",
+      "file": "TextSpeech to Sign Animation API.md",
+      "x": 5080,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_video_processor",
+      "type": "file",
+      "file": "Video Processor.md",
+      "x": 5280,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_best_model",
+      "type": "file",
+      "file": "best_model.pt.md",
+      "x": 5480,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_fastapi",
+      "type": "file",
+      "file": "fastapi_1.md",
+      "x": 5680,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_main",
+      "type": "file",
+      "file": "main.py FastAPI App.md",
+      "x": 5880,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_mediapipe",
+      "type": "file",
+      "file": "mediapipe.md",
+      "x": 4880,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_uvicorn",
+      "type": "file",
+      "file": "uvicorn.md",
+      "x": 5080,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g4",
+      "type": "group",
+      "label": "Text-to-Sign API",
+      "x": 0,
+      "y": 900,
+      "width": 1320,
+      "height": 720,
+      "color": "5"
+    },
+    {
+      "id": "n_backend_services_pose_retriever_poseretriever_init",
+      "type": "file",
+      "file": "dot-__init__()_15.md",
+      "x": 20,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_speech_to_text_speechtotextsr_init",
+      "type": "file",
+      "file": "dot-__init__()_16.md",
+      "x": 220,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_animation_generator_animationgenerator_generate",
+      "type": "file",
+      "file": "dot-generate().md",
+      "x": 420,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_speech_to_text_speechtotextsr_record_and_transcribe",
+      "type": "file",
+      "file": "dot-record_and_transcribe().md",
+      "x": 620,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_pose_retriever_poseretriever_retrieve",
+      "type": "file",
+      "file": "dot-retrieve().md",
+      "x": 820,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_pose_smoother_posesmoother_smooth",
+      "type": "file",
+      "file": "dot-smooth().md",
+      "x": 1020,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_speech_to_text_speechtotextsr_transcribe_any",
+      "type": "file",
+      "file": "dot-transcribe_any().md",
+      "x": 20,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_speech_to_text_speechtotextsr_transcribe_file",
+      "type": "file",
+      "file": "dot-transcribe_file().md",
+      "x": 220,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_animation_generator_animationgenerator",
+      "type": "file",
+      "file": "AnimationGenerator.md",
+      "x": 420,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_basemodel",
+      "type": "file",
+      "file": "BaseModel.md",
+      "x": 620,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_animation_generator_rationale_12",
+      "type": "file",
+      "file": "Generate a browser-compatible MP4 video. PoseVisualizerOpenCV may create MP4\u2026.md",
+      "x": 820,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_pose_retriever_poseretriever",
+      "type": "file",
+      "file": "PoseRetriever.md",
+      "x": 1020,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_pose_smoother_posesmoother",
+      "type": "file",
+      "file": "PoseSmoother.md",
+      "x": 20,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_speech_to_text_speechtotextsr",
+      "type": "file",
+      "file": "SpeechToTextSR.md",
+      "x": 220,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_speech_to_text",
+      "type": "file",
+      "file": "Speech_to_text.py.md",
+      "x": 420,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_schemas_requests_textinput",
+      "type": "file",
+      "file": "TextInput.md",
+      "x": 620,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_speech_to_text_py_uploadfile",
+      "type": "file",
+      "file": "UploadFile.md",
+      "x": 820,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_animation_generator",
+      "type": "file",
+      "file": "animation_generator.py.md",
+      "x": 1020,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_configs_cloudinary_config",
+      "type": "file",
+      "file": "cloudinary_config.py.md",
+      "x": 20,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_video_py_get",
+      "type": "file",
+      "file": "get.md",
+      "x": 220,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_video_get_video",
+      "type": "file",
+      "file": "get_video().md",
+      "x": 420,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_video_get_video_iterfile",
+      "type": "file",
+      "file": "iterfile().md",
+      "x": 620,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_pose_retriever",
+      "type": "file",
+      "file": "pose_retriever.py.md",
+      "x": 820,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_pose_smoother",
+      "type": "file",
+      "file": "pose_smoother.py.md",
+      "x": 1020,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_speech_to_text_py_post",
+      "type": "file",
+      "file": "post.md",
+      "x": 20,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_text_to_sign_py_post",
+      "type": "file",
+      "file": "post_3.md",
+      "x": 220,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_schemas_requests",
+      "type": "file",
+      "file": "requests.py.md",
+      "x": 420,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_speech_to_text_speech_to_text",
+      "type": "file",
+      "file": "speech_to_text().md",
+      "x": 620,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_speech_to_text",
+      "type": "file",
+      "file": "speech_to_text.py_1.md",
+      "x": 820,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_text_to_sign_text_to_sign",
+      "type": "file",
+      "file": "text_to_sign().md",
+      "x": 1020,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_text_to_sign",
+      "type": "file",
+      "file": "text_to_sign.py.md",
+      "x": 20,
+      "y": 1380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_api_routes_video",
+      "type": "file",
+      "file": "video.py.md",
+      "x": 220,
+      "y": 1380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g5",
+      "type": "group",
+      "label": "Arabic NLP",
+      "x": 1840,
+      "y": 900,
+      "width": 1320,
+      "height": 620,
+      "color": "6"
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "type": "file",
+      "file": "dot-__init__()_2.md",
+      "x": 1860,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_datasetmatcher_init",
+      "type": "file",
+      "file": "dot-__init__()_1.md",
+      "x": 2060,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary",
+      "type": "file",
+      "file": "dot-_build_dataset_summary().md",
+      "x": 2260,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "type": "file",
+      "file": "dot-can_use_fuzzy().md",
+      "x": 2460,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "type": "file",
+      "file": "dot-char_level().md",
+      "x": 2660,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "type": "file",
+      "file": "dot-exact().md",
+      "x": 2860,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "type": "file",
+      "file": "dot-fuzzy().md",
+      "x": 1860,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "type": "file",
+      "file": "dot-map_to_dataset().md",
+      "x": 2060,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer_normalize",
+      "type": "file",
+      "file": "dot-normalize().md",
+      "x": 2260,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "type": "file",
+      "file": "dot-parse_llm_output().md",
+      "x": 2460,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "type": "file",
+      "file": "dot-tokenize().md",
+      "x": 2660,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "type": "file",
+      "file": "ArabicNormalizer.md",
+      "x": 2860,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_152",
+      "type": "file",
+      "file": "Controlled fuzzy only. Higher threshold prevents \u0627\u062d\u0645\u062f - \u0627\u0644\u062d\u0645\u062f \u0644\u0644\u0647..md",
+      "x": 1860,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_191",
+      "type": "file",
+      "file": "Convert unknown wordsnames to letters. Only keep letters that exist in dataset..md",
+      "x": 2060,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "type": "file",
+      "file": "DatasetMatcher.md",
+      "x": 2260,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_27",
+      "type": "file",
+      "file": "Fix rare LLM mistakes like B\u0646\u0643 \u0645\u0635\u0631 - \u0628\u0646\u0643 \u0645\u0635\u0631.md",
+      "x": 2460,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_392",
+      "type": "file",
+      "file": "Fixed logic - No full sentence fuzzy. - No fuzzy for single letters. - No\u2026.md",
+      "x": 2660,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_69",
+      "type": "file",
+      "file": "Prevent matching \u0647, \u0634, \u0627, \u0645 as a fuzzy phrase..md",
+      "x": 2860,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_246",
+      "type": "file",
+      "file": "Split the dataset into categories so the LLM can reason about each type\u2026.md",
+      "x": 1860,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_52",
+      "type": "file",
+      "file": "True for one Arabic letter only \u0627  \u0628  \u062a  \u0645  \u0647 ....md",
+      "x": 2060,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_76",
+      "type": "file",
+      "file": "Used only for comparison, not final output. Final output should still use the\u2026.md",
+      "x": 2260,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_rationale_119",
+      "type": "file",
+      "file": "Very important Fuzzy matching caused \u0627\u062d\u0645\u062f - \u0627\u0644\u062d\u0645\u062f \u0644\u0644\u0647 and letters being\u2026.md",
+      "x": 2460,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "type": "file",
+      "file": "all_tokens_are_single_letters().md",
+      "x": 2660,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer",
+      "type": "file",
+      "file": "arabic_normalizer.py.md",
+      "x": 2860,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_clean_text",
+      "type": "file",
+      "file": "clean_text().md",
+      "x": 1860,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "type": "file",
+      "file": "fix_mixed_arabic_letters().md",
+      "x": 2060,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_has_english_letters",
+      "type": "file",
+      "file": "has_english_letters().md",
+      "x": 2260,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_is_number_token",
+      "type": "file",
+      "file": "is_number_token().md",
+      "x": 2460,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "type": "file",
+      "file": "is_single_arabic_letter().md",
+      "x": 2660,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_services_arabic_normalizer_normalize_for_compare",
+      "type": "file",
+      "file": "normalize_for_compare().md",
+      "x": 2860,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g6",
+      "type": "group",
+      "label": "Tutor Surfaces",
+      "x": 3460,
+      "y": 900,
+      "width": 1320,
+      "height": 620,
+      "color": "1"
+    },
+    {
+      "id": "n_frontendREADME_backend_api",
+      "type": "file",
+      "file": "Backend API 8000.md",
+      "x": 3480,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_curriculum",
+      "type": "file",
+      "file": "Curriculum Label-Map Words.md",
+      "x": 3680,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_video",
+      "type": "file",
+      "file": "GET video{request_id}_1.md",
+      "x": 3880,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_learn_label_map",
+      "type": "file",
+      "file": "Label Map  Lesson List.md",
+      "x": 4080,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_learn",
+      "type": "file",
+      "file": "Learn.md",
+      "x": 4280,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_learn_feature",
+      "type": "file",
+      "file": "Learn_1.md",
+      "x": 4480,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontendREADME_learn",
+      "type": "file",
+      "file": "Learn Feature.md",
+      "x": 3480,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_sign_to_text",
+      "type": "file",
+      "file": "POST sign-to-text_1.md",
+      "x": 3680,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_full_sentence",
+      "type": "file",
+      "file": "POST sign-to-textfull-sentence-video_1.md",
+      "x": 3880,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_speech_to_text",
+      "type": "file",
+      "file": "POST speech-to-text_1.md",
+      "x": 4080,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_endpoint_text_to_sign",
+      "type": "file",
+      "file": "POST text-to-sign.md",
+      "x": 4280,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_text_to_sign",
+      "type": "file",
+      "file": "POST text-to-sign_1.md",
+      "x": 4480,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_practice",
+      "type": "file",
+      "file": "Practice.md",
+      "x": 3480,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_practice_feature",
+      "type": "file",
+      "file": "Practice_1.md",
+      "x": 3680,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontendREADME_practice",
+      "type": "file",
+      "file": "Practice Feature.md",
+      "x": 3880,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_translate",
+      "type": "file",
+      "file": "Translate.md",
+      "x": 4080,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_translate_feature",
+      "type": "file",
+      "file": "Translate_1.md",
+      "x": 4280,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontendREADME_translate",
+      "type": "file",
+      "file": "Translate Feature.md",
+      "x": 4480,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_tutor_loop",
+      "type": "file",
+      "file": "Tutor Loop.md",
+      "x": 3480,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_practice_webcam",
+      "type": "file",
+      "file": "Webcam Clip.md",
+      "x": 3680,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_translate_fullSentenceVideo",
+      "type": "file",
+      "file": "fullSentenceVideo.md",
+      "x": 3880,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_practice_raw_words",
+      "type": "file",
+      "file": "raw_words0.md",
+      "x": 4080,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_practice_signToText",
+      "type": "file",
+      "file": "signToText.md",
+      "x": 4280,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_translate_signToText",
+      "type": "file",
+      "file": "signToText_1.md",
+      "x": 4480,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_translate_speechToSign",
+      "type": "file",
+      "file": "speechToSign.md",
+      "x": 3480,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_learn_textToSign",
+      "type": "file",
+      "file": "textToSign.md",
+      "x": 3680,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_translate_textToSign",
+      "type": "file",
+      "file": "textToSign_1.md",
+      "x": 3880,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_learn_videoUrl",
+      "type": "file",
+      "file": "videoUrl.md",
+      "x": 4080,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_translate_videoUrl",
+      "type": "file",
+      "file": "videoUrl_1.md",
+      "x": 4280,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g7",
+      "type": "group",
+      "label": "Pose Animation",
+      "x": 4860,
+      "y": 900,
+      "width": 1320,
+      "height": 620,
+      "color": "2"
+    },
+    {
+      "id": "n_backendREADME_pose_file",
+      "type": "file",
+      "file": "dot-pose File.md",
+      "x": 4880,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_animation_generator",
+      "type": "file",
+      "file": "Animation Generator.md",
+      "x": 5080,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_arabic_normalizer",
+      "type": "file",
+      "file": "Arabic Normalizer.md",
+      "x": 5280,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_architecture_docs",
+      "type": "file",
+      "file": "Architecture Documentation.md",
+      "x": 5480,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_cloudinary",
+      "type": "file",
+      "file": "Cloudinary.md",
+      "x": 5680,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_cloudinary",
+      "type": "file",
+      "file": "Cloudinary_2.md",
+      "x": 5880,
+      "y": 980,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_fastapi",
+      "type": "file",
+      "file": "FastAPI Backend.md",
+      "x": 4880,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_health",
+      "type": "file",
+      "file": "GET health.md",
+      "x": 5080,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_endpoint_video",
+      "type": "file",
+      "file": "GET video{request_id}.md",
+      "x": 5280,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_google_speech",
+      "type": "file",
+      "file": "Google Speech Recognition.md",
+      "x": 5480,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_isharati",
+      "type": "file",
+      "file": "Isharati AI Tutor.md",
+      "x": 5680,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_endpoint_speech_to_text",
+      "type": "file",
+      "file": "POST speech-to-text.md",
+      "x": 5880,
+      "y": 1060,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_pose_retriever",
+      "type": "file",
+      "file": "Pose Retriever.md",
+      "x": 4880,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_pose_smoother",
+      "type": "file",
+      "file": "Pose Smoother.md",
+      "x": 5080,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_rapidfuzz",
+      "type": "file",
+      "file": "RapidFuzz.md",
+      "x": 5280,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_speech_to_text",
+      "type": "file",
+      "file": "Speech to Text Service.md",
+      "x": 5480,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_speechrecognition",
+      "type": "file",
+      "file": "SpeechRecognition.md",
+      "x": 5680,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_text_speech_to_sign",
+      "type": "file",
+      "file": "TextSpeech to Sign.md",
+      "x": 5880,
+      "y": 1140,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_frontend",
+      "type": "file",
+      "file": "Website Frontend.md",
+      "x": 4880,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_cloudinary",
+      "type": "file",
+      "file": "cloudinary_1.md",
+      "x": 5080,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_cloudinary_config",
+      "type": "file",
+      "file": "cloudinary_config.md",
+      "x": 5280,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_imageio_ffmpeg",
+      "type": "file",
+      "file": "imageio-ffmpeg.md",
+      "x": 5480,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_imageio_ffmpeg",
+      "type": "file",
+      "file": "imageio-ffmpeg_1.md",
+      "x": 5680,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_pose_enc",
+      "type": "file",
+      "file": "pose.enc Lexicon.md",
+      "x": 5880,
+      "y": 1220,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_pose_format",
+      "type": "file",
+      "file": "pose_format.md",
+      "x": 4880,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backendREADME_poses_json",
+      "type": "file",
+      "file": "poses.json.md",
+      "x": 5080,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_requirements_spoken_to_signed",
+      "type": "file",
+      "file": "spoken-to-signed.md",
+      "x": 5280,
+      "y": 1300,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g8",
+      "type": "group",
+      "label": "Website Frontend",
+      "x": 0,
+      "y": 1700,
+      "width": 1100,
+      "height": 520,
+      "color": "3"
+    },
+    {
+      "id": "n_README_cors",
+      "type": "file",
+      "file": "CORS for localhost3000.md",
+      "x": 20,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_fastapi",
+      "type": "file",
+      "file": "FastAPI.md",
+      "x": 220,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_frontend",
+      "type": "file",
+      "file": "Frontend.md",
+      "x": 420,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_fullsentenceresponse",
+      "type": "file",
+      "file": "FullSentenceResponse.md",
+      "x": 620,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_isharati",
+      "type": "file",
+      "file": "Isharati.md",
+      "x": 820,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontendREADME_website",
+      "type": "file",
+      "file": "Isharati Website.md",
+      "x": 20,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_docs_architecture_nextjs",
+      "type": "file",
+      "file": "Next.js.md",
+      "x": 220,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontendREADME_nextjs",
+      "type": "file",
+      "file": "Next.js App Router.md",
+      "x": 420,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_signtotextresponse",
+      "type": "file",
+      "file": "SignToTextResponse.md",
+      "x": 620,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_speechtosignresponse",
+      "type": "file",
+      "file": "SpeechToSignResponse.md",
+      "x": 820,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_texttosignresponse",
+      "type": "file",
+      "file": "TextToSignResponse.md",
+      "x": 20,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_README_tutor_website",
+      "type": "file",
+      "file": "Tutor Website.md",
+      "x": 220,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api",
+      "type": "file",
+      "file": "api.ts.md",
+      "x": 420,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_fullsentencevideo",
+      "type": "file",
+      "file": "fullSentenceVideo().md",
+      "x": 620,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_health",
+      "type": "file",
+      "file": "health()_1.md",
+      "x": 820,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_parsejson",
+      "type": "file",
+      "file": "parseJson().md",
+      "x": 20,
+      "y": 2020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_signtotext",
+      "type": "file",
+      "file": "signToText().md",
+      "x": 220,
+      "y": 2020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_speechtosign",
+      "type": "file",
+      "file": "speechToSign().md",
+      "x": 420,
+      "y": 2020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_texttosign",
+      "type": "file",
+      "file": "textToSign().md",
+      "x": 620,
+      "y": 2020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_frontend_src_lib_api_videourl",
+      "type": "file",
+      "file": "videoUrl().md",
+      "x": 820,
+      "y": 2020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g9",
+      "type": "group",
+      "label": "App Config",
+      "x": 1840,
+      "y": 1700,
+      "width": 880,
+      "height": 520,
+      "color": "4"
+    },
+    {
+      "id": "n_backend_pose_loader_poseloader_init",
+      "type": "file",
+      "file": "dot-__init__().md",
+      "x": 1860,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_pose_loader_poseloader_get",
+      "type": "file",
+      "file": "dot-get().md",
+      "x": 2060,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_config_py_path",
+      "type": "file",
+      "file": "Path_2.md",
+      "x": 2260,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_pose_loader_poseloader",
+      "type": "file",
+      "file": "PoseLoader.md",
+      "x": 2460,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_config_rationale_22",
+      "type": "file",
+      "file": "Return first existing path; if none exists, return the first candidate..md",
+      "x": 1860,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_config",
+      "type": "file",
+      "file": "config.py.md",
+      "x": 2060,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_config_first_existing",
+      "type": "file",
+      "file": "first_existing().md",
+      "x": 2260,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_main_py_get",
+      "type": "file",
+      "file": "get_1.md",
+      "x": 2460,
+      "y": 1860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_main_health",
+      "type": "file",
+      "file": "health().md",
+      "x": 1860,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_config_load_training_config",
+      "type": "file",
+      "file": "load_training_config().md",
+      "x": 2060,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_main",
+      "type": "file",
+      "file": "main.py.md",
+      "x": 2260,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_pose_loader",
+      "type": "file",
+      "file": "pose_loader.py.md",
+      "x": 2460,
+      "y": 1940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_backend_state",
+      "type": "file",
+      "file": "state.py.md",
+      "x": 1860,
+      "y": 2020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g10",
+      "type": "group",
+      "label": "Pose Anonymization",
+      "x": 3460,
+      "y": 1700,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_backend_requirements_pose_anonymization",
+      "type": "file",
+      "file": "pose-anonymization.md",
+      "x": 3480,
+      "y": 1780,
+      "width": 180,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_api_routes_speech_to_text_speech_to_text",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_api_routes_speech_to_text_speech_to_text",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_configs_cloudinary_config",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_configs_cloudinary_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_animation_generator_animationgenerator",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_animation_generator_animationgenerator",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_arabic_normalizer_arabicnormalizer",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_pose_retriever_poseretriever",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_pose_retriever_poseretriever",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_pose_smoother_posesmoother",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_pose_smoother_posesmoother",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_speech_to_text_speechtotextsr",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_speech_to_text_speechtotextsr",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_animation_generator",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_animation_generator",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_arabic_normalizer",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_arabic_normalizer",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_pose_retriever",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_pose_retriever",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_pose_smoother",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_pose_smoother",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_backend_services_speech_to_text",
+      "fromNode": "n_backend_api_routes_speech_to_text",
+      "toNode": "n_backend_services_speech_to_text",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_py_post_backend_api_routes_speech_to_text_speech_to_text",
+      "fromNode": "n_backend_api_routes_speech_to_text_py_post",
+      "toNode": "n_backend_api_routes_speech_to_text_speech_to_text",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_speech_to_text_speech_to_text_backend_api_routes_speech_to_text_py_uploadfile",
+      "fromNode": "n_backend_api_routes_speech_to_text_speech_to_text",
+      "toNode": "n_backend_api_routes_speech_to_text_py_uploadfile",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_api_routes_full_sentence_video_save_full_sentence_upload",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_api_routes_full_sentence_video_save_full_sentence_upload",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_services_nlp_refiner_refine_to_egyptian",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_services_nlp_refiner_refine_to_egyptian",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_config",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_services_full_sentence_video_service",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_services_full_sentence_video_service",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_backend_services_nlp_refiner",
+      "fromNode": "n_backend_api_routes_full_sentence_video",
+      "toNode": "n_backend_services_nlp_refiner",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_save_full_sentence_upload_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "fromNode": "n_backend_api_routes_full_sentence_video_save_full_sentence_upload",
+      "toNode": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_save_full_sentence_upload_backend_api_routes_full_sentence_video_py_path",
+      "fromNode": "n_backend_api_routes_full_sentence_video_save_full_sentence_upload",
+      "toNode": "n_backend_api_routes_full_sentence_video_py_path",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_save_full_sentence_upload_backend_api_routes_full_sentence_video_py_uploadfile",
+      "fromNode": "n_backend_api_routes_full_sentence_video_save_full_sentence_upload",
+      "toNode": "n_backend_api_routes_full_sentence_video_py_uploadfile",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_py_uploadfile_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "fromNode": "n_backend_api_routes_full_sentence_video_py_uploadfile",
+      "toNode": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_py_post_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "fromNode": "n_backend_api_routes_full_sentence_video_py_post",
+      "toNode": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_full_sentence_video_endpoint_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_full_sentence_video_full_sentence_video_endpoint_backend_services_nlp_refiner_refine_to_egyptian",
+      "fromNode": "n_backend_api_routes_full_sentence_video_full_sentence_video_endpoint",
+      "toNode": "n_backend_services_nlp_refiner_refine_to_egyptian",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_api_routes_sign_to_text_save_upload_file",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_api_routes_sign_to_text_save_upload_file",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_api_routes_sign_to_text_sign_to_text",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_services_nlp_refiner_refine_to_egyptian",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_services_nlp_refiner_refine_to_egyptian",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_services_sign_predictor_predict_sign",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_services_sign_predictor_predict_sign",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_services_video_processor_preprocess_video",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_services_video_processor_preprocess_video",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_config",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_services_nlp_refiner",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_services_nlp_refiner",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_services_sign_predictor",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_services_sign_predictor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_backend_services_video_processor",
+      "fromNode": "n_backend_api_routes_sign_to_text",
+      "toNode": "n_backend_services_video_processor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_save_upload_file_backend_api_routes_sign_to_text_py_path",
+      "fromNode": "n_backend_api_routes_sign_to_text_save_upload_file",
+      "toNode": "n_backend_api_routes_sign_to_text_py_path",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_save_upload_file_backend_api_routes_sign_to_text_py_uploadfile",
+      "fromNode": "n_backend_api_routes_sign_to_text_save_upload_file",
+      "toNode": "n_backend_api_routes_sign_to_text_py_uploadfile",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_save_upload_file_backend_api_routes_sign_to_text_sign_to_text",
+      "fromNode": "n_backend_api_routes_sign_to_text_save_upload_file",
+      "toNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_py_uploadfile_backend_api_routes_sign_to_text_sign_to_text",
+      "fromNode": "n_backend_api_routes_sign_to_text_py_uploadfile",
+      "toNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_py_post_backend_api_routes_sign_to_text_sign_to_text",
+      "fromNode": "n_backend_api_routes_sign_to_text_py_post",
+      "toNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_sign_to_text_backend_services_nlp_refiner_refine_to_egyptian",
+      "fromNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "toNode": "n_backend_services_nlp_refiner_refine_to_egyptian",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_sign_to_text_backend_services_sign_predictor_predict_sign",
+      "fromNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "toNode": "n_backend_services_sign_predictor_predict_sign",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_sign_to_text_sign_to_text_backend_services_video_processor_preprocess_video",
+      "fromNode": "n_backend_api_routes_sign_to_text_sign_to_text",
+      "toNode": "n_backend_services_video_processor_preprocess_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_api_routes_text_to_sign_text_to_sign",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_api_routes_text_to_sign_text_to_sign",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_configs_cloudinary_config",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_configs_cloudinary_config",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_schemas_requests_textinput",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_schemas_requests_textinput",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_animation_generator_animationgenerator",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_animation_generator_animationgenerator",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_arabic_normalizer_arabicnormalizer",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_pose_retriever_poseretriever",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_pose_retriever_poseretriever",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_pose_smoother_posesmoother",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_pose_smoother_posesmoother",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_schemas_requests",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_schemas_requests",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_animation_generator",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_animation_generator",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_arabic_normalizer",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_arabic_normalizer",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_pose_retriever",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_pose_retriever",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_backend_services_pose_smoother",
+      "fromNode": "n_backend_api_routes_text_to_sign",
+      "toNode": "n_backend_services_pose_smoother",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_text_to_sign_py_post_backend_api_routes_text_to_sign_text_to_sign",
+      "fromNode": "n_backend_api_routes_text_to_sign_py_post",
+      "toNode": "n_backend_api_routes_text_to_sign_text_to_sign",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_video_backend_api_routes_video_get_video",
+      "fromNode": "n_backend_api_routes_video",
+      "toNode": "n_backend_api_routes_video_get_video",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_video_backend_services_animation_generator_animationgenerator",
+      "fromNode": "n_backend_api_routes_video",
+      "toNode": "n_backend_services_animation_generator_animationgenerator",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_video_backend_schemas_requests",
+      "fromNode": "n_backend_api_routes_video",
+      "toNode": "n_backend_schemas_requests",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_video_backend_services_animation_generator",
+      "fromNode": "n_backend_api_routes_video",
+      "toNode": "n_backend_services_animation_generator",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_video_py_get_backend_api_routes_video_get_video",
+      "fromNode": "n_backend_api_routes_video_py_get",
+      "toNode": "n_backend_api_routes_video_get_video",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_api_routes_video_get_video_backend_api_routes_video_get_video_iterfile",
+      "fromNode": "n_backend_api_routes_video_get_video",
+      "toNode": "n_backend_api_routes_video_get_video_iterfile",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_config_first_existing",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_config_first_existing",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_config_load_training_config",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_config_load_training_config",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_main",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_main",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_pose_loader",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_pose_loader",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_services_model_architecture",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_services_model_architecture",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_services_sign_predictor",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_services_sign_predictor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_backend_services_video_processor",
+      "fromNode": "n_backend_config",
+      "toNode": "n_backend_services_video_processor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_first_existing_backend_config_py_path",
+      "fromNode": "n_backend_config_first_existing",
+      "toNode": "n_backend_config_py_path",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_config_first_existing_backend_config_rationale_22",
+      "fromNode": "n_backend_config_first_existing",
+      "toNode": "n_backend_config_rationale_22",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_main_backend_main_health",
+      "fromNode": "n_backend_main",
+      "toNode": "n_backend_main_health",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_main_backend_pose_loader",
+      "fromNode": "n_backend_main",
+      "toNode": "n_backend_pose_loader",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_main_backend_pose_loader_poseloader",
+      "fromNode": "n_backend_main",
+      "toNode": "n_backend_pose_loader_poseloader",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_main_backend_state",
+      "fromNode": "n_backend_main",
+      "toNode": "n_backend_state",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_main_py_get_backend_main_health",
+      "fromNode": "n_backend_main_py_get",
+      "toNode": "n_backend_main_health",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_pose_loader_backend_pose_loader_poseloader",
+      "fromNode": "n_backend_pose_loader",
+      "toNode": "n_backend_pose_loader_poseloader",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_pose_loader_backend_services_arabic_normalizer",
+      "fromNode": "n_backend_pose_loader",
+      "toNode": "n_backend_services_arabic_normalizer",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_pose_loader_poseloader_backend_pose_loader_poseloader_get",
+      "fromNode": "n_backend_pose_loader_poseloader",
+      "toNode": "n_backend_pose_loader_poseloader_get",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_pose_loader_poseloader_backend_pose_loader_poseloader_init",
+      "fromNode": "n_backend_pose_loader_poseloader",
+      "toNode": "n_backend_pose_loader_poseloader_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_pose_loader_poseloader_backend_services_arabic_normalizer",
+      "fromNode": "n_backend_pose_loader_poseloader",
+      "toNode": "n_backend_services_arabic_normalizer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_pose_loader_poseloader_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "fromNode": "n_backend_pose_loader_poseloader",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_schemas_requests_backend_schemas_requests_textinput",
+      "fromNode": "n_backend_schemas_requests",
+      "toNode": "n_backend_schemas_requests_textinput",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_schemas_requests_backend_services_arabic_normalizer",
+      "fromNode": "n_backend_schemas_requests",
+      "toNode": "n_backend_services_arabic_normalizer",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_schemas_requests_backend_services_pose_retriever",
+      "fromNode": "n_backend_schemas_requests",
+      "toNode": "n_backend_services_pose_retriever",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_schemas_requests_textinput_basemodel",
+      "fromNode": "n_backend_schemas_requests_textinput",
+      "toNode": "n_basemodel",
+      "label": "inherits [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_animation_generator_backend_services_animation_generator_animationgenerator",
+      "fromNode": "n_backend_services_animation_generator",
+      "toNode": "n_backend_services_animation_generator_animationgenerator",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_animation_generator_animationgenerator_backend_services_animation_generator_animationgenerator_generate",
+      "fromNode": "n_backend_services_animation_generator_animationgenerator",
+      "toNode": "n_backend_services_animation_generator_animationgenerator_generate",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_animation_generator_animationgenerator_generate_backend_services_animation_generator_rationale_12",
+      "fromNode": "n_backend_services_animation_generator_animationgenerator_generate",
+      "toNode": "n_backend_services_animation_generator_rationale_12",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_arabicnormalizer",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_clean_text",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_clean_text",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_datasetmatcher",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_has_english_letters",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_has_english_letters",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_is_number_token",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_is_number_token",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_backend_services_arabic_normalizer_normalize_for_compare",
+      "fromNode": "n_backend_services_arabic_normalizer",
+      "toNode": "n_backend_services_arabic_normalizer_normalize_for_compare",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_datasetmatcher_init",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_is_number_token",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_is_number_token",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_clean_text_backend_services_arabic_normalizer_normalize_for_compare",
+      "fromNode": "n_backend_services_arabic_normalizer_clean_text",
+      "toNode": "n_backend_services_arabic_normalizer_normalize_for_compare",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_fix_mixed_arabic_letters_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "fromNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_fix_mixed_arabic_letters_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "fromNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_fix_mixed_arabic_letters_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "fromNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_fix_mixed_arabic_letters_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "fromNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_fix_mixed_arabic_letters_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_fix_mixed_arabic_letters_backend_services_arabic_normalizer_rationale_27",
+      "fromNode": "n_backend_services_arabic_normalizer_fix_mixed_arabic_letters",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_27",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_is_single_arabic_letter_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "fromNode": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "toNode": "n_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_is_single_arabic_letter_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "fromNode": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_is_single_arabic_letter_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_is_single_arabic_letter_backend_services_arabic_normalizer_rationale_52",
+      "fromNode": "n_backend_services_arabic_normalizer_is_single_arabic_letter",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_52",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_has_english_letters_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_has_english_letters",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_is_number_token_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_is_number_token",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_all_tokens_are_single_letters_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "fromNode": "n_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_all_tokens_are_single_letters_backend_services_arabic_normalizer_rationale_69",
+      "fromNode": "n_backend_services_arabic_normalizer_all_tokens_are_single_letters",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_69",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_normalize_for_compare_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "fromNode": "n_backend_services_arabic_normalizer_normalize_for_compare",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_normalize_for_compare_backend_services_arabic_normalizer_datasetmatcher_init",
+      "fromNode": "n_backend_services_arabic_normalizer_normalize_for_compare",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_normalize_for_compare_backend_services_arabic_normalizer_rationale_76",
+      "fromNode": "n_backend_services_arabic_normalizer_normalize_for_compare",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_76",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_backend_services_arabic_normalizer_datasetmatcher_init",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_exact_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher_exact",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "toNode": "n_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy_backend_services_arabic_normalizer_rationale_119",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher_can_use_fuzzy",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_119",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_fuzzy_backend_services_arabic_normalizer_rationale_152",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher_fuzzy",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_152",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_datasetmatcher_char_level_backend_services_arabic_normalizer_rationale_191",
+      "fromNode": "n_backend_services_arabic_normalizer_datasetmatcher_char_level",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_191",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_backend_services_arabic_normalizer_arabicnormalizer_normalize",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_normalize",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary_backend_services_arabic_normalizer_arabicnormalizer_normalize",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_normalize",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary_backend_services_arabic_normalizer_rationale_246",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer_build_dataset_summary",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_246",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_normalize_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer_normalize",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer_parse_llm_output",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "toNode": "n_backend_services_arabic_normalizer_arabicnormalizer_tokenize",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset_backend_services_arabic_normalizer_rationale_392",
+      "fromNode": "n_backend_services_arabic_normalizer_arabicnormalizer_map_to_dataset",
+      "toNode": "n_backend_services_arabic_normalizer_rationale_392",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_full_sentence_video_service_build_words_from_segments",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_full_sentence_video_service_build_words_from_segments",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_full_sentence_video_service_cut_video_segment",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_full_sentence_video_service_cut_video_segment",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_full_sentence_video_service_get_video_info",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_full_sentence_video_service_get_video_info",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_full_sentence_video_service_make_compact_segments",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_full_sentence_video_service_make_compact_segments",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_sign_predictor_predict_sign",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_sign_predictor_predict_sign",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_video_processor_preprocess_video",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_video_processor_preprocess_video",
+      "label": "imports [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_sign_predictor",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_sign_predictor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_backend_services_video_processor",
+      "fromNode": "n_backend_services_full_sentence_video_service",
+      "toNode": "n_backend_services_video_processor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_get_video_info_any",
+      "fromNode": "n_backend_services_full_sentence_video_service_get_video_info",
+      "toNode": "n_any",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_get_video_info_backend_services_full_sentence_video_service_py_path",
+      "fromNode": "n_backend_services_full_sentence_video_service_get_video_info",
+      "toNode": "n_backend_services_full_sentence_video_service_py_path",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_get_video_info_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_get_video_info",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_get_video_info_backend_services_full_sentence_video_service_rationale_21",
+      "fromNode": "n_backend_services_full_sentence_video_service_get_video_info",
+      "toNode": "n_backend_services_full_sentence_video_service_rationale_21",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_py_path_backend_services_full_sentence_video_service_cut_video_segment",
+      "fromNode": "n_backend_services_full_sentence_video_service_py_path",
+      "toNode": "n_backend_services_full_sentence_video_service_cut_video_segment",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_py_path_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_py_path",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_any_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "fromNode": "n_any",
+      "toNode": "n_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_any_backend_services_full_sentence_video_service_make_compact_segments",
+      "fromNode": "n_any",
+      "toNode": "n_backend_services_full_sentence_video_service_make_compact_segments",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_any_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_any",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "references [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_cut_video_segment_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_cut_video_segment",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_cut_video_segment_backend_services_full_sentence_video_service_rationale_55",
+      "fromNode": "n_backend_services_full_sentence_video_service_cut_video_segment",
+      "toNode": "n_backend_services_full_sentence_video_service_rationale_55",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_extract_prediction_summary_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_extract_prediction_summary_backend_services_full_sentence_video_service_rationale_96",
+      "fromNode": "n_backend_services_full_sentence_video_service_extract_prediction_summary",
+      "toNode": "n_backend_services_full_sentence_video_service_rationale_96",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_build_words_from_segments_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_build_words_from_segments",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_build_words_from_segments_backend_services_full_sentence_video_service_rationale_165",
+      "fromNode": "n_backend_services_full_sentence_video_service_build_words_from_segments",
+      "toNode": "n_backend_services_full_sentence_video_service_rationale_165",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_make_compact_segments_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_make_compact_segments",
+      "toNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_make_compact_segments_backend_services_full_sentence_video_service_rationale_228",
+      "fromNode": "n_backend_services_full_sentence_video_service_make_compact_segments",
+      "toNode": "n_backend_services_full_sentence_video_service_rationale_228",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_predict_full_sentence_video_backend_services_sign_predictor_predict_sign",
+      "fromNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "toNode": "n_backend_services_sign_predictor_predict_sign",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_predict_full_sentence_video_backend_services_video_processor_preprocess_video",
+      "fromNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "toNode": "n_backend_services_video_processor_preprocess_video",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_full_sentence_video_service_predict_full_sentence_video_backend_services_full_sentence_video_service_rationale_257",
+      "fromNode": "n_backend_services_full_sentence_video_service_predict_full_sentence_video",
+      "toNode": "n_backend_services_full_sentence_video_service_rationale_257",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_auxreliabilitybranch",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_auxreliabilitybranch",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_fourwaygatedfusion",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_fourwaygatedfusion",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_graphconvlayer",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_graphconvlayer",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_graphframeencoder",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_graphframeencoder",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_handbodycrossattentionbranch",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_handbodycrossattentionbranch",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_hfsmcahybridmodel",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_hfsmcahybridmodel",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_maskedattentionpooling",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_maskedattentionpooling",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_multiscaletcnblock",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_multiscaletcnblock",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_multiscaletemporalmotionbranch",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_multiscaletemporalmotionbranch",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_positionalencoding",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_positionalencoding",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_statichandshapetransformerbranch",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_statichandshapetransformerbranch",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_model_architecture_temporaltransformerencoder",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_model_architecture_temporaltransformerencoder",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_video_processor",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_video_processor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_backend_services_sign_predictor",
+      "fromNode": "n_backend_services_model_architecture",
+      "toNode": "n_backend_services_sign_predictor",
+      "label": "imports_from [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_maskedattentionpooling_backend_services_model_architecture_auxreliabilitybranch_init",
+      "fromNode": "n_backend_services_model_architecture_maskedattentionpooling",
+      "toNode": "n_backend_services_model_architecture_auxreliabilitybranch_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_maskedattentionpooling_backend_services_model_architecture_handbodycrossattentionbranch_init",
+      "fromNode": "n_backend_services_model_architecture_maskedattentionpooling",
+      "toNode": "n_backend_services_model_architecture_handbodycrossattentionbranch_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_maskedattentionpooling_backend_services_model_architecture_maskedattentionpooling_forward",
+      "fromNode": "n_backend_services_model_architecture_maskedattentionpooling",
+      "toNode": "n_backend_services_model_architecture_maskedattentionpooling_forward",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_maskedattentionpooling_backend_services_model_architecture_maskedattentionpooling_init",
+      "fromNode": "n_backend_services_model_architecture_maskedattentionpooling",
+      "toNode": "n_backend_services_model_architecture_maskedattentionpooling_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_backend_services_model_architecture_maskedattentionpooling_backend_services_model_architecture_multiscaletemporalmotionbranch_init",
+      "fromNode": "n_backend_services_model_architecture_maskedattentionpooling",
+      "toNode": "n_backend_services_model_architecture_multiscaletemporalmotionbranch_init",
+      "label": "calls [EXTRACTED]"
+    }
+  ]
+}

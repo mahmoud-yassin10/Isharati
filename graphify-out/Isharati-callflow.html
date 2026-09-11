@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isharati — Complete Call Flow &amp; Architecture Documentation</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #0f172a; --surface: #1e293b; --border: #334155;
+  --text: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8;
+  --warn: #fbbf24; --err: #f87171; --ok: #34d399;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+h1 { font-size: 2.4rem; margin-bottom: 8px; background: linear-gradient(135deg, var(--accent), #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+h2 { font-size: 1.7rem; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+h3 { font-size: 1.25rem; margin: 32px 0 12px; color: var(--accent); }
+h4 { font-size: 1.05rem; margin: 20px 0 8px; color: var(--warn); }
+p { margin: 8px 0; color: var(--muted); }
+.subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 32px; }
+.mermaid { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 20px 0; overflow-x: auto; position: relative; }
+.mermaid.is-enhanced { padding: 0; overflow: hidden; min-height: 260px; }
+.mermaid-viewport { padding: 54px 24px 24px; overflow: hidden; cursor: grab; touch-action: none; min-height: 260px; }
+.mermaid-viewport.is-dragging { cursor: grabbing; }
+.mermaid-viewport svg { max-width: none !important; height: auto; transform-origin: 0 0; transition: transform 120ms ease; }
+.mermaid-toolbar { position: absolute; top: 10px; right: 10px; z-index: 3; display: flex; align-items: center; gap: 6px; padding: 6px; background: rgba(15,23,42,0.92); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.28); }
+.mermaid-toolbar button, .mermaid-toolbar .zoom-level { height: 28px; min-width: 32px; border: 1px solid var(--border); border-radius: 6px; background: #1e293b; color: var(--text); font: 600 0.78rem system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; }
+.mermaid-toolbar button { cursor: pointer; }
+.mermaid-toolbar button:hover { border-color: var(--accent); color: var(--accent); }
+.mermaid-toolbar .zoom-level { min-width: 52px; color: var(--muted); background: transparent; }
+.call-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem; }
+.call-table th { background: #1a2744; color: var(--accent); text-align: left; padding: 10px 14px; border: 1px solid var(--border); }
+.call-table td { padding: 8px 14px; border: 1px solid var(--border); vertical-align: top; }
+.call-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+.tag-async { background: #7c3aed33; color: #a78bfa; }
+.tag-class { background: #05966933; color: var(--ok); }
+.tag-func { background: #2563eb33; color: var(--accent); }
+.tag-cmd { background: #d9770633; color: var(--warn); }
+.tag-endpoint { background: #dc262633; color: var(--err); }
+.tag-hook { background: #db277733; color: #f472b6; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin: 16px 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin: 16px 0; }
+.arrow-chain { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--accent); padding: 10px; background: rgba(56,189,248,0.06); border-radius: 6px; }
+code { font-family: 'Fira Code', 'Cascadia Code', monospace; background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 3px; font-size: 0.88em; }
+ul, ol { margin: 8px 0 8px 24px; color: var(--muted); }
+li { margin: 4px 0; }
+a { color: var(--accent); }
+hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+.nav { position: sticky; top: 0; background: var(--bg); z-index: 10; padding: 12px 0; border-bottom: 1px solid var(--border); display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; }
+.nav a { text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+@media (max-width: 768px) { .container { padding: 16px; } h1 { font-size: 1.8rem; } }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Isharati — Complete Call Flow &amp; Architecture Documentation</h1>
+<p class="subtitle">Generated from graphify knowledge graph: 311 nodes, 549 edges, 11 communities. Commit: b6aca9d</p>
+
+<div class="nav">
+    <a href="#overview">Architecture Overview</a>
+    <a href="#build-graph">Graph Build</a>
+    <a href="#cli-skills">CLI &amp; Skill Installers</a>
+    <a href="#ingest-cache-update">Ingestion &amp; Updates</a>
+    <a href="#serve-api">Serving API</a>
+    <a href="#backend-services-model">Backend Services Model</a>
+    <a href="#pose-anonymization-backend">Pose Anonymization Backend</a>
+</div>
+
+<!-- ====== Architecture Overview ====== -->
+<h2 id="overview">1. Architecture Overview</h2>
+
+<div class="mermaid">
+
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    BUILD_GRAPH_321CBB04("Graph Build<br/><small>30 nodes</small>")
+    class BUILD_GRAPH_321CBB04 module;
+    CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>13 nodes</small>")
+    class CLI_SKILLS_9964CBB8 module;
+    INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>203 nodes</small>")
+    class INGEST_CACHE_UPDATE_FF457338 module;
+    SERVE_API_35EC8E86("Serving API<br/><small>20 nodes</small>")
+    class SERVE_API_35EC8E86 module;
+    BACKEND_SERVICES_MODEL_D388A9AA("Backend Services Model<br/><small>44 nodes</small>")
+    class BACKEND_SERVICES_MODEL_D388A9AA module;
+    POSE_ANONYMIZATION_BACKEND_913624D2("Pose Anonymization Backend<br/><small>1 nodes</small>")
+    class POSE_ANONYMIZATION_BACKEND_913624D2 module;
+    SERVE_API_35EC8E86 -->|implements x6| INGEST_CACHE_UPDATE_FF457338
+    BACKEND_SERVICES_MODEL_D388A9AA -->|contains x5| INGEST_CACHE_UPDATE_FF457338
+    BUILD_GRAPH_321CBB04 -->|uses x4| CLI_SKILLS_9964CBB8
+    INGEST_CACHE_UPDATE_FF457338 -->|imports x4| BACKEND_SERVICES_MODEL_D388A9AA
+    INGEST_CACHE_UPDATE_FF457338 -->|imports x4| CLI_SKILLS_9964CBB8
+    INGEST_CACHE_UPDATE_FF457338 -->|imports x4| BUILD_GRAPH_321CBB04
+    INGEST_CACHE_UPDATE_FF457338 -->|implements x3| SERVE_API_35EC8E86
+    BACKEND_SERVICES_MODEL_D388A9AA -->|imports x2| CLI_SKILLS_9964CBB8
+    BUILD_GRAPH_321CBB04 -->|imports| INGEST_CACHE_UPDATE_FF457338
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h4>Architecture Layers</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
+      <tr><td>Graph Build</td><td>30</td><td><code>5</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>13</td><td><code>9</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>203</td><td><code>0, 2, 3, 4, 6, 7</code></td></tr><tr><td>Serving API</td><td>20</td><td><code>8</code></td></tr><tr><td>Backend Services Model</td><td>44</td><td><code>1</code></td></tr><tr><td>Pose Anonymization Backend</td><td>1</td><td><code>10</code></td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Core Flow</h4>
+    <div class="arrow-chain">Pose Anonymization Backend -&gt; Graph Build -&gt; CLI &amp; Skill Installers -&gt; Ingestion &amp; Updates -&gt; Backend Services Model -&gt; Serving API</div>
+  </div>
+</div>
+<div class="grid">
+  <div class="card">
+    <h4>Graph Report Highlights</h4>
+    <ul>
+      <li>311 nodes · 549 edges · 11 communities (10 shown, 1 thin omitted)</li>
+      <li>Extraction: 91% EXTRACTED · 8% INFERRED · 1% AMBIGUOUS · INFERRED: 43 edges (avg confidence: 0.55)</li>
+      <li>Token cost: 0 input · 0 output</li>
+      <li>1. `make_10A_features_from_64_raw()` - 16 edges</li>
+      <li>2. `predict_full_sentence_video()` - 13 edges</li>
+      <li>3. `clean_text()` - 12 edges</li>
+    </ul>
+  </div>
+</div>
+<hr>
+<!-- ====== 2. Graph Build ====== -->
+<h2 id="build-graph">2. Graph Build</h2>
+<p>Graph Build groups implementation around arabic, normalizerpy, backend, services, mostly in backend/services/arabic_normalizer.py. This section covers 30 nodes and 60 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Graph Build (30 nodes, 60 edges)
+    backend_services_arabic_normalizer_arabicnormali_4af4882c("ArabicNormalizer<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_datasetmatche_c24444df("DatasetMatcher<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_1fff3d91("map_to_dataset()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_datasetmatche_7656593a("can_use_fuzzy()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_45606731("tokenize()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_datasetmatche_b5991aad("char_level()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_419ea4ce("__init__()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_af379d4f("_build_dataset_summary()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_13366c2b("normalize()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_54e54d00("parse_llm_output()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_datasetmatche_50f6686a("exact()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_datasetmatche_202ade46("fuzzy()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_datasetmatche_9e4a1326("__init__()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_all_tokens_ar_d988b666("are single letters()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_is_single_ara_577f9743("is_single_arabic_letter()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_clean_text_adb52ef6("clean_text()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_fix_mixed_ara_b0513575("fix_mixed_arabic_letters()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_has_english_l_0c237eea("has_english_letters()<br/><small>backend/services/arabic_normalizer.py</small>")
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_419ea4ce
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_af379d4f
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_13366c2b
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_54e54d00
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_1fff3d91
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_45606731
+    backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_50f6686a
+    backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_7656593a
+    backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_202ade46
+    backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_b5991aad
+    backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_9e4a1326
+    backend_services_arabic_normalizer_all_tokens_ar_d988b666 -->|calls| backend_services_arabic_normalizer_is_single_ara_577f9743
+    backend_services_arabic_normalizer_arabicnormali_419ea4ce -->|calls| backend_services_arabic_normalizer_clean_text_adb52ef6
+    backend_services_arabic_normalizer_arabicnormali_419ea4ce -->|calls| backend_services_arabic_normalizer_datasetmatche_c24444df
+    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_clean_text_adb52ef6
+    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_fix_mixed_ara_b0513575
+    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_all_tokens_ar_d988b666
+    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_is_single_ara_577f9743
+    backend_services_arabic_normalizer_arabicnormali_13366c2b -->|calls| backend_services_arabic_normalizer_arabicnormali_af379d4f
+    backend_services_arabic_normalizer_arabicnormali_54e54d00 -->|calls| backend_services_arabic_normalizer_fix_mixed_ara_b0513575
+    backend_services_arabic_normalizer_arabicnormali_54e54d00 -->|calls| backend_services_arabic_normalizer_clean_text_adb52ef6
+    backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_13366c2b
+    backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_54e54d00
+    backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_1fff3d91
+    %% Omitted for readability: 12 nodes, 13 edges
+    class backend_services_arabic_normalizer_arabicnormali_4af4882c klass;
+    class backend_services_arabic_normalizer_datasetmatche_c24444df klass;
+    class backend_services_arabic_normalizer_arabicnormali_1fff3d91 function;
+    class backend_services_arabic_normalizer_datasetmatche_7656593a function;
+    class backend_services_arabic_normalizer_arabicnormali_45606731 function;
+    class backend_services_arabic_normalizer_datasetmatche_b5991aad function;
+    class backend_services_arabic_normalizer_arabicnormali_419ea4ce function;
+    class backend_services_arabic_normalizer_arabicnormali_af379d4f function;
+    class backend_services_arabic_normalizer_arabicnormali_13366c2b function;
+    class backend_services_arabic_normalizer_arabicnormali_54e54d00 function;
+    class backend_services_arabic_normalizer_datasetmatche_50f6686a function;
+    class backend_services_arabic_normalizer_datasetmatche_202ade46 function;
+    class backend_services_arabic_normalizer_datasetmatche_9e4a1326 function;
+    class backend_services_arabic_normalizer_all_tokens_ar_d988b666 function;
+    class backend_services_arabic_normalizer_is_single_ara_577f9743 function;
+    class backend_services_arabic_normalizer_clean_text_adb52ef6 function;
+    class backend_services_arabic_normalizer_fix_mixed_ara_b0513575 function;
+    class backend_services_arabic_normalizer_has_english_l_0c237eea function;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>Speech_to_text.py</code><br><small style="color:var(--muted)">api/routes/Speech_to_text.py</small><br><code>text_to_sign.py</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>_build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+4 more</td>
+  <td>ArabicNormalizer node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+2 more</td>
+  <td>DatasetMatcher node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>all_tokens_are_single_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>is_single_arabic_letter()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>all_tokens_are_single_letters() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>._build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>._build_dataset_summary() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td>.__init__() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>.map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>are single letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
+  <td>.map_to_dataset() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>.normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>_build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.normalize() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>.parse_llm_output()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.parse_llm_output() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>.tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>parse_llm_output()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.tokenize() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+8 more</td>
+  <td>No direct outbound edge</td>
+  <td>clean_text() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>.can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>has_english_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>is_number_token()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
+  <td>.can_use_fuzzy() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>.char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.char_level() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>.exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.exact() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>.fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.fuzzy() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.__init__() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+2 more</td>
+  <td>No direct outbound edge</td>
+  <td>fix_mixed_arabic_letters() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>has_english_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>has_english_letters() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>is_number_token()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>is_number_token() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>is_single_arabic_letter()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>are single letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>is_single_arabic_letter() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>normalize_for_compare() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>arabic_normalizer.py</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>Speech_to_text.py</code><br><small style="color:var(--muted)">api/routes/Speech_to_text.py</small><br><code>text_to_sign.py</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small></td>
+  <td><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>requests.py</code><br><small style="color:var(--muted)">backend/schemas/requests.py</small></td>
+  <td>Module file in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>Very important: Fuzzy matching caused: احمد -&gt; الحمد لله and letters being…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Very important: Fuzzy matching caused: احمد -&gt; الحمد لله and letters being….</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>Controlled fuzzy only. Higher threshold prevents احمد -&gt; الحمد لله.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Controlled fuzzy only. Higher threshold prevents احمد -&gt; الحمد لله..</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>Convert unknown words/names to letters. Only keep letters that exist in dataset.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Convert unknown words/names to letters. Only keep letters that exist in dataset..</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>Split the dataset into categories so the LLM can reason about each type…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Split the dataset into categories so the LLM can reason about each type….</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>Fix rare LLM mistakes like: Bنك مصر -&gt; بنك مصر</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Fix rare LLM mistakes like: Bنك مصر -&gt; بنك مصر.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>Fixed logic: - No full sentence fuzzy. - No fuzzy for single letters. - No…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Fixed logic: - No full sentence fuzzy. - No fuzzy for single letters. - No….</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>True for one Arabic letter only: ا / ب / ت / م / ه ...</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for True for one Arabic letter only: ا / ب / ت / م / ه ....</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>Prevent matching [&quot;ه&quot;, &quot;ش&quot;, &quot;ا&quot;, &quot;م&quot;] as a fuzzy phrase.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Prevent matching [&quot;ه&quot;, &quot;ش&quot;, &quot;ا&quot;, &quot;م&quot;] as a fuzzy phrase..</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>Used only for comparison, not final output. Final output should still use the…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Used only for comparison, not final output. Final output should still use the….</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/services/arabic_normalizer.py</code></td><td>30 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x31, method x11, contains x9, explains x9. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 3. CLI & Skill Installers ====== -->
+<h2 id="cli-skills">3. CLI &amp; Skill Installers</h2>
+<p>CLI &amp; Skill Installers groups implementation around backend, pose, loaderpy, configpy, mostly in backend/pose_loader.py, backend/config.py, backend/main.py. This section covers 13 nodes and 14 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: CLI &amp; Skill Installers (13 nodes, 14 edges)
+    subgraph cli_skills_backend_config_py_b96924ce["backend/config.py"]
+        backend_config_b9e47c5e("config.py")
+        backend_config_first_existing_31e3e313("first_existing()<br/><small>backend/config.py</small>")
+        backend_config_load_training_config_2bff9e59("load_training_config()<br/><small>backend/config.py</small>")
+        backend_config_rationale_22_4976a683("Return first existing path; if none exi...<br/><small>backend/config.py</small>")
+    end
+    subgraph cli_skills_backend_pose_loader_py_21f92575["backend/pose_loader.py"]
+        backend_pose_loader_poseloader_af72e829("PoseLoader<br/><small>backend/pose_loader.py</small>")
+        backend_pose_loader_77b8ad84("pose_loader.py")
+        backend_pose_loader_poseloader_init_f0ac6c4a("__init__()<br/><small>backend/pose_loader.py</small>")
+        backend_pose_loader_poseloader_get_d963d0db("get()<br/><small>backend/pose_loader.py</small>")
+    end
+    subgraph cli_skills_External_generated_0c226fa1["External / generated"]
+        backend_config_py_path_b5406a47("Path")
+        backend_main_py_get_33edb66b("get")
+    end
+    subgraph cli_skills_backend_main_py_4cd387b2["backend/main.py"]
+        backend_main_abdb2b1a("main.py")
+        backend_main_health_353b4efb("health()<br/><small>backend/main.py</small>")
+    end
+    backend_state_e4d02bbc("state.py")
+    backend_pose_loader_poseloader_af72e829 -->|method| backend_pose_loader_poseloader_init_f0ac6c4a
+    backend_pose_loader_poseloader_af72e829 -->|method| backend_pose_loader_poseloader_get_d963d0db
+    backend_main_abdb2b1a -->|imports| backend_state_e4d02bbc
+    backend_main_abdb2b1a -->|imports| backend_pose_loader_poseloader_af72e829
+    backend_main_abdb2b1a -->|imports| backend_config_b9e47c5e
+    backend_main_abdb2b1a -->|imports| backend_pose_loader_77b8ad84
+    backend_pose_loader_77b8ad84 -->|imports| backend_config_b9e47c5e
+    class backend_config_b9e47c5e module;
+    class backend_config_first_existing_31e3e313 function;
+    class backend_config_load_training_config_2bff9e59 function;
+    class backend_config_rationale_22_4976a683 concept;
+    class backend_pose_loader_poseloader_af72e829 klass;
+    class backend_pose_loader_77b8ad84 module;
+    class backend_pose_loader_poseloader_init_f0ac6c4a function;
+    class backend_pose_loader_poseloader_get_d963d0db function;
+    class backend_config_py_path_b5406a47 klass;
+    class backend_main_py_get_33edb66b function;
+    class backend_main_abdb2b1a module;
+    class backend_main_health_353b4efb function;
+    class backend_state_e4d02bbc module;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>arabic_normalizer.py</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>get()</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td>PoseLoader node in backend/pose_loader.py.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>first_existing()</code><br><small style="color:var(--muted)">backend/config.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>first_existing() node in backend/config.py.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>load_training_config()</code><br><small style="color:var(--muted)">backend/config.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Reads, resolves, or persists project configuration.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>health()</code><br><small style="color:var(--muted)">backend/main.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>health() node in backend/main.py.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>.get()</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.get() node in backend/pose_loader.py.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.__init__() node in backend/pose_loader.py.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>config.py</code><br><small style="color:var(--muted)">backend/config.py</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>full_sentence_video.py</code><br><small style="color:var(--muted)">api/routes/full_sentence_video.py</small><br><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small><br><code>model_architecture.py</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+4 more</td>
+  <td>No direct outbound edge</td>
+  <td>Module file in backend/config.py.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>Path</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Path node in project.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>config.py</code><br><small style="color:var(--muted)">backend/config.py</small><br><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br>+1 more</td>
+  <td>Module file in backend/main.py.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>get</code><br><small style="color:var(--muted)"></small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>get node in project.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>arabic_normalizer.py</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small></td>
+  <td><code>config.py</code><br><small style="color:var(--muted)">backend/config.py</small></td>
+  <td>Module file in backend/pose_loader.py.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>state.py</code><br><small style="color:var(--muted)">backend/state.py</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small><br><code>pose_retriever.py</code><br><small style="color:var(--muted)">backend/services/pose_retriever.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>Module file in backend/state.py.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>Return first existing path; if none exists, return the first candidate.</code><br><small style="color:var(--muted)">backend/config.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Return first existing path; if none exists, return the first candidate..</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/config.py</code></td><td>4 nodes</td></tr>
+<tr><td><code>backend/pose_loader.py</code></td><td>4 nodes</td></tr>
+<tr><td><code>backend/main.py</code></td><td>2 nodes</td></tr>
+<tr><td><code>backend/state.py</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x4, imports x3, method x2, references x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 4. Ingestion & Updates ====== -->
+<h2 id="ingest-cache-update">4. Ingestion &amp; Updates</h2>
+<p>Ingestion &amp; Updates groups implementation around backend, video, services, readmemd, mostly in backend/services/video_processor.py, backend/README.md, docs/architecture.md. This section covers 203 nodes and 339 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Ingestion &amp; Updates (203 nodes, 339 edges)
+    subgraph ingest_cache_update_backend_services_speech_to_t_c0634b12["backend/services/speech_to_text.py"]
+        backend_services_speech_to_text_speechtotextsr_8356ceb5("SpeechToTextSR<br/><small>backend/services/speech_to_text.py</small>")
+        backend_services_speech_to_text_speechtotextsr_t_461371f1("transcribe_file()<br/><small>backend/services/speech_to_text.py</small>")
+        backend_services_speech_to_text_speechtotextsr_t_e74a0c07("transcribe_any()<br/><small>backend/services/speech_to_text.py</small>")
+        backend_services_speech_to_text_speechtotextsr_r_3dbce5d3("record_and_transcribe()<br/><small>backend/services/speech_to_text.py</small>")
+        backend_services_speech_to_text_speechtotextsr_i_94fe59ac("__init__()<br/><small>backend/services/speech_to_text.py</small>")
+    end
+    subgraph ingest_cache_update_backend_services_pose_retrie_58661dab["backend/services/pose_retriever.py"]
+        backend_services_pose_retriever_poseretriever_3e115fb2("PoseRetriever<br/><small>backend/services/pose_retriever.py</small>")
+        backend_services_pose_retriever_poseretriever_in_fc91b16c("__init__()<br/><small>backend/services/pose_retriever.py</small>")
+        backend_services_pose_retriever_poseretriever_re_0cd794d4("retrieve()<br/><small>backend/services/pose_retriever.py</small>")
+    end
+    subgraph ingest_cache_update_backend_services_animation_g_f043fdab["backend/services/animation_generator.py"]
+        backend_services_animation_generator_animationge_afba0c2d("AnimationGenerator<br/><small>backend/services/animation_generator.py</small>")
+        backend_services_animation_generator_animationge_19b5d00c("generate()<br/><small>backend/services/animation_generator.py</small>")
+    end
+    subgraph ingest_cache_update_backend_services_pose_smooth_5ceb456e["backend/services/pose_smoother.py"]
+        backend_services_pose_smoother_posesmoother_1f1a56e5("PoseSmoother<br/><small>backend/services/pose_smoother.py</small>")
+        backend_services_pose_smoother_posesmoother_smoo_89758dd5("smooth()<br/><small>backend/services/pose_smoother.py</small>")
+    end
+    subgraph ingest_cache_update_backend_services_video_proce_a1f87fec["backend/services/video_processor.py"]
+        backend_services_video_processor_make_10a_featur_1a546404("from 64 raw()<br/><small>backend/services/video_processor.py</small>")
+        backend_services_video_processor_compute_robust_d1d1e872("center scale angle()<br/><small>backend/services/video_processor.py</small>")
+    end
+    backend_api_routes_speech_to_text_5d665345("Speech_to_text.py")
+    backend_api_routes_text_to_sign_528a5c42("text_to_sign.py")
+    backendREADME_text_speech_to_sign_2d1f71ed("Text/Speech to Sign<br/><small>backend/README.md</small>")
+    backend_services_full_sentence_video_service_pre_bb039363("full sentence video()<br/><small>backend/services/full_sentence_video_service.py</small>")
+    backend_services_animation_generator_animationge_afba0c2d -->|method| backend_services_animation_generator_animationge_19b5d00c
+    backend_services_pose_retriever_poseretriever_3e115fb2 -->|method| backend_services_pose_retriever_poseretriever_in_fc91b16c
+    backend_services_pose_retriever_poseretriever_3e115fb2 -->|method| backend_services_pose_retriever_poseretriever_re_0cd794d4
+    backend_services_pose_smoother_posesmoother_1f1a56e5 -->|method| backend_services_pose_smoother_posesmoother_smoo_89758dd5
+    backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_t_461371f1
+    backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_t_e74a0c07
+    backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_r_3dbce5d3
+    backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_i_94fe59ac
+    backend_services_video_processor_make_10a_featur_1a546404 -->|calls| backend_services_video_processor_compute_robust_d1d1e872
+    backend_services_speech_to_text_speechtotextsr_t_e74a0c07 -->|calls| backend_services_speech_to_text_speechtotextsr_t_461371f1
+    backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_animation_generator_animationge_afba0c2d
+    backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_speech_to_text_speechtotextsr_8356ceb5
+    backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_pose_retriever_poseretriever_3e115fb2
+    backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_pose_smoother_posesmoother_1f1a56e5
+    backend_api_routes_text_to_sign_528a5c42 -->|imports| backend_services_pose_retriever_poseretriever_3e115fb2
+    backend_api_routes_text_to_sign_528a5c42 -->|imports| backend_services_pose_smoother_posesmoother_1f1a56e5
+    backend_api_routes_text_to_sign_528a5c42 -->|imports| backend_services_animation_generator_animationge_afba0c2d
+    %% Omitted for readability: 185 nodes, 0 edges
+    class backend_services_speech_to_text_speechtotextsr_8356ceb5 klass;
+    class backend_services_speech_to_text_speechtotextsr_t_461371f1 function;
+    class backend_services_speech_to_text_speechtotextsr_t_e74a0c07 function;
+    class backend_services_speech_to_text_speechtotextsr_r_3dbce5d3 function;
+    class backend_services_speech_to_text_speechtotextsr_i_94fe59ac function;
+    class backend_services_pose_retriever_poseretriever_3e115fb2 klass;
+    class backend_services_pose_retriever_poseretriever_in_fc91b16c function;
+    class backend_services_pose_retriever_poseretriever_re_0cd794d4 function;
+    class backend_services_animation_generator_animationge_afba0c2d klass;
+    class backend_services_animation_generator_animationge_19b5d00c function;
+    class backend_services_pose_smoother_posesmoother_1f1a56e5 klass;
+    class backend_services_pose_smoother_posesmoother_smoo_89758dd5 function;
+    class backend_services_video_processor_make_10a_featur_1a546404 function;
+    class backend_services_video_processor_compute_robust_d1d1e872 function;
+    class backend_api_routes_speech_to_text_5d665345 klass;
+    class backend_api_routes_text_to_sign_528a5c42 module;
+    class backendREADME_text_speech_to_sign_2d1f71ed concept;
+    class backend_services_full_sentence_video_service_pre_bb039363 function;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>body_normalize_keypoints()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>rotation_matrix()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>body_normalize_keypoints() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>build_aux_v3()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>safe_distance()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>sanitize_numeric()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>build_aux_v3() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>build_dominant_hand_view()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>build_dominant_hand_view() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>build_motion_aux()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>max_speed_per_frame()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>mean_speed_per_frame()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>point_speed_per_frame()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br>+1 more</td>
+  <td>build_motion_aux() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>build_rtmpose_inferencer()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>get_rtmpose_inferencer()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>build_rtmpose_inferencer() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>build_windows()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>preprocess_video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>ensure_64_frames()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>build_windows() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>choose_best_person_instance()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>wholebody from frame()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>get_instance_score()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>choose_best_person_instance() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>compute_hand_center_and_scale()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>center scale angle()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>hand_local_normalize_raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>safe_center()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>compute_hand_center_and_scale() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>compute_motion_score()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>compute_motion_score() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>compute_robust_center_scale_angle()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>center and scale()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>fill_invalid_scalar()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>fill_invalid_vector()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br>+4 more</td>
+  <td>compute_robust_center_scale_angle() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>compute_velocity()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>sanitize_numeric()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>compute_velocity() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>decide_dominant_hand()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>decide_dominant_hand() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>ensure_64_frames()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>build_windows()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>ensure_64_frames() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>extract_lr_hands_from_body_norm()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>extract_lr_hands_from_body_norm() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>extract_or_create_masks()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>make_landmark_mask()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>extract_or_create_masks() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>extract_rtmpose_keypoints_from_video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>resolve_input_to_npz()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>get_rtmpose_inferencer()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>get_video_info()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>Path</code><br>+2 more</td>
+  <td>extract_rtmpose_keypoints_from_video() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>extract_upper49()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>extract_upper49() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>extract_wholebody_from_frame()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>keypoints from video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>best person instance()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>extract_wholebody_from_frame() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>fill_invalid_scalar()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>center scale angle()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>fill_invalid_scalar() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>fill_invalid_vector()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>center scale angle()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>fill_invalid_vector() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>get_instance_score()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>best person instance()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>get_instance_score() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>get_rtmpose_inferencer()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>keypoints from video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>build_rtmpose_inferencer()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>get_rtmpose_inferencer() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>get_video_info()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>keypoints from video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>safe_open_video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>get_video_info() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>hand_local_normalize_raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>from 64 raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>center and scale()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>hand_local_normalize_raw() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>load_aux_stats()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>standardize_aux()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>load_aux_stats() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>load_raw_keypoints_npz()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>preprocess_video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>Path</code></td>
+  <td>load_raw_keypoints_npz() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>make_10A_features_from_64_raw()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>preprocess_video()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>body_normalize_keypoints()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>build_aux_v3()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br><code>build_dominant_hand_view()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small><br>+11 more</td>
+  <td>make_10A_features_from_64_raw() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>make_adjacency()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>make_adjacency() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>make_landmark_mask()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>extract_or_create_masks()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>make_landmark_mask() node in backend/services/video_processor.py.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>max_speed_per_frame()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>build_motion_aux()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td><code>speed_from_velocity()</code><br><small style="color:var(--muted)">backend/services/video_processor.py</small></td>
+  <td>max_speed_per_frame() node in backend/services/video_processor.py.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/services/video_processor.py</code></td><td>48 nodes</td></tr>
+<tr><td><code>backend/README.md</code></td><td>33 nodes</td></tr>
+<tr><td><code>docs/architecture.md</code></td><td>22 nodes</td></tr>
+<tr><td><code>backend/services/full_sentence_video_service.py</code></td><td>13 nodes</td></tr>
+<tr><td><code>backend/requirements.txt</code></td><td>9 nodes</td></tr>
+<tr><td><code>README.md</code></td><td>6 nodes</td></tr>
+<tr><td><code>backend/services/speech_to_text.py</code></td><td>6 nodes</td></tr>
+<tr><td><code>features/translate/README.md</code></td><td>6 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x114, contains x65, implements x23, imports x18. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 5. Serving API ====== -->
+<h2 id="serve-api">5. Serving API</h2>
+<p>Serving API groups implementation around frontend, apits, readmemd, isharati, mostly in src/lib/api.ts, README.md, frontend/README.md. This section covers 20 nodes and 26 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Serving API (20 nodes, 26 edges)
+    subgraph serve_api_src_lib_api_ts_4018941b["src/lib/api.ts"]
+        frontend_src_lib_api_fullsentencevideo_48a24062("fullSentenceVideo()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_health_2526bb24("health()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_signtotext_9a09ec7b("signToText()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_speechtosign_4d96427f("speechToSign()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_texttosign_4389119f("textToSign()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_parsejson_eff57c5f("parseJson()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_fullsentenceresponse_371cd7f7("FullSentenceResponse<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_signtotextresponse_f9c402e7("SignToTextResponse<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_speechtosignresponse_e9bb8a12("SpeechToSignResponse<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_texttosignresponse_a93f8d4c("TextToSignResponse<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_42516cc2("api.ts")
+        frontend_src_lib_api_videourl_dc219e25("videoUrl()<br/><small>src/lib/api.ts</small>")
+    end
+    subgraph serve_api_README_md_d2243946["README.md"]
+        README_tutor_website_7326a21d("Tutor Website<br/><small>README.md</small>")
+        README_fastapi_fc7b99b1("FastAPI<br/><small>README.md</small>")
+        README_cors_ac38c361("CORS for localhost:3000<br/><small>README.md</small>")
+        README_frontend_2d24fc74("Frontend<br/><small>README.md</small>")
+        README_isharati_9b9da2bc("Isharati<br/><small>README.md</small>")
+    end
+    docs_architecture_nextjs_c90e756c("Next.js<br/><small>docs/architecture.md</small>")
+    frontend_src_lib_api_fullsentencevideo_48a24062 -->|calls| frontend_src_lib_api_parsejson_eff57c5f
+    frontend_src_lib_api_health_2526bb24 -->|calls| frontend_src_lib_api_parsejson_eff57c5f
+    frontend_src_lib_api_signtotext_9a09ec7b -->|calls| frontend_src_lib_api_parsejson_eff57c5f
+    frontend_src_lib_api_speechtosign_4d96427f -->|calls| frontend_src_lib_api_parsejson_eff57c5f
+    frontend_src_lib_api_texttosign_4389119f -->|calls| frontend_src_lib_api_parsejson_eff57c5f
+    README_tutor_website_7326a21d -->|calls| README_fastapi_fc7b99b1
+    %% Omitted for readability: 2 nodes, 0 edges
+    class frontend_src_lib_api_fullsentencevideo_48a24062 function;
+    class frontend_src_lib_api_health_2526bb24 function;
+    class frontend_src_lib_api_signtotext_9a09ec7b function;
+    class frontend_src_lib_api_speechtosign_4d96427f function;
+    class frontend_src_lib_api_texttosign_4389119f function;
+    class frontend_src_lib_api_parsejson_eff57c5f function;
+    class frontend_src_lib_api_fullsentenceresponse_371cd7f7 klass;
+    class frontend_src_lib_api_signtotextresponse_f9c402e7 klass;
+    class frontend_src_lib_api_speechtosignresponse_e9bb8a12 klass;
+    class frontend_src_lib_api_texttosignresponse_a93f8d4c klass;
+    class frontend_src_lib_api_42516cc2 api;
+    class frontend_src_lib_api_videourl_dc219e25 function;
+    class README_tutor_website_7326a21d concept;
+    class README_fastapi_fc7b99b1 concept;
+    class README_cors_ac38c361 concept;
+    class README_frontend_2d24fc74 concept;
+    class README_isharati_9b9da2bc concept;
+    class docs_architecture_nextjs_c90e756c concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>FullSentenceResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>FullSentenceResponse node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>SignToTextResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>SignToTextResponse node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>SpeechToSignResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>SpeechToSignResponse node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>TextToSignResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>TextToSignResponse node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>fullSentenceVideo()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>fullSentenceVideo() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>health()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>health() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>fullSentenceVideo()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>health()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>signToText()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br>+2 more</td>
+  <td>No direct outbound edge</td>
+  <td>parseJson() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>signToText()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>signToText() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>speechToSign()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>speechToSign() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>textToSign()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>textToSign() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>videoUrl()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>videoUrl() node in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>api.ts</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td><span class="tag tag-endpoint">API</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>Backend API :8000</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td>Module file in src/lib/api.ts.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>CORS for localhost:3000</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing CORS for localhost:3000.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>FastAPI</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Tutor Website</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing FastAPI.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>Frontend</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Frontend.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>Isharati</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Isharati.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>Tutor Website</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>FastAPI</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td>Documentation node describing Tutor Website.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>Next.js</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Next.js.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>Next.js App Router</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Next.js App Router.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>Isharati Website</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Isharati Website.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>src/lib/api.ts</code></td><td>12 nodes</td></tr>
+<tr><td><code>README.md</code></td><td>5 nodes</td></tr>
+<tr><td><code>frontend/README.md</code></td><td>2 nodes</td></tr>
+<tr><td><code>docs/architecture.md</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x11, calls x6, relates x3, implements x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 6. Backend Services Model ====== -->
+<h2 id="backend-services-model">6. Backend Services Model</h2>
+<p>Backend Services Model groups implementation around backend, services, model, architecturepy, mostly in backend/services/model_architecture.py, backend/services/sign_predictor.py, backend/services/video_processor.py. This section covers 44 nodes and 77 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Backend Services Model (44 nodes, 77 edges)
+    subgraph backend_services_model_backend_services_model_ar_844c607f["backend/services/model_architecture.py"]
+        backend_services_model_architecture_handbodycros_d6ff47fc("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_statichandsh_df53156d("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_auxreliabili_c9dcc03c("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_multiscalete_a06332ce("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_auxreliabili_828b5a5d("AuxReliabilityBranch<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_auxreliabili_acc5165c("forward()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_fourwaygated_e4032104("FourWayGatedFusion<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_fourwaygated_2d0f3387("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_fourwaygated_a742bbec("forward()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_graphconvlay_360b3e29("GraphConvLayer<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_graphconvlay_9be1988b("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_graphconvlay_1c79557d("forward()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_graphframeen_7a858024("GraphFrameEncoder<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_graphframeen_6cc5c9d0("__init__()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_graphframeen_76f6981f("forward()<br/><small>backend/services/model_architecture.py</small>")
+        backend_services_model_architecture_handbodycros_2cfa7cd5("HandBodyCrossAttentionBranch<br/><small>backend/services/model_architecture.py</small>")
+    end
+    subgraph backend_services_model_backend_services_sign_pre_f359c859["backend/services/sign_predictor.py"]
+        backend_services_sign_predictor_693158cc("sign_predictor.py")
+        backend_services_sign_predictor_predict_features_728e811b("predict_features()<br/><small>backend/services/sign_predictor.py</small>")
+    end
+    backend_services_model_architecture_auxreliabili_828b5a5d -->|method| backend_services_model_architecture_auxreliabili_c9dcc03c
+    backend_services_model_architecture_auxreliabili_828b5a5d -->|method| backend_services_model_architecture_auxreliabili_acc5165c
+    backend_services_model_architecture_fourwaygated_e4032104 -->|method| backend_services_model_architecture_fourwaygated_2d0f3387
+    backend_services_model_architecture_fourwaygated_e4032104 -->|method| backend_services_model_architecture_fourwaygated_a742bbec
+    backend_services_model_architecture_graphconvlay_360b3e29 -->|method| backend_services_model_architecture_graphconvlay_9be1988b
+    backend_services_model_architecture_graphconvlay_360b3e29 -->|method| backend_services_model_architecture_graphconvlay_1c79557d
+    backend_services_model_architecture_graphframeen_7a858024 -->|method| backend_services_model_architecture_graphframeen_6cc5c9d0
+    backend_services_model_architecture_graphframeen_7a858024 -->|method| backend_services_model_architecture_graphframeen_76f6981f
+    backend_services_model_architecture_handbodycros_2cfa7cd5 -->|method| backend_services_model_architecture_handbodycros_d6ff47fc
+    backend_services_model_architecture_graphframeen_6cc5c9d0 -->|calls| backend_services_model_architecture_graphconvlay_360b3e29
+    backend_services_model_architecture_handbodycros_d6ff47fc -->|calls| backend_services_model_architecture_graphframeen_7a858024
+    backend_services_model_architecture_statichandsh_df53156d -->|calls| backend_services_model_architecture_graphframeen_7a858024
+    %% Omitted for readability: 26 nodes, 0 edges
+    class backend_services_model_architecture_handbodycros_d6ff47fc function;
+    class backend_services_model_architecture_statichandsh_df53156d function;
+    class backend_services_model_architecture_auxreliabili_c9dcc03c function;
+    class backend_services_model_architecture_multiscalete_a06332ce function;
+    class backend_services_model_architecture_auxreliabili_828b5a5d klass;
+    class backend_services_model_architecture_auxreliabili_acc5165c function;
+    class backend_services_model_architecture_fourwaygated_e4032104 klass;
+    class backend_services_model_architecture_fourwaygated_2d0f3387 function;
+    class backend_services_model_architecture_fourwaygated_a742bbec function;
+    class backend_services_model_architecture_graphconvlay_360b3e29 klass;
+    class backend_services_model_architecture_graphconvlay_9be1988b function;
+    class backend_services_model_architecture_graphconvlay_1c79557d function;
+    class backend_services_model_architecture_graphframeen_7a858024 klass;
+    class backend_services_model_architecture_graphframeen_6cc5c9d0 function;
+    class backend_services_model_architecture_graphframeen_76f6981f function;
+    class backend_services_model_architecture_handbodycros_2cfa7cd5 klass;
+    class backend_services_sign_predictor_693158cc module;
+    class backend_services_sign_predictor_predict_features_728e811b function;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>AuxReliabilityBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>AuxReliabilityBranch node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>FourWayGatedFusion</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>FourWayGatedFusion node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>GraphConvLayer</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>Builds dependency relationships and graph data.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>GraphFrameEncoder</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>Builds dependency relationships and graph data.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>HandBodyCrossAttentionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>HandBodyCrossAttentionBranch node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>HFSMCAHybridModel</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>load_model()</code><br><small style="color:var(--muted)">backend/services/sign_predictor.py</small><br><code>sign_predictor.py</code><br><small style="color:var(--muted)">backend/services/sign_predictor.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>HFSMCAHybridModel node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>MaskedAttentionPooling</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+1 more</td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>MaskedAttentionPooling node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>MultiScaleTCNBlock</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>MultiScaleTCNBlock node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>MultiScaleTemporalMotionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>MultiScaleTemporalMotionBranch node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>PositionalEncoding</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>PositionalEncoding node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>StaticHandshapeTransformerBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>StaticHandshapeTransformerBranch node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>TemporalTransformerEncoder</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>TemporalTransformerEncoder node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>AuxReliabilityBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>AuxReliabilityBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>MaskedAttentionPooling</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>MultiScaleTCNBlock</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>FourWayGatedFusion</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>FourWayGatedFusion</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>GraphConvLayer</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>GraphConvLayer</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>GraphFrameEncoder</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>GraphFrameEncoder</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>GraphConvLayer</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>HandBodyCrossAttentionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>HandBodyCrossAttentionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>GraphFrameEncoder</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>MaskedAttentionPooling</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+1 more</td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>HFSMCAHybridModel</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+10 more</td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>AuxReliabilityBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>FourWayGatedFusion</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+3 more</td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>MaskedAttentionPooling</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>MaskedAttentionPooling</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>MultiScaleTCNBlock</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>MultiScaleTCNBlock</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>.forward()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>MultiScaleTemporalMotionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>.forward() node in backend/services/model_architecture.py.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>MultiScaleTemporalMotionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>MaskedAttentionPooling</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>MultiScaleTCNBlock</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
+  <td>.__init__() node in backend/services/model_architecture.py.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/services/model_architecture.py</code></td><td>37 nodes</td></tr>
+<tr><td><code>backend/services/sign_predictor.py</code></td><td>4 nodes</td></tr>
+<tr><td><code>backend/services/video_processor.py</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x33, method x24, contains x15, references x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 7. Pose Anonymization Backend ====== -->
+<h2 id="pose-anonymization-backend">7. Pose Anonymization Backend</h2>
+<p>Pose Anonymization Backend groups implementation around pose, anonymization, backend, requirementstxt, mostly in backend/requirements.txt. This section covers 1 nodes and 0 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Pose Anonymization Backend (1 nodes, 0 edges)
+    backend_requirements_pose_anonymization_7fc08baf("pose-anonymization<br/><small>backend/requirements.txt</small>")
+    class backend_requirements_pose_anonymization_7fc08baf concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>pose-anonymization</code><br><small style="color:var(--muted)">backend/requirements.txt</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing pose-anonymization.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/requirements.txt</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: No high-confidence call edges detected. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<h2 id="stats">Project Statistics</h2>
+
+<div class="grid">
+  <div class="card">
+    <h4>Graph</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><td>Nodes</td><td>311</td></tr>
+      <tr><td>Edges</td><td>549</td></tr>
+      <tr><td>Hyperedges</td><td>0</td></tr>
+      <tr><td>Communities</td><td>11</td></tr>
+      <tr><td>Documented Sections</td><td>6</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Edge Confidence</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><td>EXTRACTED</td><td>501</td></tr>
+      <tr><td>INFERRED</td><td>43</td></tr>
+      <tr><td>AMBIGUOUS</td><td>5</td></tr>
+    </table>
+  </div>
+</div>
+
+<div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
+  <p>Isharati — Architecture Documentation</p>
+  <p>Generated: 2026-09-11 13:01 UTC · graphify callflow-html</p>
+</div>
+
+</div><!-- .container -->
+
+<script>
+(function () {
+  const mermaidConfig = {
+    startOnLoad: false,
+    theme: 'dark',
+    securityLevel: 'loose',
+    flowchart: { htmlLabels: true, useMaxWidth: true },
+    themeVariables: {
+      primaryColor: '#1e293b',
+      primaryTextColor: '#e2e8f0',
+      primaryBorderColor: '#38bdf8',
+      secondaryColor: '#0f172a',
+      tertiaryColor: '#334155',
+      lineColor: '#64748b',
+      textColor: '#e2e8f0',
+    }
+  };
+
+  mermaid.initialize(mermaidConfig);
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function enhanceMermaidDiagrams() {
+    document.querySelectorAll('.mermaid').forEach((container) => {
+      if (container.dataset.zoomReady === 'true') return;
+      const svg = container.querySelector('svg');
+      if (!svg) return;
+
+      container.dataset.zoomReady = 'true';
+      container.classList.add('is-enhanced');
+
+      const viewport = document.createElement('div');
+      viewport.className = 'mermaid-viewport';
+      svg.parentNode.insertBefore(viewport, svg);
+      viewport.appendChild(svg);
+
+      const toolbar = document.createElement('div');
+      toolbar.className = 'mermaid-toolbar';
+      toolbar.innerHTML = [
+        '<button type="button" data-action="zoom-out" title="Zoom out">-</button>',
+        '<span class="zoom-level" data-role="level">100%</span>',
+        '<button type="button" data-action="zoom-in" title="Zoom in">+</button>',
+        '<button type="button" data-action="fit" title="Fit width">Fit</button>',
+        '<button type="button" data-action="reset" title="Reset view">Reset</button>'
+      ].join('');
+      container.insertBefore(toolbar, viewport);
+
+      const state = { scale: 1, x: 0, y: 0, dragging: false, startX: 0, startY: 0, originX: 0, originY: 0 };
+      const level = toolbar.querySelector('[data-role="level"]');
+
+      function applyTransform() {
+        svg.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+        level.textContent = `${Math.round(state.scale * 100)}%`;
+      }
+
+      function zoomBy(delta) {
+        state.scale = clamp(state.scale + delta, 0.25, 3);
+        applyTransform();
+      }
+
+      function reset() {
+        state.scale = 1;
+        state.x = 0;
+        state.y = 0;
+        applyTransform();
+      }
+
+      function fitWidth() {
+        const rawWidth = svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width
+          ? svg.viewBox.baseVal.width
+          : svg.getBoundingClientRect().width / state.scale;
+        if (!rawWidth) {
+          reset();
+          return;
+        }
+        state.scale = clamp((viewport.clientWidth - 48) / rawWidth, 0.25, 1.4);
+        state.x = 0;
+        state.y = 0;
+        applyTransform();
+      }
+
+      toolbar.addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-action]');
+        if (!button) return;
+        const action = button.dataset.action;
+        if (action === 'zoom-in') zoomBy(0.15);
+        if (action === 'zoom-out') zoomBy(-0.15);
+        if (action === 'fit') fitWidth();
+        if (action === 'reset') reset();
+      });
+
+      viewport.addEventListener('wheel', (event) => {
+        if (!event.ctrlKey && !event.metaKey) return;
+        event.preventDefault();
+        zoomBy(event.deltaY < 0 ? 0.1 : -0.1);
+      }, { passive: false });
+
+      viewport.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        state.dragging = true;
+        state.startX = event.clientX;
+        state.startY = event.clientY;
+        state.originX = state.x;
+        state.originY = state.y;
+        viewport.classList.add('is-dragging');
+        viewport.setPointerCapture(event.pointerId);
+      });
+
+      viewport.addEventListener('pointermove', (event) => {
+        if (!state.dragging) return;
+        state.x = state.originX + event.clientX - state.startX;
+        state.y = state.originY + event.clientY - state.startY;
+        applyTransform();
+      });
+
+      function endDrag(event) {
+        if (!state.dragging) return;
+        state.dragging = false;
+        viewport.classList.remove('is-dragging');
+        if (viewport.hasPointerCapture(event.pointerId)) {
+          viewport.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+      applyTransform();
+    });
+  }
+
+  function renderMermaid() {
+    const result = mermaid.run
+      ? mermaid.run({ querySelector: '.mermaid' })
+      : Promise.resolve();
+    Promise.resolve(result)
+      .then(enhanceMermaidDiagrams)
+      .catch((error) => {
+        console.error('Mermaid render failed:', error);
+        enhanceMermaidDiagrams();
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderMermaid);
+  } else {
+    renderMermaid();
+  }
+})();
+</script>
+
+</body>
+</html>

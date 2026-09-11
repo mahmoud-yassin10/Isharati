@@ -1,0 +1,32 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+backend/temp/
+
+# node
+node_modules/
+.next/
+out/
+dist/
+.turbo/
+*.tsbuildinfo
+
+# graphify working files (keep graphify-out/)
+.graphify_*.json
+_graphify_build.py
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
