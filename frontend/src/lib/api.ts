@@ -1,4 +1,7 @@
+import type { Lesson, ProgressItem, User } from "./types";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+const TOKEN_KEY = "raqeeb_token";
 
 export type TextToSignResponse = {
   success: boolean;
@@ -25,6 +28,25 @@ export type FullSentenceResponse = SignToTextResponse & {
   filename: string;
 };
 
+export function getToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function setToken(token: string | null) {
+  if (typeof window === "undefined") return;
+  if (token) localStorage.setItem(TOKEN_KEY, token);
+  else localStorage.removeItem(TOKEN_KEY);
+}
+
+function authHeaders(extra?: HeadersInit): HeadersInit {
+  const token = getToken();
+  return {
+    ...(extra ?? {}),
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+}
+
 async function parseJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
     const detail = await response.text();
@@ -33,7 +55,7 @@ async function parseJson<T>(response: Response): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export async function health(): Promise<{ status: string }> {
+export async function health(): Promise<{ status: string; service?: string }> {
   const response = await fetch(`${API_URL}/health`);
   return parseJson(response);
 }
@@ -82,4 +104,78 @@ export async function fullSentenceVideo(file: File, useNlp = true) {
     body,
   });
   return parseJson<FullSentenceResponse>(response);
+}
+
+export async function login(email: string, password: string) {
+  const response = await fetch(`${API_URL}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await parseJson<{ token: string; user: User }>(response);
+  setToken(data.token);
+  return data.user;
+}
+
+export async function me() {
+  const response = await fetch(`${API_URL}/auth/me`, {
+    headers: authHeaders(),
+  });
+  return parseJson<User>(response);
+}
+
+export async function listLessons() {
+  const response = await fetch(`${API_URL}/lessons`, {
+    headers: authHeaders(),
+  });
+  return parseJson<Lesson[]>(response);
+}
+
+export async function getLesson(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}`, {
+    headers: authHeaders(),
+  });
+  return parseJson<Lesson>(response);
+}
+
+export async function publishLesson(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}/publish`, {
+    method: "POST",
+    headers: authHeaders(),
+  });
+  return parseJson<Lesson>(response);
+}
+
+export async function assignLesson(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}/assign`, {
+    method: "POST",
+    headers: authHeaders(),
+  });
+  return parseJson<{ ok: boolean; student_id: string; student_name: string }>(response);
+}
+
+export async function lessonProgress(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}/progress`, {
+    headers: authHeaders(),
+  });
+  return parseJson<ProgressItem[]>(response);
+}
+
+export async function saveProgress(payload: {
+  lesson_id: string;
+  step_id: string;
+  status: string;
+  sim_snapshot?: { F: number; m: number; a: number };
+  predicted_sign?: string;
+}) {
+  const response = await fetch(`${API_URL}/progress`, {
+    method: "POST",
+    headers: authHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify(payload),
+  });
+  return parseJson<{ ok: boolean }>(response);
+}
+
+export function logout() {
+  setToken(null);
 }

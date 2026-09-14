@@ -1,6 +1,5 @@
 from pathlib import Path
 import json
-import torch
 import os
 from dotenv import load_dotenv
 
@@ -8,6 +7,13 @@ from dotenv import load_dotenv
 load_dotenv()
 POSE_KEY = os.getenv("POSE_KEY")
 BASE_DIR = Path(__file__).resolve().parent
+
+try:
+    import torch
+
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+except ImportError:
+    DEVICE = "cpu"
 MODEL_DIR = BASE_DIR / "models"
 TEMP_DIR = BASE_DIR / "temp"
 UPLOAD_DIR = TEMP_DIR / "uploads"
@@ -32,7 +38,6 @@ AUX_MEAN_PATH = first_existing(MODEL_DIR / "aux_mean.npy", MODEL_DIR / "aux_10A_
 AUX_STD_PATH = first_existing(MODEL_DIR / "aux_std.npy", MODEL_DIR / "aux_10A_std.npy")
 AUX_NAMES_PATH = first_existing(MODEL_DIR / "aux_names.json", MODEL_DIR / "aux_10A_names.json")
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 AMP = True
 TOPK = 5
 TARGET_FRAMES = 64
@@ -42,7 +47,10 @@ USE_MIRROR_TTA = True
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv", ".webm"}
 
 # RTMPose settings
-RTMPOSE_DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
+try:
+    RTMPOSE_DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
+except NameError:
+    RTMPOSE_DEVICE = "cpu"
 EXTRACT_FRAME_STEP = 1
 MAX_EXTRACT_FRAMES = None
 

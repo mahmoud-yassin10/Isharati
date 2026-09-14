@@ -1,0 +1,97 @@
+{
+  "id": "newton-2nd",
+  "slug": "newton-2nd",
+  "title_ar": "قانون نيوتن الثاني",
+  "title_en": "Newton's second law",
+  "subject": "physics",
+  "status": "published",
+  "glossary": {
+    "force": {
+      "term_ar": "قوة",
+      "term_en": "force",
+      "esl_mode": "fingerspell"
+    },
+    "mass": {
+      "term_ar": "كتلة",
+      "term_en": "mass",
+      "esl_mode": "fingerspell"
+    },
+    "accel": {
+      "term_ar": "تسارع",
+      "term_en": "acceleration",
+      "esl_mode": "fingerspell"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-force",
+      "type": "esl_term",
+      "title_ar": "قوة",
+      "title_en": "Force",
+      "body_ar": "القوة تدفع الجسم أو تسحبه. رمزها F، ووحدتها نيوتن.",
+      "body_en": "Force pushes or pulls an object. Its symbol is F. Its unit is the newton.",
+      "glossary_ids": ["force"]
+    },
+    {
+      "id": "term-mass",
+      "type": "esl_term",
+      "title_ar": "كتلة",
+      "title_en": "Mass",
+      "body_ar": "الكتلة مقدار المادة في الجسم. رمزها m، ووحدتها كيلوغرام.",
+      "body_en": "Mass is how much matter is in the object. Its symbol is m. Its unit is the kilogram.",
+      "glossary_ids": ["mass"]
+    },
+    {
+      "id": "term-accel",
+      "type": "esl_term",
+      "title_ar": "تسارع",
+      "title_en": "Acceleration",
+      "body_ar": "التسارع هو مقدار تغيّر السرعة مع الزمن. رمزه a، ووحدته متر لكل ثانية مربعة.",
+      "body_en": "Acceleration is how quickly speed changes. Its symbol is a. Its unit is metres per second squared.",
+      "glossary_ids": ["accel"]
+    },
+    {
+      "id": "explain-relation",
+      "type": "explain",
+      "title_ar": "العلاقة",
+      "title_en": "The relationship",
+      "body_ar": "التسارع يساوي القوة مقسومة على الكتلة. إذا زادت القوة والكتلة ثابتة، يزيد التسارع. إذا زادت الكتلة والقوة ثابتة، يقل التسارع.",
+      "body_en": "Acceleration equals force divided by mass. More force with the same mass means more acceleration. More mass with the same force means less acceleration.",
+      "glossary_ids": ["force", "mass", "accel"]
+    },
+    {
+      "id": "sim-free",
+      "type": "simulate",
+      "title_ar": "المختبر",
+      "title_en": "The lab",
+      "body_ar": "حرّك شريط القوة وشريط الكتلة. راقب الصندوق والرقم a.",
+      "body_en": "Move the force slider and the mass slider. Watch the box and the number a.",
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 10, "m": 2 }
+      }
+    },
+    {
+      "id": "challenge-a2",
+      "type": "challenge",
+      "title_ar": "التحدي",
+      "title_en": "Challenge",
+      "body_ar": "اضبط القوة والكتلة حتى يصبح التسارع قريباً من 2 م/ث².",
+      "body_en": "Set force and mass so acceleration is close to 2 m/s².",
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 10, "m": 2 },
+        "goal": { "key": "a", "value": 2, "tolerance": 0.15 }
+      }
+    },
+    {
+      "id": "sign-understand",
+      "type": "sign_check",
+      "title_ar": "إشارة أنا",
+      "title_en": "Sign “I”",
+      "body_ar": "سجّل إشارة كلمة أنا، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for I, or skip this step.",
+      "sign_target": "انا"
+    }
+  ]
+}

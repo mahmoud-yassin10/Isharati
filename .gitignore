@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+!**/.env.example
 
 # python
 .venv/
@@ -12,6 +13,8 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 backend/temp/
+backend/raqeeb.db
+backend/raqeeb.db-journal
 
 # node
 node_modules/
@@ -24,6 +27,13 @@ dist/
 # graphify working files (keep graphify-out/)
 .graphify_*.json
 _graphify_build.py
+graphify-out/cache/
+graphify-out/.graphify_root
+graphify-out/.graphify_labels.json.sig
+graphify-out/*/
+
+# logs
+debug.log
 
 # os / editor
 .DS_Store

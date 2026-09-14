@@ -1,82 +1,56 @@
-import os
 import uuid
-import cloudinary.uploader
-
-from fastapi import APIRouter
-from fastapi.responses import StreamingResponse
 from io import BytesIO
-from configs import cloudinary_config
+from pathlib import Path
+
+from fastapi import APIRouter, HTTPException
+
+from config import TEMP_DIR
+from schemas.requests import TextInput
 from services.arabic_normalizer import ArabicNormalizer
 from services.pose_retriever import PoseRetriever
 from services.pose_smoother import PoseSmoother
-from services.animation_generator import AnimationGenerator
-from schemas.requests import TextInput
-
-
-
 
 text_router = APIRouter()
+POSE_STORE = TEMP_DIR / "generated_poses"
+POSE_STORE.mkdir(parents=True, exist_ok=True)
 
-normalizer = ArabicNormalizer()
-smoother = PoseSmoother()
-animator = AnimationGenerator()
+_normalizer = None
+_smoother = PoseSmoother()
+
+
+def get_normalizer() -> ArabicNormalizer:
+    global _normalizer
+    if _normalizer is None:
+        _normalizer = ArabicNormalizer()
+    return _normalizer
+
+
+def save_pose(pose, request_id: str) -> Path:
+    path = POSE_STORE / f"{request_id}.pose"
+    buffer = BytesIO()
+    pose.write(buffer)
+    path.write_bytes(buffer.getvalue())
+    return path
+
 
 @text_router.post("/text-to-sign")
 def text_to_sign(data: TextInput):
-    
-    retriever = PoseRetriever()
     request_id = data.request_id or str(uuid.uuid4())
-    
-    
-    tokens = normalizer.tokenize(data.sentence)
-
+    tokens = get_normalizer().tokenize(data.sentence)
     if not tokens:
-        return {
-            "success": False,
-            "message": "No matching tokens found"
-        }
+        raise HTTPException(status_code=400, detail="No matching sign tokens found")
 
-    poses = retriever.retrieve(tokens)
-
+    poses = PoseRetriever().retrieve(tokens)
     if not poses:
-        return {
-            "success": False,
-            "message": "No pose files found"
-        }
+        raise HTTPException(status_code=404, detail="No pose files found for those tokens")
 
-    stitched_pose = smoother.smooth(poses)
+    stitched = _smoother.smooth(poses)
+    if stitched is None:
+        raise HTTPException(status_code=500, detail="Pose stitching failed")
 
-    if stitched_pose is None:
-        return {
-            "success": False,
-            "message": "Pose stitching failed"
-        }
-   
-    buffer = BytesIO()
-
-    stitched_pose.write(buffer)
-
-    buffer.seek(0)
-    
-    result = cloudinary.uploader.upload(
-        buffer,
-        resource_type = "raw",
-        folder = "generated_pose",
-        public_id=request_id,
-        use_filename=False,
-        overwrite=True,
-        format="pose"
-    )
-    
-    generated_pose_url = result["secure_url"]
-    
-    print("Uploaded:", generated_pose_url)
-    
-    
+    save_pose(stitched, request_id)
     return {
         "success": True,
         "request_id": request_id,
-        "pose_URL": generated_pose_url,
-        "tokens": tokens
+        "tokens": tokens,
     }
-    

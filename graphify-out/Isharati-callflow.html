@@ -60,16 +60,23 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <div class="container">
 
 <h1>Isharati — Complete Call Flow &amp; Architecture Documentation</h1>
-<p class="subtitle">Generated from graphify knowledge graph: 311 nodes, 549 edges, 11 communities. Commit: b6aca9d</p>
+<p class="subtitle">Generated from graphify knowledge graph: 527 nodes, 986 edges, 23 communities. Commit: 5fe8fa4</p>
 
 <div class="nav">
     <a href="#overview">Architecture Overview</a>
     <a href="#build-graph">Graph Build</a>
-    <a href="#cli-skills">CLI &amp; Skill Installers</a>
     <a href="#ingest-cache-update">Ingestion &amp; Updates</a>
     <a href="#serve-api">Serving API</a>
-    <a href="#backend-services-model">Backend Services Model</a>
-    <a href="#pose-anonymization-backend">Pose Anonymization Backend</a>
+    <a href="#init">.__init__</a>
+    <a href="#text-speech-to-sign">Text/Speech to Sign</a>
+    <a href="#post-sign-to-text">POST /sign-to-text</a>
+    <a href="#website-frontend">Website Frontend</a>
+    <a href="#product">Product</a>
+    <a href="#isharati-website">Isharati Website</a>
+    <a href="#design">Design</a>
+    <a href="#next-env-d-ts">next-env.d.ts</a>
+    <a href="#pose-anonymization">pose-anonymization</a>
+    <a href="#cloudinary-config-py">cloudinary_config.py</a>
 </div>
 
 <!-- ====== Architecture Overview ====== -->
@@ -79,27 +86,44 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    BUILD_GRAPH_321CBB04("Graph Build<br/><small>30 nodes</small>")
+    BUILD_GRAPH_321CBB04("Graph Build<br/><small>114 nodes</small>")
     class BUILD_GRAPH_321CBB04 module;
-    CLI_SKILLS_9964CBB8("CLI &amp; Skill Installers<br/><small>13 nodes</small>")
-    class CLI_SKILLS_9964CBB8 module;
-    INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>203 nodes</small>")
+    INGEST_CACHE_UPDATE_FF457338("Ingestion &amp; Updates<br/><small>153 nodes</small>")
     class INGEST_CACHE_UPDATE_FF457338 module;
-    SERVE_API_35EC8E86("Serving API<br/><small>20 nodes</small>")
+    SERVE_API_35EC8E86("Serving API<br/><small>154 nodes</small>")
     class SERVE_API_35EC8E86 module;
-    BACKEND_SERVICES_MODEL_D388A9AA("Backend Services Model<br/><small>44 nodes</small>")
-    class BACKEND_SERVICES_MODEL_D388A9AA module;
-    POSE_ANONYMIZATION_BACKEND_913624D2("Pose Anonymization Backend<br/><small>1 nodes</small>")
-    class POSE_ANONYMIZATION_BACKEND_913624D2 module;
-    SERVE_API_35EC8E86 -->|implements x6| INGEST_CACHE_UPDATE_FF457338
-    BACKEND_SERVICES_MODEL_D388A9AA -->|contains x5| INGEST_CACHE_UPDATE_FF457338
-    BUILD_GRAPH_321CBB04 -->|uses x4| CLI_SKILLS_9964CBB8
-    INGEST_CACHE_UPDATE_FF457338 -->|imports x4| BACKEND_SERVICES_MODEL_D388A9AA
-    INGEST_CACHE_UPDATE_FF457338 -->|imports x4| CLI_SKILLS_9964CBB8
-    INGEST_CACHE_UPDATE_FF457338 -->|imports x4| BUILD_GRAPH_321CBB04
-    INGEST_CACHE_UPDATE_FF457338 -->|implements x3| SERVE_API_35EC8E86
-    BACKEND_SERVICES_MODEL_D388A9AA -->|imports x2| CLI_SKILLS_9964CBB8
-    BUILD_GRAPH_321CBB04 -->|imports| INGEST_CACHE_UPDATE_FF457338
+    INIT_FD62812F(".__init__<br/><small>37 nodes</small>")
+    class INIT_FD62812F module;
+    TEXT_SPEECH_TO_SIGN_3BFDCBA1("Text/Speech to Sign<br/><small>17 nodes</small>")
+    class TEXT_SPEECH_TO_SIGN_3BFDCBA1 module;
+    POST_SIGN_TO_TEXT_6EC6C9EC("POST /sign-to-text<br/><small>12 nodes</small>")
+    class POST_SIGN_TO_TEXT_6EC6C9EC module;
+    WEBSITE_FRONTEND_5D9BE6B8("Website Frontend<br/><small>11 nodes</small>")
+    class WEBSITE_FRONTEND_5D9BE6B8 module;
+    PRODUCT_38A00715("Product<br/><small>9 nodes</small>")
+    class PRODUCT_38A00715 module;
+    ISHARATI_WEBSITE_4395F1F6("Isharati Website<br/><small>8 nodes</small>")
+    class ISHARATI_WEBSITE_4395F1F6 module;
+    DESIGN_056F1182("Design<br/><small>8 nodes</small>")
+    class DESIGN_056F1182 module;
+    NEXT_ENV_D_TS_374BC5C3("next-env.d.ts<br/><small>2 nodes</small>")
+    class NEXT_ENV_D_TS_374BC5C3 module;
+    POSE_ANONYMIZATION_592D115D("pose-anonymization<br/><small>1 nodes</small>")
+    class POSE_ANONYMIZATION_592D115D module;
+    CLOUDINARY_CONFIG_PY_15DA4B8E("cloudinary_config.py<br/><small>1 nodes</small>")
+    class CLOUDINARY_CONFIG_PY_15DA4B8E module;
+    INGEST_CACHE_UPDATE_FF457338 -->|imports x6| SERVE_API_35EC8E86
+    POST_SIGN_TO_TEXT_6EC6C9EC -->|calls x6| SERVE_API_35EC8E86
+    INGEST_CACHE_UPDATE_FF457338 -->|imports x5| BUILD_GRAPH_321CBB04
+    SERVE_API_35EC8E86 -->|imports x4| BUILD_GRAPH_321CBB04
+    SERVE_API_35EC8E86 -->|imports x4| INGEST_CACHE_UPDATE_FF457338
+    WEBSITE_FRONTEND_5D9BE6B8 -->|relates x4| SERVE_API_35EC8E86
+    ISHARATI_WEBSITE_4395F1F6 -->|relates x4| SERVE_API_35EC8E86
+    INGEST_CACHE_UPDATE_FF457338 -->|calls x3| INIT_FD62812F
+    INIT_FD62812F -->|imports x2| INGEST_CACHE_UPDATE_FF457338
+    BUILD_GRAPH_321CBB04 -->|imports x2| INGEST_CACHE_UPDATE_FF457338
+    INGEST_CACHE_UPDATE_FF457338 -->|relates x2| TEXT_SPEECH_TO_SIGN_3BFDCBA1
+    BUILD_GRAPH_321CBB04 -->|imports| SERVE_API_35EC8E86
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -116,424 +140,101 @@ flowchart LR
     <h4>Architecture Layers</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>Layer</th><th>Nodes</th><th>Communities</th></tr>
-      <tr><td>Graph Build</td><td>30</td><td><code>5</code></td></tr><tr><td>CLI &amp; Skill Installers</td><td>13</td><td><code>9</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>203</td><td><code>0, 2, 3, 4, 6, 7</code></td></tr><tr><td>Serving API</td><td>20</td><td><code>8</code></td></tr><tr><td>Backend Services Model</td><td>44</td><td><code>1</code></td></tr><tr><td>Pose Anonymization Backend</td><td>1</td><td><code>10</code></td></tr>
+      <tr><td>Graph Build</td><td>114</td><td><code>5, 11, 12, 13</code></td></tr><tr><td>Ingestion &amp; Updates</td><td>153</td><td><code>0, 2, 4, 3, 20</code></td></tr><tr><td>Serving API</td><td>154</td><td><code>8, 9, 6, 16</code></td></tr><tr><td>.__init__</td><td>37</td><td><code>1</code></td></tr><tr><td>Text/Speech to Sign</td><td>17</td><td><code>7</code></td></tr><tr><td>POST /sign-to-text</td><td>12</td><td><code>14</code></td></tr><tr><td>Website Frontend</td><td>11</td><td><code>15</code></td></tr><tr><td>Product</td><td>9</td><td><code>17</code></td></tr><tr><td>Isharati Website</td><td>8</td><td><code>18</code></td></tr><tr><td>Design</td><td>8</td><td><code>19</code></td></tr><tr><td>next-env.d.ts</td><td>2</td><td><code>21</code></td></tr><tr><td>pose-anonymization</td><td>1</td><td><code>10</code></td></tr><tr><td>cloudinary_config.py</td><td>1</td><td><code>22</code></td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Core Flow</h4>
-    <div class="arrow-chain">Pose Anonymization Backend -&gt; Graph Build -&gt; CLI &amp; Skill Installers -&gt; Ingestion &amp; Updates -&gt; Backend Services Model -&gt; Serving API</div>
+    <div class="arrow-chain">Product -&gt; Graph Build -&gt; Ingestion &amp; Updates -&gt; Serving API -&gt; Website Frontend -&gt; POST /sign-to-text -&gt; .__init__</div>
   </div>
 </div>
 <div class="grid">
   <div class="card">
     <h4>Graph Report Highlights</h4>
     <ul>
-      <li>311 nodes · 549 edges · 11 communities (10 shown, 1 thin omitted)</li>
-      <li>Extraction: 91% EXTRACTED · 8% INFERRED · 1% AMBIGUOUS · INFERRED: 43 edges (avg confidence: 0.55)</li>
+      <li>527 nodes · 986 edges · 23 communities (20 shown, 2 thin omitted)</li>
+      <li>Extraction: 93% EXTRACTED · 6% INFERRED · 1% AMBIGUOUS · INFERRED: 60 edges (avg confidence: 0.7)</li>
       <li>Token cost: 0 input · 0 output</li>
       <li>1. `make_10A_features_from_64_raw()` - 16 edges</li>
-      <li>2. `predict_full_sentence_video()` - 13 edges</li>
-      <li>3. `clean_text()` - 12 edges</li>
+      <li>2. `compilerOptions` - 16 edges</li>
+      <li>3. `File map` - 15 edges</li>
     </ul>
   </div>
 </div>
 <hr>
 <!-- ====== 2. Graph Build ====== -->
 <h2 id="build-graph">2. Graph Build</h2>
-<p>Graph Build groups implementation around arabic, normalizerpy, backend, services, mostly in backend/services/arabic_normalizer.py. This section covers 30 nodes and 60 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<p>Graph Build groups implementation around frontend, backend, arabic, docs, mostly in backend/services/arabic_normalizer.py, frontend/package.json, superpowers/plans/2026-09-13-raqeeb.md. This section covers 114 nodes and 148 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Graph Build (30 nodes, 60 edges)
-    backend_services_arabic_normalizer_arabicnormali_4af4882c("ArabicNormalizer<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_datasetmatche_c24444df("DatasetMatcher<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_arabicnormali_1fff3d91("map_to_dataset()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_datasetmatche_7656593a("can_use_fuzzy()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_arabicnormali_45606731("tokenize()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_datasetmatche_b5991aad("char_level()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_arabicnormali_419ea4ce("__init__()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_arabicnormali_af379d4f("_build_dataset_summary()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_arabicnormali_13366c2b("normalize()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_arabicnormali_54e54d00("parse_llm_output()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_datasetmatche_50f6686a("exact()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_datasetmatche_202ade46("fuzzy()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_datasetmatche_9e4a1326("__init__()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_all_tokens_ar_d988b666("are single letters()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_is_single_ara_577f9743("is_single_arabic_letter()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_clean_text_adb52ef6("clean_text()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_fix_mixed_ara_b0513575("fix_mixed_arabic_letters()<br/><small>backend/services/arabic_normalizer.py</small>")
-    backend_services_arabic_normalizer_has_english_l_0c237eea("has_english_letters()<br/><small>backend/services/arabic_normalizer.py</small>")
+    %% Section: Graph Build (114 nodes, 148 edges)
+    subgraph build_graph_backend_services_arabic_normalizer_p_c427d74f["backend/services/arabic_normalizer.py"]
+        backend_services_arabic_normalizer_arabicnormali_4af4882c("ArabicNormalizer<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_datasetmatche_c24444df("DatasetMatcher<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_45606731("tokenize()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_datasetmatche_7656593a("can_use_fuzzy()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_419ea4ce("__init__()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_af379d4f("_build_dataset_summary()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_13366c2b("normalize()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_54e54d00("parse_llm_output()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_1fff3d91("map_to_dataset()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_arabicnormali_92c192e9("tokenize_local()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_datasetmatche_50f6686a("exact()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_datasetmatche_202ade46("fuzzy()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_datasetmatche_b5991aad("char_level()<br/><small>backend/services/arabic_normalizer.py</small>")
+        backend_services_arabic_normalizer_datasetmatche_9e4a1326("__init__()<br/><small>backend/services/arabic_normalizer.py</small>")
+    end
+    subgraph build_graph_backend_pose_loader_py_ccdc8c5d["backend/pose_loader.py"]
+        backend_pose_loader_poseloader_af72e829("PoseLoader<br/><small>backend/pose_loader.py</small>")
+        backend_pose_loader_poseloader_init_f0ac6c4a("__init__()<br/><small>backend/pose_loader.py</small>")
+        backend_pose_loader_poseloader_get_d963d0db("get()<br/><small>backend/pose_loader.py</small>")
+    end
+    frontend_package_9c7557c1("package.json")
+    backend_pose_loader_poseloader_af72e829 -->|method| backend_pose_loader_poseloader_init_f0ac6c4a
+    backend_pose_loader_poseloader_af72e829 -->|method| backend_pose_loader_poseloader_get_d963d0db
     backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_419ea4ce
     backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_af379d4f
     backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_13366c2b
     backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_54e54d00
     backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_1fff3d91
+    backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_92c192e9
     backend_services_arabic_normalizer_arabicnormali_4af4882c -->|method| backend_services_arabic_normalizer_arabicnormali_45606731
     backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_50f6686a
     backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_7656593a
     backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_202ade46
     backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_b5991aad
     backend_services_arabic_normalizer_datasetmatche_c24444df -->|method| backend_services_arabic_normalizer_datasetmatche_9e4a1326
-    backend_services_arabic_normalizer_all_tokens_ar_d988b666 -->|calls| backend_services_arabic_normalizer_is_single_ara_577f9743
-    backend_services_arabic_normalizer_arabicnormali_419ea4ce -->|calls| backend_services_arabic_normalizer_clean_text_adb52ef6
+    backend_services_arabic_normalizer_arabicnormali_419ea4ce -->|calls| backend_pose_loader_poseloader_af72e829
     backend_services_arabic_normalizer_arabicnormali_419ea4ce -->|calls| backend_services_arabic_normalizer_datasetmatche_c24444df
-    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_clean_text_adb52ef6
-    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_fix_mixed_ara_b0513575
-    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_all_tokens_ar_d988b666
-    backend_services_arabic_normalizer_arabicnormali_1fff3d91 -->|calls| backend_services_arabic_normalizer_is_single_ara_577f9743
     backend_services_arabic_normalizer_arabicnormali_13366c2b -->|calls| backend_services_arabic_normalizer_arabicnormali_af379d4f
-    backend_services_arabic_normalizer_arabicnormali_54e54d00 -->|calls| backend_services_arabic_normalizer_fix_mixed_ara_b0513575
-    backend_services_arabic_normalizer_arabicnormali_54e54d00 -->|calls| backend_services_arabic_normalizer_clean_text_adb52ef6
     backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_13366c2b
     backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_54e54d00
     backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_1fff3d91
-    %% Omitted for readability: 12 nodes, 13 edges
+    backend_services_arabic_normalizer_arabicnormali_45606731 -->|calls| backend_services_arabic_normalizer_arabicnormali_92c192e9
+    backend_services_arabic_normalizer_arabicnormali_92c192e9 -->|calls| backend_services_arabic_normalizer_arabicnormali_1fff3d91
+    backend_services_arabic_normalizer_datasetmatche_b5991aad -->|calls| backend_services_arabic_normalizer_datasetmatche_50f6686a
+    backend_services_arabic_normalizer_datasetmatche_202ade46 -->|calls| backend_services_arabic_normalizer_datasetmatche_7656593a
+    %% Omitted for readability: 96 nodes, 1 edges
     class backend_services_arabic_normalizer_arabicnormali_4af4882c klass;
     class backend_services_arabic_normalizer_datasetmatche_c24444df klass;
-    class backend_services_arabic_normalizer_arabicnormali_1fff3d91 function;
-    class backend_services_arabic_normalizer_datasetmatche_7656593a function;
     class backend_services_arabic_normalizer_arabicnormali_45606731 function;
-    class backend_services_arabic_normalizer_datasetmatche_b5991aad function;
+    class backend_services_arabic_normalizer_datasetmatche_7656593a function;
     class backend_services_arabic_normalizer_arabicnormali_419ea4ce function;
     class backend_services_arabic_normalizer_arabicnormali_af379d4f function;
     class backend_services_arabic_normalizer_arabicnormali_13366c2b function;
     class backend_services_arabic_normalizer_arabicnormali_54e54d00 function;
+    class backend_services_arabic_normalizer_arabicnormali_1fff3d91 function;
+    class backend_services_arabic_normalizer_arabicnormali_92c192e9 function;
     class backend_services_arabic_normalizer_datasetmatche_50f6686a function;
     class backend_services_arabic_normalizer_datasetmatche_202ade46 function;
+    class backend_services_arabic_normalizer_datasetmatche_b5991aad function;
     class backend_services_arabic_normalizer_datasetmatche_9e4a1326 function;
-    class backend_services_arabic_normalizer_all_tokens_ar_d988b666 function;
-    class backend_services_arabic_normalizer_is_single_ara_577f9743 function;
-    class backend_services_arabic_normalizer_clean_text_adb52ef6 function;
-    class backend_services_arabic_normalizer_fix_mixed_ara_b0513575 function;
-    class backend_services_arabic_normalizer_has_english_l_0c237eea function;
-    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
-    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
-    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
-    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
-    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
-    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
-    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
-    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
-    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
-</div>
-
-<h3>Call Details</h3>
-<table class="call-table">
-<tr>
-  <th style="width:5%">#</th>
-  <th style="width:28%">Node</th>
-  <th style="width:10%">Type</th>
-  <th style="width:17%">Caller</th>
-  <th style="width:20%">Callees</th>
-  <th style="width:20%">Description</th>
-</tr>
-<tr>
-  <td>1</td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td><code>Speech_to_text.py</code><br><small style="color:var(--muted)">api/routes/Speech_to_text.py</small><br><code>text_to_sign.py</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small></td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>_build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+4 more</td>
-  <td>ArabicNormalizer node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>2</td>
-  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+2 more</td>
-  <td>DatasetMatcher node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>3</td>
-  <td><code>all_tokens_are_single_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>is_single_arabic_letter()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>all_tokens_are_single_letters() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>4</td>
-  <td><code>._build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>No direct outbound edge</td>
-  <td>._build_dataset_summary() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>5</td>
-  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
-  <td>.__init__() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>.map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>are single letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
-  <td>.map_to_dataset() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>.normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>_build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.normalize() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>8</td>
-  <td><code>.parse_llm_output()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.parse_llm_output() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>9</td>
-  <td><code>.tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>parse_llm_output()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.tokenize() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>10</td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+8 more</td>
-  <td>No direct outbound edge</td>
-  <td>clean_text() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>11</td>
-  <td><code>.can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>has_english_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>is_number_token()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
-  <td>.can_use_fuzzy() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>12</td>
-  <td><code>.char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.char_level() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>13</td>
-  <td><code>.exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.exact() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>14</td>
-  <td><code>.fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.fuzzy() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>15</td>
-  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>.__init__() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>16</td>
-  <td><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+2 more</td>
-  <td>No direct outbound edge</td>
-  <td>fix_mixed_arabic_letters() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>17</td>
-  <td><code>has_english_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>No direct outbound edge</td>
-  <td>has_english_letters() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>18</td>
-  <td><code>is_number_token()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>is_number_token() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>19</td>
-  <td><code>is_single_arabic_letter()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>are single letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>is_single_arabic_letter() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>20</td>
-  <td><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td>normalize_for_compare() node in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>21</td>
-  <td><code>arabic_normalizer.py</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td><code>Speech_to_text.py</code><br><small style="color:var(--muted)">api/routes/Speech_to_text.py</small><br><code>text_to_sign.py</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small></td>
-  <td><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>requests.py</code><br><small style="color:var(--muted)">backend/schemas/requests.py</small></td>
-  <td>Module file in backend/services/arabic_normalizer.py.</td>
-</tr>
-<tr>
-  <td>22</td>
-  <td><code>Very important: Fuzzy matching caused: احمد -&gt; الحمد لله and letters being…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Very important: Fuzzy matching caused: احمد -&gt; الحمد لله and letters being….</td>
-</tr>
-<tr>
-  <td>23</td>
-  <td><code>Controlled fuzzy only. Higher threshold prevents احمد -&gt; الحمد لله.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Controlled fuzzy only. Higher threshold prevents احمد -&gt; الحمد لله..</td>
-</tr>
-<tr>
-  <td>24</td>
-  <td><code>Convert unknown words/names to letters. Only keep letters that exist in dataset.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Convert unknown words/names to letters. Only keep letters that exist in dataset..</td>
-</tr>
-<tr>
-  <td>25</td>
-  <td><code>Split the dataset into categories so the LLM can reason about each type…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Split the dataset into categories so the LLM can reason about each type….</td>
-</tr>
-<tr>
-  <td>26</td>
-  <td><code>Fix rare LLM mistakes like: Bنك مصر -&gt; بنك مصر</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Fix rare LLM mistakes like: Bنك مصر -&gt; بنك مصر.</td>
-</tr>
-<tr>
-  <td>27</td>
-  <td><code>Fixed logic: - No full sentence fuzzy. - No fuzzy for single letters. - No…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Fixed logic: - No full sentence fuzzy. - No fuzzy for single letters. - No….</td>
-</tr>
-<tr>
-  <td>28</td>
-  <td><code>True for one Arabic letter only: ا / ب / ت / م / ه ...</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for True for one Arabic letter only: ا / ب / ت / م / ه ....</td>
-</tr>
-<tr>
-  <td>29</td>
-  <td><code>Prevent matching [&quot;ه&quot;, &quot;ش&quot;, &quot;ا&quot;, &quot;م&quot;] as a fuzzy phrase.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Prevent matching [&quot;ه&quot;, &quot;ش&quot;, &quot;ا&quot;, &quot;م&quot;] as a fuzzy phrase..</td>
-</tr>
-<tr>
-  <td>30</td>
-  <td><code>Used only for comparison, not final output. Final output should still use the…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Design note for Used only for comparison, not final output. Final output should still use the….</td>
-</tr>
-</table>
-
-<div class="grid">
-  <div class="card">
-    <h4>Key Files</h4>
-    <table style="width:100%;font-size:0.85rem;">
-      <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>backend/services/arabic_normalizer.py</code></td><td>30 nodes</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x31, method x11, contains x9, explains x9. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
-  </div>
-</div>
-<hr>
-
-<!-- ====== 3. CLI & Skill Installers ====== -->
-<h2 id="cli-skills">3. CLI &amp; Skill Installers</h2>
-<p>CLI &amp; Skill Installers groups implementation around backend, pose, loaderpy, configpy, mostly in backend/pose_loader.py, backend/config.py, backend/main.py. This section covers 13 nodes and 14 internal edges; the diagram shows only representative relationships to stay readable.</p>
-
-<div class="mermaid">
-%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
-flowchart LR
-    %% Section: CLI &amp; Skill Installers (13 nodes, 14 edges)
-    subgraph cli_skills_backend_config_py_b96924ce["backend/config.py"]
-        backend_config_b9e47c5e("config.py")
-        backend_config_first_existing_31e3e313("first_existing()<br/><small>backend/config.py</small>")
-        backend_config_load_training_config_2bff9e59("load_training_config()<br/><small>backend/config.py</small>")
-        backend_config_rationale_22_4976a683("Return first existing path; if none exi...<br/><small>backend/config.py</small>")
-    end
-    subgraph cli_skills_backend_pose_loader_py_21f92575["backend/pose_loader.py"]
-        backend_pose_loader_poseloader_af72e829("PoseLoader<br/><small>backend/pose_loader.py</small>")
-        backend_pose_loader_77b8ad84("pose_loader.py")
-        backend_pose_loader_poseloader_init_f0ac6c4a("__init__()<br/><small>backend/pose_loader.py</small>")
-        backend_pose_loader_poseloader_get_d963d0db("get()<br/><small>backend/pose_loader.py</small>")
-    end
-    subgraph cli_skills_External_generated_0c226fa1["External / generated"]
-        backend_config_py_path_b5406a47("Path")
-        backend_main_py_get_33edb66b("get")
-    end
-    subgraph cli_skills_backend_main_py_4cd387b2["backend/main.py"]
-        backend_main_abdb2b1a("main.py")
-        backend_main_health_353b4efb("health()<br/><small>backend/main.py</small>")
-    end
-    backend_state_e4d02bbc("state.py")
-    backend_pose_loader_poseloader_af72e829 -->|method| backend_pose_loader_poseloader_init_f0ac6c4a
-    backend_pose_loader_poseloader_af72e829 -->|method| backend_pose_loader_poseloader_get_d963d0db
-    backend_main_abdb2b1a -->|imports| backend_state_e4d02bbc
-    backend_main_abdb2b1a -->|imports| backend_pose_loader_poseloader_af72e829
-    backend_main_abdb2b1a -->|imports| backend_config_b9e47c5e
-    backend_main_abdb2b1a -->|imports| backend_pose_loader_77b8ad84
-    backend_pose_loader_77b8ad84 -->|imports| backend_config_b9e47c5e
-    class backend_config_b9e47c5e module;
-    class backend_config_first_existing_31e3e313 function;
-    class backend_config_load_training_config_2bff9e59 function;
-    class backend_config_rationale_22_4976a683 concept;
     class backend_pose_loader_poseloader_af72e829 klass;
-    class backend_pose_loader_77b8ad84 module;
     class backend_pose_loader_poseloader_init_f0ac6c4a function;
     class backend_pose_loader_poseloader_get_d963d0db function;
-    class backend_config_py_path_b5406a47 klass;
-    class backend_main_py_get_33edb66b function;
-    class backend_main_abdb2b1a module;
-    class backend_main_health_353b4efb function;
-    class backend_state_e4d02bbc module;
+    class frontend_package_9c7557c1 function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -565,30 +266,22 @@ flowchart LR
 </tr>
 <tr>
   <td>2</td>
-  <td><code>first_existing()</code><br><small style="color:var(--muted)">backend/config.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>first_existing() node in backend/config.py.</td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>get_normalizer()</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small><br><code>Speech_to_text.py</code><br><small style="color:var(--muted)">api/routes/Speech_to_text.py</small><br><code>text_to_sign.py</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>_build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+5 more</td>
+  <td>ArabicNormalizer node in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
   <td>3</td>
-  <td><code>load_training_config()</code><br><small style="color:var(--muted)">backend/config.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Reads, resolves, or persists project configuration.</td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+2 more</td>
+  <td>DatasetMatcher node in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
   <td>4</td>
-  <td><code>health()</code><br><small style="color:var(--muted)">backend/main.py</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>health() node in backend/main.py.</td>
-</tr>
-<tr>
-  <td>5</td>
   <td><code>.get()</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
@@ -596,7 +289,7 @@ flowchart LR
   <td>.get() node in backend/pose_loader.py.</td>
 </tr>
 <tr>
-  <td>6</td>
+  <td>5</td>
   <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
   <td><span class="tag tag-func">Function</span></td>
   <td><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
@@ -604,39 +297,159 @@ flowchart LR
   <td>.__init__() node in backend/pose_loader.py.</td>
 </tr>
 <tr>
+  <td>6</td>
+  <td><code>all_tokens_are_single_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>is_single_arabic_letter()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>all_tokens_are_single_letters() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
   <td>7</td>
-  <td><code>config.py</code><br><small style="color:var(--muted)">backend/config.py</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td><code>full_sentence_video.py</code><br><small style="color:var(--muted)">api/routes/full_sentence_video.py</small><br><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small><br><code>model_architecture.py</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+4 more</td>
+  <td><code>._build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
   <td>No direct outbound edge</td>
-  <td>Module file in backend/config.py.</td>
+  <td>._build_dataset_summary() node in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
   <td>8</td>
-  <td><code>Path</code><br><small style="color:var(--muted)"></small></td>
-  <td><span class="tag tag-class">Class</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Path node in project.</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
+  <td>.__init__() node in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
   <td>9</td>
-  <td><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small></td>
-  <td><span class="tag tag-class">Module</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>config.py</code><br><small style="color:var(--muted)">backend/config.py</small><br><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br>+1 more</td>
-  <td>Module file in backend/main.py.</td>
+  <td><code>.map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize_local()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>are single letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
+  <td>.map_to_dataset() node in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
   <td>10</td>
-  <td><code>get</code><br><small style="color:var(--muted)"></small></td>
+  <td><code>.normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>get node in project.</td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>_build_dataset_summary()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.normalize() node in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
   <td>11</td>
+  <td><code>.parse_llm_output()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.parse_llm_output() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>.tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>parse_llm_output()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
+  <td>.tokenize() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>.tokenize_local()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>ArabicNormalizer</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>tokenize()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.tokenize_local() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+9 more</td>
+  <td>No direct outbound edge</td>
+  <td>clean_text() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>.can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>has_english_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>is_number_token()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+1 more</td>
+  <td>.can_use_fuzzy() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>.char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.char_level() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>.exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.exact() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>18</td>
+  <td><code>.fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.fuzzy() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>DatasetMatcher</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>.__init__() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>20</td>
+  <td><code>fix_mixed_arabic_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>char_level()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br>+3 more</td>
+  <td>No direct outbound edge</td>
+  <td>fix_mixed_arabic_letters() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>has_english_letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>No direct outbound edge</td>
+  <td>has_english_letters() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>is_number_token()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>is_number_token() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>is_single_arabic_letter()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>are single letters()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>can_use_fuzzy()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>map_to_dataset()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>is_single_arabic_letter() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>normalize_for_compare()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Function</span></td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>exact()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><code>clean_text()</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td>normalize_for_compare() node in backend/services/arabic_normalizer.py.</td>
+</tr>
+<tr>
+  <td>25</td>
   <td><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small></td>
   <td><span class="tag tag-class">Module</span></td>
   <td><code>arabic_normalizer.py</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small><br><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small></td>
@@ -644,20 +457,44 @@ flowchart LR
   <td>Module file in backend/pose_loader.py.</td>
 </tr>
 <tr>
-  <td>12</td>
-  <td><code>state.py</code><br><small style="color:var(--muted)">backend/state.py</small></td>
+  <td>26</td>
+  <td><code>arabic_normalizer.py</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
   <td><span class="tag tag-class">Module</span></td>
-  <td><code>main.py</code><br><small style="color:var(--muted)">backend/main.py</small><br><code>pose_retriever.py</code><br><small style="color:var(--muted)">backend/services/pose_retriever.py</small></td>
-  <td>No direct outbound edge</td>
-  <td>Module file in backend/state.py.</td>
+  <td><code>Speech_to_text.py</code><br><small style="color:var(--muted)">api/routes/Speech_to_text.py</small><br><code>text_to_sign.py</code><br><small style="color:var(--muted)">api/routes/text_to_sign.py</small></td>
+  <td><code>pose_loader.py</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>PoseLoader</code><br><small style="color:var(--muted)">backend/pose_loader.py</small><br><code>requests.py</code><br><small style="color:var(--muted)">backend/schemas/requests.py</small></td>
+  <td>Module file in backend/services/arabic_normalizer.py.</td>
 </tr>
 <tr>
-  <td>13</td>
-  <td><code>Return first existing path; if none exists, return the first candidate.</code><br><small style="color:var(--muted)">backend/config.py</small></td>
+  <td>27</td>
+  <td><code>Very important: Fuzzy matching caused: احمد -&gt; الحمد لله and letters being…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
   <td><span class="tag tag-func">Concept</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Design note for Return first existing path; if none exists, return the first candidate..</td>
+  <td>Design note for Very important: Fuzzy matching caused: احمد -&gt; الحمد لله and letters being….</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>Controlled fuzzy only. Higher threshold prevents احمد -&gt; الحمد لله.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Controlled fuzzy only. Higher threshold prevents احمد -&gt; الحمد لله..</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>Convert unknown words/names to letters. Only keep letters that exist in dataset.</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Convert unknown words/names to letters. Only keep letters that exist in dataset..</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>Split the dataset into categories so the LLM can reason about each type…</code><br><small style="color:var(--muted)">backend/services/arabic_normalizer.py</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for Split the dataset into categories so the LLM can reason about each type….</td>
 </tr>
 </table>
 
@@ -666,38 +503,41 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>backend/config.py</code></td><td>4 nodes</td></tr>
+      <tr><td><code>backend/services/arabic_normalizer.py</code></td><td>31 nodes</td></tr>
+<tr><td><code>frontend/package.json</code></td><td>24 nodes</td></tr>
+<tr><td><code>superpowers/plans/2026-09-13-raqeeb.md</code></td><td>21 nodes</td></tr>
+<tr><td><code>frontend/tsconfig.json</code></td><td>19 nodes</td></tr>
+<tr><td><code>docs/raqeeb-spec.md</code></td><td>13 nodes</td></tr>
 <tr><td><code>backend/pose_loader.py</code></td><td>4 nodes</td></tr>
-<tr><td><code>backend/main.py</code></td><td>2 nodes</td></tr>
-<tr><td><code>backend/state.py</code></td><td>1 nodes</td></tr>
+<tr><td><code>frontend/next.config.ts</code></td><td>2 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x4, imports x3, method x2, references x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x77, calls x36, method x14, explains x9. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
-<!-- ====== 4. Ingestion & Updates ====== -->
-<h2 id="ingest-cache-update">4. Ingestion &amp; Updates</h2>
-<p>Ingestion &amp; Updates groups implementation around backend, video, services, readmemd, mostly in backend/services/video_processor.py, backend/README.md, docs/architecture.md. This section covers 203 nodes and 339 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 3. Ingestion & Updates ====== -->
+<h2 id="ingest-cache-update">3. Ingestion &amp; Updates</h2>
+<p>Ingestion &amp; Updates groups implementation around backend, services, video, processorpy, mostly in backend/services/video_processor.py, backend/README.md, backend/services/full_sentence_video_service.py. This section covers 153 nodes and 268 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Ingestion &amp; Updates (203 nodes, 339 edges)
+    %% Section: Ingestion &amp; Updates (153 nodes, 268 edges)
+    subgraph ingest_cache_update_backend_services_pose_retrie_58661dab["backend/services/pose_retriever.py"]
+        backend_services_pose_retriever_poseretriever_3e115fb2("PoseRetriever<br/><small>backend/services/pose_retriever.py</small>")
+        backend_services_pose_retriever_poseretriever_in_fc91b16c("__init__()<br/><small>backend/services/pose_retriever.py</small>")
+        backend_services_pose_retriever_poseretriever_re_0cd794d4("retrieve()<br/><small>backend/services/pose_retriever.py</small>")
+        backend_services_pose_retriever_poseretriever_lo_fc774ffb("_load_token()<br/><small>backend/services/pose_retriever.py</small>")
+    end
     subgraph ingest_cache_update_backend_services_speech_to_t_c0634b12["backend/services/speech_to_text.py"]
         backend_services_speech_to_text_speechtotextsr_8356ceb5("SpeechToTextSR<br/><small>backend/services/speech_to_text.py</small>")
         backend_services_speech_to_text_speechtotextsr_t_461371f1("transcribe_file()<br/><small>backend/services/speech_to_text.py</small>")
         backend_services_speech_to_text_speechtotextsr_t_e74a0c07("transcribe_any()<br/><small>backend/services/speech_to_text.py</small>")
         backend_services_speech_to_text_speechtotextsr_r_3dbce5d3("record_and_transcribe()<br/><small>backend/services/speech_to_text.py</small>")
-        backend_services_speech_to_text_speechtotextsr_i_94fe59ac("__init__()<br/><small>backend/services/speech_to_text.py</small>")
-    end
-    subgraph ingest_cache_update_backend_services_pose_retrie_58661dab["backend/services/pose_retriever.py"]
-        backend_services_pose_retriever_poseretriever_3e115fb2("PoseRetriever<br/><small>backend/services/pose_retriever.py</small>")
-        backend_services_pose_retriever_poseretriever_in_fc91b16c("__init__()<br/><small>backend/services/pose_retriever.py</small>")
-        backend_services_pose_retriever_poseretriever_re_0cd794d4("retrieve()<br/><small>backend/services/pose_retriever.py</small>")
     end
     subgraph ingest_cache_update_backend_services_animation_g_f043fdab["backend/services/animation_generator.py"]
         backend_services_animation_generator_animationge_afba0c2d("AnimationGenerator<br/><small>backend/services/animation_generator.py</small>")
@@ -712,18 +552,19 @@ flowchart LR
         backend_services_video_processor_compute_robust_d1d1e872("center scale angle()<br/><small>backend/services/video_processor.py</small>")
     end
     backend_api_routes_speech_to_text_5d665345("Speech_to_text.py")
+    backend_api_routes_sign_to_text_eefc29b8("sign_to_text.py")
     backend_api_routes_text_to_sign_528a5c42("text_to_sign.py")
-    backendREADME_text_speech_to_sign_2d1f71ed("Text/Speech to Sign<br/><small>backend/README.md</small>")
     backend_services_full_sentence_video_service_pre_bb039363("full sentence video()<br/><small>backend/services/full_sentence_video_service.py</small>")
     backend_services_animation_generator_animationge_afba0c2d -->|method| backend_services_animation_generator_animationge_19b5d00c
     backend_services_pose_retriever_poseretriever_3e115fb2 -->|method| backend_services_pose_retriever_poseretriever_in_fc91b16c
     backend_services_pose_retriever_poseretriever_3e115fb2 -->|method| backend_services_pose_retriever_poseretriever_re_0cd794d4
+    backend_services_pose_retriever_poseretriever_3e115fb2 -->|method| backend_services_pose_retriever_poseretriever_lo_fc774ffb
     backend_services_pose_smoother_posesmoother_1f1a56e5 -->|method| backend_services_pose_smoother_posesmoother_smoo_89758dd5
     backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_t_461371f1
     backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_t_e74a0c07
     backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_r_3dbce5d3
-    backend_services_speech_to_text_speechtotextsr_8356ceb5 -->|method| backend_services_speech_to_text_speechtotextsr_i_94fe59ac
     backend_services_video_processor_make_10a_featur_1a546404 -->|calls| backend_services_video_processor_compute_robust_d1d1e872
+    backend_services_pose_retriever_poseretriever_re_0cd794d4 -->|calls| backend_services_pose_retriever_poseretriever_lo_fc774ffb
     backend_services_speech_to_text_speechtotextsr_t_e74a0c07 -->|calls| backend_services_speech_to_text_speechtotextsr_t_461371f1
     backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_animation_generator_animationge_afba0c2d
     backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_speech_to_text_speechtotextsr_8356ceb5
@@ -731,16 +572,15 @@ flowchart LR
     backend_api_routes_speech_to_text_5d665345 -->|imports| backend_services_pose_smoother_posesmoother_1f1a56e5
     backend_api_routes_text_to_sign_528a5c42 -->|imports| backend_services_pose_retriever_poseretriever_3e115fb2
     backend_api_routes_text_to_sign_528a5c42 -->|imports| backend_services_pose_smoother_posesmoother_1f1a56e5
-    backend_api_routes_text_to_sign_528a5c42 -->|imports| backend_services_animation_generator_animationge_afba0c2d
-    %% Omitted for readability: 185 nodes, 0 edges
+    %% Omitted for readability: 135 nodes, 0 edges
+    class backend_services_pose_retriever_poseretriever_3e115fb2 klass;
+    class backend_services_pose_retriever_poseretriever_in_fc91b16c function;
+    class backend_services_pose_retriever_poseretriever_re_0cd794d4 function;
+    class backend_services_pose_retriever_poseretriever_lo_fc774ffb function;
     class backend_services_speech_to_text_speechtotextsr_8356ceb5 klass;
     class backend_services_speech_to_text_speechtotextsr_t_461371f1 function;
     class backend_services_speech_to_text_speechtotextsr_t_e74a0c07 function;
     class backend_services_speech_to_text_speechtotextsr_r_3dbce5d3 function;
-    class backend_services_speech_to_text_speechtotextsr_i_94fe59ac function;
-    class backend_services_pose_retriever_poseretriever_3e115fb2 klass;
-    class backend_services_pose_retriever_poseretriever_in_fc91b16c function;
-    class backend_services_pose_retriever_poseretriever_re_0cd794d4 function;
     class backend_services_animation_generator_animationge_afba0c2d klass;
     class backend_services_animation_generator_animationge_19b5d00c function;
     class backend_services_pose_smoother_posesmoother_1f1a56e5 klass;
@@ -748,8 +588,8 @@ flowchart LR
     class backend_services_video_processor_make_10a_featur_1a546404 function;
     class backend_services_video_processor_compute_robust_d1d1e872 function;
     class backend_api_routes_speech_to_text_5d665345 klass;
+    class backend_api_routes_sign_to_text_eefc29b8 module;
     class backend_api_routes_text_to_sign_528a5c42 module;
-    class backendREADME_text_speech_to_sign_2d1f71ed concept;
     class backend_services_full_sentence_video_service_pre_bb039363 function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
@@ -1019,78 +859,96 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>backend/services/video_processor.py</code></td><td>48 nodes</td></tr>
-<tr><td><code>backend/README.md</code></td><td>33 nodes</td></tr>
-<tr><td><code>docs/architecture.md</code></td><td>22 nodes</td></tr>
+      <tr><td><code>backend/services/video_processor.py</code></td><td>49 nodes</td></tr>
+<tr><td><code>backend/README.md</code></td><td>17 nodes</td></tr>
 <tr><td><code>backend/services/full_sentence_video_service.py</code></td><td>13 nodes</td></tr>
-<tr><td><code>backend/requirements.txt</code></td><td>9 nodes</td></tr>
-<tr><td><code>README.md</code></td><td>6 nodes</td></tr>
+<tr><td><code>backend/services/sign_predictor.py</code></td><td>8 nodes</td></tr>
+<tr><td><code>backend/services/pose_retriever.py</code></td><td>6 nodes</td></tr>
 <tr><td><code>backend/services/speech_to_text.py</code></td><td>6 nodes</td></tr>
-<tr><td><code>features/translate/README.md</code></td><td>6 nodes</td></tr>
+<tr><td><code>api/routes/text_to_sign.py</code></td><td>4 nodes</td></tr>
+<tr><td><code>backend/config.py</code></td><td>4 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x114, contains x65, implements x23, imports x18. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x90, contains x76, imports x23, references x19. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
-<!-- ====== 5. Serving API ====== -->
-<h2 id="serve-api">5. Serving API</h2>
-<p>Serving API groups implementation around frontend, apits, readmemd, isharati, mostly in src/lib/api.ts, README.md, frontend/README.md. This section covers 20 nodes and 26 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 4. Serving API ====== -->
+<h2 id="serve-api">4. Serving API</h2>
+<p>Serving API groups implementation around frontend, backend, apits, pagetsx, mostly in src/lib/api.ts, api/routes/lessons.py, src/lib/types.ts. This section covers 154 nodes and 375 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Serving API (20 nodes, 26 edges)
+    %% Section: Serving API (154 nodes, 375 edges)
+    subgraph serve_api_lessons_id_page_tsx_18e0b171["lessons/[id]/page.tsx"]
+        frontend_src_app_student_lessons_id_page_0561a9b6("page.tsx")
+        frontend_src_app_teacher_lessons_id_page_2cac765a("page.tsx")
+        frontend_src_app_student_lessons_id_page_student_8f4d2b7a("StudentPlayer()<br/><small>lessons/[id]/page.tsx</small>")
+        frontend_src_app_teacher_lessons_id_page_teacher_fad90a0c("TeacherLessonPage()<br/><small>lessons/[id]/page.tsx</small>")
+        frontend_src_app_teacher_lessons_id_page_teacher_99aef247("onAssign()<br/><small>lessons/[id]/page.tsx</small>")
+    end
     subgraph serve_api_src_lib_api_ts_4018941b["src/lib/api.ts"]
-        frontend_src_lib_api_fullsentencevideo_48a24062("fullSentenceVideo()<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_health_2526bb24("health()<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_signtotext_9a09ec7b("signToText()<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_speechtosign_4d96427f("speechToSign()<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_texttosign_4389119f("textToSign()<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_parsejson_eff57c5f("parseJson()<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_fullsentenceresponse_371cd7f7("FullSentenceResponse<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_signtotextresponse_f9c402e7("SignToTextResponse<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_speechtosignresponse_e9bb8a12("SpeechToSignResponse<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_texttosignresponse_a93f8d4c("TextToSignResponse<br/><small>src/lib/api.ts</small>")
-        frontend_src_lib_api_42516cc2("api.ts")
-        frontend_src_lib_api_videourl_dc219e25("videoUrl()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_login_249557f7("login()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_getlesson_c303fe99("getLesson()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_saveprogress_7a6ef342("saveProgress()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_listlessons_d94e5c0a("listLessons()<br/><small>src/lib/api.ts</small>")
+        frontend_src_lib_api_lessonprogress_7102f106("lessonProgress()<br/><small>src/lib/api.ts</small>")
     end
-    subgraph serve_api_README_md_d2243946["README.md"]
-        README_tutor_website_7326a21d("Tutor Website<br/><small>README.md</small>")
-        README_fastapi_fc7b99b1("FastAPI<br/><small>README.md</small>")
-        README_cors_ac38c361("CORS for localhost:3000<br/><small>README.md</small>")
-        README_frontend_2d24fc74("Frontend<br/><small>README.md</small>")
-        README_isharati_9b9da2bc("Isharati<br/><small>README.md</small>")
+    subgraph serve_api_app_login_page_tsx_7a8b112d["app/login/page.tsx"]
+        frontend_src_app_login_page_loginform_80ba6661("LoginForm()<br/><small>app/login/page.tsx</small>")
+        frontend_src_app_login_page_loginform_onsubmit_77f834a2("onSubmit()<br/><small>app/login/page.tsx</small>")
     end
-    docs_architecture_nextjs_c90e756c("Next.js<br/><small>docs/architecture.md</small>")
-    frontend_src_lib_api_fullsentencevideo_48a24062 -->|calls| frontend_src_lib_api_parsejson_eff57c5f
-    frontend_src_lib_api_health_2526bb24 -->|calls| frontend_src_lib_api_parsejson_eff57c5f
-    frontend_src_lib_api_signtotext_9a09ec7b -->|calls| frontend_src_lib_api_parsejson_eff57c5f
-    frontend_src_lib_api_speechtosign_4d96427f -->|calls| frontend_src_lib_api_parsejson_eff57c5f
-    frontend_src_lib_api_texttosign_4389119f -->|calls| frontend_src_lib_api_parsejson_eff57c5f
-    README_tutor_website_7326a21d -->|calls| README_fastapi_fc7b99b1
-    %% Omitted for readability: 2 nodes, 0 edges
-    class frontend_src_lib_api_fullsentencevideo_48a24062 function;
-    class frontend_src_lib_api_health_2526bb24 function;
-    class frontend_src_lib_api_signtotext_9a09ec7b function;
-    class frontend_src_lib_api_speechtosign_4d96427f function;
-    class frontend_src_lib_api_texttosign_4389119f function;
-    class frontend_src_lib_api_parsejson_eff57c5f function;
-    class frontend_src_lib_api_fullsentenceresponse_371cd7f7 klass;
-    class frontend_src_lib_api_signtotextresponse_f9c402e7 klass;
-    class frontend_src_lib_api_speechtosignresponse_e9bb8a12 klass;
-    class frontend_src_lib_api_texttosignresponse_a93f8d4c klass;
-    class frontend_src_lib_api_42516cc2 api;
-    class frontend_src_lib_api_videourl_dc219e25 function;
-    class README_tutor_website_7326a21d concept;
-    class README_fastapi_fc7b99b1 concept;
-    class README_cors_ac38c361 concept;
-    class README_frontend_2d24fc74 concept;
-    class README_isharati_9b9da2bc concept;
-    class docs_architecture_nextjs_c90e756c concept;
+    subgraph serve_api_app_student_page_tsx_411a0034["app/student/page.tsx"]
+        frontend_src_app_student_page_b99b4c5c("page.tsx")
+        frontend_src_app_student_page_studenthome_b5e82471("StudentHome()<br/><small>app/student/page.tsx</small>")
+    end
+    backend_api_routes_auth_bad76af8("auth.py")
+    backend_api_routes_lessons_ff1d5f6f("lessons.py")
+    frontend_src_app_teacher_page_ed186248("page.tsx")
+    frontend_src_lib_useuser_useuser_8673f9af("useUser()<br/><small>src/lib/useUser.ts</small>")
+    frontend_src_app_login_page_loginform_80ba6661 -->|calls| frontend_src_lib_api_login_249557f7
+    frontend_src_app_login_page_loginform_onsubmit_77f834a2 -->|calls| frontend_src_lib_api_login_249557f7
+    frontend_src_app_student_lessons_id_page_student_8f4d2b7a -->|calls| frontend_src_lib_useuser_useuser_8673f9af
+    frontend_src_app_student_lessons_id_page_student_8f4d2b7a -->|calls| frontend_src_lib_api_getlesson_c303fe99
+    frontend_src_app_student_lessons_id_page_student_8f4d2b7a -->|calls| frontend_src_lib_api_saveprogress_7a6ef342
+    frontend_src_app_student_page_studenthome_b5e82471 -->|calls| frontend_src_lib_useuser_useuser_8673f9af
+    frontend_src_app_student_page_studenthome_b5e82471 -->|calls| frontend_src_lib_api_listlessons_d94e5c0a
+    frontend_src_app_teacher_lessons_id_page_teacher_fad90a0c -->|calls| frontend_src_lib_useuser_useuser_8673f9af
+    frontend_src_app_teacher_lessons_id_page_teacher_fad90a0c -->|calls| frontend_src_lib_api_getlesson_c303fe99
+    frontend_src_app_teacher_lessons_id_page_teacher_fad90a0c -->|calls| frontend_src_lib_api_lessonprogress_7102f106
+    frontend_src_app_student_lessons_id_page_0561a9b6 -->|imports| frontend_src_lib_api_getlesson_c303fe99
+    frontend_src_app_student_lessons_id_page_0561a9b6 -->|imports| frontend_src_lib_api_saveprogress_7a6ef342
+    frontend_src_app_student_lessons_id_page_0561a9b6 -->|imports| frontend_src_lib_useuser_useuser_8673f9af
+    frontend_src_app_student_page_b99b4c5c -->|imports| frontend_src_lib_api_listlessons_d94e5c0a
+    frontend_src_app_student_page_b99b4c5c -->|imports| frontend_src_lib_useuser_useuser_8673f9af
+    frontend_src_app_teacher_lessons_id_page_2cac765a -->|imports| frontend_src_lib_api_getlesson_c303fe99
+    frontend_src_app_teacher_lessons_id_page_2cac765a -->|imports| frontend_src_lib_api_lessonprogress_7102f106
+    frontend_src_app_teacher_lessons_id_page_2cac765a -->|imports| frontend_src_lib_useuser_useuser_8673f9af
+    frontend_src_app_teacher_page_ed186248 -->|imports| frontend_src_lib_api_listlessons_d94e5c0a
+    frontend_src_app_teacher_page_ed186248 -->|imports| frontend_src_lib_useuser_useuser_8673f9af
+    %% Omitted for readability: 136 nodes, 0 edges
+    class frontend_src_app_student_lessons_id_page_0561a9b6 ui;
+    class frontend_src_app_teacher_lessons_id_page_2cac765a ui;
+    class frontend_src_app_student_lessons_id_page_student_8f4d2b7a ui;
+    class frontend_src_app_teacher_lessons_id_page_teacher_fad90a0c ui;
+    class frontend_src_app_teacher_lessons_id_page_teacher_99aef247 ui;
+    class frontend_src_lib_api_login_249557f7 function;
+    class frontend_src_lib_api_getlesson_c303fe99 function;
+    class frontend_src_lib_api_saveprogress_7a6ef342 function;
+    class frontend_src_lib_api_listlessons_d94e5c0a function;
+    class frontend_src_lib_api_lessonprogress_7102f106 function;
+    class frontend_src_app_login_page_loginform_80ba6661 ui;
+    class frontend_src_app_login_page_loginform_onsubmit_77f834a2 ui;
+    class frontend_src_app_student_page_b99b4c5c ui;
+    class frontend_src_app_student_page_studenthome_b5e82471 ui;
+    class backend_api_routes_auth_bad76af8 module;
+    class backend_api_routes_lessons_ff1d5f6f module;
+    class frontend_src_app_teacher_page_ed186248 ui;
+    class frontend_src_lib_useuser_useuser_8673f9af ui;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -1114,6 +972,30 @@ flowchart LR
 </tr>
 <tr>
   <td>1</td>
+  <td><code>DualProps</code><br><small style="color:var(--muted)">src/components/Dual.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>DualProps node in src/components/Dual.tsx.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>NewtonLabProps</code><br><small style="color:var(--muted)">src/components/NewtonLab.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>NewtonLabProps node in src/components/NewtonLab.tsx.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>Snapshot</code><br><small style="color:var(--muted)">src/components/NewtonLab.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Snapshot node in src/components/NewtonLab.tsx.</td>
+</tr>
+<tr>
+  <td>4</td>
   <td><code>FullSentenceResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -1121,7 +1003,7 @@ flowchart LR
   <td>FullSentenceResponse node in src/lib/api.ts.</td>
 </tr>
 <tr>
-  <td>2</td>
+  <td>5</td>
   <td><code>SignToTextResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -1129,7 +1011,7 @@ flowchart LR
   <td>SignToTextResponse node in src/lib/api.ts.</td>
 </tr>
 <tr>
-  <td>3</td>
+  <td>6</td>
   <td><code>SpeechToSignResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -1137,7 +1019,7 @@ flowchart LR
   <td>SpeechToSignResponse node in src/lib/api.ts.</td>
 </tr>
 <tr>
-  <td>4</td>
+  <td>7</td>
   <td><code>TextToSignResponse</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
   <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
@@ -1145,132 +1027,188 @@ flowchart LR
   <td>TextToSignResponse node in src/lib/api.ts.</td>
 </tr>
 <tr>
-  <td>5</td>
-  <td><code>fullSentenceVideo()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td>fullSentenceVideo() node in src/lib/api.ts.</td>
-</tr>
-<tr>
-  <td>6</td>
-  <td><code>health()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td>health() node in src/lib/api.ts.</td>
-</tr>
-<tr>
-  <td>7</td>
-  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td><code>fullSentenceVideo()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>health()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>signToText()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br>+2 more</td>
-  <td>No direct outbound edge</td>
-  <td>parseJson() node in src/lib/api.ts.</td>
-</tr>
-<tr>
   <td>8</td>
-  <td><code>signToText()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
+  <td><code>Lang</code><br><small style="color:var(--muted)">src/lib/lang.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td>signToText() node in src/lib/api.ts.</td>
+  <td>No direct outbound edge</td>
+  <td>Lang node in src/lib/lang.tsx.</td>
 </tr>
 <tr>
   <td>9</td>
-  <td><code>speechToSign()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
+  <td><code>LangContextValue</code><br><small style="color:var(--muted)">src/lib/lang.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td>speechToSign() node in src/lib/api.ts.</td>
+  <td>No direct outbound edge</td>
+  <td>LangContextValue node in src/lib/lang.tsx.</td>
 </tr>
 <tr>
   <td>10</td>
-  <td><code>textToSign()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
+  <td><code>GlossaryEntry</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>parseJson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td>textToSign() node in src/lib/api.ts.</td>
+  <td>No direct outbound edge</td>
+  <td>GlossaryEntry node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>11</td>
-  <td><code>videoUrl()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-func">Function</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>Lesson</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>api.ts</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>page.tsx</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small><br><code>page.tsx</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small><br>+2 more</td>
   <td>No direct outbound edge</td>
-  <td>videoUrl() node in src/lib/api.ts.</td>
+  <td>Lesson node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>12</td>
-  <td><code>api.ts</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
-  <td><span class="tag tag-endpoint">API</span></td>
+  <td><code>LessonStep</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
-  <td><code>Backend API :8000</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
-  <td>Module file in src/lib/api.ts.</td>
+  <td>No direct outbound edge</td>
+  <td>LessonStep node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>13</td>
-  <td><code>CORS for localhost:3000</code><br><small style="color:var(--muted)">README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
+  <td><code>ProgressItem</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>api.ts</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>page.tsx</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small></td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing CORS for localhost:3000.</td>
+  <td>ProgressItem node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>14</td>
-  <td><code>FastAPI</code><br><small style="color:var(--muted)">README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td><code>Tutor Website</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><code>Role</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing FastAPI.</td>
+  <td>Role node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>15</td>
-  <td><code>Frontend</code><br><small style="color:var(--muted)">README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>SimulationKind</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Frontend.</td>
+  <td>SimulationKind node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>16</td>
-  <td><code>Isharati</code><br><small style="color:var(--muted)">README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>StepType</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Isharati.</td>
+  <td>StepType node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>17</td>
-  <td><code>Tutor Website</code><br><small style="color:var(--muted)">README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
-  <td>External entry / no inbound edge</td>
-  <td><code>FastAPI</code><br><small style="color:var(--muted)">README.md</small></td>
-  <td>Documentation node describing Tutor Website.</td>
+  <td><code>User</code><br><small style="color:var(--muted)">src/lib/types.ts</small></td>
+  <td><span class="tag tag-class">Class</span></td>
+  <td><code>api.ts</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>AppShell.tsx</code><br><small style="color:var(--muted)">src/components/AppShell.tsx</small><br><code>useUser.ts</code><br><small style="color:var(--muted)">src/lib/useUser.ts</small></td>
+  <td>No direct outbound edge</td>
+  <td>User node in src/lib/types.ts.</td>
 </tr>
 <tr>
   <td>18</td>
-  <td><code>Next.js</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>RootLayout()</code><br><small style="color:var(--muted)">src/app/layout.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Next.js.</td>
+  <td>RootLayout() node in src/app/layout.tsx.</td>
 </tr>
 <tr>
   <td>19</td>
-  <td><code>Next.js App Router</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>LoginForm()</code><br><small style="color:var(--muted)">app/login/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
   <td>External entry / no inbound edge</td>
-  <td>No direct outbound edge</td>
-  <td>Documentation node describing Next.js App Router.</td>
+  <td><code>login()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>LoginForm() node in app/login/page.tsx.</td>
 </tr>
 <tr>
   <td>20</td>
-  <td><code>Isharati Website</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
-  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>onSubmit()</code><br><small style="color:var(--muted)">app/login/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>login()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>onSubmit() node in app/login/page.tsx.</td>
+</tr>
+<tr>
+  <td>21</td>
+  <td><code>LoginPage()</code><br><small style="color:var(--muted)">app/login/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
   <td>External entry / no inbound edge</td>
   <td>No direct outbound edge</td>
-  <td>Documentation node describing Isharati Website.</td>
+  <td>Organizes documentation pages, navigation, or content lookup.</td>
+</tr>
+<tr>
+  <td>22</td>
+  <td><code>HomePage()</code><br><small style="color:var(--muted)">src/app/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Organizes documentation pages, navigation, or content lookup.</td>
+</tr>
+<tr>
+  <td>23</td>
+  <td><code>StudentPlayer()</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>getLesson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>saveProgress()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>useUser()</code><br><small style="color:var(--muted)">src/lib/useUser.ts</small></td>
+  <td>StudentPlayer() node in lessons/[id]/page.tsx.</td>
+</tr>
+<tr>
+  <td>24</td>
+  <td><code>go()</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>go() node in lessons/[id]/page.tsx.</td>
+</tr>
+<tr>
+  <td>25</td>
+  <td><code>StudentHome()</code><br><small style="color:var(--muted)">app/student/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>listLessons()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>useUser()</code><br><small style="color:var(--muted)">src/lib/useUser.ts</small></td>
+  <td>StudentHome() node in app/student/page.tsx.</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td><code>TeacherLessonPage()</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>getLesson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>lessonProgress()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>useUser()</code><br><small style="color:var(--muted)">src/lib/useUser.ts</small></td>
+  <td>Organizes documentation pages, navigation, or content lookup.</td>
+</tr>
+<tr>
+  <td>27</td>
+  <td><code>onAssign()</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>assignLesson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>onAssign() node in lessons/[id]/page.tsx.</td>
+</tr>
+<tr>
+  <td>28</td>
+  <td><code>onPublish()</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>publishLesson()</code><br><small style="color:var(--muted)">src/lib/api.ts</small></td>
+  <td>onPublish() node in lessons/[id]/page.tsx.</td>
+</tr>
+<tr>
+  <td>29</td>
+  <td><code>TeacherHome()</code><br><small style="color:var(--muted)">app/teacher/page.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>listLessons()</code><br><small style="color:var(--muted)">src/lib/api.ts</small><br><code>useUser()</code><br><small style="color:var(--muted)">src/lib/useUser.ts</small></td>
+  <td>TeacherHome() node in app/teacher/page.tsx.</td>
+</tr>
+<tr>
+  <td>30</td>
+  <td><code>AppShell()</code><br><small style="color:var(--muted)">src/components/AppShell.tsx</small></td>
+  <td><span class="tag tag-hook">UI</span></td>
+  <td><code>page.tsx</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small><br><code>page.tsx</code><br><small style="color:var(--muted)">lessons/[id]/page.tsx</small><br><code>page.tsx</code><br><small style="color:var(--muted)">app/login/page.tsx</small><br>+3 more</td>
+  <td><code>useLang()</code><br><small style="color:var(--muted)">src/lib/lang.tsx</small></td>
+  <td>AppShell() node in src/components/AppShell.tsx.</td>
 </tr>
 </table>
 
@@ -1279,49 +1217,49 @@ flowchart LR
     <h4>Key Files</h4>
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
-      <tr><td><code>src/lib/api.ts</code></td><td>12 nodes</td></tr>
-<tr><td><code>README.md</code></td><td>5 nodes</td></tr>
-<tr><td><code>frontend/README.md</code></td><td>2 nodes</td></tr>
-<tr><td><code>docs/architecture.md</code></td><td>1 nodes</td></tr>
+      <tr><td><code>src/lib/api.ts</code></td><td>24 nodes</td></tr>
+<tr><td><code>api/routes/lessons.py</code></td><td>10 nodes</td></tr>
+<tr><td><code>src/lib/types.ts</code></td><td>9 nodes</td></tr>
+<tr><td><code>backend/db.py</code></td><td>8 nodes</td></tr>
+<tr><td><code>docs/architecture.md</code></td><td>8 nodes</td></tr>
+<tr><td><code>src/lib/lang.tsx</code></td><td>7 nodes</td></tr>
+<tr><td><code>backend/security.py</code></td><td>6 nodes</td></tr>
+<tr><td><code>src/components/SignCheck.tsx</code></td><td>6 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: contains x11, calls x6, relates x3, implements x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x96, calls x81, imports x70, imports x66. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
-<!-- ====== 6. Backend Services Model ====== -->
-<h2 id="backend-services-model">6. Backend Services Model</h2>
-<p>Backend Services Model groups implementation around backend, services, model, architecturepy, mostly in backend/services/model_architecture.py, backend/services/sign_predictor.py, backend/services/video_processor.py. This section covers 44 nodes and 77 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 5. .__init__ ====== -->
+<h2 id="init">5. .__init__</h2>
+<p>.__init__ groups implementation around model, architecturepy, backend, services, mostly in backend/services/model_architecture.py. This section covers 37 nodes and 64 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Backend Services Model (44 nodes, 77 edges)
-    subgraph backend_services_model_backend_services_model_ar_844c607f["backend/services/model_architecture.py"]
-        backend_services_model_architecture_handbodycros_d6ff47fc("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_statichandsh_df53156d("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_auxreliabili_c9dcc03c("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_multiscalete_a06332ce("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_auxreliabili_828b5a5d("AuxReliabilityBranch<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_auxreliabili_acc5165c("forward()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_fourwaygated_e4032104("FourWayGatedFusion<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_fourwaygated_2d0f3387("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_fourwaygated_a742bbec("forward()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_graphconvlay_360b3e29("GraphConvLayer<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_graphconvlay_9be1988b("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_graphconvlay_1c79557d("forward()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_graphframeen_7a858024("GraphFrameEncoder<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_graphframeen_6cc5c9d0("__init__()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_graphframeen_76f6981f("forward()<br/><small>backend/services/model_architecture.py</small>")
-        backend_services_model_architecture_handbodycros_2cfa7cd5("HandBodyCrossAttentionBranch<br/><small>backend/services/model_architecture.py</small>")
-    end
-    subgraph backend_services_model_backend_services_sign_pre_f359c859["backend/services/sign_predictor.py"]
-        backend_services_sign_predictor_693158cc("sign_predictor.py")
-        backend_services_sign_predictor_predict_features_728e811b("predict_features()<br/><small>backend/services/sign_predictor.py</small>")
-    end
+    %% Section: .__init__ (37 nodes, 64 edges)
+    backend_services_model_architecture_handbodycros_d6ff47fc("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_statichandsh_df53156d("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_auxreliabili_c9dcc03c("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_multiscalete_a06332ce("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_hfsmcahybrid_f593f0de("HFSMCAHybridModel<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_auxreliabili_828b5a5d("AuxReliabilityBranch<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_auxreliabili_acc5165c("forward()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_fourwaygated_e4032104("FourWayGatedFusion<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_fourwaygated_2d0f3387("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_fourwaygated_a742bbec("forward()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_graphconvlay_360b3e29("GraphConvLayer<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_graphconvlay_9be1988b("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_graphconvlay_1c79557d("forward()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_graphframeen_7a858024("GraphFrameEncoder<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_graphframeen_6cc5c9d0("__init__()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_graphframeen_76f6981f("forward()<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_handbodycros_2cfa7cd5("HandBodyCrossAttentionBranch<br/><small>backend/services/model_architecture.py</small>")
+    backend_services_model_architecture_handbodycros_5d877050("forward()<br/><small>backend/services/model_architecture.py</small>")
     backend_services_model_architecture_auxreliabili_828b5a5d -->|method| backend_services_model_architecture_auxreliabili_c9dcc03c
     backend_services_model_architecture_auxreliabili_828b5a5d -->|method| backend_services_model_architecture_auxreliabili_acc5165c
     backend_services_model_architecture_fourwaygated_e4032104 -->|method| backend_services_model_architecture_fourwaygated_2d0f3387
@@ -1331,14 +1269,16 @@ flowchart LR
     backend_services_model_architecture_graphframeen_7a858024 -->|method| backend_services_model_architecture_graphframeen_6cc5c9d0
     backend_services_model_architecture_graphframeen_7a858024 -->|method| backend_services_model_architecture_graphframeen_76f6981f
     backend_services_model_architecture_handbodycros_2cfa7cd5 -->|method| backend_services_model_architecture_handbodycros_d6ff47fc
+    backend_services_model_architecture_handbodycros_2cfa7cd5 -->|method| backend_services_model_architecture_handbodycros_5d877050
     backend_services_model_architecture_graphframeen_6cc5c9d0 -->|calls| backend_services_model_architecture_graphconvlay_360b3e29
     backend_services_model_architecture_handbodycros_d6ff47fc -->|calls| backend_services_model_architecture_graphframeen_7a858024
     backend_services_model_architecture_statichandsh_df53156d -->|calls| backend_services_model_architecture_graphframeen_7a858024
-    %% Omitted for readability: 26 nodes, 0 edges
+    %% Omitted for readability: 19 nodes, 0 edges
     class backend_services_model_architecture_handbodycros_d6ff47fc function;
     class backend_services_model_architecture_statichandsh_df53156d function;
     class backend_services_model_architecture_auxreliabili_c9dcc03c function;
     class backend_services_model_architecture_multiscalete_a06332ce function;
+    class backend_services_model_architecture_hfsmcahybrid_f593f0de klass;
     class backend_services_model_architecture_auxreliabili_828b5a5d klass;
     class backend_services_model_architecture_auxreliabili_acc5165c function;
     class backend_services_model_architecture_fourwaygated_e4032104 klass;
@@ -1351,8 +1291,7 @@ flowchart LR
     class backend_services_model_architecture_graphframeen_6cc5c9d0 function;
     class backend_services_model_architecture_graphframeen_76f6981f function;
     class backend_services_model_architecture_handbodycros_2cfa7cd5 klass;
-    class backend_services_sign_predictor_693158cc module;
-    class backend_services_sign_predictor_predict_features_728e811b function;
+    class backend_services_model_architecture_handbodycros_5d877050 function;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
     classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
     classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
@@ -1562,8 +1501,8 @@ flowchart LR
   <td>24</td>
   <td><code>.__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small></td>
   <td><span class="tag tag-func">Function</span></td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+10 more</td>
-  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>AuxReliabilityBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>FourWayGatedFusion</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+3 more</td>
+  <td><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>__init__()</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+9 more</td>
+  <td><code>AuxReliabilityBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>FourWayGatedFusion</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br><code>HandBodyCrossAttentionBranch</code><br><small style="color:var(--muted)">backend/services/model_architecture.py</small><br>+2 more</td>
   <td>.__init__() node in backend/services/model_architecture.py.</td>
 </tr>
 <tr>
@@ -1622,25 +1561,1072 @@ flowchart LR
     <table style="width:100%;font-size:0.85rem;">
       <tr><th>File</th><th>Coverage</th></tr>
       <tr><td><code>backend/services/model_architecture.py</code></td><td>37 nodes</td></tr>
-<tr><td><code>backend/services/sign_predictor.py</code></td><td>4 nodes</td></tr>
-<tr><td><code>backend/services/video_processor.py</code></td><td>1 nodes</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Design Notes</h4>
-    <p>This section comes from graphify community clustering. Relationship summary: calls x33, method x24, contains x15, references x2. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x28, method x24, contains x12. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
   </div>
 </div>
 <hr>
 
-<!-- ====== 7. Pose Anonymization Backend ====== -->
-<h2 id="pose-anonymization-backend">7. Pose Anonymization Backend</h2>
-<p>Pose Anonymization Backend groups implementation around pose, anonymization, backend, requirementstxt, mostly in backend/requirements.txt. This section covers 1 nodes and 0 internal edges; the diagram shows only representative relationships to stay readable.</p>
+<!-- ====== 6. Text/Speech to Sign ====== -->
+<h2 id="text-speech-to-sign">6. Text/Speech to Sign</h2>
+<p>Text/Speech to Sign groups implementation around backend, readmemd, requirementstxt, pose, mostly in backend/README.md, backend/requirements.txt. This section covers 17 nodes and 18 internal edges; the diagram shows only representative relationships to stay readable.</p>
 
 <div class="mermaid">
 %%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
 flowchart LR
-    %% Section: Pose Anonymization Backend (1 nodes, 0 edges)
+    %% Section: Text/Speech to Sign (17 nodes, 18 edges)
+    subgraph text_speech_to_sign_backend_README_md_e83d0d2c["backend/README.md"]
+        backendREADME_text_speech_to_sign_2d1f71ed("Text/Speech to Sign<br/><small>backend/README.md</small>")
+        backendREADME_animation_generator_58e3af22("Animation Generator<br/><small>backend/README.md</small>")
+        backendREADME_imageio_ffmpeg_4dfb328d("imageio-ffmpeg<br/><small>backend/README.md</small>")
+        backendREADME_arabic_normalizer_2855b234("Arabic Normalizer<br/><small>backend/README.md</small>")
+        backendREADME_cloudinary_1d661507("Cloudinary<br/><small>backend/README.md</small>")
+        backendREADME_pose_retriever_6e21c28c("Pose Retriever<br/><small>backend/README.md</small>")
+        backendREADME_pose_smoother_9cae1afe("Pose Smoother<br/><small>backend/README.md</small>")
+        backendREADME_pose_file_ffc8a759(".pose File<br/><small>backend/README.md</small>")
+        backendREADME_endpoint_video_ed35be74("GET /video/request_id<br/><small>backend/README.md</small>")
+        backendREADME_endpoint_speech_to_text_ef64df27("POST /speech-to-text<br/><small>backend/README.md</small>")
+        backendREADME_cloudinary_config_26e2ed6c("cloudinary_config<br/><small>backend/README.md</small>")
+        backendREADME_poses_json_3e6a3bbf("poses.json<br/><small>backend/README.md</small>")
+    end
+    subgraph text_speech_to_sign_backend_requirements_txt_1b41c875["backend/requirements.txt"]
+        backend_requirements_rapidfuzz_5762e733("RapidFuzz<br/><small>backend/requirements.txt</small>")
+        backend_requirements_cloudinary_552f6007("cloudinary<br/><small>backend/requirements.txt</small>")
+        backend_requirements_imageio_ffmpeg_3493c919("imageio-ffmpeg<br/><small>backend/requirements.txt</small>")
+        backend_requirements_pose_format_7e030a84("pose_format<br/><small>backend/requirements.txt</small>")
+        backend_requirements_spoken_to_signed_6823abbb("spoken-to-signed<br/><small>backend/requirements.txt</small>")
+    end
+    backendREADME_animation_generator_58e3af22 -->|calls| backendREADME_imageio_ffmpeg_4dfb328d
+    backendREADME_text_speech_to_sign_2d1f71ed -->|calls| backendREADME_animation_generator_58e3af22
+    backendREADME_text_speech_to_sign_2d1f71ed -->|calls| backendREADME_arabic_normalizer_2855b234
+    backendREADME_text_speech_to_sign_2d1f71ed -->|calls| backendREADME_cloudinary_1d661507
+    backendREADME_text_speech_to_sign_2d1f71ed -->|calls| backendREADME_pose_retriever_6e21c28c
+    backendREADME_text_speech_to_sign_2d1f71ed -->|calls| backendREADME_pose_smoother_9cae1afe
+    class backendREADME_text_speech_to_sign_2d1f71ed concept;
+    class backendREADME_animation_generator_58e3af22 concept;
+    class backendREADME_imageio_ffmpeg_4dfb328d concept;
+    class backendREADME_arabic_normalizer_2855b234 concept;
+    class backendREADME_cloudinary_1d661507 concept;
+    class backendREADME_pose_retriever_6e21c28c concept;
+    class backendREADME_pose_smoother_9cae1afe concept;
+    class backendREADME_pose_file_ffc8a759 concept;
+    class backendREADME_endpoint_video_ed35be74 concept;
+    class backendREADME_endpoint_speech_to_text_ef64df27 concept;
+    class backendREADME_cloudinary_config_26e2ed6c concept;
+    class backendREADME_poses_json_3e6a3bbf concept;
+    class backend_requirements_rapidfuzz_5762e733 concept;
+    class backend_requirements_cloudinary_552f6007 concept;
+    class backend_requirements_imageio_ffmpeg_3493c919 concept;
+    class backend_requirements_pose_format_7e030a84 concept;
+    class backend_requirements_spoken_to_signed_6823abbb concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>Animation Generator</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>GET /video/{request_id}</code><br><small style="color:var(--muted)">backend/README.md</small><br><code>Text/Speech to Sign</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><code>imageio-ffmpeg</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>Documentation node describing Animation Generator.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>Arabic Normalizer</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Text/Speech to Sign</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Arabic Normalizer.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>Cloudinary</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Text/Speech to Sign</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Cloudinary.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>cloudinary_config</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing cloudinary_config.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>POST /speech-to-text</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing POST /speech-to-text.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>GET /video/{request_id}</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>Animation Generator</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>Documentation node describing GET /video/{request_id}.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>imageio-ffmpeg</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Animation Generator</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing imageio-ffmpeg.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>.pose File</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing .pose File.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>Pose Retriever</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Text/Speech to Sign</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Pose Retriever.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>Pose Smoother</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Text/Speech to Sign</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Pose Smoother.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>poses.json</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing poses.json.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>Text/Speech to Sign</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>Animation Generator</code><br><small style="color:var(--muted)">backend/README.md</small><br><code>Arabic Normalizer</code><br><small style="color:var(--muted)">backend/README.md</small><br><code>Cloudinary</code><br><small style="color:var(--muted)">backend/README.md</small><br>+3 more</td>
+  <td>Documentation node describing Text/Speech to Sign.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><code>cloudinary</code><br><small style="color:var(--muted)">backend/requirements.txt</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing cloudinary.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><code>imageio-ffmpeg</code><br><small style="color:var(--muted)">backend/requirements.txt</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing imageio-ffmpeg.</td>
+</tr>
+<tr>
+  <td>15</td>
+  <td><code>pose_format</code><br><small style="color:var(--muted)">backend/requirements.txt</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing pose_format.</td>
+</tr>
+<tr>
+  <td>16</td>
+  <td><code>RapidFuzz</code><br><small style="color:var(--muted)">backend/requirements.txt</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing RapidFuzz.</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td><code>spoken-to-signed</code><br><small style="color:var(--muted)">backend/requirements.txt</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing spoken-to-signed.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/README.md</code></td><td>12 nodes</td></tr>
+<tr><td><code>backend/requirements.txt</code></td><td>5 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x6, shares data with x3, implements x3. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 7. POST /sign-to-text ====== -->
+<h2 id="post-sign-to-text">7. POST /sign-to-text</h2>
+<p>POST /sign-to-text groups implementation around frontend, readmemd, practice, features, mostly in docs/architecture.md, features/practice/README.md, features/translate/README.md. This section covers 12 nodes and 14 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: POST /sign-to-text (12 nodes, 14 edges)
+    subgraph post_sign_to_text_docs_architecture_md_9493b93d["docs/architecture.md"]
+        docs_architecture_practice_0cb8abad("Practice<br/><small>docs/architecture.md</small>")
+        docs_architecture_tutor_loop_11e8d336("Tutor Loop<br/><small>docs/architecture.md</small>")
+        docs_architecture_full_sentence_b6d9ac8a("POST /sign-to-text/full-sentence-video<br/><small>docs/architecture.md</small>")
+        docs_architecture_sign_to_text_ed85163b("POST /sign-to-text<br/><small>docs/architecture.md</small>")
+    end
+    subgraph post_sign_to_text_features_practice_README_md_e38bdbb8["features/practice/README.md"]
+        practice_feature_3fbf485a("Practice<br/><small>features/practice/README.md</small>")
+        practice_signToText_ba887cf5("signToText<br/><small>features/practice/README.md</small>")
+        practice_webcam_badef1c8("Webcam Clip<br/><small>features/practice/README.md</small>")
+        practice_raw_words_3d2142e1("raw_words[0]<br/><small>features/practice/README.md</small>")
+    end
+    subgraph post_sign_to_text_features_translate_README_md_b173b0f2["features/translate/README.md"]
+        translate_feature_9cea0f3c("Translate<br/><small>features/translate/README.md</small>")
+        translate_fullSentenceVideo_ece1e32d("fullSentenceVideo<br/><small>features/translate/README.md</small>")
+        translate_signToText_e219d27d("signToText<br/><small>features/translate/README.md</small>")
+    end
+    frontendREADME_practice_04da2926("Practice Feature<br/><small>frontend/README.md</small>")
+    docs_architecture_practice_0cb8abad -->|calls| docs_architecture_full_sentence_b6d9ac8a
+    docs_architecture_practice_0cb8abad -->|calls| docs_architecture_sign_to_text_ed85163b
+    docs_architecture_tutor_loop_11e8d336 -->|calls| docs_architecture_sign_to_text_ed85163b
+    practice_feature_3fbf485a -->|calls| practice_signToText_ba887cf5
+    translate_feature_9cea0f3c -->|calls| translate_fullSentenceVideo_ece1e32d
+    translate_feature_9cea0f3c -->|calls| translate_signToText_e219d27d
+    class docs_architecture_practice_0cb8abad concept;
+    class docs_architecture_tutor_loop_11e8d336 concept;
+    class docs_architecture_full_sentence_b6d9ac8a concept;
+    class docs_architecture_sign_to_text_ed85163b concept;
+    class practice_feature_3fbf485a concept;
+    class practice_signToText_ba887cf5 concept;
+    class practice_webcam_badef1c8 concept;
+    class practice_raw_words_3d2142e1 concept;
+    class translate_feature_9cea0f3c concept;
+    class translate_fullSentenceVideo_ece1e32d concept;
+    class translate_signToText_e219d27d concept;
+    class frontendREADME_practice_04da2926 concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>POST /sign-to-text/full-sentence-video</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>fullSentenceVideo</code><br><small style="color:var(--muted)">features/translate/README.md</small><br><code>Practice</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing POST /sign-to-text/full-sentence-video.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>Practice</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>POST /sign-to-text</code><br><small style="color:var(--muted)">docs/architecture.md</small><br><code>POST /sign-to-text/full-sentence-video</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing Practice.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>POST /sign-to-text</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Practice</code><br><small style="color:var(--muted)">docs/architecture.md</small><br><code>signToText</code><br><small style="color:var(--muted)">features/practice/README.md</small><br><code>signToText</code><br><small style="color:var(--muted)">features/translate/README.md</small><br>+1 more</td>
+  <td><code>HF-SMCA Model</code><br><small style="color:var(--muted)">docs/architecture.md</small><br><code>OpenRouter</code><br><small style="color:var(--muted)">docs/architecture.md</small><br><code>RTMPose</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing POST /sign-to-text.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>Tutor Loop</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>POST /sign-to-text</code><br><small style="color:var(--muted)">docs/architecture.md</small><br><code>POST /text-to-sign</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing Tutor Loop.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>Practice Feature</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>Backend API :8000</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td>Documentation node describing Practice Feature.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>Practice</code><br><small style="color:var(--muted)">features/practice/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>signToText</code><br><small style="color:var(--muted)">features/practice/README.md</small></td>
+  <td>Documentation node describing Practice.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>raw_words[0]</code><br><small style="color:var(--muted)">features/practice/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing raw_words[0].</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>signToText</code><br><small style="color:var(--muted)">features/practice/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Practice</code><br><small style="color:var(--muted)">features/practice/README.md</small></td>
+  <td><code>POST /sign-to-text</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing signToText.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>Webcam Clip</code><br><small style="color:var(--muted)">features/practice/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Webcam Clip.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>Translate</code><br><small style="color:var(--muted)">features/translate/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>fullSentenceVideo</code><br><small style="color:var(--muted)">features/translate/README.md</small><br><code>signToText</code><br><small style="color:var(--muted)">features/translate/README.md</small><br><code>speechToSign</code><br><small style="color:var(--muted)">features/translate/README.md</small><br>+2 more</td>
+  <td>Documentation node describing Translate.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>fullSentenceVideo</code><br><small style="color:var(--muted)">features/translate/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Translate</code><br><small style="color:var(--muted)">features/translate/README.md</small></td>
+  <td><code>POST /sign-to-text/full-sentence-video</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing fullSentenceVideo.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><code>signToText</code><br><small style="color:var(--muted)">features/translate/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Translate</code><br><small style="color:var(--muted)">features/translate/README.md</small></td>
+  <td><code>POST /sign-to-text</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing signToText.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>docs/architecture.md</code></td><td>4 nodes</td></tr>
+<tr><td><code>features/practice/README.md</code></td><td>4 nodes</td></tr>
+<tr><td><code>features/translate/README.md</code></td><td>3 nodes</td></tr>
+<tr><td><code>frontend/README.md</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: calls x6, implements x1, relates x1, shares data with x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 8. Website Frontend ====== -->
+<h2 id="website-frontend">8. Website Frontend</h2>
+<p>Website Frontend groups implementation around docs, architecturemd, readmemd, backend, mostly in docs/architecture.md, backend/README.md, README.md. This section covers 11 nodes and 12 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Website Frontend (11 nodes, 12 edges)
+    subgraph website_frontend_docs_architecture_md_f764021e["docs/architecture.md"]
+        docs_architecture_frontend_21265bc8("Website Frontend<br/><small>docs/architecture.md</small>")
+        docs_architecture_fastapi_18763c12("FastAPI Backend<br/><small>docs/architecture.md</small>")
+        docs_architecture_health_e2a68484("GET /health<br/><small>docs/architecture.md</small>")
+        docs_architecture_cloudinary_f0b1f34e("Cloudinary<br/><small>docs/architecture.md</small>")
+        docs_architecture_egyptian_arabic_e001248c("Egyptian Arabic<br/><small>docs/architecture.md</small>")
+        docs_architecture_isharati_aca6190b("Isharati AI Tutor<br/><small>docs/architecture.md</small>")
+        docs_architecture_openrouter_d9857d23("OpenRouter<br/><small>docs/architecture.md</small>")
+        docs_architecture_pose_enc_0e027852("pose.enc Lexicon<br/><small>docs/architecture.md</small>")
+    end
+    subgraph website_frontend_backend_README_md_4eca268b["backend/README.md"]
+        backendREADME_gpt4o_mini_2a09840c("GPT-4o-mini<br/><small>backend/README.md</small>")
+        backendREADME_openrouter_4e37eff4("OpenRouter<br/><small>backend/README.md</small>")
+    end
+    README_architecture_docs_96cbe26e("Architecture Documentation<br/><small>README.md</small>")
+    docs_architecture_frontend_21265bc8 -->|calls| docs_architecture_fastapi_18763c12
+    docs_architecture_frontend_21265bc8 -->|calls| docs_architecture_health_e2a68484
+    class docs_architecture_frontend_21265bc8 concept;
+    class docs_architecture_fastapi_18763c12 concept;
+    class docs_architecture_health_e2a68484 concept;
+    class docs_architecture_cloudinary_f0b1f34e concept;
+    class docs_architecture_egyptian_arabic_e001248c concept;
+    class docs_architecture_isharati_aca6190b concept;
+    class docs_architecture_openrouter_d9857d23 concept;
+    class docs_architecture_pose_enc_0e027852 concept;
+    class backendREADME_gpt4o_mini_2a09840c concept;
+    class backendREADME_openrouter_4e37eff4 concept;
+    class README_architecture_docs_96cbe26e concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>Architecture Documentation</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Architecture Documentation.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>GPT-4o-mini</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing GPT-4o-mini.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>OpenRouter</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>NLP Refiner</code><br><small style="color:var(--muted)">backend/README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing OpenRouter.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>Cloudinary</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Cloudinary.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>Egyptian Arabic</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Egyptian Arabic.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>FastAPI Backend</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Website Frontend</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing FastAPI Backend.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>Website Frontend</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>FastAPI Backend</code><br><small style="color:var(--muted)">docs/architecture.md</small><br><code>GET /health</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>Documentation node describing Website Frontend.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>GET /health</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Website Frontend</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing GET /health.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>Isharati AI Tutor</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Isharati AI Tutor.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><code>OpenRouter</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>POST /sign-to-text</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing OpenRouter.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td><code>pose.enc Lexicon</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing pose.enc Lexicon.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>docs/architecture.md</code></td><td>8 nodes</td></tr>
+<tr><td><code>backend/README.md</code></td><td>2 nodes</td></tr>
+<tr><td><code>README.md</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: relates x7, calls x2, references x1, shares data with x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 9. Product ====== -->
+<h2 id="product">9. Product</h2>
+<p>Product groups implementation around productmd, product, accessibility, inclusion, mostly in PRODUCT.md. This section covers 9 nodes and 8 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Product (9 nodes, 8 edges)
+    product_product_548a70bf("Product<br/><small>PRODUCT.md</small>")
+    product_38a00715("PRODUCT.md")
+    product_product_purpose_6e4d9023("Product Purpose<br/><small>PRODUCT.md</small>")
+    product_brand_personality_8266a552("Brand Personality<br/><small>PRODUCT.md</small>")
+    product_anti_references_5587f04a("Anti-references<br/><small>PRODUCT.md</small>")
+    product_register_20e6a3fb("Register<br/><small>PRODUCT.md</small>")
+    product_accessibility_inclusion_c72022bd("Accessibility &amp; Inclusion<br/><small>PRODUCT.md</small>")
+    product_design_principles_14c60dfc("Design Principles<br/><small>PRODUCT.md</small>")
+    product_users_74c869fe("Users<br/><small>PRODUCT.md</small>")
+    product_38a00715 -->|contains| product_product_548a70bf
+    product_product_548a70bf -->|contains| product_product_purpose_6e4d9023
+    product_product_548a70bf -->|contains| product_brand_personality_8266a552
+    product_product_548a70bf -->|contains| product_anti_references_5587f04a
+    product_product_548a70bf -->|contains| product_register_20e6a3fb
+    product_product_548a70bf -->|contains| product_design_principles_14c60dfc
+    product_product_548a70bf -->|contains| product_accessibility_inclusion_c72022bd
+    product_product_548a70bf -->|contains| product_users_74c869fe
+    class product_product_548a70bf concept;
+    class product_38a00715 concept;
+    class product_product_purpose_6e4d9023 concept;
+    class product_brand_personality_8266a552 concept;
+    class product_anti_references_5587f04a concept;
+    class product_register_20e6a3fb concept;
+    class product_accessibility_inclusion_c72022bd concept;
+    class product_design_principles_14c60dfc concept;
+    class product_users_74c869fe concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>PRODUCT.md</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing PRODUCT.md.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>Accessibility &amp; Inclusion</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Accessibility &amp; Inclusion.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>Anti-references</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Anti-references.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>Brand Personality</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Brand Personality.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>Design Principles</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Design Principles.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>Product</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Product.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>Product Purpose</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Product Purpose.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>Register</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Register.</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><code>Users</code><br><small style="color:var(--muted)">PRODUCT.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Users.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>PRODUCT.md</code></td><td>9 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x8. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 10. Isharati Website ====== -->
+<h2 id="isharati-website">10. Isharati Website</h2>
+<p>Isharati Website groups implementation around readmemd, frontend, isharati, website, mostly in README.md, frontend/README.md, docs/architecture.md. This section covers 8 nodes and 8 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Isharati Website (8 nodes, 8 edges)
+    subgraph isharati_website_README_md_116e927f["README.md"]
+        README_tutor_website_7326a21d("Tutor Website<br/><small>README.md</small>")
+        README_fastapi_fc7b99b1("FastAPI<br/><small>README.md</small>")
+        README_cors_ac38c361("CORS for localhost:3000<br/><small>README.md</small>")
+        README_frontend_2d24fc74("Frontend<br/><small>README.md</small>")
+        README_isharati_9b9da2bc("Isharati<br/><small>README.md</small>")
+    end
+    subgraph isharati_website_frontend_README_md_5a44a122["frontend/README.md"]
+        frontendREADME_website_61b6333d("Isharati Website<br/><small>frontend/README.md</small>")
+        frontendREADME_nextjs_ba00acf2("Next.js App Router<br/><small>frontend/README.md</small>")
+    end
+    docs_architecture_nextjs_c90e756c("Next.js<br/><small>docs/architecture.md</small>")
+    README_tutor_website_7326a21d -->|calls| README_fastapi_fc7b99b1
+    class README_tutor_website_7326a21d concept;
+    class README_fastapi_fc7b99b1 concept;
+    class README_cors_ac38c361 concept;
+    class README_frontend_2d24fc74 concept;
+    class README_isharati_9b9da2bc concept;
+    class frontendREADME_website_61b6333d concept;
+    class frontendREADME_nextjs_ba00acf2 concept;
+    class docs_architecture_nextjs_c90e756c concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>CORS for localhost:3000</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing CORS for localhost:3000.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>FastAPI</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td><code>Tutor Website</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing FastAPI.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>Frontend</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Frontend.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>Isharati</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Isharati.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>Tutor Website</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td><code>FastAPI</code><br><small style="color:var(--muted)">README.md</small></td>
+  <td>Documentation node describing Tutor Website.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>Next.js</code><br><small style="color:var(--muted)">docs/architecture.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Next.js.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>Next.js App Router</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Next.js App Router.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>Isharati Website</code><br><small style="color:var(--muted)">frontend/README.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Isharati Website.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>README.md</code></td><td>5 nodes</td></tr>
+<tr><td><code>frontend/README.md</code></td><td>2 nodes</td></tr>
+<tr><td><code>docs/architecture.md</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: relates x2, implements x2, calls x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 11. Design ====== -->
+<h2 id="design">11. Design</h2>
+<p>Design groups implementation around designmd, color, strategy, design, mostly in DESIGN.md. This section covers 8 nodes and 7 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: Design (8 nodes, 7 edges)
+    design_design_a6913c02("Design<br/><small>DESIGN.md</small>")
+    design_056f1182("DESIGN.md")
+    design_typography_5e2864cb("Typography<br/><small>DESIGN.md</small>")
+    design_mood_c93792d1("Mood<br/><small>DESIGN.md</small>")
+    design_layout_dd13c13e("Layout<br/><small>DESIGN.md</small>")
+    design_motion_60a32637("Motion<br/><small>DESIGN.md</small>")
+    design_color_strategy_926415f2("Color strategy<br/><small>DESIGN.md</small>")
+    design_icons_5188abab("Icons<br/><small>DESIGN.md</small>")
+    design_056f1182 -->|contains| design_design_a6913c02
+    design_design_a6913c02 -->|contains| design_typography_5e2864cb
+    design_design_a6913c02 -->|contains| design_mood_c93792d1
+    design_design_a6913c02 -->|contains| design_layout_dd13c13e
+    design_design_a6913c02 -->|contains| design_motion_60a32637
+    design_design_a6913c02 -->|contains| design_icons_5188abab
+    design_design_a6913c02 -->|contains| design_color_strategy_926415f2
+    class design_design_a6913c02 concept;
+    class design_056f1182 concept;
+    class design_typography_5e2864cb concept;
+    class design_mood_c93792d1 concept;
+    class design_layout_dd13c13e concept;
+    class design_motion_60a32637 concept;
+    class design_color_strategy_926415f2 concept;
+    class design_icons_5188abab concept;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>DESIGN.md</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing DESIGN.md.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>Color strategy</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Color strategy.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><code>Design</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Design.</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><code>Icons</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Icons.</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><code>Layout</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Layout.</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><code>Mood</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Mood.</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><code>Motion</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Motion.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><code>Typography</code><br><small style="color:var(--muted)">DESIGN.md</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Documentation node describing Typography.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>DESIGN.md</code></td><td>8 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: contains x7. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 12. next-env.d.ts ====== -->
+<h2 id="next-env-d-ts">12. next-env.d.ts</h2>
+<p>next-env.d.ts groups implementation around next, envdts, frontend, note, mostly in frontend/next-env.d.ts. This section covers 2 nodes and 1 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: next-env.d.ts (2 nodes, 1 edges)
+    frontend_next_env_d_rationale_5_d7b245ef("NOTE: This file should not be edited<br/><small>frontend/next-env.d.ts</small>")
+    frontend_next_env_d_42f0fa62("next-env.d.ts")
+    frontend_next_env_d_rationale_5_d7b245ef -->|explains| frontend_next_env_d_42f0fa62
+    class frontend_next_env_d_rationale_5_d7b245ef concept;
+    class frontend_next_env_d_42f0fa62 module;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>next-env.d.ts</code><br><small style="color:var(--muted)">frontend/next-env.d.ts</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Module file in frontend/next-env.d.ts.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><code>NOTE: This file should not be edited</code><br><small style="color:var(--muted)">frontend/next-env.d.ts</small></td>
+  <td><span class="tag tag-func">Concept</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Design note for NOTE: This file should not be edited.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>frontend/next-env.d.ts</code></td><td>2 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: explains x1. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
+<!-- ====== 13. pose-anonymization ====== -->
+<h2 id="pose-anonymization">13. pose-anonymization</h2>
+<p>pose-anonymization groups implementation around pose, anonymization, backend, requirementstxt, mostly in backend/requirements.txt. This section covers 1 nodes and 0 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: pose-anonymization (1 nodes, 0 edges)
     backend_requirements_pose_anonymization_7fc08baf("pose-anonymization<br/><small>backend/requirements.txt</small>")
     class backend_requirements_pose_anonymization_7fc08baf concept;
     classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
@@ -1689,24 +2675,80 @@ flowchart LR
 </div>
 <hr>
 
+<!-- ====== 14. cloudinary_config.py ====== -->
+<h2 id="cloudinary-config-py">14. cloudinary_config.py</h2>
+<p>cloudinary_config.py groups implementation around cloudinary, configpy, backend, configs, mostly in backend/configs/cloudinary_config.py. This section covers 1 nodes and 0 internal edges; the diagram shows only representative relationships to stay readable.</p>
+
+<div class="mermaid">
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "15.0px", "fontFamily": "Segoe UI, system-ui, sans-serif", "primaryColor": "#1e293b", "primaryTextColor": "#e2e8f0", "primaryBorderColor": "#38bdf8", "secondaryColor": "#0f172a", "tertiaryColor": "#334155", "lineColor": "#64748b", "textColor": "#e2e8f0"}, "flowchart": {"htmlLabels": true, "curve": "basis", "nodeSpacing": 48, "rankSpacing": 64, "padding": 14, "diagramPadding": 10, "useMaxWidth": true}}}%%
+flowchart LR
+    %% Section: cloudinary_config.py (1 nodes, 0 edges)
+    backend_configs_cloudinary_config_70efc6c1("cloudinary_config.py")
+    class backend_configs_cloudinary_config_70efc6c1 module;
+    classDef entry fill:#422006,stroke:#fbbf24,color:#fde68a,stroke-width:1px;
+    classDef api fill:#450a0a,stroke:#f87171,color:#fee2e2,stroke-width:1px;
+    classDef async fill:#2e1065,stroke:#a78bfa,color:#ede9fe,stroke-width:1px;
+    classDef klass fill:#064e3b,stroke:#34d399,color:#d1fae5,stroke-width:1px;
+    classDef ui fill:#831843,stroke:#f472b6,color:#fce7f3,stroke-width:1px;
+    classDef module fill:#172554,stroke:#60a5fa,color:#dbeafe,stroke-width:1px;
+    classDef test fill:#3f3f46,stroke:#a1a1aa,color:#f4f4f5,stroke-width:1px;
+    classDef concept fill:#292524,stroke:#a8a29e,color:#fafaf9,stroke-dasharray:4 3;
+    classDef function fill:#0f172a,stroke:#38bdf8,color:#e0f2fe,stroke-width:1px;
+</div>
+
+<h3>Call Details</h3>
+<table class="call-table">
+<tr>
+  <th style="width:5%">#</th>
+  <th style="width:28%">Node</th>
+  <th style="width:10%">Type</th>
+  <th style="width:17%">Caller</th>
+  <th style="width:20%">Callees</th>
+  <th style="width:20%">Description</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><code>cloudinary_config.py</code><br><small style="color:var(--muted)">backend/configs/cloudinary_config.py</small></td>
+  <td><span class="tag tag-class">Module</span></td>
+  <td>External entry / no inbound edge</td>
+  <td>No direct outbound edge</td>
+  <td>Module file in backend/configs/cloudinary_config.py.</td>
+</tr>
+</table>
+
+<div class="grid">
+  <div class="card">
+    <h4>Key Files</h4>
+    <table style="width:100%;font-size:0.85rem;">
+      <tr><th>File</th><th>Coverage</th></tr>
+      <tr><td><code>backend/configs/cloudinary_config.py</code></td><td>1 nodes</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h4>Design Notes</h4>
+    <p>This section comes from graphify community clustering. Relationship summary: No high-confidence call edges detected. The diagram prioritizes high-confidence calls or usage relationships; the table keeps the broader node inventory.</p>
+  </div>
+</div>
+<hr>
+
 <h2 id="stats">Project Statistics</h2>
 
 <div class="grid">
   <div class="card">
     <h4>Graph</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>Nodes</td><td>311</td></tr>
-      <tr><td>Edges</td><td>549</td></tr>
+      <tr><td>Nodes</td><td>527</td></tr>
+      <tr><td>Edges</td><td>986</td></tr>
       <tr><td>Hyperedges</td><td>0</td></tr>
-      <tr><td>Communities</td><td>11</td></tr>
-      <tr><td>Documented Sections</td><td>6</td></tr>
+      <tr><td>Communities</td><td>23</td></tr>
+      <tr><td>Documented Sections</td><td>13</td></tr>
     </table>
   </div>
   <div class="card">
     <h4>Edge Confidence</h4>
     <table style="width:100%;font-size:0.85rem;">
-      <tr><td>EXTRACTED</td><td>501</td></tr>
-      <tr><td>INFERRED</td><td>43</td></tr>
+      <tr><td>EXTRACTED</td><td>921</td></tr>
+      <tr><td>INFERRED</td><td>60</td></tr>
       <tr><td>AMBIGUOUS</td><td>5</td></tr>
     </table>
   </div>
@@ -1714,7 +2756,7 @@ flowchart LR
 
 <div style="text-align:center; padding:40px 0; color: var(--muted); font-size:0.9rem;">
   <p>Isharati — Architecture Documentation</p>
-  <p>Generated: 2026-09-11 13:01 UTC · graphify callflow-html</p>
+  <p>Generated: 2026-09-13 17:27 UTC · graphify callflow-html</p>
 </div>
 
 </div><!-- .container -->

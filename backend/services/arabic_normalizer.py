@@ -4,7 +4,11 @@ import json
 import requests
 from pose_loader import PoseLoader
 from dotenv import load_dotenv
-from rapidfuzz import process, fuzz
+try:
+    from rapidfuzz import process, fuzz
+except ImportError:
+    process = None
+    fuzz = None
 
 # ==============================
 # Load API Key
@@ -155,6 +159,8 @@ class DatasetMatcher:
         """
         text = clean_text(fix_mixed_arabic_letters(text))
 
+        if process is None or fuzz is None:
+            return None
         if not self.can_use_fuzzy(text):
             return None
 
@@ -225,8 +231,9 @@ class ArabicNormalizer:
             "Content-Type": "application/json"
         }
 
-        loader = PoseLoader()
-        pose_db = loader.get()
+        import state
+
+        pose_db = state.POSE_DATA or PoseLoader().get()
 
         self.pose_db = set(pose_db.keys())
 
@@ -487,19 +494,24 @@ OUTPUT  (JSON array only — no other text)
     # ==============================
     # RUN PIPELINE
     # ==============================
+    def tokenize_local(self, sentence):
+        words = clean_text(fix_mixed_arabic_letters(sentence)).split()
+        return self.map_to_dataset(words)
+
     def tokenize(self, sentence):
-        print(f"\n🟡 Input: {sentence}")
-
-        llm_output = self.normalize(sentence)
-        print(f"🔵 LLM Output: {llm_output}")
-
-        tokens = self.parse_llm_output(llm_output)
-        print(f"🧩 Parsed Tokens: {tokens}")
-
-        result = self.map_to_dataset(tokens)
-
-        print(f"🟢 Final Output: {result}")
-
+        print(f"\nInput: {sentence}")
+        if OPENROUTER_API_KEY:
+            try:
+                llm_output = self.normalize(sentence)
+                tokens = self.parse_llm_output(llm_output)
+                result = self.map_to_dataset(tokens)
+                if result:
+                    print(f"Final Output: {result}")
+                    return result
+            except Exception as exc:
+                print(f"LLM tokenize failed, using local matcher: {exc}")
+        result = self.tokenize_local(sentence)
+        print(f"Final Output: {result}")
         return result
 
 
