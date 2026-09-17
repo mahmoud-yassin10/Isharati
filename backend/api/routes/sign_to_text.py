@@ -45,6 +45,7 @@ async def sign_to_text(
             prediction = predict_sign(preprocessed)
 
             word = prediction["word"]
+            confidence_tier = prediction["best"]["confidence_tier"]
             if word:
                 words.append(word)
 
@@ -52,7 +53,7 @@ async def sign_to_text(
                 "order": order,
                 "filename": upload_file.filename,
                 "word": word,
-                "prediction": prediction,
+                "confidence_tier": confidence_tier,
             })
 
         except Exception as e:
@@ -71,5 +72,5 @@ async def sign_to_text(
         "raw_words": words,
         "raw_sentence": raw_sentence,
         "final_sentence": final_sentence,
-        #"predictions": predictions,
+        "predictions": predictions,
     }

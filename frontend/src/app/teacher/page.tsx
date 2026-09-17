@@ -37,7 +37,7 @@ export default function TeacherHome() {
     <AppShell user={user}>
       <div className="stack">
         <h1>
-          <Dual ar="دروس الفيزياء" en="Physics lessons" />
+          <Dual ar="الدروس" en="Lessons" />
         </h1>
         <Dual as="p" className="hint" ar="افتح الدرس لمعاينة المختبر، ثم انشره وعيّنه." en="Open the lesson, preview the lab, then publish and assign." />
         {error ? <Dual as="p" className="error" ar="تعذر تحميل الدروس." en="Could not load lessons." /> : null}
@@ -51,8 +51,8 @@ export default function TeacherHome() {
               <Dual
                 as="p"
                 className="hint"
-                ar={lesson.status === "published" ? "منشور" : "مسودة"}
-                en={lesson.status === "published" ? "Published" : "Draft"}
+                ar={`${lesson.steps.length} خطوات · ${lesson.status === "published" ? "منشور" : "مسودة"}`}
+                en={`${lesson.steps.length} steps · ${lesson.status === "published" ? "Published" : "Draft"}`}
               />
             </div>
             <a className="btn" href={`/teacher/lessons/${lesson.id}`}>

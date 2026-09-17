@@ -1,0 +1,43 @@
+FROM python:3.12-slim
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ffmpeg \
+        libglib2.0-0 \
+        libgl1 \
+        build-essential \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY backend/requirements-fly-full.txt /app/requirements-fly-full.txt
+# chumpy (pulled in transitively by mmpose) ships a pre-2017 setup.py that
+# does `import pip` inside pip's isolated build env, which modern pip
+# deliberately excludes. Pre-install it with build isolation off so it runs
+# against the main env (where pip is importable) before anything needs it.
+# Recent setuptools releases dropped pkg_resources from the default install;
+# mmcv 2.1.0 and chumpy 0.70 both import it directly in their setup.py, so we
+# pin an older setuptools that still bundles it.
+RUN pip install --no-cache-dir "setuptools==69.5.1" wheel numpy==1.26.4 six \
+    && pip install --no-cache-dir --no-build-isolation chumpy==0.70
+RUN pip install --no-cache-dir -r /app/requirements-fly-full.txt
+# mmcv 2.1.0's setup.py imports pkg_resources directly; its own isolated
+# build env doesn't reliably provide it. Same fix as chumpy: build against
+# the main env, where setuptools is already known-good from the steps above.
+RUN pip install --no-cache-dir --no-build-isolation mmcv==2.1.0 -f https://download.openmmlab.com/mmcv/dist/cpu/torch2.2/index.html
+# cloudinary (Speech_to_text.py audio upload) and openai (nlp_refiner.py) are
+# unconditional imports on the speech/sign-to-text routes, unrelated to mmpose.
+RUN pip install --no-cache-dir cloudinary==1.44.2 openai SpeechRecognition==3.16.1 pydub==0.25.1
+
+COPY backend/ /app/
+
+ENV PYTHONUNBUFFERED=1 \
+    RAQEEB_DATA_DIR=/data \
+    PORT=8080
+
+RUN mkdir -p /data /app/temp /app/static
+
+EXPOSE 8080
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--proxy-headers"]

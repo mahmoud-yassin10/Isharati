@@ -1,0 +1,132 @@
+{
+  "id": "walk-stop",
+  "slug": "walk-stop",
+  "title_ar": "يمشي ويقف",
+  "title_en": "Walk and stop",
+  "subject": "language",
+  "status": "published",
+  "glossary": {
+    "walk": {
+      "term_ar": "يمشي",
+      "term_en": "walks",
+      "esl_mode": "lexicon",
+      "lexicon_token": "يمشي"
+    },
+    "stop": {
+      "term_ar": "يقف",
+      "term_en": "stops / stands",
+      "esl_mode": "lexicon",
+      "lexicon_token": "يقف"
+    },
+    "i": {
+      "term_ar": "انا",
+      "term_en": "I",
+      "esl_mode": "lexicon",
+      "lexicon_token": "انا"
+    },
+    "no": {
+      "term_ar": "لا",
+      "term_en": "no",
+      "esl_mode": "lexicon",
+      "lexicon_token": "لا"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-walk",
+      "type": "esl_term",
+      "title_ar": "يمشي",
+      "title_en": "Walks",
+      "body_ar": "إشارة يمشي من المعجم.",
+      "body_en": "The lexicon sign for walks.",
+      "glossary_ids": ["walk"]
+    },
+    {
+      "id": "term-stop",
+      "type": "esl_term",
+      "title_ar": "يقف",
+      "title_en": "Stops",
+      "body_ar": "إشارة يقف من المعجم.",
+      "body_en": "The lexicon sign for stops or stands.",
+      "glossary_ids": ["stop"]
+    },
+    {
+      "id": "explain-walk-stop",
+      "type": "explain",
+      "title_ar": "الحركة والتوقف",
+      "title_en": "Moving and stopping",
+      "body_ar": "الجسم يمشي ثم يقف. لا تعني النفي.",
+      "body_en": "The body walks, then stops. لا is negation.",
+      "glossary_ids": ["walk", "stop", "no"]
+    },
+    {
+      "id": "quiz-walk",
+      "type": "quiz",
+      "title_ar": "اختبار: يمشي",
+      "title_en": "Quiz: walks",
+      "glossary_ids": ["walk"],
+      "quiz": {
+        "prompt_ar": "هذه الإشارة تعني؟",
+        "prompt_en": "This sign means?",
+        "correct_id": "walk",
+        "options": [
+          { "id": "walk", "label_ar": "يمشي", "label_en": "walks" },
+          { "id": "stop", "label_ar": "يقف", "label_en": "stops" },
+          { "id": "no", "label_ar": "لا", "label_en": "no" }
+        ]
+      }
+    },
+    {
+      "id": "quiz-stop",
+      "type": "quiz",
+      "title_ar": "اختبار: يقف",
+      "title_en": "Quiz: stops",
+      "glossary_ids": ["stop"],
+      "quiz": {
+        "prompt_ar": "عكس يمشي؟",
+        "prompt_en": "The opposite of walks?",
+        "correct_id": "stop",
+        "options": [
+          { "id": "i", "label_ar": "أنا", "label_en": "I" },
+          { "id": "stop", "label_ar": "يقف", "label_en": "stops" },
+          { "id": "walk", "label_ar": "يمشي", "label_en": "walks" }
+        ]
+      }
+    },
+    {
+      "id": "quiz-no",
+      "type": "quiz",
+      "title_ar": "اختبار: لا",
+      "title_en": "Quiz: no",
+      "glossary_ids": ["no"],
+      "quiz": {
+        "prompt_ar": "إشارة النفي؟",
+        "prompt_en": "The negation sign?",
+        "correct_id": "no",
+        "options": [
+          { "id": "no", "label_ar": "لا", "label_en": "no" },
+          { "id": "walk", "label_ar": "يمشي", "label_en": "walks" },
+          { "id": "i", "label_ar": "أنا", "label_en": "I" }
+        ]
+      }
+    },
+    {
+      "id": "sign-walk",
+      "type": "sign_check",
+      "title_ar": "سجّل: يمشي",
+      "title_en": "Sign: walks",
+      "body_ar": "سجّل إشارة يمشي، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for walks, or skip this step.",
+      "sign_target": "يمشي"
+    },
+    {
+      "id": "sign-stop",
+      "type": "sign_check",
+      "title_ar": "سجّل: يقف",
+      "title_en": "Sign: stops",
+      "body_ar": "سجّل إشارة يقف، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for stops, or skip this step.",
+      "sign_target": "يقف"
+    }
+  ]
+}

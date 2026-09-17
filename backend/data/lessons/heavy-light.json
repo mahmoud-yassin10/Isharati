@@ -1,0 +1,146 @@
+{
+  "id": "heavy-light",
+  "slug": "heavy-light",
+  "title_ar": "ثقيل وخفيف",
+  "title_en": "Heavy and light",
+  "subject": "physics",
+  "status": "published",
+  "glossary": {
+    "heavy": {
+      "term_ar": "ثقيل",
+      "term_en": "heavy",
+      "esl_mode": "lexicon",
+      "lexicon_token": "ثقيل"
+    },
+    "light": {
+      "term_ar": "خفيف",
+      "term_en": "light",
+      "esl_mode": "lexicon",
+      "lexicon_token": "خفيف"
+    },
+    "force": {
+      "term_ar": "قوة",
+      "term_en": "force",
+      "esl_mode": "fingerspell"
+    },
+    "mass": {
+      "term_ar": "كتلة",
+      "term_en": "mass",
+      "esl_mode": "fingerspell"
+    },
+    "accel": {
+      "term_ar": "تسارع",
+      "term_en": "acceleration",
+      "esl_mode": "fingerspell"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-heavy",
+      "type": "esl_term",
+      "title_ar": "ثقيل",
+      "title_en": "Heavy",
+      "body_ar": "الجسم الثقيل كتلته أكبر.",
+      "body_en": "A heavy object has more mass.",
+      "glossary_ids": ["heavy"]
+    },
+    {
+      "id": "term-light",
+      "type": "esl_term",
+      "title_ar": "خفيف",
+      "title_en": "Light",
+      "body_ar": "الجسم الخفيف كتلته أصغر.",
+      "body_en": "A light object has less mass.",
+      "glossary_ids": ["light"]
+    },
+    {
+      "id": "term-mass-again",
+      "type": "esl_term",
+      "title_ar": "كتلة",
+      "title_en": "Mass",
+      "body_ar": "الكتلة هي مقدار المادة. ليست «ثقيل» نفسها، لكن الثقيل غالباً كتلته أكبر.",
+      "body_en": "Mass is the amount of matter. It is not the same word as heavy, but heavy usually means more mass.",
+      "glossary_ids": ["mass"]
+    },
+    {
+      "id": "explain-mass-a",
+      "type": "explain",
+      "title_ar": "الكتلة والتسارع",
+      "title_en": "Mass and acceleration",
+      "body_ar": "نفس القوة على كتلة أكبر تعطي تسارعاً أصغر. الصندوق الثقيل يتغيّر أبطأ.",
+      "body_en": "The same force on more mass gives smaller acceleration. The heavier box changes speed more slowly.",
+      "glossary_ids": ["mass", "force", "accel"]
+    },
+    {
+      "id": "quiz-which-heavy",
+      "type": "quiz",
+      "title_ar": "اختبار: ثقيل",
+      "title_en": "Quiz: heavy",
+      "body_ar": "انظر الإشارة ثم اختر الكلمة.",
+      "body_en": "Watch the sign, then pick the word.",
+      "glossary_ids": ["heavy"],
+      "quiz": {
+        "prompt_ar": "أي كلمة تعني heavy؟",
+        "prompt_en": "Which word means heavy?",
+        "correct_id": "heavy",
+        "options": [
+          { "id": "heavy", "label_ar": "ثقيل", "label_en": "heavy" },
+          { "id": "light", "label_ar": "خفيف", "label_en": "light" },
+          { "id": "force", "label_ar": "قوة", "label_en": "force" }
+        ]
+      }
+    },
+    {
+      "id": "quiz-same-force",
+      "type": "quiz",
+      "title_ar": "اختبار: نفس القوة",
+      "title_en": "Quiz: same force",
+      "glossary_ids": ["mass", "accel"],
+      "quiz": {
+        "prompt_ar": "نفس القوة على كتلة أكبر. التسارع؟",
+        "prompt_en": "Same force on more mass. Acceleration?",
+        "correct_id": "down",
+        "options": [
+          { "id": "up", "label_ar": "يزيد", "label_en": "Increases" },
+          { "id": "down", "label_ar": "يقل", "label_en": "Decreases" },
+          { "id": "same", "label_ar": "لا يتغيّر", "label_en": "Stays the same" }
+        ]
+      }
+    },
+    {
+      "id": "sim-mass",
+      "type": "simulate",
+      "title_ar": "المختبر",
+      "title_en": "The lab",
+      "body_ar": "ثبّت القوة تقريباً. غيّر الكتلة. راقب a.",
+      "body_en": "Keep force roughly fixed. Change mass. Watch a.",
+      "glossary_ids": ["heavy", "light", "mass"],
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 8, "m": 4 }
+      }
+    },
+    {
+      "id": "challenge-a1",
+      "type": "challenge",
+      "title_ar": "التحدي",
+      "title_en": "Challenge",
+      "body_ar": "اجعل التسارع قريباً من 1 م/ث².",
+      "body_en": "Make acceleration close to 1 m/s².",
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 8, "m": 4 },
+        "goal": { "key": "a", "value": 1, "tolerance": 0.15 }
+      }
+    },
+    {
+      "id": "sign-heavy",
+      "type": "sign_check",
+      "title_ar": "سجّل: ثقيل",
+      "title_en": "Sign: heavy",
+      "body_ar": "سجّل إشارة ثقيل، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for heavy, or skip this step.",
+      "sign_target": "ثقيل"
+    }
+  ]
+}

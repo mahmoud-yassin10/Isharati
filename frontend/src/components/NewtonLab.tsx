@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Dual } from "@/components/Dual";
+import { useA11y } from "@/lib/a11y";
 import { pick, useLang } from "@/lib/lang";
 import { newtonAccel, withinGoal } from "@/lib/physics";
 
@@ -23,6 +24,7 @@ export function NewtonLab({
   onChallengeMet,
 }: NewtonLabProps) {
   const { lang } = useLang();
+  const { reduceMotion: preferStill } = useA11y();
   const [force, setForce] = useState(initialForce);
   const [mass, setMass] = useState(initialMass);
   const [reduced, setReduced] = useState(false);
@@ -43,11 +45,11 @@ export function NewtonLab({
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(media.matches);
+    const update = () => setReduced(media.matches || preferStill);
     update();
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
-  }, []);
+  }, [preferStill]);
 
   useEffect(() => {
     stateRef.current.F = force;
@@ -143,7 +145,12 @@ export function NewtonLab({
         <div
           ref={boxRef}
           className="mass-box"
-          style={reduced ? { transform: "translateX(40%)" } : undefined}
+          style={{
+            ...(reduced ? { transform: "translateX(40%)" } : undefined),
+            ["--mass-lift" as string]: `${6 + (mass / 10) * 14}px`,
+            ["--mass-blur" as string]: `${10 + (mass / 10) * 16}px`,
+            ["--mass-opacity" as string]: `${0.14 + (mass / 10) * 0.22}`,
+          }}
         >
           {pick(lang, "كتلة", "Mass")}
           <strong className="mono">{mass.toFixed(1)} kg</strong>
@@ -166,6 +173,7 @@ export function NewtonLab({
             value={force}
             onChange={(event) => setForce(Number(event.target.value))}
             aria-valuetext={`${force.toFixed(1)} ${pick(lang, "نيوتن", "newtons")}`}
+            style={{ ["--slider-fill" as string]: `${((force - 1) / (20 - 1)) * 100}%` }}
           />
         </label>
         <label className="slider-field">
@@ -183,6 +191,7 @@ export function NewtonLab({
             value={mass}
             onChange={(event) => setMass(Number(event.target.value))}
             aria-valuetext={`${mass.toFixed(1)} ${pick(lang, "كيلوغرام", "kilograms")}`}
+            style={{ ["--slider-fill" as string]: `${((mass - 0.5) / (10 - 0.5)) * 100}%` }}
           />
         </label>
         <button type="button" className="btn ghost" onClick={resetMotion}>
@@ -199,6 +208,12 @@ export function NewtonLab({
         <svg viewBox="0 0 200 160" role="img" aria-label={pick(lang, `رسم القوة والتسارع. التسارع الحالي ${accel.toFixed(2)}`, `Force vs acceleration. Current a ${accel.toFixed(2)}`)}>
           <line x1="20" y1="140" x2="190" y2="140" className="axis" />
           <line x1="20" y1="140" x2="20" y2="12" className="axis" />
+          <text x="14" y="152" className="axis-tick">
+            0
+          </text>
+          <text x="163" y="152" className="axis-tick">
+            {maxF}
+          </text>
           <text x="186" y="154" className="axis-label">
             F
           </text>
@@ -206,7 +221,11 @@ export function NewtonLab({
             a
           </text>
           <line x1="20" y1="140" x2={lineX2} y2={Math.max(lineY2, 12)} className="trend" />
-          <circle cx={dotX} cy={dotY} r="5" className="now" />
+          <circle cx={dotX} cy={dotY} r="5" className="now">
+            {!reduced ? (
+              <animate attributeName="r" values="5;6.5;5" dur="1.6s" repeatCount="indefinite" />
+            ) : null}
+          </circle>
         </svg>
       </figure>
     </section>

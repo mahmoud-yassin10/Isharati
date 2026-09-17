@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 
-from config import DEVICE, AMP, TOPK, MODEL_PATH, LABEL_MAP_PATH
+from config import DEVICE, AMP, TOPK, MODEL_PATH, LABEL_MAP_PATH, SIGN_CONFIDENCE_THRESHOLD
 from services.model_architecture import HFSMCAHybridModel
 from services.video_processor import features_to_torch_batch
 
@@ -133,6 +133,7 @@ def predict_sign(preprocessed: Dict, topk: int = TOPK) -> Dict:
             "top1_prob": float(pred["top1_prob"]),
             "top2_prob": float(pred["top2_prob"]),
             "margin": float(pred["margin"]),
+            "confidence_tier": "high" if pred["top1_prob"] >= SIGN_CONFIDENCE_THRESHOLD else "low",
             "gates": pred["gates"],
             "dominant_hand": pred.get("dominant_hand", ""),
             "quality": pred.get("quality", {}),

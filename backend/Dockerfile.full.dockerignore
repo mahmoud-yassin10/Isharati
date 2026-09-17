@@ -1,0 +1,18 @@
+.git
+.github
+.cursor
+frontend
+graphify-out
+docs
+node_modules
+lovable build
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.env
+backend/.env
+backend/temp
+backend/raqeeb.db
+backend/raqeeb.db-journal
+**/*.enc
+debug.log

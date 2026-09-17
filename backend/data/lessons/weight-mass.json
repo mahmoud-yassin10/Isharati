@@ -1,0 +1,132 @@
+{
+  "id": "weight-mass",
+  "slug": "weight-mass",
+  "title_ar": "وزن وكتلة",
+  "title_en": "Weight and mass",
+  "subject": "physics",
+  "status": "published",
+  "glossary": {
+    "weight": {
+      "term_ar": "وزن",
+      "term_en": "weight",
+      "esl_mode": "lexicon",
+      "lexicon_token": "وزن"
+    },
+    "mass": {
+      "term_ar": "كتلة",
+      "term_en": "mass",
+      "esl_mode": "fingerspell"
+    },
+    "force": {
+      "term_ar": "قوة",
+      "term_en": "force",
+      "esl_mode": "fingerspell"
+    },
+    "accel": {
+      "term_ar": "تسارع",
+      "term_en": "acceleration",
+      "esl_mode": "fingerspell"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-weight",
+      "type": "esl_term",
+      "title_ar": "وزن",
+      "title_en": "Weight",
+      "body_ar": "الوزن إشارة جاهزة في المعجم. على الأرض يرتبط بالكتلة.",
+      "body_en": "Weight has a ready lexicon sign. On Earth it is tied to mass.",
+      "glossary_ids": ["weight"]
+    },
+    {
+      "id": "term-mass",
+      "type": "esl_term",
+      "title_ar": "كتلة",
+      "title_en": "Mass",
+      "body_ar": "الكتلة مقدار المادة. ليست نفس كلمة وزن. تُهجّى حرفاً حرفاً.",
+      "body_en": "Mass is the amount of matter. It is not the same word as weight. It is fingerspelled.",
+      "glossary_ids": ["mass"]
+    },
+    {
+      "id": "explain-weight-mass",
+      "type": "explain",
+      "title_ar": "الفرق",
+      "title_en": "The difference",
+      "body_ar": "في المختبر نغيّر الكتلة m. الوزن على الأرض أكبر عندما تكون الكتلة أكبر. التسارع = القوة ÷ الكتلة.",
+      "body_en": "In the lab we change mass m. Weight on Earth is larger when mass is larger. Acceleration = force ÷ mass.",
+      "glossary_ids": ["weight", "mass", "force", "accel"]
+    },
+    {
+      "id": "quiz-lexicon-weight",
+      "type": "quiz",
+      "title_ar": "اختبار: وزن",
+      "title_en": "Quiz: weight",
+      "body_ar": "انظر الإشارة ثم اختر.",
+      "body_en": "Watch the sign, then choose.",
+      "glossary_ids": ["weight"],
+      "quiz": {
+        "prompt_ar": "أي كلمة لها إشارة جاهزة في المعجم؟",
+        "prompt_en": "Which word has a ready lexicon sign?",
+        "correct_id": "weight",
+        "options": [
+          { "id": "weight", "label_ar": "وزن", "label_en": "weight" },
+          { "id": "mass", "label_ar": "كتلة", "label_en": "mass" },
+          { "id": "accel", "label_ar": "تسارع", "label_en": "acceleration" }
+        ]
+      }
+    },
+    {
+      "id": "quiz-more-mass",
+      "type": "quiz",
+      "title_ar": "اختبار: كتلة أكبر",
+      "title_en": "Quiz: more mass",
+      "glossary_ids": ["mass", "accel"],
+      "quiz": {
+        "prompt_ar": "نفس القوة على كتلة أكبر. التسارع؟",
+        "prompt_en": "Same force on more mass. Acceleration?",
+        "correct_id": "down",
+        "options": [
+          { "id": "up", "label_ar": "يزيد", "label_en": "Increases" },
+          { "id": "down", "label_ar": "يقل", "label_en": "Decreases" },
+          { "id": "same", "label_ar": "لا يتغيّر", "label_en": "Stays the same" }
+        ]
+      }
+    },
+    {
+      "id": "sim-weight",
+      "type": "simulate",
+      "title_ar": "المختبر",
+      "title_en": "The lab",
+      "body_ar": "زد الكتلة. راقب a وهو يقل.",
+      "body_en": "Increase mass. Watch a get smaller.",
+      "glossary_ids": ["mass", "accel"],
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 10, "m": 5 }
+      }
+    },
+    {
+      "id": "challenge-a05",
+      "type": "challenge",
+      "title_ar": "التحدي",
+      "title_en": "Challenge",
+      "body_ar": "اجعل التسارع قريباً من 0.5 م/ث².",
+      "body_en": "Make acceleration close to 0.5 m/s².",
+      "glossary_ids": ["mass", "accel"],
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 10, "m": 5 },
+        "goal": { "key": "a", "value": 0.5, "tolerance": 0.12 }
+      }
+    },
+    {
+      "id": "sign-weight",
+      "type": "sign_check",
+      "title_ar": "سجّل: وزن",
+      "title_en": "Sign: weight",
+      "body_ar": "سجّل إشارة وزن، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for weight, or skip this step.",
+      "sign_target": "وزن"
+    }
+  ]
+}

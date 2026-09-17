@@ -5,6 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { NewtonLab } from "@/components/NewtonLab";
+import { ProgressBadge } from "@/components/ProgressBadge";
+import { badgeForLesson } from "@/lib/gamification";
 import { assignLesson, getLesson, lessonProgress, publishLesson } from "@/lib/api";
 import { useUser } from "@/lib/useUser";
 import type { Lesson, ProgressItem } from "@/lib/types";
@@ -134,6 +136,25 @@ export default function TeacherLessonPage() {
           <h2>
             <Dual ar="تقدّم الطلاب" en="Student progress" />
           </h2>
+          {lesson && progress.length > 0 ? (
+            <div className="badge-summary">
+              {Array.from(new Set(progress.map((item) => item.student_id))).map((studentId) => {
+                const studentProgress = progress.filter((item) => item.student_id === studentId);
+                const badge = badgeForLesson(lesson, studentProgress);
+                return (
+                  <p key={studentId} className="hint">
+                    {studentProgress[0]?.student_name}
+                    {badge ? (
+                      <>
+                        {" "}
+                        <ProgressBadge badge={badge} />
+                      </>
+                    ) : null}
+                  </p>
+                );
+              })}
+            </div>
+          ) : null}
           {progress.length === 0 ? (
             <Dual
               as="p"
@@ -164,7 +185,16 @@ export default function TeacherLessonPage() {
                 {progress.map((item) => (
                   <tr key={`${item.student_id}-${item.step_id}`}>
                     <td>{item.student_name}</td>
-                    <td>{item.step_id}</td>
+                    <td>
+                      <Dual
+                        ar={lesson?.steps.find((step) => step.id === item.step_id)?.title_ar ?? item.step_id}
+                        en={
+                          lesson?.steps.find((step) => step.id === item.step_id)?.title_en ??
+                          lesson?.steps.find((step) => step.id === item.step_id)?.title_ar ??
+                          item.step_id
+                        }
+                      />
+                    </td>
                     <td>
                       <span className={`status-dot ${item.status === "done" ? "done" : ""}`} />
                       {item.status === "done" ? (

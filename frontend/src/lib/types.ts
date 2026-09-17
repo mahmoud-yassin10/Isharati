@@ -1,6 +1,6 @@
 export type Role = "teacher" | "student";
 
-export type StepType = "esl_term" | "explain" | "simulate" | "challenge" | "sign_check";
+export type StepType = "esl_term" | "explain" | "simulate" | "challenge" | "sign_check" | "quiz";
 
 export type SimulationKind = "newton_2nd";
 
@@ -9,6 +9,19 @@ export type GlossaryEntry = {
   term_en: string;
   esl_mode: "lexicon" | "fingerspell" | "none";
   lexicon_token?: string;
+};
+
+export type QuizOption = {
+  id: string;
+  label_ar: string;
+  label_en: string;
+};
+
+export type Quiz = {
+  prompt_ar: string;
+  prompt_en: string;
+  correct_id: string;
+  options: QuizOption[];
 };
 
 export type LessonStep = {
@@ -25,6 +38,7 @@ export type LessonStep = {
     goal?: { key: string; value: number; tolerance: number };
   };
   sign_target?: string;
+  quiz?: Quiz;
 };
 
 export type Lesson = {
@@ -32,7 +46,7 @@ export type Lesson = {
   slug: string;
   title_ar: string;
   title_en?: string;
-  subject: "physics";
+  subject: "physics" | "language";
   status: "draft" | "published";
   glossary: Record<string, GlossaryEntry>;
   steps: LessonStep[];

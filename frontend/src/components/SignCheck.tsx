@@ -18,6 +18,7 @@ export function SignCheck({
   const [busy, setBusy] = useState(false);
   const [predicted, setPredicted] = useState<string | null>(null);
   const [matched, setMatched] = useState<boolean | null>(null);
+  const [unsure, setUnsure] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [recording, setRecording] = useState(false);
   const recorderRef = useRef<MediaRecorder | null>(null);
@@ -30,8 +31,10 @@ export function SignCheck({
       const result = await signToText([file], false);
       const word = result.raw_words[0] || result.final_sentence || "";
       const ok = normalize(word) === normalize(target) || word.includes(target);
+      const tier = result.predictions?.[0]?.confidence_tier ?? "high";
       setPredicted(word || "لا توجد كلمة");
       setMatched(ok);
+      setUnsure(!ok && tier === "low");
       onResult(word, ok);
     } catch {
       setError("تعذر قراءة الفيديو. يمكنك المتابعة بعد المحاولة.");
@@ -102,9 +105,11 @@ export function SignCheck({
         <p>
           <Dual ar="المقروء:" en="Read as:" /> <strong>{predicted}</strong>
           {matched ? (
-            <Dual ar=" · مطابق" en=" · match" />
+            <Dual ar=" · أحسنت." en=" · Well done." />
+          ) : unsure ? (
+            <Dual ar=" · لم نتأكد، حاول مرة أخرى." en=" · Not sure, try again." />
           ) : (
-            <Dual ar=" · غير مطابق" en=" · not a match" />
+            <Dual ar=" · حاول مرة أخرى." en=" · Try again." />
           )}
         </p>
       ) : null}
@@ -120,6 +125,16 @@ export function SignCheck({
           }
         />
       ) : null}
+      <button
+        type="button"
+        className="btn ghost"
+        onClick={() => {
+          setMatched(false);
+          onResult("", false);
+        }}
+      >
+        <Dual ar="تخطَّ هذه الخطوة" en="Skip this step" />
+      </button>
     </div>
   );
 }

@@ -1,0 +1,154 @@
+{
+  "id": "i-am-student",
+  "slug": "i-am-student",
+  "title_ar": "أنا طالب",
+  "title_en": "I am a student",
+  "subject": "language",
+  "status": "published",
+  "glossary": {
+    "i": {
+      "term_ar": "انا",
+      "term_en": "I",
+      "esl_mode": "lexicon",
+      "lexicon_token": "انا"
+    },
+    "student": {
+      "term_ar": "طالب",
+      "term_en": "student",
+      "esl_mode": "lexicon",
+      "lexicon_token": "طالب"
+    },
+    "house": {
+      "term_ar": "بيت",
+      "term_en": "house",
+      "esl_mode": "lexicon",
+      "lexicon_token": "بيت"
+    },
+    "girl": {
+      "term_ar": "بنت",
+      "term_en": "girl",
+      "esl_mode": "lexicon",
+      "lexicon_token": "بنت"
+    },
+    "no": {
+      "term_ar": "لا",
+      "term_en": "no",
+      "esl_mode": "lexicon",
+      "lexicon_token": "لا"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-i",
+      "type": "esl_term",
+      "title_ar": "أنا",
+      "title_en": "I",
+      "body_ar": "هذه إشارة كلمة أنا كما في المعجم.",
+      "body_en": "This is the lexicon sign for I.",
+      "glossary_ids": ["i"]
+    },
+    {
+      "id": "term-student",
+      "type": "esl_term",
+      "title_ar": "طالب",
+      "title_en": "Student",
+      "body_ar": "طالب في المدرسة.",
+      "body_en": "A student at school.",
+      "glossary_ids": ["student"]
+    },
+    {
+      "id": "term-house",
+      "type": "esl_term",
+      "title_ar": "بيت",
+      "title_en": "House",
+      "body_ar": "البيت مكان السكن.",
+      "body_en": "A house is where you live.",
+      "glossary_ids": ["house"]
+    },
+    {
+      "id": "term-girl",
+      "type": "esl_term",
+      "title_ar": "بنت",
+      "title_en": "Girl",
+      "glossary_ids": ["girl"]
+    },
+    {
+      "id": "term-no",
+      "type": "esl_term",
+      "title_ar": "لا",
+      "title_en": "No",
+      "body_ar": "لا للنفي.",
+      "body_en": "No for negation.",
+      "glossary_ids": ["no"]
+    },
+    {
+      "id": "explain-i-student",
+      "type": "explain",
+      "title_ar": "جملة",
+      "title_en": "A sentence",
+      "body_ar": "أنا طالب. انظر الإشارتين ثم كوّن الجملة.",
+      "body_en": "I am a student. Watch both signs, then hold the sentence.",
+      "glossary_ids": ["i", "student"]
+    },
+    {
+      "id": "quiz-i",
+      "type": "quiz",
+      "title_ar": "اختبار: أنا",
+      "title_en": "Quiz: I",
+      "glossary_ids": ["i"],
+      "quiz": {
+        "prompt_ar": "هذه الإشارة تعني؟",
+        "prompt_en": "This sign means?",
+        "correct_id": "i",
+        "options": [
+          { "id": "i", "label_ar": "أنا", "label_en": "I" },
+          { "id": "student", "label_ar": "طالب", "label_en": "student" },
+          { "id": "no", "label_ar": "لا", "label_en": "no" }
+        ]
+      }
+    },
+    {
+      "id": "quiz-student",
+      "type": "quiz",
+      "title_ar": "اختبار: طالب",
+      "title_en": "Quiz: student",
+      "glossary_ids": ["student"],
+      "quiz": {
+        "prompt_ar": "كلمة طالب تعني؟",
+        "prompt_en": "طالب means?",
+        "correct_id": "student",
+        "options": [
+          { "id": "house", "label_ar": "بيت", "label_en": "house" },
+          { "id": "student", "label_ar": "طالب", "label_en": "student" },
+          { "id": "girl", "label_ar": "بنت", "label_en": "girl" }
+        ]
+      }
+    },
+    {
+      "id": "quiz-no",
+      "type": "quiz",
+      "title_ar": "اختبار: لا",
+      "title_en": "Quiz: no",
+      "glossary_ids": ["no"],
+      "quiz": {
+        "prompt_ar": "إشارة لا للنفي. اختر معناها.",
+        "prompt_en": "The sign لا is for negation. Pick its meaning.",
+        "correct_id": "no",
+        "options": [
+          { "id": "i", "label_ar": "أنا", "label_en": "I" },
+          { "id": "no", "label_ar": "لا", "label_en": "no" },
+          { "id": "house", "label_ar": "بيت", "label_en": "house" }
+        ]
+      }
+    },
+    {
+      "id": "sign-i",
+      "type": "sign_check",
+      "title_ar": "سجّل: أنا",
+      "title_en": "Sign: I",
+      "body_ar": "سجّل إشارة أنا.",
+      "body_en": "Record the sign for I.",
+      "sign_target": "انا"
+    }
+  ]
+}

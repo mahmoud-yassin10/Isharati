@@ -5,10 +5,14 @@ import { useParams, useRouter } from "next/navigation";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { NewtonLab } from "@/components/NewtonLab";
+import { ProgressBadge } from "@/components/ProgressBadge";
+import { QuizPanel } from "@/components/QuizPanel";
 import { SignCheck } from "@/components/SignCheck";
-import { SignPanel } from "@/components/SignPanel";
-import { getLesson, saveProgress } from "@/lib/api";
+import { SignPanels } from "@/components/SignPanel";
+import { badgeForLesson } from "@/lib/gamification";
+import { getLesson, lessonProgress, saveProgress } from "@/lib/api";
 import { useUser } from "@/lib/useUser";
+import type { Badge } from "@/lib/gamification";
 import type { Lesson } from "@/lib/types";
 
 export default function StudentPlayer() {
@@ -18,8 +22,12 @@ export default function StudentPlayer() {
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [index, setIndex] = useState(0);
   const [challengeMet, setChallengeMet] = useState(false);
+  const [quizSolved, setQuizSolved] = useState(false);
   const [signTried, setSignTried] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [nudge, setNudge] = useState<{ ar: string; en: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [earnedBadge, setEarnedBadge] = useState<Badge | null>(null);
 
   useEffect(() => {
     if (!ready) return;
@@ -41,23 +49,33 @@ export default function StudentPlayer() {
   const locked = useMemo(() => {
     if (!step) return false;
     if (step.type === "challenge") return !challengeMet;
+    if (step.type === "quiz") return !quizSolved;
     return false;
-  }, [step, challengeMet]);
+  }, [step, challengeMet, quizSolved]);
 
   const persist = useCallback(
     async (payload: Parameters<typeof saveProgress>[0]) => {
       try {
         await saveProgress(payload);
+        if (lesson) {
+          const progress = await lessonProgress(lesson.id);
+          const badge = badgeForLesson(lesson, progress);
+          if (badge && (!earnedBadge || badge.tier !== earnedBadge.tier)) {
+            setEarnedBadge(badge);
+          }
+        }
       } catch {
         /* progress is best-effort if the session dropped */
       }
     },
-    [],
+    [lesson, earnedBadge],
   );
 
   const onChallengeMet = useCallback(
     (snapshot: { F: number; m: number; a: number }) => {
       setChallengeMet(true);
+      setStreak((value) => value + 1);
+      setNudge({ ar: "وصلت.", en: "You reached it." });
       if (lesson && step) {
         void persist({
           lesson_id: lesson.id,
@@ -81,7 +99,9 @@ export default function StudentPlayer() {
     }
     setIndex(next);
     setChallengeMet(false);
+    setQuizSolved(false);
     setSignTried(false);
+    if (next <= index) setNudge(null);
   }
 
   if (!ready || !user) {
@@ -92,8 +112,9 @@ export default function StudentPlayer() {
     );
   }
 
-  const termId = step?.glossary_ids?.[0];
-  const term = termId ? glossary[termId] : undefined;
+  const terms = (step?.glossary_ids ?? [])
+    .map((gid) => glossary[gid])
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return (
     <AppShell user={user}>
@@ -106,6 +127,12 @@ export default function StudentPlayer() {
             <Dual as="p" className="hint" ar={lesson.title_ar} en={lesson.title_en ?? "Lesson"} />
             <p className="hint">
               {index + 1} / {lesson.steps.length}
+              {streak > 0 ? (
+                <>
+                  {" · "}
+                  <Dual ar={`وصلت × ${streak}`} en={`Reached × ${streak}`} />
+                </>
+              ) : null}
             </p>
             <ol className="steps">
               {lesson.steps.map((item, itemIndex) => (
@@ -129,8 +156,38 @@ export default function StudentPlayer() {
             </h1>
             {step.body_ar ? <Dual as="p" ar={step.body_ar} en={step.body_en ?? ""} /> : null}
 
-            {step.type === "esl_term" && term ? (
-              <SignPanel termAr={term.term_ar} termEn={term.term_en} mode={term.esl_mode} />
+            {nudge ? (
+              <p className="nudge" role="status">
+                <Dual ar={nudge.ar} en={nudge.en} />
+                {earnedBadge ? (
+                  <>
+                    {" "}
+                    <ProgressBadge badge={earnedBadge} />
+                  </>
+                ) : null}
+              </p>
+            ) : null}
+
+            {step.type === "esl_term" || step.type === "explain" || step.type === "simulate" || step.type === "challenge" ? (
+              <SignPanels entries={terms} />
+            ) : null}
+
+            {step.type === "quiz" && step.quiz ? (
+              <QuizPanel
+                key={step.id}
+                quiz={step.quiz}
+                stems={terms}
+                onSolved={() => {
+                  setQuizSolved(true);
+                  setStreak((value) => value + 1);
+                  setNudge({ ar: "وصلت.", en: "You reached it." });
+                  void persist({
+                    lesson_id: lesson.id,
+                    step_id: step.id,
+                    status: "done",
+                  });
+                }}
+              />
             ) : null}
 
             {step.type === "simulate" && step.simulation ? (
@@ -154,6 +211,10 @@ export default function StudentPlayer() {
                 target={step.sign_target}
                 onResult={(predicted, matched) => {
                   setSignTried(true);
+                  if (matched) {
+                    setStreak((value) => value + 1);
+                    setNudge({ ar: "أحسنت.", en: "Well done." });
+                  }
                   void persist({
                     lesson_id: lesson.id,
                     step_id: step.id,
@@ -176,13 +237,21 @@ export default function StudentPlayer() {
               <button
                 type="button"
                 className="btn"
-                onClick={() => go(Math.min(lesson.steps.length - 1, index + 1))}
-                disabled={index === lesson.steps.length - 1 || locked}
+                onClick={() => {
+                  if (index === lesson.steps.length - 1) {
+                    router.push("/student");
+                    return;
+                  }
+                  go(Math.min(lesson.steps.length - 1, index + 1));
+                }}
+                disabled={locked}
               >
                 {locked && step.type === "challenge" ? (
                   <Dual ar="اضبط a أولاً" en="Set a first" />
+                ) : locked && step.type === "quiz" ? (
+                  <Dual ar="أجب أولاً" en="Answer first" />
                 ) : index === lesson.steps.length - 1 ? (
-                  <Dual ar="نهاية الدرس" en="End" />
+                  <Dual ar="إلى دروسي" en="My lessons" />
                 ) : (
                   <Dual ar="التالي" en="Next" />
                 )}

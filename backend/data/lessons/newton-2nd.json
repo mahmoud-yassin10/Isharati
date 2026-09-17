@@ -1,0 +1,171 @@
+{
+  "id": "newton-2nd",
+  "slug": "newton-2nd",
+  "title_ar": "قانون نيوتن الثاني",
+  "title_en": "Newton's second law",
+  "subject": "physics",
+  "status": "published",
+  "glossary": {
+    "force": {
+      "term_ar": "قوة",
+      "term_en": "force",
+      "esl_mode": "fingerspell"
+    },
+    "push": {
+      "term_ar": "يدفع",
+      "term_en": "pushes",
+      "esl_mode": "lexicon",
+      "lexicon_token": "يدفع"
+    },
+    "mass": {
+      "term_ar": "كتلة",
+      "term_en": "mass",
+      "esl_mode": "fingerspell"
+    },
+    "accel": {
+      "term_ar": "تسارع",
+      "term_en": "acceleration",
+      "esl_mode": "fingerspell"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-force",
+      "type": "esl_term",
+      "title_ar": "قوة",
+      "title_en": "Force",
+      "body_ar": "القوة تدفع الجسم أو تسحبه. رمزها F، ووحدتها نيوتن.",
+      "body_en": "Force pushes or pulls an object. Its symbol is F. Its unit is the newton.",
+      "glossary_ids": ["force"]
+    },
+    {
+      "id": "term-push",
+      "type": "esl_term",
+      "title_ar": "يدفع",
+      "title_en": "Pushes",
+      "body_ar": "القوة قد تدفع الجسم. هذه إشارة يدفع من المعجم، وليست تهجئة.",
+      "body_en": "Force can push an object. This is the lexicon sign for pushes, not fingerspelling.",
+      "glossary_ids": ["push"]
+    },
+    {
+      "id": "quiz-lexicon-push",
+      "type": "quiz",
+      "title_ar": "اختبار: إشارة المعجم",
+      "title_en": "Quiz: lexicon sign",
+      "body_ar": "انظر الإشارة ثم اختر.",
+      "body_en": "Watch the sign, then choose.",
+      "glossary_ids": ["push"],
+      "quiz": {
+        "prompt_ar": "أي كلمة لها إشارة جاهزة في المعجم؟",
+        "prompt_en": "Which word has a ready lexicon sign?",
+        "correct_id": "push",
+        "options": [
+          { "id": "push", "label_ar": "يدفع", "label_en": "pushes" },
+          { "id": "force", "label_ar": "قوة", "label_en": "force" },
+          { "id": "accel", "label_ar": "تسارع", "label_en": "acceleration" }
+        ]
+      }
+    },
+    {
+      "id": "term-mass",
+      "type": "esl_term",
+      "title_ar": "كتلة",
+      "title_en": "Mass",
+      "body_ar": "الكتلة مقدار المادة في الجسم. رمزها m، ووحدتها كيلوغرام.",
+      "body_en": "Mass is how much matter is in the object. Its symbol is m. Its unit is the kilogram.",
+      "glossary_ids": ["mass"]
+    },
+    {
+      "id": "term-accel",
+      "type": "esl_term",
+      "title_ar": "تسارع",
+      "title_en": "Acceleration",
+      "body_ar": "التسارع هو مقدار تغيّر السرعة مع الزمن. رمزه a، ووحدته متر لكل ثانية مربعة.",
+      "body_en": "Acceleration is how quickly speed changes. Its symbol is a. Its unit is metres per second squared.",
+      "glossary_ids": ["accel"]
+    },
+    {
+      "id": "explain-relation",
+      "type": "explain",
+      "title_ar": "العلاقة",
+      "title_en": "The relationship",
+      "body_ar": "التسارع يساوي القوة مقسومة على الكتلة. إذا زادت القوة والكتلة ثابتة، يزيد التسارع. إذا زادت الكتلة والقوة ثابتة، يقل التسارع.",
+      "body_en": "Acceleration equals force divided by mass. More force with the same mass means more acceleration. More mass with the same force means less acceleration.",
+      "glossary_ids": ["force", "mass", "accel"]
+    },
+    {
+      "id": "quiz-force-symbol",
+      "type": "quiz",
+      "title_ar": "اختبار: رمز القوة",
+      "title_en": "Quiz: force symbol",
+      "body_ar": "انظر الإشارة، ثم اختر الرمز.",
+      "body_en": "Watch the sign, then pick the symbol.",
+      "glossary_ids": ["force"],
+      "quiz": {
+        "prompt_ar": "ما رمز القوة؟",
+        "prompt_en": "What is the symbol for force?",
+        "correct_id": "F",
+        "options": [
+          { "id": "F", "label_ar": "F", "label_en": "F" },
+          { "id": "m", "label_ar": "m", "label_en": "m" },
+          { "id": "a", "label_ar": "a", "label_en": "a" }
+        ]
+      }
+    },
+    {
+      "id": "sim-free",
+      "type": "simulate",
+      "title_ar": "المختبر",
+      "title_en": "The lab",
+      "body_ar": "حرّك شريط القوة وشريط الكتلة. راقب الصندوق والرقم a.",
+      "body_en": "Move the force slider and the mass slider. Watch the box and the number a.",
+      "glossary_ids": ["force", "mass", "accel"],
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 10, "m": 2 }
+      }
+    },
+    {
+      "id": "quiz-more-force",
+      "type": "quiz",
+      "title_ar": "اختبار: زيادة القوة",
+      "title_en": "Quiz: more force",
+      "body_ar": "الكتلة ثابتة.",
+      "body_en": "Mass stays the same.",
+      "glossary_ids": ["force", "accel"],
+      "quiz": {
+        "prompt_ar": "إذا زادت القوة والكتلة ثابتة، ماذا يحدث للتسارع؟",
+        "prompt_en": "If force increases and mass stays the same, what happens to acceleration?",
+        "correct_id": "up",
+        "options": [
+          { "id": "up", "label_ar": "يزيد", "label_en": "It increases" },
+          { "id": "down", "label_ar": "يقل", "label_en": "It decreases" },
+          { "id": "same", "label_ar": "لا يتغيّر", "label_en": "It stays the same" }
+        ]
+      }
+    },
+    {
+      "id": "challenge-a2",
+      "type": "challenge",
+      "title_ar": "التحدي",
+      "title_en": "Challenge",
+      "body_ar": "اضبط القوة والكتلة حتى يصبح التسارع قريباً من 2 م/ث².",
+      "body_en": "Set force and mass so acceleration is close to 2 m/s².",
+      "glossary_ids": ["force", "mass", "accel"],
+      "simulation": {
+        "kind": "newton_2nd",
+        "params": { "F": 10, "m": 2 },
+        "goal": { "key": "a", "value": 2, "tolerance": 0.15 }
+      }
+    },
+    {
+      "id": "sign-push",
+      "type": "sign_check",
+      "title_ar": "سجّل: يدفع",
+      "title_en": "Sign: pushes",
+      "body_ar": "سجّل إشارة يدفع، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for pushes, or skip this step.",
+      "sign_target": "يدفع"
+    }
+  ]
+}

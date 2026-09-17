@@ -15,12 +15,20 @@ export type SpeechToSignResponse = TextToSignResponse & {
   sentence?: string;
 };
 
+export type SignPrediction = {
+  order: number;
+  filename: string;
+  word: string;
+  confidence_tier: "high" | "low";
+};
+
 export type SignToTextResponse = {
   req_id: string;
   status: string;
   raw_words: string[];
   raw_sentence: string;
   final_sentence: string;
+  predictions?: SignPrediction[];
 };
 
 export type FullSentenceResponse = SignToTextResponse & {
@@ -55,7 +63,12 @@ async function parseJson<T>(response: Response): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export async function health(): Promise<{ status: string; service?: string }> {
+export async function health(): Promise<{
+  status: string;
+  service?: string;
+  pose_count?: number;
+  routes?: Record<string, boolean>;
+}> {
   const response = await fetch(`${API_URL}/health`);
   return parseJson(response);
 }

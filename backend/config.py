@@ -14,8 +14,9 @@ try:
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 except ImportError:
     DEVICE = "cpu"
+DATA_ROOT = Path(os.getenv("RAQEEB_DATA_DIR", str(BASE_DIR)))
 MODEL_DIR = BASE_DIR / "models"
-TEMP_DIR = BASE_DIR / "temp"
+TEMP_DIR = DATA_ROOT / "temp"
 UPLOAD_DIR = TEMP_DIR / "uploads"
 KEYPOINTS_DIR = TEMP_DIR / "keypoints"
 REPORTS_DIR = TEMP_DIR / "reports"
@@ -42,6 +43,10 @@ AMP = True
 TOPK = 5
 TARGET_FRAMES = 64
 SCORE_THRESHOLD = 0.20
+# Provisional gate for the student-facing sign-check UX: below this top1_prob,
+# show "not sure, try again" instead of a hard miss. Recalibrate once
+# scripts/eval_lesson_vocab.py has real per-word accuracy data.
+SIGN_CONFIDENCE_THRESHOLD = 0.55
 WINDOW_STRIDE = 16
 USE_MIRROR_TTA = True
 VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv", ".webm"}
