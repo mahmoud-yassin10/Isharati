@@ -1656,18 +1656,24 @@ html[lang="en"] .hero-title {
   bottom: 0;
   display: flex;
   align-items: center;
+  gap: var(--s-3);
   will-change: transform;
+}
+
+/* Force can push either way. Reversing the row keeps the pushed arrow
+   flush against the box on whichever side the box is being pushed from. */
+.cart.reversed {
+  flex-direction: row-reverse;
 }
 
 .push-arrow,
 .accel-arrow {
   position: relative;
   height: 6px;
-  transition: width var(--dur-1) var(--ease);
+  transition: width var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
 
 .push-arrow {
-  margin-right: 12px;
   background: var(--physics-force);
 }
 
@@ -1682,8 +1688,6 @@ html[lang="en"] .hero-title {
 }
 
 .accel-arrow {
-  margin-left: 10px;
-  margin-right: 12px;
   background: var(--physics-acceleration);
 }
 
@@ -1691,14 +1695,26 @@ html[lang="en"] .hero-title {
   border-left-color: var(--physics-acceleration);
 }
 
+/* Mirrored: the arrowhead flips to point the other way (a push to the left). */
+.push-arrow.mirrored,
+.accel-arrow.mirrored {
+  transform: scaleX(-1);
+}
+
 .arrow-tag {
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: 10px;
+  translate: -50% 0;
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 700;
   line-height: 1;
+}
+
+/* Un-mirror the label text itself so "F" and "a" always read the right way round. */
+.mirrored .arrow-tag {
+  transform: scaleX(-1);
 }
 
 .push-arrow .arrow-tag {
@@ -1803,10 +1819,20 @@ html[lang="en"] .hero-title {
   --c: var(--physics-mass);
 }
 
+/* Fills outward from zero (--fill-lo to --fill-hi), not just from the left edge,
+   so the force slider reads as "how far, and which way" rather than a plain bar. */
 .lab-control input[type="range"]::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 2px;
-  background: linear-gradient(to right, var(--c) var(--fill, 50%), var(--surface-3) var(--fill, 50%));
+  background: linear-gradient(
+    to right,
+    var(--surface-3) 0%,
+    var(--surface-3) var(--fill-lo, 0%),
+    var(--c) var(--fill-lo, 0%),
+    var(--c) var(--fill-hi, 50%),
+    var(--surface-3) var(--fill-hi, 50%),
+    var(--surface-3) 100%
+  );
 }
 
 .lab-control input[type="range"]::-moz-range-track {

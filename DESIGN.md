@@ -56,6 +56,8 @@ When a physics color is used **as text**, use `--physics-force-text` / `--physic
 
 The equation `a = F ÷ m` is the lab's header and legend: each symbol in its science color, with its live value, unit, and name underneath. Under it: the floor, the box (mass), the blue force arrow, and the orange acceleration arrow. Then the two controls (−, slider, +), then the graph beside them when there's room. No tiles, no legend list, no formula pill.
 
+Force is bidirectional (−20 to 20 N), so the box can be pushed either way. The arrow that's doing the pushing stays flush against the box on whichever side it's pushing from, and its head flips to point into the box; the acceleration arrow always extends further in that same direction. The force slider fills outward from zero rather than from its left edge, so the fill itself shows magnitude and direction together. Mass stays positive — only force reverses.
+
 ## Focus mode
 
 In a lesson, the step rail, navigation, and footer step back; the sign, explanation, experiment, and back/next stay, centered, in the chosen theme.

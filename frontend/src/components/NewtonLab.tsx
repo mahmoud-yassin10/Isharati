@@ -19,19 +19,24 @@ type NewtonLabProps = {
   onChallengeMet?: (snapshot: Snapshot) => void;
 };
 
+/** Force is bidirectional: a push to the left is as valid as a push to the right. */
 const MAX_F = 20;
-const MIN_F = 1;
+const MIN_F = -MAX_F;
 const MAX_M = 10;
 const MIN_M = 0.5;
 const MAX_A = 12;
 
-/* graph plot area */
-const GX0 = 44;
+const clampRange = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+/* graph plot area: origin (F=0, a=0) sits at the center so both directions show */
+const GX0 = 30;
 const GX1 = 288;
-const GY0 = 172;
-const GY1 = 22;
-const gx = (f: number) => GX0 + (Math.min(f, MAX_F) / MAX_F) * (GX1 - GX0);
-const gy = (a: number) => GY0 - (Math.min(a, MAX_A) / MAX_A) * (GY0 - GY1);
+const GY0 = 176;
+const GY1 = 16;
+const GOX = (GX0 + GX1) / 2;
+const GOY = (GY0 + GY1) / 2;
+const gx = (f: number) => GOX + (clampRange(f, -MAX_F, MAX_F) / MAX_F) * ((GX1 - GX0) / 2);
+const gy = (a: number) => GOY - (clampRange(a, -MAX_A, MAX_A) / MAX_A) * ((GY0 - GY1) / 2);
 
 export function NewtonLab({
   initialForce = 10,
@@ -50,7 +55,7 @@ export function NewtonLab({
   const uid = useId().replace(/:/g, "");
   const trackRef = useRef<HTMLDivElement>(null);
   const cartRef = useRef<HTMLDivElement>(null);
-  const stateRef = useRef({ x: 16, v: 0, F: initialForce, m: initialMass });
+  const stateRef = useRef({ x: 0, v: 0, F: initialForce, m: initialMass, centered: false });
   const lastRef = useRef<number | null>(null);
   const metOnce = useRef(false);
   const onSnapshotRef = useRef(onSnapshot);
@@ -61,6 +66,8 @@ export function NewtonLab({
   const accel = newtonAccel(force, mass);
   const goalValue = challenge?.value;
   const goalTolerance = challenge?.tolerance;
+  /** Mass stays positive, so acceleration always shares the sign of force. */
+  const reversed = force < 0;
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -89,8 +96,26 @@ export function NewtonLab({
     }
   }, [force, mass, accel, goalValue, goalTolerance]);
 
+  /** Centers the box on the track. Called once at mount and again on reset. */
+  function centerCart() {
+    const track = trackRef.current;
+    const cart = cartRef.current;
+    if (!track || !cart) return;
+    const x = Math.max((track.clientWidth - cart.offsetWidth) / 2, 8);
+    stateRef.current.x = x;
+    stateRef.current.v = 0;
+    stateRef.current.centered = true;
+    cart.style.transform = `translateX(${x}px)`;
+  }
+
+  useEffect(() => {
+    centerCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (reduced) return;
+    if (!stateRef.current.centered) centerCart();
 
     let frame = 0;
     const tick = (now: number) => {
@@ -121,19 +146,17 @@ export function NewtonLab({
   }, [reduced]);
 
   function resetMotion() {
-    stateRef.current.x = 16;
-    stateRef.current.v = 0;
     lastRef.current = null;
-    if (cartRef.current) cartRef.current.style.transform = "translateX(16px)";
+    centerCart();
   }
 
-  const clampF = (value: number) => Math.min(MAX_F, Math.max(MIN_F, Math.round(value * 10) / 10));
-  const clampM = (value: number) => Math.min(MAX_M, Math.max(MIN_M, Math.round(value * 10) / 10));
+  const clampF = (value: number) => Math.round(clampRange(value, MIN_F, MAX_F) * 10) / 10;
+  const clampM = (value: number) => Math.round(clampRange(value, MIN_M, MAX_M) * 10) / 10;
 
-  const arrowWidth = 20 + (force / MAX_F) * 70;
+  const arrowWidth = 20 + (Math.abs(force) / MAX_F) * 70;
   const boxWidth = 52 + (mass / MAX_M) * 40;
   const boxHeight = 40 + (mass / MAX_M) * 30;
-  const accelWidth = 18 + (Math.min(accel, MAX_A) / MAX_A) * 54;
+  const accelWidth = 18 + (Math.min(Math.abs(accel), MAX_A) / MAX_A) * 54;
 
   const slider = (
     kind: "force" | "mass",
@@ -147,6 +170,12 @@ export function NewtonLab({
     const stepBy = isForce ? 1 : 0.5;
     const clamp = isForce ? clampF : clampM;
     const id = `lab-${kind}-${uid}`;
+    /** Force fills outward from zero in either direction; mass fills from its floor, as before. */
+    const zero = isForce ? 0 : min;
+    const zeroPct = ((zero - min) / (max - min)) * 100;
+    const valPct = ((value - min) / (max - min)) * 100;
+    const fillLo = Math.min(zeroPct, valPct);
+    const fillHi = Math.max(zeroPct, valPct);
     return (
       <div className={`lab-control ${kind}`}>
         <label className="lab-control-label" htmlFor={id}>
@@ -176,7 +205,11 @@ export function NewtonLab({
             value={value}
             onChange={(event) => set(Number(event.target.value))}
             aria-valuetext={`${value.toFixed(1)} ${pick(lang, isForce ? "نيوتن" : "كيلوغرام", isForce ? "newtons" : "kilograms")}`}
-            style={{ ["--fill" as string]: `${((value - min) / (max - min)) * 100}%` }}
+            style={{
+              ["--fill" as string]: `${valPct}%`,
+              ["--fill-lo" as string]: `${fillLo}%`,
+              ["--fill-hi" as string]: `${fillHi}%`,
+            }}
           />
           <button
             type="button"
@@ -246,14 +279,14 @@ export function NewtonLab({
               <Dual ar="الحركة متوقفة. الأرقام تعمل." en="Motion is off. The numbers still work." />
             </span>
           ) : null}
-          <div ref={cartRef} className="cart" style={reduced ? { transform: "translateX(16px)" } : undefined}>
-            <span className="push-arrow" style={{ width: `${arrowWidth}px` }} aria-hidden="true">
+          <div ref={cartRef} className={reversed ? "cart reversed" : "cart"}>
+            <span className={reversed ? "push-arrow mirrored" : "push-arrow"} style={{ width: `${arrowWidth}px` }} aria-hidden="true">
               <span className="arrow-tag">F</span>
             </span>
             <span className="mass-box" style={{ width: `${boxWidth}px`, height: `${boxHeight}px` }}>
               <span className="mono">m</span>
             </span>
-            <span className="accel-arrow" style={{ width: `${accelWidth}px` }} aria-hidden="true">
+            <span className={reversed ? "accel-arrow mirrored" : "accel-arrow"} style={{ width: `${accelWidth}px` }} aria-hidden="true">
               <span className="arrow-tag">a</span>
             </span>
           </div>
@@ -270,8 +303,8 @@ export function NewtonLab({
           <figure className="graph">
             <Dual
               as="figcaption"
-              ar="كلما زادت القوة زاد التسارع. الكتلة الأكبر تجعل الخط أقل ميلاً."
-              en="More force, more acceleration. More mass makes the line flatter."
+              ar="غيّر اتجاه القوة لترى الصندوق يتحرك يميناً أو يساراً."
+              en="Change the force's direction to see the box move right or left."
             />
             <svg
               viewBox="0 0 300 200"
@@ -282,24 +315,27 @@ export function NewtonLab({
                 `Force against acceleration. Current a is ${accel.toFixed(2)} meters per second squared`,
               )}
             >
-              {[0.25, 0.5, 0.75, 1].map((f) => (
-                <line key={f} className="grid-line" x1={GX0} y1={GY0 - f * (GY0 - GY1)} x2={GX1} y2={GY0 - f * (GY0 - GY1)} />
+              {[0.5, 1].map((f) => (
+                <g key={f}>
+                  <line className="grid-line" x1={GX0} y1={GOY - f * (GOY - GY1)} x2={GX1} y2={GOY - f * (GOY - GY1)} />
+                  <line className="grid-line" x1={GX0} y1={GOY + f * (GY0 - GOY)} x2={GX1} y2={GOY + f * (GY0 - GOY)} />
+                </g>
               ))}
-              <line className="axis" x1={GX0} y1={GY0} x2={GX1} y2={GY0} />
-              <line className="axis" x1={GX0} y1={GY0} x2={GX0} y2={GY1} />
-              <text x={GX0 - 8} y={GY0 + 5} textAnchor="end">
+              <line className="axis" x1={GX0} y1={GOY} x2={GX1} y2={GOY} />
+              <line className="axis" x1={GOX} y1={GY0} x2={GOX} y2={GY1} />
+              <text x={GOX} y={GOY + 14} textAnchor="middle">
                 0
               </text>
-              <text x={GX0 - 8} y={GY1 + 10} textAnchor="end">
-                {MAX_A}
+              <text x={GX0 - 4} y={GOY + 4} textAnchor="start">
+                −{MAX_F}
               </text>
-              <text x={GX1} y={GY0 + 18} textAnchor="end">
+              <text x={GX1} y={GOY + 18} textAnchor="end">
                 {MAX_F} N
               </text>
-              <text className="axis-label force" x={GX1} y={GY0 - 8} textAnchor="end">
+              <text className="axis-label force" x={GX1} y={GOY - 8} textAnchor="end">
                 F
               </text>
-              <text className="axis-label accel" x={GX0 + 8} y={GY1 + 4} textAnchor="start">
+              <text className="axis-label accel" x={GOX + 8} y={GY1 + 4} textAnchor="start">
                 a
               </text>
               {goalValue != null ? (
@@ -310,14 +346,14 @@ export function NewtonLab({
                   </text>
                 </>
               ) : null}
-              <line className="trend" x1={GX0} y1={GY0} x2={gx(MAX_F)} y2={gy(newtonAccel(MAX_F, mass))} />
+              <line className="trend" x1={gx(-MAX_F)} y1={gy(newtonAccel(-MAX_F, mass))} x2={gx(MAX_F)} y2={gy(newtonAccel(MAX_F, mass))} />
               <circle className="now" cx={gx(force)} cy={gy(accel)} r="6" />
             </svg>
           </figure>
         ) : null}
         <button type="button" className="link-btn" onClick={resetMotion}>
           <RotateCcw size={15} strokeWidth={2} aria-hidden="true" />
-          <Dual ar="أعد الصندوق إلى البداية" en="Put the box back" />
+          <Dual ar="أعد الصندوق إلى المنتصف" en="Put the box back in the middle" />
         </button>
       </div>
       </div>
