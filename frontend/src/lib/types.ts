@@ -184,3 +184,10 @@ export type TeacherStudent = {
   completed_count: number;
   last_activity: string | null;
 };
+
+export type TeacherStudentDetail = {
+  id: string;
+  name: string;
+  email: string;
+  lesson_ids: string[];
+};

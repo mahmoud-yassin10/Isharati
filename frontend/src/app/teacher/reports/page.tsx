@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BarChart3, BookOpen, Check, Clock, TrendingDown, TriangleAlert, Users } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
-import { LoadingBlock } from "@/components/ui";
+import { ForwardIcon, LoadingBlock } from "@/components/ui";
 import { listLessons, listStudents } from "@/lib/api";
 import { pick, useLang } from "@/lib/lang";
 import { loadLessonCompletion, type LessonCompletion } from "@/lib/reports";
@@ -103,7 +103,7 @@ export default function TeacherReportsPage() {
         {loading ? <LoadingBlock rows={3} height={96} /> : null}
 
         {!loading && !error ? (
-          <>
+          <div className="stack">
             <div className="stat-grid">
               <div className="stat-tile">
                 <span className="label">
@@ -151,29 +151,31 @@ export default function TeacherReportsPage() {
                   {publishedLessons.map((lesson) => {
                     const stat = completion[lesson.id];
                     return (
-                      <li className="lesson-item rich" key={lesson.id}>
-                        <span className={`subject-icon subj-${lesson.subject}`} aria-hidden="true">
-                          <SubjectIcon subject={lesson.subject} size={22} />
-                        </span>
-                        <div className="meta">
-                          <h3>
-                            <Dual ar={lesson.title_ar} en={lesson.title_en ?? lesson.title_ar} />
-                          </h3>
-                          <div className="chips">
-                            <span className="chip">
-                              <Dual
-                                ar={stat && stat.studentCount > 0 ? `${stat.studentCount} طالب` : "لا نشاط بعد"}
-                                en={stat && stat.studentCount > 0 ? `${stat.studentCount} students` : "No activity yet"}
-                              />
-                            </span>
-                          </div>
-                          <div className="progress compact">
-                            <div className="progress-track" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={stat?.avgMastery ?? 0}>
-                              <div className="progress-fill" style={{ width: `${stat?.avgMastery ?? 0}%` }} />
+                      <li key={lesson.id}>
+                        <a className="lesson-item rich" href={`/teacher/reports/${lesson.id}`}>
+                          <span className={`subject-icon subj-${lesson.subject}`} aria-hidden="true">
+                            <SubjectIcon subject={lesson.subject} size={22} />
+                          </span>
+                          <div className="meta">
+                            <h3>
+                              <Dual ar={lesson.title_ar} en={lesson.title_en ?? lesson.title_ar} />
+                            </h3>
+                            <div className="chips">
+                              <span className="chip">
+                                <Dual
+                                  ar={stat && stat.studentCount > 0 ? `${stat.studentCount} طالب` : "لا نشاط بعد"}
+                                  en={stat && stat.studentCount > 0 ? `${stat.studentCount} students` : "No activity yet"}
+                                />
+                              </span>
+                            </div>
+                            <div className="progress compact">
+                              <div className="progress-track" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={stat?.avgMastery ?? 0}>
+                                <div className="progress-fill" style={{ width: `${stat?.avgMastery ?? 0}%` }} />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <span className="chip mono">{stat?.avgMastery ?? 0}%</span>
+                          <span className="chip mono">{stat?.avgMastery ?? 0}%</span>
+                        </a>
                       </li>
                     );
                   })}
@@ -193,13 +195,14 @@ export default function TeacherReportsPage() {
               ) : (
                 <div className="panel">
                   {strugglingLessons.map((lesson) => (
-                    <div className="student-row" key={lesson.id}>
+                    <a className="student-row" key={lesson.id} href={`/teacher/reports/${lesson.id}`}>
                       <span className="who">
                         <SubjectIcon subject={lesson.subject} size={18} />
                         <Dual ar={lesson.title_ar} en={lesson.title_en ?? lesson.title_ar} />
                       </span>
                       <span className="chip miss">{completion[lesson.id]?.avgMastery ?? 0}%</span>
-                    </div>
+                      <ForwardIcon size={16} />
+                    </a>
                   ))}
                 </div>
               )}
@@ -217,7 +220,7 @@ export default function TeacherReportsPage() {
               ) : (
                 <div className="panel">
                   {recentStudents.map((student) => (
-                    <div className="student-row" key={student.id}>
+                    <a className="student-row" key={student.id} href={`/teacher/students/${student.id}`}>
                       <span className="who">
                         <span className="avatar" aria-hidden="true">
                           {student.name.trim().charAt(0)}
@@ -233,12 +236,13 @@ export default function TeacherReportsPage() {
                       <span className="small muted">
                         {student.last_activity ? new Date(student.last_activity).toLocaleString(lang === "ar" ? "ar-EG" : "en-US") : pick(lang, "—", "—")}
                       </span>
-                    </div>
+                      <ForwardIcon size={16} />
+                    </a>
                   ))}
                 </div>
               )}
             </section>
-          </>
+          </div>
         ) : null}
       </div>
     </AppShell>

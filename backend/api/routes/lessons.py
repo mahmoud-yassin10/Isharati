@@ -233,6 +233,37 @@ def list_students(claims: dict = Depends(current_claims)):
         return result
 
 
+@router.get("/students/{student_id}")
+def get_student(student_id: str, claims: dict = Depends(current_claims)):
+    """A single student's profile plus the ids of this teacher's lessons
+    assigned to them, for the student detail page. Progress and mastery are
+    computed on the frontend from /lessons/{id}/progress, same as everywhere
+    else, so the numbers always agree with the reports and lesson pages."""
+    user_id, role = require_user(claims)
+    if role != "teacher":
+        raise HTTPException(status_code=403, detail="للمعلم فقط")
+    with SessionLocal() as session:
+        student = session.get(User, student_id)
+        if student is None or student.role != "student":
+            raise HTTPException(status_code=404, detail="الطالب غير موجود")
+        lessons = session.query(LessonRow).filter(LessonRow.teacher_id == user_id).all()
+        lesson_ids = [row.id for row in lessons]
+        assigned_ids = set()
+        if lesson_ids:
+            assigned_ids = {
+                a.lesson_id
+                for a in session.query(Assignment)
+                .filter(Assignment.student_id == student_id, Assignment.lesson_id.in_(lesson_ids))
+                .all()
+            }
+        return {
+            "id": student.id,
+            "name": student.name,
+            "email": student.email,
+            "lesson_ids": sorted(assigned_ids),
+        }
+
+
 @router.get("/lessons/{lesson_id}")
 def get_lesson(lesson_id: str, claims: dict = Depends(current_claims)):
     user_id, role = require_user(claims)

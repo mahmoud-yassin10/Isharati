@@ -1,4 +1,4 @@
-import type { Lesson, ProgressItem, StepSnapshot, TeacherStudent, User } from "./types";
+import type { Lesson, ProgressItem, StepSnapshot, TeacherStudent, TeacherStudentDetail, User } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
 const TOKEN_KEY = "raqeeb_token";
@@ -214,6 +214,14 @@ export async function listStudents() {
     headers: authHeaders(),
   });
   return parseJson<TeacherStudent[]>(response);
+}
+
+/** A single student's profile plus which of the teacher's lessons are assigned to them. */
+export async function getStudent(id: string) {
+  const response = await fetch(`${API_URL}/students/${id}`, {
+    headers: authHeaders(),
+  });
+  return parseJson<TeacherStudentDetail>(response);
 }
 
 export async function assignLesson(id: string) {

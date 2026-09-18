@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Clock, TriangleAlert, Users } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
-import { LoadingBlock, ProgressBar } from "@/components/ui";
+import { ForwardIcon, LoadingBlock, ProgressBar } from "@/components/ui";
 import { listStudents } from "@/lib/api";
 import { pick, useLang } from "@/lib/lang";
 import { useUser } from "@/lib/useUser";
@@ -96,26 +96,29 @@ export default function TeacherStudentsPage() {
         {students && students.length > 0 ? (
           <ul className="lesson-list">
             {students.map((student) => (
-              <li className="lesson-item rich" key={student.id}>
-                <span className="avatar" aria-hidden="true">
-                  {student.name.trim().charAt(0)}
-                </span>
-                <div className="meta">
-                  <h3>{student.name}</h3>
-                  <div className="chips">
-                    <span className="chip">
-                      <Dual ar={`${student.assigned_count} درس معيّن`} en={`${student.assigned_count} assigned`} />
-                    </span>
-                    <span className="chip ok">
-                      <Dual ar={`${student.completed_count} مكتمل`} en={`${student.completed_count} completed`} />
-                    </span>
-                    <span className="chip">
-                      <Clock size={14} strokeWidth={2} className="icon" aria-hidden="true" />
-                      {relativeTime(student.last_activity, lang)}
-                    </span>
+              <li key={student.id}>
+                <a className="lesson-item rich" href={`/teacher/students/${student.id}`}>
+                  <span className="avatar" aria-hidden="true">
+                    {student.name.trim().charAt(0)}
+                  </span>
+                  <div className="meta">
+                    <h3>{student.name}</h3>
+                    <div className="chips">
+                      <span className="chip">
+                        <Dual ar={`${student.assigned_count} درس معيّن`} en={`${student.assigned_count} assigned`} />
+                      </span>
+                      <span className="chip ok">
+                        <Dual ar={`${student.completed_count} مكتمل`} en={`${student.completed_count} completed`} />
+                      </span>
+                      <span className="chip">
+                        <Clock size={14} strokeWidth={2} className="icon" aria-hidden="true" />
+                        {relativeTime(student.last_activity, lang)}
+                      </span>
+                    </div>
+                    <ProgressBar value={student.completed_count} total={student.assigned_count} compact />
                   </div>
-                  <ProgressBar value={student.completed_count} total={student.assigned_count} compact />
-                </div>
+                  <ForwardIcon />
+                </a>
               </li>
             ))}
           </ul>
