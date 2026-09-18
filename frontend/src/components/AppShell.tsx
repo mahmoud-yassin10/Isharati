@@ -238,7 +238,7 @@ export function AppShell({
                 </a>
               </li>
               <li>
-                <a href="/settings" aria-current={isNavActive(pathname, "/settings") ? "page" : undefined}>
+                <a href="/settings" aria-current={isNavActive(pathname, "/settings", inLab) ? "page" : undefined}>
                   {icon(Settings)}
                   <Dual ar="الإعدادات" en="Settings" />
                 </a>

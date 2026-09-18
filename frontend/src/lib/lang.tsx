@@ -1,10 +1,10 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from "react";
 import { LANG_COOKIE, parseLang, type Lang } from "@/lib/lang-shared";
 
 export type { Lang } from "@/lib/lang-shared";
-export { LANG_BOOTSTRAP, LANG_COOKIE, parseLang } from "@/lib/lang-shared";
+export { DOCUMENT_BOOTSTRAP, LANG_BOOTSTRAP, LANG_COOKIE, parseLang } from "@/lib/lang-shared";
 
 type LangContextValue = {
   lang: Lang;
@@ -23,6 +23,11 @@ function persistLang(lang: Lang) {
   document.cookie = `${LANG_COOKIE}=${lang}; path=/; max-age=31536000; SameSite=Lax`;
 }
 
+function storedLang(fallback: Lang): Lang {
+  const stored = window.localStorage.getItem(LANG_COOKIE);
+  return stored === "en" || stored === "ar" ? stored : parseLang(fallback);
+}
+
 export function LangProvider({
   children,
   initialLang = "ar",
@@ -32,12 +37,12 @@ export function LangProvider({
 }) {
   const [lang, setLangState] = useState<Lang>(initialLang);
 
-  useEffect(() => {
-    const stored = window.localStorage.getItem(LANG_COOKIE);
-    const next = stored === "en" || stored === "ar" ? stored : parseLang(initialLang);
+  useLayoutEffect(() => {
+    const next = storedLang(initialLang);
     if (next !== lang) setLangState(next);
     persistLang(next);
-    // Sync React to storage on mount so pick() matches Dual CSS on the first client frame.
+    // Re-apply after hydration: React may reset <html lang/dir> to the server
+    // snapshot, which flips RTL icons for a frame.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

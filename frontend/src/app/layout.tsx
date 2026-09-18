@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
+import Script from "next/script";
 import { A11yProvider } from "@/lib/a11y";
 import { LangProvider } from "@/lib/lang";
-import { LANG_BOOTSTRAP, parseLang } from "@/lib/lang-shared";
+import { DOCUMENT_BOOTSTRAP, parseLang } from "@/lib/lang-shared";
 import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
@@ -28,7 +29,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: LANG_BOOTSTRAP }} />
+        <Script id="document-bootstrap" strategy="beforeInteractive">
+          {DOCUMENT_BOOTSTRAP}
+        </Script>
       </head>
       <body>
         <LangProvider initialLang={lang}>

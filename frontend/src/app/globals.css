@@ -461,9 +461,24 @@ html[lang="en"] body {
   line-height: 1.55;
 }
 
-html[lang="en"] .t-ar,
-html[lang="ar"] .t-en {
+/* Default to Arabic so both strings never show at once if html[lang] is unset
+   during hydration. English is opt-in from the bootstrap / cookie. */
+.t-en {
   display: none;
+}
+
+html[lang="en"] .t-ar {
+  display: none;
+}
+
+html[lang="en"] .t-en {
+  display: inline;
+}
+
+svg.lucide {
+  display: block;
+  flex: none;
+  overflow: visible;
 }
 
 a {
