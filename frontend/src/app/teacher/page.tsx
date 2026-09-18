@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookOpen, Check, Eye, FileEdit, Gamepad2, Send, TriangleAlert, UserPlus } from "lucide-react";
+import { BookOpen, Check, FileEdit, Gamepad2, TriangleAlert } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { GAME_TYPES } from "@/components/games/GameStep";
 import { ForwardIcon, LoadingBlock } from "@/components/ui";
 import { listLessons } from "@/lib/api";
-import { SUBJECTS, SubjectIcon } from "@/lib/subjects";
+import { SUBJECTS } from "@/lib/subjects";
 import { useUser } from "@/lib/useUser";
 import type { Lesson } from "@/lib/types";
 
@@ -70,37 +70,6 @@ export default function TeacherHome() {
           ) : null}
         </div>
 
-        <ol className="step-chips" style={{ marginBottom: "var(--s-5)" }}>
-          <li>
-            <span className="role-step-n" aria-hidden="true">
-              1
-            </span>
-            <Eye size={17} strokeWidth={1.75} className="icon" aria-hidden="true" />
-            <Dual ar="عاين الدرس والمختبر" en="Preview lesson and lab" />
-          </li>
-          <li>
-            <span className="role-step-n" aria-hidden="true">
-              2
-            </span>
-            <Send size={17} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
-            <Dual ar="انشر" en="Publish" />
-          </li>
-          <li>
-            <span className="role-step-n" aria-hidden="true">
-              3
-            </span>
-            <UserPlus size={17} strokeWidth={1.75} className="icon" aria-hidden="true" />
-            <Dual ar="عيّن لطلابك" en="Assign" />
-          </li>
-          <li>
-            <span className="role-step-n" aria-hidden="true">
-              4
-            </span>
-            <Check size={17} strokeWidth={2.4} className="icon" aria-hidden="true" />
-            <Dual ar="تابع من أكمل أي خطوة" en="Track every step" />
-          </li>
-        </ol>
-
         {error ? (
           <p className="feedback error" role="status">
             <TriangleAlert size={22} strokeWidth={2} className="icon" aria-hidden="true" />
@@ -120,9 +89,6 @@ export default function TeacherHome() {
         {SUBJECTS.filter((subject) => lessons?.some((lesson) => lesson.subject === subject.id)).map((subject) => (
           <section key={subject.id} className="subject-section" aria-labelledby={`t-subj-${subject.id}`}>
             <header className="subject-head">
-              <span className={`subject-icon subj-${subject.id}`} aria-hidden="true">
-                <SubjectIcon subject={subject.id} size={24} />
-              </span>
               <h2 id={`t-subj-${subject.id}`}>
                 <Dual ar={subject.ar} en={subject.en} />
               </h2>
@@ -132,9 +98,6 @@ export default function TeacherHome() {
                 ?.filter((lesson) => lesson.subject === subject.id)
                 .map((lesson) => (
                   <li className="lesson-item" key={lesson.id}>
-                    <div className={`lesson-thumb subj-${lesson.subject}`} aria-hidden="true">
-                      <SubjectIcon subject={lesson.subject} size={40} />
-                    </div>
                     <div className="meta">
                       <h3>
                         <Dual ar={lesson.title_ar} en={lesson.title_en ?? lesson.title_ar} />

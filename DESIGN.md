@@ -1,84 +1,69 @@
 # Design
 
-## Mood
+## Principle
 
-Ink and saffron. A clean school workbook on a bright desk: deep indigo ink for everything you read and press, a saffron highlighter for everything that is signed, and three fixed science colors that only live inside simulations.
+**Less design, better design.** Hierarchy comes from type, spacing, and thin rules. Not every element gets a card, a border, an icon, or a hover effect. Before adding a container, ask whether the thing behaves like an object. If it doesn't, it sits on the page.
 
-Theme is **light only** (classroom glare, projectors, shared school PCs), plus a high-contrast mode.
+Things that **are** contained: the physics lab, lesson units, game modules, sign videos, the quick-settings menu, dialogs.
+Things that **are not**: section intros, lists of benefits, the lesson method, role descriptions, settings groups.
 
-## Color strategy
+## The one strong visual
 
-Restrained chrome, committed meaning. Pure white page, one cool neutral layer for rails and bands. Color is reserved for meaning:
+The home page has one moment of identity: the real signing video of a word, joined by a dotted gesture path to the word itself and its physics symbol (قوة → force → **F**). Keep it small, square, and uncropped. Don't replace it with an avatar, illustration, or hand icon. Any other "movement" motif must stay rare (one per page at most).
 
-| Role | Used for | Never used for |
-|---|---|---|
-| Ink / primary (indigo) | text, primary buttons, progress fill, current selection | decoration |
-| Saffron (sign) | anything about sign language: sign cards, sign toggles, the current step marker | text on white (too light) |
-| Science: force, mass, acceleration | the lab: arrows, box, sliders, graph, formula | page chrome |
-| OK / danger | feedback, always with icon + word | decoration |
+## Color
 
-```css
-:root {
-  color-scheme: light;
-  --bg: oklch(1 0 0);
-  --surface-2: oklch(0.975 0.006 275);   /* rails, bands */
-  --surface-3: oklch(0.95 0.01 275);     /* hover */
-  --line: oklch(0.9 0.012 275);          /* dividers */
-  --line-strong: oklch(0.6 0.02 275);    /* input + control borders, 3.9:1 */
-  --ink: oklch(0.24 0.035 275);          /* body, 16.5:1 */
-  --ink-2: oklch(0.43 0.03 275);         /* secondary text, 8.1:1 */
-  --primary: oklch(0.38 0.1 280);        /* 10.3:1 */
-  --primary-hover: oklch(0.31 0.1 280);
-  --primary-soft: oklch(0.95 0.025 280);
-  --sign: oklch(0.83 0.15 82);           /* fill only, ink text on it 9.7:1 */
-  --sign-soft: oklch(0.965 0.045 90);
-  --sign-ink: oklch(0.42 0.09 70);       /* 7.7:1 on sign-soft */
-  --ok: oklch(0.48 0.11 152);
-  --ok-soft: oklch(0.95 0.04 152);
-  --danger: oklch(0.52 0.18 27);
-  --danger-soft: oklch(0.96 0.03 27);
+Seven fixed themes (Nile default, Ocean, Forest, Sunset, Lavender, Midnight, Egyptian Heritage) plus High Contrast as a reading mode. The hex palettes in `globals.css` are final; don't reinterpret them.
 
-  /* Science colors: fixed across themes */
-  --force: oklch(0.55 0.19 262);
-  --mass: oklch(0.52 0.12 158);
-  --accel: oklch(0.62 0.16 50);
-  --accel-ink: oklch(0.53 0.15 45);      /* acceleration as text */
-}
-```
+Science colors are a separate system and never follow the theme:
 
-High contrast mode: pure black ink, pure white surfaces, 2px black borders on every control and panel, underlined links.
+| Token | Meaning |
+|---|---|
+| `--physics-force` (blue) | force F: arrow, slider, symbol |
+| `--physics-mass` (teal) | mass m: the box, slider, graph line |
+| `--physics-acceleration` (orange) | acceleration a: arrow, current point, goal |
+| `--physics-velocity` (green) | velocity, when shown |
+
+When a physics color is used **as text**, use `--physics-force-text` / `--physics-mass-text` (same hue, lifted only on Midnight so it stays readable). Fills never change.
 
 ## Typography
 
-- One family: **Readex Pro** (Arabic + Latin, built for reading ease). Weights 400 / 500 / 600 / 700.
-- Numbers and formulas: **IBM Plex Mono**, tabular figures.
-- Root size: 18px (text-size small 16px, large 21px). Everything in rem.
-- Scale: 0.8 / 0.9 / 1 / 1.25 / 1.5625 / 2 / 2.5 rem.
-- Body line-height 1.7, headings 1.3. Prose ≤ 62ch.
-- No letter-spacing on Arabic. No uppercase.
+- **Instrument Sans** for Latin, **IBM Plex Sans Arabic** for Arabic, in one stack so each script falls to its own face. **IBM Plex Mono** for numbers, units, and formulas.
+- Root size 17px (small 15px, large 20px). Everything else in rem.
+- Arabic body line-height 1.8, headings 1.4, no letter-spacing. English body 1.55, headings 1.15 with −0.015em (hero −0.03em).
+- Weights: 400 body, 500 nav and labels, 600 headings and buttons, 700 hero and key words only.
+- Prose ≤ 60ch. No uppercase. No eyebrow kickers above sections.
 
-## Layout
+## Space
 
-- Page max width 1200px, 24px gutters (16px on phones). 8px spacing scale.
-- Header 72px: brand, role nav, sign-service status, accessibility menu, language switch, account.
-- Student lesson player: lesson bar (title + progress) on top, 300px steps rail + content column, action bar pinned to the bottom of the viewport. On phones the rail becomes a compact progress row.
-- Sign card sits at the top of every step that has terms, always in the same position.
+4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 px (`--s-1` … `--s-9`). Sections are separated by a 1px rule and `--section-y` padding, not by colored bands. A heading sits close to its content (8–16px); groups sit far apart (48–64px).
 
-Radius: 8px controls, 14px panels, pill for chips and switches.
-Borders over shadows. Panels have a 1px `--line` border and no shadow. Only floating menus get a small shadow (≤ 8px blur, no border+shadow pairing on cards).
+## Shape
+
+- Radius: 6px buttons and inputs, 8px frames, 10px modules. Pills only for the switch track.
+- Borders over shadows. Only the floating settings menu has a shadow.
+- Lesson units get a 3px top edge in their subject's science hue; that is their only color.
 
 ## Components
 
-- **Button**: 48px min height. Primary (indigo fill), secondary (white, `--line-strong` border), quiet (text only). Icon + label. Hover darkens, focus shows the 3px ring, disabled at 45% opacity, busy shows a label change ("جارٍ الدخول…").
-- **Chip**: pill, icon + short word. Used for step type, lesson status, badges.
-- **Progress bar**: 8px track in `--surface-3`, indigo fill, always paired with "2 من 6".
-- **Feedback banner**: soft tinted background + icon + short sentence. No side stripes.
-- **Switch row** (accessibility): whole row is the target, label + one-line description + switch showing "تشغيل / إيقاف".
+- **Button**: primary (filled), secondary (outline), and a **text link** for tertiary actions. 46px tall, 6px radius, weight 600. One primary action per view.
+- **Navigation**: plain text links with a 2px underline for the current page. Logo = home. Guests see "The lab"; students "My lessons"; teachers "Lessons". Then ⚙ Settings, `عربي / EN`, and log in or out.
+- **Settings**: one column, groups divided by a rule: Appearance (theme, high contrast), Text, Sign language, Motion, Learning (focus mode), Language. Rows, not cards.
+- **Tags** (`.chip`): 4px radius, small, used for state only (published, done, stars, mistakes).
+- **Feedback**: tinted background + icon + short sentence. Never color alone.
+
+## The lab
+
+The equation `a = F ÷ m` is the lab's header and legend: each symbol in its science color, with its live value, unit, and name underneath. Under it: the floor, the box (mass), the blue force arrow, and the orange acceleration arrow. Then the two controls (−, slider, +), then the graph beside them when there's room. No tiles, no legend list, no formula pill.
+
+## Focus mode
+
+In a lesson, the step rail, navigation, and footer step back; the sign, explanation, experiment, and back/next stay, centered, in the chosen theme.
 
 ## Motion
 
-150–220ms ease-out on color, opacity, and transform for state changes only. Correct answers get a one-time 300ms scale pulse on the check icon. The lab box is physics, not UI motion. Reduced motion or "Still": no transitions, no pulse, box frozen, numbers still live.
+140–240ms ease-out on color and small transforms for state changes. The lab box is physics, not UI motion. Reduced motion freezes the box and all transitions; the numbers keep working and sign videos get player controls instead of autoplay.
 
 ## Icons
 
-Lucide, 1.75 stroke, 20–24px, always beside a visible word. RTL flips directional arrows. Never emoji.
+Only where they carry information: state (✓, ✗, lock), direction (arrows, flipped in RTL), and the settings gear. No icon above headings, beside nav links, or on settings rows. Never emoji.

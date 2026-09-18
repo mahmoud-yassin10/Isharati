@@ -2,10 +2,9 @@
 
 import { FormEvent, Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Check, GraduationCap, Hand, Info, TriangleAlert, Users } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
-import { ForwardIcon } from "@/components/ui";
 import { login } from "@/lib/api";
 import { BRAND } from "@/lib/brand";
 import type { Role } from "@/lib/types";
@@ -48,121 +47,68 @@ function LoginForm() {
 
   return (
     <AppShell user={null} bare>
-      <div className="auth">
-        <div className="auth-main">
-          <form className="auth-form" onSubmit={onSubmit}>
-            <div className="stack-sm">
-              <h1>
-                <Dual ar="تسجيل الدخول" en="Log in" />
-              </h1>
-              <Dual as="p" className="muted" ar="اختر نوع الحساب أولاً." en="Choose the account type first." />
-            </div>
+      <div className="wrap auth">
+        <form className="auth-form" onSubmit={onSubmit}>
+          <h1>
+            <Dual ar="تسجيل الدخول" en="Log in" />
+          </h1>
 
-            <fieldset className="role-picker">
-              <legend className="sr-only">
-                <Dual ar="نوع الحساب" en="Account type" />
-              </legend>
-              <label className="role-option">
-                <input
-                  type="radio"
-                  name="role"
-                  value="student"
-                  checked={role === "student"}
-                  onChange={() => pickRole("student")}
-                />
-                <Check size={20} strokeWidth={2.5} className="check" aria-hidden="true" />
-                <GraduationCap size={28} strokeWidth={1.75} aria-hidden="true" />
+          <fieldset className="role-switch">
+            <Dual as="span" className="field-label" ar="أدخل بصفتي" en="I am a" />
+            <div className="segmented wide">
+              <label>
+                <input type="radio" name="role" value="student" checked={role === "student"} onChange={() => pickRole("student")} />
                 <Dual ar="طالب" en="Student" />
               </label>
-              <label className="role-option">
-                <input
-                  type="radio"
-                  name="role"
-                  value="teacher"
-                  checked={role === "teacher"}
-                  onChange={() => pickRole("teacher")}
-                />
-                <Check size={20} strokeWidth={2.5} className="check" aria-hidden="true" />
-                <Users size={28} strokeWidth={1.75} aria-hidden="true" />
+              <label>
+                <input type="radio" name="role" value="teacher" checked={role === "teacher"} onChange={() => pickRole("teacher")} />
                 <Dual ar="معلم" en="Teacher" />
               </label>
-            </fieldset>
+            </div>
+          </fieldset>
 
-            <label className="field">
-              <Dual ar="البريد الإلكتروني" en="Email" />
-              <input
-                type="email"
-                autoComplete="username"
-                dir="ltr"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </label>
-
-            <label className="field">
-              <Dual ar="كلمة المرور" en="Password" />
-              <input
-                type="password"
-                autoComplete="current-password"
-                dir="ltr"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                required
-              />
-            </label>
-
-            {error ? (
-              <p className="feedback error" role="status">
-                <TriangleAlert size={22} strokeWidth={2} className="icon" aria-hidden="true" />
-                <Dual ar="البريد أو كلمة المرور غير صحيحة." en="The email or password is wrong." />
-              </p>
-            ) : null}
-
-            <button className="btn large block" type="submit" disabled={busy}>
-              <Dual ar={busy ? "جارٍ الدخول…" : "دخول"} en={busy ? "Signing in…" : "Log in"} />
-              {!busy ? <ForwardIcon size={22} /> : null}
-            </button>
-
-            <p className="demo-note">
-              <Info size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
-              <Dual
-                ar="حساب التجربة مكتوب بالأعلى تلقائياً. كلمة المرور: raqeeb-demo"
-                en="The demo account is filled in for you. Password: raqeeb-demo"
-              />
-            </p>
-          </form>
-        </div>
-
-        <aside className="auth-aside">
-          <h2>
-            <Dual
-              ar={`${BRAND.ar} يشرح بالإشارة أولًا`}
-              en={`${BRAND.en} explains in sign first`}
+          <label className="field">
+            <Dual as="span" className="field-label" ar="البريد الإلكتروني" en="Email" />
+            <input
+              type="email"
+              autoComplete="username"
+              dir="ltr"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
             />
-          </h2>
+          </label>
+
+          <label className="field">
+            <Dual as="span" className="field-label" ar="كلمة المرور" en="Password" />
+            <input
+              type="password"
+              autoComplete="current-password"
+              dir="ltr"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </label>
+
+          {error ? (
+            <p className="feedback error" role="status">
+              <TriangleAlert size={20} strokeWidth={2} className="icon" aria-hidden="true" />
+              <Dual ar="البريد أو كلمة المرور غير صحيحة." en="The email or password is wrong." />
+            </p>
+          ) : null}
+
+          <button className="btn block" type="submit" disabled={busy}>
+            <Dual ar={busy ? "جارٍ الدخول…" : "دخول"} en={busy ? "Signing in…" : "Log in"} />
+          </button>
+
           <Dual
             as="p"
-            className="muted prose"
-            ar="ادخل بحسابك المدرسي لتكمل دروسك، أو استخدم حساب التجربة الجاهز بالأسفل."
-            en="Log in with your school account to continue your lessons, or use the ready demo account below."
+            className="auth-note"
+            ar={`للتجربة: الحساب مكتوب بالأعلى، وكلمة المرور raqeeb-demo. ${BRAND.ar} لا يستخدم الصوت في أي شاشة.`}
+            en={`To try it: the demo account is filled in, and the password is raqeeb-demo. ${BRAND.en} uses no sound on any screen.`}
           />
-          <div className="sign-preview">
-            <Hand size={64} strokeWidth={1.25} aria-hidden="true" />
-            <Dual as="p" ar="كل مصطلح له فيديو إشارة" en="Every term has a sign video" />
-          </div>
-          <ol className="step-chips">
-            <li>
-              <Dual ar="إشارة" en="Sign" />
-            </li>
-            <li>
-              <Dual ar="تجربة" en="Experiment" />
-            </li>
-            <li>
-              <Dual ar="فهم" en="Understanding" />
-            </li>
-          </ol>
-        </aside>
+        </form>
       </div>
     </AppShell>
   );

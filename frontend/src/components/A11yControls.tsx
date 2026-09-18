@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Check, Contrast, Gauge, Hand, Languages, MonitorCog, ScanEye, Type } from "lucide-react";
+import { Check } from "lucide-react";
 import { Dual } from "@/components/Dual";
 import { SwitchRow } from "@/components/ui";
 import { useA11y, type TextSize, type ThemeName } from "@/lib/a11y";
@@ -12,360 +12,224 @@ const TEXT_SIZES: { value: TextSize; ar: string; en: string }[] = [
   { value: "lg", ar: "كبير", en: "Large" },
 ];
 
-const SPEEDS = [
-  { value: 0.6, label: "0.6×" },
-  { value: 0.8, label: "0.8×" },
-  { value: 1, label: "1×" },
-];
+const SPEEDS = [0.6, 0.8, 1];
 
-/** Exact spec palettes for the preview cards. Names never reach the DOM as hex. */
-const THEME_META: Record<ThemeName, { ar: string; en: string; arDesc: string; enDesc: string; colors: [string, string, string] }> = {
-  nile: {
-    ar: "النيل",
-    en: "Nile",
-    arDesc: "مصري، موثوق، تعليمي",
-    enDesc: "Egyptian, trustworthy",
-    colors: ["#1261A0", "#F7F5EF", "#F4C542"],
-  },
-  ocean: {
-    ar: "المحيط",
-    en: "Ocean",
-    arDesc: "هادئ، عصري",
-    enDesc: "Calm, modern",
-    colors: ["#176B87", "#F2F8F9", "#48B7B0"],
-  },
-  forest: {
-    ar: "الغابة",
-    en: "Forest",
-    arDesc: "طبيعي، مريح",
-    enDesc: "Natural, grounded",
-    colors: ["#28745A", "#F4F7F0", "#A8C95B"],
-  },
-  sunset: {
-    ar: "الغروب",
-    en: "Sunset",
-    arDesc: "دافئ، مشجع",
-    enDesc: "Warm, energetic",
-    colors: ["#D66A32", "#FFF8ED", "#F2C14E"],
-  },
-  lavender: {
-    ar: "اللافندر",
-    en: "Lavender",
-    arDesc: "إبداعي، ودود",
-    enDesc: "Creative, friendly",
-    colors: ["#7157A8", "#F8F6FC", "#B9A7E8"],
-  },
-  midnight: {
-    ar: "منتصف الليل",
-    en: "Midnight",
-    arDesc: "مركّز، مريح ليلاً",
-    enDesc: "Focused, comfortable at night",
-    colors: ["#0E1822", "#162331", "#F5C84B"],
-  },
-  heritage: {
-    ar: "التراث المصري",
-    en: "Egyptian Heritage",
-    arDesc: "مصري، دافئ، رصين",
-    enDesc: "Egyptian, warm, refined",
-    colors: ["#A66A3F", "#FAF5E9", "#D7A83D"],
-  },
+/** The agreed palettes, shown as primary / background / accent. */
+const THEME_META: Record<ThemeName, { ar: string; en: string; colors: [string, string, string] }> = {
+  nile: { ar: "النيل", en: "Nile", colors: ["#1261A0", "#F7F5EF", "#F4C542"] },
+  ocean: { ar: "المحيط", en: "Ocean", colors: ["#176B87", "#F2F8F9", "#48B7B0"] },
+  forest: { ar: "الغابة", en: "Forest", colors: ["#28745A", "#F4F7F0", "#A8C95B"] },
+  sunset: { ar: "الغروب", en: "Sunset", colors: ["#D66A32", "#FFF8ED", "#F2C14E"] },
+  lavender: { ar: "اللافندر", en: "Lavender", colors: ["#7157A8", "#F8F6FC", "#B9A7E8"] },
+  midnight: { ar: "منتصف الليل", en: "Midnight", colors: ["#4A9FE8", "#162331", "#F5C84B"] },
+  heritage: { ar: "التراث المصري", en: "Egyptian Heritage", colors: ["#A66A3F", "#FAF5E9", "#D7A83D"] },
 };
 
 const THEME_ORDER: ThemeName[] = ["nile", "ocean", "forest", "sunset", "lavender", "midnight", "heritage"];
 
-/** Section heading shared by the settings page groups. */
-export function SettingsGroupTitle({
-  icon,
-  ar,
-  en,
+function SettingRow({
+  title,
+  description,
+  children,
 }: {
-  icon: React.ReactNode;
-  ar: string;
-  en: string;
+  title: { ar: string; en: string };
+  description?: { ar: string; en: string };
+  children: React.ReactNode;
 }) {
   return (
-    <h2 className="settings-group-title">
-      <span className="settings-group-icon" aria-hidden="true">
-        {icon}
-      </span>
-      <Dual ar={ar} en={en} />
-    </h2>
+    <div className="setting-row">
+      <div className="setting-text">
+        <Dual as="strong" ar={title.ar} en={title.en} />
+        {description ? <Dual as="span" ar={description.ar} en={description.en} /> : null}
+      </div>
+      <div className="setting-control">{children}</div>
+    </div>
   );
 }
 
-/** Appearance: learning-environment themes. */
-export function ThemeControls({ compact = false }: { compact?: boolean }) {
-  const a11y = useA11y();
-  const { lang } = useLang();
-
+function Segmented<T extends string | number>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: { value: T; ar: string; en: string; mono?: boolean }[];
+  onChange: (value: T) => void;
+}) {
   return (
-    <>
-      {!compact ? (
-        <SettingsGroupTitle
-          icon={<MonitorCog size={20} strokeWidth={1.75} />}
-          ar="بيئة التعلّم"
-          en="Your learning environment"
-        />
-      ) : null}
-
-      <div className={compact ? "theme-grid compact" : "theme-grid"} role="radiogroup" aria-label={pick(lang, "بيئة التعلّم", "Learning environment")}>
-        {THEME_ORDER.map((name) => {
-          const meta = THEME_META[name];
-          const chosen = a11y.theme === name;
-          return (
-            <button
-              key={name}
-              type="button"
-              role="radio"
-              aria-checked={chosen}
-              className={chosen ? "theme-swatch chosen" : "theme-swatch"}
-              onClick={() => a11y.setTheme(name)}
-            >
-              <span
-                className={`theme-chip theme-${name}`}
-                aria-hidden="true"
-              >
-                <i />
-                <i />
-                <i />
-                <span className="theme-check">
-                  <Check size={16} strokeWidth={3} />
-                </span>
-              </span>
-              <span className="theme-name">
-                <Dual ar={meta.ar} en={meta.en} />
-              </span>
-              {!compact ? (
-                <span className="theme-desc">
-                  <Dual ar={meta.arDesc} en={meta.enDesc} />
-                </span>
-              ) : null}
-            </button>
-          );
-        })}
-      </div>
-    </>
-  );
-}
-
-/** Text: size and the combined High Contrast + Large Text preset. */
-export function TextControls({ compact = false }: { compact?: boolean }) {
-  const a11y = useA11y();
-  const { lang } = useLang();
-
-  const presetOn = a11y.highContrast && a11y.textSize === "lg";
-
-  return (
-    <>
-      {!compact ? (
-        <SettingsGroupTitle icon={<Type size={20} strokeWidth={1.75} />} ar="النص" en="Text" />
-      ) : null}
-
-      <div className="setting-row" style={compact ? { paddingInline: 0 } : undefined}>
-        <span className="label" style={{ display: "grid" }}>
-          <strong style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }}>
-            <Type size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
-            <Dual ar="حجم الخط" en="Font size" />
-          </strong>
-          {!compact ? (
-            <Dual as="span" className="muted small" ar="يكبّر كل النصوص في الموقع." en="Makes every text on the site bigger." />
-          ) : null}
-        </span>
-        <div className="segmented" role="group" aria-label={pick(lang, "سرعة الإشارة", "Sign speed")}>
-          {TEXT_SIZES.map((size) => (
-            <button
-              key={size.value}
-              type="button"
-              aria-pressed={a11y.textSize === size.value}
-              onClick={() => a11y.setTextSize(size.value)}
-            >
-              <Dual ar={size.ar} en={size.en} />
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="setting-row" style={compact ? { paddingInline: 0 } : undefined}>
-        <span className="label" style={{ display: "grid" }}>
-          <strong style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }}>
-            <Contrast size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
-            <Dual ar="تباين عالٍ + خط كبير" en="High Contrast + Large Text" />
-          </strong>
-          {!compact ? (
-            <Dual
-              as="span"
-              className="muted small"
-              ar="إعداد جاهز يجمع الوضعين لأقصى وضوح."
-              en="One preset that combines both modes for maximum clarity."
-            />
-          ) : null}
-        </span>
+    <div className="segmented" role="group" aria-label={label}>
+      {options.map((option) => (
         <button
+          key={String(option.value)}
           type="button"
-          className={presetOn ? "btn secondary preset-on" : "btn secondary"}
-          aria-pressed={presetOn}
-          onClick={() => {
-            const next = !presetOn;
-            a11y.setHighContrast(next);
-            if (next) a11y.setTextSize("lg");
-            else a11y.setTextSize("md");
-          }}
+          className={option.mono ? "mono" : undefined}
+          aria-pressed={value === option.value}
+          onClick={() => onChange(option.value)}
         >
-          {presetOn ? <Check size={20} strokeWidth={2.4} className="icon" aria-hidden="true" /> : null}
-          <Dual ar={presetOn ? "مُطبَّق" : "تطبيق"} en={presetOn ? "Applied" : "Apply"} />
+          <Dual ar={option.ar} en={option.en} />
         </button>
-      </div>
-    </>
+      ))}
+    </div>
   );
 }
 
-/** Sign language: playback speed and automatic playback. */
-export function SignControls({ compact = false }: { compact?: boolean }) {
+function ThemePicker({ compact }: { compact: boolean }) {
   const a11y = useA11y();
   const { lang } = useLang();
-
   return (
-    <>
-      {!compact ? (
-        <SettingsGroupTitle icon={<Hand size={20} strokeWidth={1.75} />} ar="لغة الإشارة" en="Sign language" />
-      ) : null}
-
-      <div className="setting-row" style={compact ? { paddingInline: 0 } : undefined}>
-        <span className="label" style={{ display: "grid" }}>
-          <strong style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }}>
-            <Gauge size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
-            <Dual ar="سرعة الإشارة" en="Sign speed" />
-          </strong>
-          {!compact ? (
-            <Dual as="span" className="muted small" ar="أبطئ الفيديو إن كانت الإشارة سريعة." en="Slow the video down if the sign is too fast." />
-          ) : null}
-        </span>
-        <div className="segmented" role="group" aria-label={pick(lang, "سرعة الإشارة", "Sign speed")}>
-          {SPEEDS.map((speed) => (
-            <button
-              key={speed.value}
-              type="button"
-              className="mono"
-              aria-pressed={a11y.signSpeed === speed.value}
-              onClick={() => a11y.setSignSpeed(speed.value)}
-            >
-              {speed.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <SwitchRow
-        checked={a11y.autoSign}
-        onChange={a11y.setAutoSign}
-        icon={<Hand size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />}
-        title={{ ar: "تشغيل الإشارة تلقائياً", en: "Automatic sign playback" }}
-        description={
-          compact ? undefined : { ar: "يبدأ فيديو الإشارة وحده في كل خطوة.", en: "The sign video starts by itself on every step." }
-        }
-      />
-    </>
+    <div className={compact ? "theme-picker compact" : "theme-picker"} role="radiogroup" aria-label={pick(lang, "المظهر", "Theme")}>
+      {THEME_ORDER.map((name) => {
+        const meta = THEME_META[name];
+        const chosen = a11y.theme === name;
+        return (
+          <button
+            key={name}
+            type="button"
+            role="radio"
+            aria-checked={chosen}
+            className="theme-option"
+            onClick={() => a11y.setTheme(name)}
+            title={compact ? pick(lang, meta.ar, meta.en) : undefined}
+          >
+            <span className="theme-bar" aria-hidden="true">
+              {meta.colors.map((color) => (
+                <i key={color} style={{ background: color }} />
+              ))}
+            </span>
+            <span className={compact ? "sr-only" : "theme-name"}>
+              <Dual ar={meta.ar} en={meta.en} />
+            </span>
+            {chosen ? <Check size={14} strokeWidth={3} className="theme-tick" aria-hidden="true" /> : null}
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
-/** Motion and learning: still motion, focus mode. */
-export function MotionControls({ compact = false }: { compact?: boolean }) {
+export function AppearanceSettings({ compact = false }: { compact?: boolean }) {
   const a11y = useA11y();
-
   return (
     <>
-      {!compact ? (
-        <SettingsGroupTitle icon={<Activity size={20} strokeWidth={1.75} />} ar="الحركة والتعلّم" en="Motion and learning" />
-      ) : null}
-
-      <SwitchRow
-        checked={a11y.reduceMotion}
-        onChange={a11y.setReduceMotion}
-        icon={<Activity size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />}
-        title={{ ar: "تهدئة الحركة", en: "Reduced motion" }}
-        description={
-          compact ? undefined : { ar: "يوقف حركة الصندوق. الأرقام تبقى تعمل.", en: "Freezes the box. The numbers keep working." }
-        }
-      />
-      <SwitchRow
-        checked={a11y.focusMode}
-        onChange={a11y.setFocusMode}
-        icon={<ScanEye size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />}
-        title={{ ar: "وضع التركيز", en: "Focus mode" }}
-        description={
-          compact ? undefined : { ar: "يخفي الزوائد ويترك الدرس فقط، مع الحفاظ على مظهرك.", en: "Hides distractions and keeps the lesson, in your chosen theme." }
-        }
-      />
-    </>
-  );
-}
-
-/** High Contrast: a reading mode, separate from themes. */
-export function ContrastControls({ compact = false }: { compact?: boolean }) {
-  const a11y = useA11y();
-
-  return (
-    <>
-      {!compact ? (
-        <SettingsGroupTitle icon={<Contrast size={20} strokeWidth={1.75} />} ar="وضوح القراءة" en="Reading clarity" />
-      ) : null}
-
+      <ThemePicker compact={compact} />
       <SwitchRow
         checked={a11y.highContrast}
         onChange={a11y.setHighContrast}
-        icon={<Contrast size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />}
         title={{ ar: "تباين عالٍ", en: "High contrast" }}
-        description={
-          compact ? undefined : { ar: "أبيض وأسود بحدود واضحة، فوق أي مظهر.", en: "Black and white with strong borders, over any theme." }
-        }
+        description={compact ? undefined : { ar: "أسود على أبيض بحدود واضحة، فوق أي مظهر.", en: "Black on white with strong edges, over any theme." }}
       />
     </>
   );
 }
 
-/** Flat list for the header quick menu. */
-export function A11yControls({ compact = false }: { compact?: boolean }) {
+export function TextSettings({ compact = false }: { compact?: boolean }) {
+  const a11y = useA11y();
+  const { lang } = useLang();
+  const presetOn = a11y.highContrast && a11y.textSize === "lg";
   return (
     <>
-      <ThemeControls compact={compact} />
-      <TextControls compact={compact} />
-      <SignControls compact={compact} />
-      <MotionControls compact={compact} />
-      <ContrastControls compact={compact} />
+      <SettingRow title={{ ar: "حجم الخط", en: "Font size" }}>
+        <Segmented
+          label={pick(lang, "حجم الخط", "Font size")}
+          value={a11y.textSize}
+          options={TEXT_SIZES}
+          onChange={a11y.setTextSize}
+        />
+      </SettingRow>
+      {!compact ? (
+        <SwitchRow
+          checked={presetOn}
+          onChange={(next) => {
+            a11y.setHighContrast(next);
+            a11y.setTextSize(next ? "lg" : "md");
+          }}
+          title={{ ar: "تباين عالٍ مع خط كبير", en: "High contrast + large text" }}
+          description={{ ar: "الإعدادان معاً بضغطة واحدة.", en: "Both settings in one switch." }}
+        />
+      ) : null}
     </>
   );
 }
 
-/** Language switch used on the settings page. */
-export function LanguageSetting() {
+export function SignSettings({ compact = false }: { compact?: boolean }) {
+  const a11y = useA11y();
+  const { lang } = useLang();
   return (
     <>
-      <SettingsGroupTitle icon={<Languages size={20} strokeWidth={1.75} />} ar="اللغة" en="Language" />
-      <LanguageToggle />
+      <SettingRow
+        title={{ ar: "سرعة الإشارة", en: "Sign speed" }}
+        description={compact ? undefined : { ar: "أبطئ الفيديو إن كانت الإشارة سريعة.", en: "Slow the video down if a sign is too fast." }}
+      >
+        <Segmented
+          label={pick(lang, "سرعة الإشارة", "Sign speed")}
+          value={a11y.signSpeed}
+          options={SPEEDS.map((value) => ({ value, ar: `${value}×`, en: `${value}×`, mono: true }))}
+          onChange={a11y.setSignSpeed}
+        />
+      </SettingRow>
+      <SwitchRow
+        checked={a11y.autoSign}
+        onChange={a11y.setAutoSign}
+        title={{ ar: "تشغيل الإشارة تلقائياً", en: "Play signs automatically" }}
+        description={compact ? undefined : { ar: "يبدأ فيديو الإشارة وحده في كل خطوة.", en: "The sign video starts by itself on every step." }}
+      />
     </>
   );
 }
 
-function LanguageToggle() {
+export function MotionSettings({ compact = false }: { compact?: boolean }) {
+  const a11y = useA11y();
+  return (
+    <SwitchRow
+      checked={a11y.reduceMotion}
+      onChange={a11y.setReduceMotion}
+      title={{ ar: "تقليل الحركة", en: "Reduced motion" }}
+      description={compact ? undefined : { ar: "يتوقف الصندوق عن الحركة، وتبقى الأرقام تعمل.", en: "The box stops moving; the numbers keep working." }}
+    />
+  );
+}
+
+export function LearningSettings({ compact = false }: { compact?: boolean }) {
+  const a11y = useA11y();
+  return (
+    <SwitchRow
+      checked={a11y.focusMode}
+      onChange={a11y.setFocusMode}
+      title={{ ar: "وضع التركيز", en: "Focus mode" }}
+      description={
+        compact ? undefined : { ar: "في الدرس: تبقى الإشارة والشرح والتجربة، ويختفي ما عداها.", en: "In lessons: the sign, explanation, and experiment stay; everything else steps back." }
+      }
+    />
+  );
+}
+
+export function LanguageSettings() {
   const { lang, setLang } = useLang();
-
   return (
-    <div className="setting-row">
-      <span className="label" style={{ display: "grid" }}>
-        <strong style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }}>
-          <Languages size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
-          <Dual ar="لغة الواجهة" en="Interface language" />
-        </strong>
-        <Dual as="span" className="muted small" ar="تتغير كل الصفحات فوراً." en="Every page switches instantly." />
-      </span>
+    <SettingRow title={{ ar: "لغة الواجهة", en: "Interface language" }}>
       <div className="segmented" role="group" aria-label={pick(lang, "اللغة", "Language")}>
-        <button type="button" aria-pressed={lang === "ar"} onClick={() => setLang("ar")}>
+        <button type="button" lang="ar" aria-pressed={lang === "ar"} onClick={() => setLang("ar")}>
           العربية
         </button>
-        <button type="button" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
+        <button type="button" lang="en" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
           English
         </button>
       </div>
+    </SettingRow>
+  );
+}
+
+/** Compact list for the header's quick settings menu. */
+export function A11yControls({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className="settings-list">
+      <AppearanceSettings compact={compact} />
+      <TextSettings compact={compact} />
+      <SignSettings compact={compact} />
+      <MotionSettings compact={compact} />
+      <LearningSettings compact={compact} />
     </div>
   );
 }

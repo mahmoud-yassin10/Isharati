@@ -2,44 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, GraduationCap, LogOut, Menu, Settings, Users, VideoOff, X } from "lucide-react";
+import { Menu, Settings, X } from "lucide-react";
 import { A11yControls } from "@/components/A11yControls";
-import { BrandMark, BrandWordmark } from "@/components/Brand";
+import { BrandMark } from "@/components/Brand";
 import { Dual } from "@/components/Dual";
 import { BRAND } from "@/lib/brand";
 import { health, logout } from "@/lib/api";
 import { pick, useLang } from "@/lib/lang";
 import type { User } from "@/lib/types";
 
-type NavItem = { href: string; ar: string; en: string; icon: React.ReactNode };
+type NavItem = { href: string; ar: string; en: string };
 
-const icon = (Icon: typeof BookOpen) => <Icon size={19} strokeWidth={1.75} className="icon" aria-hidden="true" />;
-
-/**
- * Real routes only. Guests get the two entry points plus the lab on the home
- * page; signed-in users get their own workspace first.
- */
-function primaryNavFor(role: User["role"] | null): NavItem[] {
-  if (role === "student") {
-    return [
-      { href: "/student", ar: "دروسي", en: "My lessons", icon: icon(GraduationCap) },
-      { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
-    ];
-  }
-  if (role === "teacher") {
-    return [
-      { href: "/teacher", ar: "الدروس", en: "Lessons", icon: icon(BookOpen) },
-      { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
-    ];
-  }
-  return [
-    { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
-    { href: "/login?role=student", ar: "للطلاب", en: "Students", icon: icon(GraduationCap) },
-    { href: "/login?role=teacher", ar: "للمعلمين", en: "Teachers", icon: icon(Users) },
-  ];
+/** Only what each person actually needs from the top bar. The logo is "home". */
+function navFor(role: User["role"] | null, onHome: boolean): NavItem[] {
+  if (role === "student") return [{ href: "/student", ar: "دروسي", en: "My lessons" }];
+  if (role === "teacher") return [{ href: "/teacher", ar: "الدروس", en: "Lessons" }];
+  return [{ href: onHome ? "#lab" : "/#lab", ar: "المختبر", en: "The lab" }];
 }
-
-const LAB_LINK: NavItem = { href: "/#lab", ar: "المختبر", en: "Lab", icon: null };
 
 export function AppShell({
   user,
@@ -90,8 +69,19 @@ export function AppShell({
     router.push("/");
   }
 
-  const navItems = primaryNavFor(user?.role ?? null);
-  const labHref = pathname === "/" ? "#lab" : "/#lab";
+  const navItems = navFor(user?.role ?? null, pathname === "/");
+
+  const langSwitch = (
+    <div className="lang-switch" role="group" aria-label={pick(lang, "اللغة", "Language")}>
+      <button type="button" lang="ar" aria-pressed={lang === "ar"} onClick={() => setLang("ar")}>
+        عربي
+      </button>
+      <span aria-hidden="true">/</span>
+      <button type="button" lang="en" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
+        EN
+      </button>
+    </div>
+  );
 
   return (
     <div className="shell">
@@ -102,84 +92,50 @@ export function AppShell({
       <header className={navOpen ? "topbar nav-open" : "topbar"}>
         <div className="wrap topbar-inner">
           <a className="brand" href={user ? `/${user.role}` : "/"}>
-            <span className="brand-mark" aria-hidden="true">
-              <BrandMark size={30} />
+            <BrandMark size={26} />
+            <span className="brand-name" lang="ar">
+              {BRAND.ar}
             </span>
-            <BrandWordmark />
           </a>
 
           <nav className="topnav" aria-label={pick(lang, "التنقل الرئيسي", "Main navigation")}>
             {navItems.map((item) => (
               <a key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
-                {item.icon}
-                <span>
-                  <Dual ar={item.ar} en={item.en} />
-                </span>
+                <Dual ar={item.ar} en={item.en} />
               </a>
             ))}
-            <a href={labHref} aria-current={false}>
-              <span className="nav-tick" aria-hidden="true" />
-              <span>
-                <Dual ar={LAB_LINK.ar} en={LAB_LINK.en} />
-              </span>
-            </a>
           </nav>
 
           <div className="topbar-tools">
             {signReady === false ? (
-              <p className="status-chip" title={pick(lang, "فيديو الإشارة غير متاح الآن", "Sign video is unavailable now")}>
-                <VideoOff size={17} strokeWidth={1.75} className="icon" aria-hidden="true" />
-                <span>
-                  <Dual ar="الإشارة غير متاحة" en="Signs unavailable" />
-                </span>
+              <p className="status-note" title={pick(lang, "فيديو الإشارة غير متاح الآن", "Sign video is unavailable now")}>
+                <Dual ar="الإشارة غير متاحة الآن" en="Signs unavailable" />
               </p>
             ) : null}
 
             <button
               type="button"
-              className="btn ghost a11y-trigger"
+              className="settings-trigger"
               popoverTarget="a11y-menu"
-              aria-label={pick(lang, "الإعدادات السريعة", "Quick settings")}
+              aria-label={pick(lang, "الإعدادات", "Settings")}
             >
-              <Settings size={21} strokeWidth={1.75} className="icon" aria-hidden="true" />
-              <span className="a11y-trigger-label">
+              <Settings size={18} strokeWidth={1.75} aria-hidden="true" />
+              <span className="settings-trigger-label">
                 <Dual ar="الإعدادات" en="Settings" />
               </span>
             </button>
 
-            <div className="lang-switch" role="group" aria-label={pick(lang, "اللغة", "Language")}>
-              <button type="button" aria-pressed={lang === "ar"} onClick={() => setLang("ar")}>
-                عربي
-              </button>
-              <button type="button" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
-                EN
-              </button>
-            </div>
+            {langSwitch}
 
             {user ? (
               <div className="account">
-                <span className="avatar" aria-hidden="true">
-                  {user.name.trim().charAt(0)}
-                </span>
-                <span className="account-name">
-                  <span>{user.name}</span>
-                  <span>
-                    <Dual
-                      ar={user.role === "teacher" ? "معلم" : "طالب"}
-                      en={user.role === "teacher" ? "Teacher" : "Student"}
-                    />
-                  </span>
-                </span>
-                <button type="button" className="btn quiet" onClick={onLogout}>
-                  <LogOut size={19} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
-                  <span className="account-logout">
-                    <Dual ar="خروج" en="Log out" />
-                  </span>
+                <span className="account-name">{user.name}</span>
+                <button type="button" className="link-btn" onClick={onLogout}>
+                  <Dual ar="خروج" en="Log out" />
                 </button>
               </div>
             ) : (
-              <a className="btn" href="/login">
-                <Users size={19} strokeWidth={1.75} className="icon" aria-hidden="true" />
+              <a className="btn small" href="/login">
                 <Dual ar="دخول" en="Log in" />
               </a>
             )}
@@ -191,11 +147,7 @@ export function AppShell({
               aria-controls="mobile-nav"
               onClick={() => setNavOpen((open) => !open)}
             >
-              {navOpen ? (
-                <X size={22} strokeWidth={1.9} aria-hidden="true" />
-              ) : (
-                <Menu size={22} strokeWidth={1.9} aria-hidden="true" />
-              )}
+              {navOpen ? <X size={22} strokeWidth={1.75} aria-hidden="true" /> : <Menu size={22} strokeWidth={1.75} aria-hidden="true" />}
               <span className="sr-only">
                 <Dual ar={navOpen ? "أغلق القائمة" : "افتح القائمة"} en={navOpen ? "Close the menu" : "Open the menu"} />
               </span>
@@ -204,68 +156,56 @@ export function AppShell({
         </div>
 
         <div className="mobile-nav" id="mobile-nav" hidden={!navOpen}>
-          <nav className="wrap" aria-label={pick(lang, "تنقل الجوال", "Mobile navigation")}>
+          <nav className="wrap" aria-label={pick(lang, "القائمة", "Menu")}>
             <ul>
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
-                    {item.icon}
+                  <a href={item.href}>
                     <Dual ar={item.ar} en={item.en} />
                   </a>
                 </li>
               ))}
               <li>
-                <a href={labHref}>
-                  <span className="nav-tick" aria-hidden="true" />
-                  <Dual ar={LAB_LINK.ar} en={LAB_LINK.en} />
-                </a>
-              </li>
-              <li>
                 <a href="/settings" aria-current={pathname === "/settings" ? "page" : undefined}>
-                  {icon(Settings)}
                   <Dual ar="الإعدادات" en="Settings" />
                 </a>
               </li>
+              <li>
+                {user ? (
+                  <button type="button" onClick={onLogout}>
+                    <Dual ar={`خروج (${user.name})`} en={`Log out (${user.name})`} />
+                  </button>
+                ) : (
+                  <a href="/login">
+                    <Dual ar="دخول" en="Log in" />
+                  </a>
+                )}
+              </li>
             </ul>
-            {user ? (
-              <button type="button" className="btn secondary block" onClick={onLogout}>
-                <LogOut size={19} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
-                <Dual ar="خروج" en="Log out" />
-              </button>
-            ) : (
-              <a className="btn block" href="/login">
-                <Users size={19} strokeWidth={1.75} className="icon" aria-hidden="true" />
-                <Dual ar="دخول" en="Log in" />
-              </a>
-            )}
+            {langSwitch}
           </nav>
         </div>
       </header>
 
-      <div id="a11y-menu" popover="auto" className="a11y-menu">
-        <div className="a11y-menu-head">
-          <div>
-            <h2>
-              <Dual ar="الإعدادات" en="Settings" />
-            </h2>
-            <Dual as="p" className="small muted" ar="تعمل في كل صفحة، وتُحفظ على جهازك." en="Works on every page, saved on your device." />
-          </div>
+      <div id="a11y-menu" popover="auto" className="quick-settings">
+        <div className="quick-settings-head">
+          <h2>
+            <Dual ar="الإعدادات" en="Settings" />
+          </h2>
           <button
             type="button"
-            className="btn quiet"
+            className="icon-btn"
             popoverTarget="a11y-menu"
             popoverTargetAction="hide"
             aria-label={pick(lang, "إغلاق", "Close")}
           >
-            <X size={20} strokeWidth={1.9} aria-hidden="true" />
+            <X size={20} strokeWidth={1.75} aria-hidden="true" />
           </button>
         </div>
         <A11yControls compact />
-        <p className="a11y-menu-foot">
-          <a className="back-link" href="/settings">
-            <Dual ar="كل الإعدادات" en="All settings" />
-          </a>
-        </p>
+        <a className="text-link" href="/settings">
+          <Dual ar="كل الإعدادات" en="All settings" />
+        </a>
       </div>
 
       <main id="main">{children}</main>
@@ -273,68 +213,24 @@ export function AppShell({
       {!bare ? (
         <footer className="footer">
           <div className="wrap footer-inner">
-            <div className="footer-brand">
-              <span className="footer-mark" aria-hidden="true">
-                <BrandMark size={34} />
-              </span>
-              <p className="footer-name">{BRAND.ar}</p>
-              <Dual as="p" className="small muted" ar={BRAND.tagline.ar} en={BRAND.tagline.en} />
-              <Dual as="p" className="small muted" ar={BRAND.promise.ar} en={BRAND.promise.en} />
-            </div>
-
-            <nav className="footer-col" aria-label={pick(lang, "روابط", "Links")}>
-              <Dual as="h2" className="footer-title" ar="تنقّل" en="Navigation" />
-              <ul>
-                <li>
-                  <a href="/">
-                    <Dual ar="الرئيسية" en="Home" />
-                  </a>
-                </li>
-                <li>
-                  <a href={labHref}>
-                    <Dual ar="المختبر" en="The lab" />
-                  </a>
-                </li>
-                <li>
-                  <a href={user?.role === "student" ? "/student" : "/login?role=student"}>
-                    <Dual ar="للطلاب" en="For students" />
-                  </a>
-                </li>
-                <li>
-                  <a href={user?.role === "teacher" ? "/teacher" : "/login?role=teacher"}>
-                    <Dual ar="للمعلمين" en="For teachers" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="footer-col">
-              <Dual as="h2" className="footer-title" ar="الإعدادات" en="Settings" />
-              <Dual
-                as="p"
-                className="small muted"
-                ar="اختار مظهرك، حجم الخط، سرعة الإشارة، وهدوء الحركة — في كل صفحة."
-                en="Choose your theme, text size, sign speed, and still motion — on every page."
-              />
-              <a className="btn secondary" href="/settings">
-                <Settings size={19} strokeWidth={1.75} className="icon" aria-hidden="true" />
-                <Dual ar="افتح الإعدادات" en="Open settings" />
-              </a>
-            </div>
-          </div>
-          <div className="wrap footer-bottom">
-            <p className="small">
-              <Dual
-                ar="إشارتي · منصة تعليمية للطلاب الصم وضعاف السمع"
-                en="Isharati · an education platform for deaf and hard-of-hearing students"
-              />
+            <p className="footer-brand">
+              <span lang="ar">{BRAND.ar}</span>
+              <Dual ar={` · ${BRAND.tagline.ar}`} en={` · ${BRAND.tagline.en}`} />
             </p>
-            <Dual
-              as="p"
-              className="small"
-              ar="لا يُستخدم الصوت في أي شاشة. كل تعليق يظهر بأيقونة وكلمة ولون."
-              en="No sound is used on any screen. Every response shows an icon, a word, and a color."
-            />
+            <nav className="footer-links" aria-label={pick(lang, "روابط", "Links")}>
+              <a href={pathname === "/" ? "#lab" : "/#lab"}>
+                <Dual ar="المختبر" en="The lab" />
+              </a>
+              <a href="/settings">
+                <Dual ar="الإعدادات" en="Settings" />
+              </a>
+              <a href={user ? `/${user.role}` : "/login"}>
+                <Dual
+                  ar={user ? (user.role === "teacher" ? "الدروس" : "دروسي") : "دخول"}
+                  en={user ? (user.role === "teacher" ? "Lessons" : "My lessons") : "Log in"}
+                />
+              </a>
+            </nav>
           </div>
         </footer>
       ) : null}
