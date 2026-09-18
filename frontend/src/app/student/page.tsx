@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Check, RotateCcw, Star, TriangleAlert } from "lucide-react";
+import { BookOpen, Check, Clock, Gamepad2, PlayCircle, RotateCcw, Star, Trophy, TriangleAlert } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { GAME_TYPES } from "@/components/games/GameStep";
@@ -11,7 +11,7 @@ import { ForwardIcon, LoadingBlock, ProgressBar } from "@/components/ui";
 import { LEVEL_SIZE, lessonStats, scoreFor, type LessonStats } from "@/lib/gamification";
 import { lessonProgress, listLessons, resetProgress } from "@/lib/api";
 import { pick, useLang } from "@/lib/lang";
-import { SUBJECTS, subjectMeta } from "@/lib/subjects";
+import { SUBJECTS, SubjectIcon, subjectMeta } from "@/lib/subjects";
 import { useUser } from "@/lib/useUser";
 import type { Lesson, ProgressItem, Subject } from "@/lib/types";
 
@@ -98,83 +98,123 @@ export default function StudentHome() {
   return (
     <AppShell user={user}>
       <div className="wrap page">
-        <header className="page-intro student-intro">
-          <h1>
-            <Dual ar={`أهلاً ${firstName}`} en={`Hello ${firstName}`} />
-          </h1>
-          <p className="score-line" aria-label={pick(lang, "نقاطي", "My points")}>
-            <Dual as="span" ar={`المستوى ${score.level}`} en={`Level ${score.level}`} />
-            <span aria-hidden="true">·</span>
-            <span className="score-stars">
-              <Star size={15} strokeWidth={2} className="icon star on" aria-hidden="true" />
-              <Dual ar={`${score.stars} نجمة`} en={`${score.stars} stars`} />
-            </span>
-            <span aria-hidden="true">·</span>
-            <Dual ar={`${completed} درس مكتمل`} en={`${completed} lessons done`} />
-            <span className="score-next">
-              <span className="progress-track" aria-hidden="true">
-                <span className="progress-fill" style={{ width: `${((LEVEL_SIZE - score.toNext) / LEVEL_SIZE) * 100}%` }} />
-              </span>
-              <Dual ar={`${score.toNext} نقطة للمستوى التالي`} en={`${score.toNext} points to the next level`} />
-            </span>
-          </p>
-        </header>
+        <div className="student-top">
+          <div className="greeting">
+            <h1>
+              <Dual ar={`أهلاً ${firstName}`} en={`Hello ${firstName}`} />
+            </h1>
+            <Dual
+              as="p"
+              className="muted"
+              ar="اختر مادة، العب، وتعلّم. الإشارة تعمل وحدها في كل خطوة."
+              en="Pick a subject, play, and learn. The sign plays by itself on every step."
+            />
+          </div>
+
+          <section className="score-card" aria-label={pick(lang, "نقاطي", "My points")}>
+            <div className="score-level">
+              <Trophy size={28} strokeWidth={1.5} className="icon" aria-hidden="true" />
+              <div>
+                <p className="small muted">
+                  <Dual ar="المستوى" en="Level" />
+                </p>
+                <p className="score-big">{score.level}</p>
+              </div>
+            </div>
+            <div className="score-stats">
+              <p>
+                <Star size={18} strokeWidth={2} className="icon star on" aria-hidden="true" />
+                <Dual ar={`${score.stars} نجمة`} en={`${score.stars} stars`} />
+              </p>
+              <p>
+                <Check size={18} strokeWidth={2.5} className="icon" aria-hidden="true" />
+                <Dual ar={`${completed} درس مكتمل`} en={`${completed} lessons done`} />
+              </p>
+            </div>
+            <div className="score-next">
+              <div className="progress-label">
+                <Dual ar={`${score.points} نقطة`} en={`${score.points} points`} />
+                <Dual ar={`${score.toNext} للمستوى التالي`} en={`${score.toNext} to next level`} />
+              </div>
+              <div className="progress-track" aria-hidden="true">
+                <div className="progress-fill" style={{ width: `${((LEVEL_SIZE - score.toNext) / LEVEL_SIZE) * 100}%` }} />
+              </div>
+            </div>
+          </section>
+        </div>
 
         {error ? (
           <p className="feedback error" role="status">
-            <TriangleAlert size={20} strokeWidth={2} className="icon" aria-hidden="true" />
+            <TriangleAlert size={22} strokeWidth={2} className="icon" aria-hidden="true" />
             <Dual ar="تعذّر تحميل دروسك. حدّث الصفحة." en="Could not load your lessons. Refresh the page." />
           </p>
         ) : null}
 
         {resetState === "done" ? (
           <p className="feedback info" role="status">
-            <RotateCcw size={20} strokeWidth={2} className="icon" aria-hidden="true" />
+            <RotateCcw size={22} strokeWidth={2} className="icon" aria-hidden="true" />
             <Dual ar="بدأت من جديد. كل الدروس جاهزة." en="You are starting fresh. Every lesson is ready." />
           </p>
         ) : null}
 
         {next && nextStats ? (
-          <section className="continue" aria-labelledby="continue-title">
-            <Dual
-              as="p"
-              className="continue-kicker"
-              ar={nextStats.state === "new" ? `درس جديد · ${subjectMeta(next.subject).ar}` : `أكمل من حيث توقفت · ${subjectMeta(next.subject).ar}`}
-              en={nextStats.state === "new" ? `New lesson · ${subjectMeta(next.subject).en}` : `Pick up where you left off · ${subjectMeta(next.subject).en}`}
-            />
-            <h2 id="continue-title">
-              <Dual ar={next.title_ar} en={next.title_en ?? next.title_ar} />
-            </h2>
-            <ProgressBar value={nextStats.done} total={nextStats.total} />
-            <a className="btn" href={`/student/lessons/${next.id}`}>
-              <Dual
-                ar={nextStats.state === "new" ? "ابدأ الدرس" : "أكمل الدرس"}
-                en={nextStats.state === "new" ? "Start the lesson" : "Continue the lesson"}
-              />
-              <ForwardIcon size={18} />
-            </a>
+          <section className="continue-card" aria-labelledby="continue-title">
+            <div className={`lesson-thumb subj-${next.subject}`} aria-hidden="true">
+              <PlayCircle size={56} strokeWidth={1.25} />
+            </div>
+            <div className="body">
+              <div className="stack-sm">
+                <p className="chip primary" style={{ justifySelf: "start" }}>
+                  <Dual
+                    ar={nextStats.state === "new" ? `درس جديد · ${subjectMeta(next.subject).ar}` : `أكمل · ${subjectMeta(next.subject).ar}`}
+                    en={nextStats.state === "new" ? `New lesson · ${subjectMeta(next.subject).en}` : `Continue · ${subjectMeta(next.subject).en}`}
+                  />
+                </p>
+                <h2 id="continue-title">
+                  <Dual ar={next.title_ar} en={next.title_en ?? next.title_ar} />
+                </h2>
+              </div>
+              <ProgressBar value={nextStats.done} total={nextStats.total} />
+              <p>
+                <a className="btn large" href={`/student/lessons/${next.id}`}>
+                  <Dual
+                    ar={nextStats.state === "new" ? "ابدأ الدرس" : "أكمل الدرس"}
+                    en={nextStats.state === "new" ? "Start the lesson" : "Continue the lesson"}
+                  />
+                  <ForwardIcon size={22} />
+                </a>
+              </p>
+            </div>
           </section>
         ) : null}
 
         {lessons && lessons.length > 0 ? (
-          <nav className="subject-tabs" aria-label={pick(lang, "المواد", "Subjects")}>
+          <div className="subject-filter" role="group" aria-label={pick(lang, "المواد", "Subjects")}>
             <button type="button" aria-pressed={filter === "all"} onClick={() => setFilter("all")}>
+              <BookOpen size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />
               <Dual ar="كل المواد" en="All subjects" />
-              <span className="count">{lessons.length}</span>
+              <span className="count mono">{lessons.length}</span>
             </button>
             {presentSubjects.map((subject) => (
-              <button key={subject.id} type="button" aria-pressed={filter === subject.id} onClick={() => setFilter(subject.id)}>
+              <button
+                key={subject.id}
+                type="button"
+                aria-pressed={filter === subject.id}
+                onClick={() => setFilter(subject.id)}
+              >
+                <SubjectIcon subject={subject.id} size={18} />
                 <Dual ar={subject.ar} en={subject.en} />
-                <span className="count">{lessons.filter((lesson) => lesson.subject === subject.id).length}</span>
+                <span className="count mono">{lessons.filter((lesson) => lesson.subject === subject.id).length}</span>
               </button>
             ))}
-          </nav>
+          </div>
         ) : null}
 
         {lessons === null && !error ? <LoadingBlock rows={2} height={120} /> : null}
 
         {lessons?.length === 0 ? (
           <div className="empty">
+            <BookOpen size={40} strokeWidth={1.5} className="icon" aria-hidden="true" />
             <Dual as="p" ar="لا يوجد درس معيّن لك بعد." en="No lesson has been assigned to you yet." />
             <Dual as="p" className="small" ar="اطلب من معلمك أن يعيّن درساً." en="Ask your teacher to assign one." />
           </div>
@@ -184,12 +224,17 @@ export default function StudentHome() {
           const list = (lessons ?? []).filter((lesson) => lesson.subject === subject.id);
           const subjectDone = list.filter((lesson) => stats[lesson.id]?.state === "complete").length;
           return (
-            <section key={subject.id} className={`subject-section subj-${subject.id}`} aria-labelledby={`subj-${subject.id}`}>
+            <section key={subject.id} className="subject-section" aria-labelledby={`subj-${subject.id}`}>
               <header className="subject-head">
+                <span className={`subject-icon subj-${subject.id}`} aria-hidden="true">
+                  <SubjectIcon subject={subject.id} size={24} />
+                </span>
                 <h2 id={`subj-${subject.id}`}>
                   <Dual ar={subject.ar} en={subject.en} />
                 </h2>
-                <Dual as="span" className="muted small" ar={`${subjectDone} من ${list.length} مكتمل`} en={`${subjectDone} of ${list.length} done`} />
+                <span className="chip">
+                  <Dual ar={`${subjectDone} من ${list.length} مكتمل`} en={`${subjectDone} of ${list.length} done`} />
+                </span>
               </header>
 
               <ul className="course-grid">
@@ -198,38 +243,43 @@ export default function StudentHome() {
                   const games = gameCount(lesson);
                   return (
                     <li key={lesson.id} className="course-card">
-                      <h3>
-                        <a href={`/student/lessons/${lesson.id}`}>
-                          <Dual ar={lesson.title_ar} en={lesson.title_en ?? lesson.title_ar} />
-                        </a>
-                      </h3>
-                      {lesson.summary_ar ? (
-                        <Dual as="p" className="course-summary" ar={lesson.summary_ar} en={lesson.summary_en ?? lesson.summary_ar} />
-                      ) : null}
-                      <p className="course-meta">
-                        <Dual ar={`${lesson.steps.length} خطوات`} en={`${lesson.steps.length} steps`} />
-                        <span aria-hidden="true">·</span>
-                        <Dual ar={`${games} ألعاب`} en={`${games} games`} />
-                        {lesson.minutes ? (
-                          <>
-                            <span aria-hidden="true">·</span>
-                            <Dual ar={`${lesson.minutes} دقيقة`} en={`${lesson.minutes} min`} />
-                          </>
-                        ) : null}
-                        {stat?.badge ? <ProgressBadge badge={stat.badge} /> : null}
-                      </p>
-                      {stat && stat.state !== "new" ? <ProgressBar value={stat.done} total={stat.total} compact /> : null}
-                      <a className="text-link" href={`/student/lessons/${lesson.id}`} tabIndex={-1} aria-hidden="true">
-                        <Dual
-                          ar={stat?.state === "complete" ? "راجع الدرس" : stat?.state === "learning" ? "أكمل" : "ابدأ"}
-                          en={stat?.state === "complete" ? "Review" : stat?.state === "learning" ? "Continue" : "Start"}
-                        />
+                      <div className={`course-banner subj-${lesson.subject}`} aria-hidden="true">
+                        <SubjectIcon subject={lesson.subject} size={40} />
                         {stat?.state === "complete" ? (
-                          <Check size={16} strokeWidth={2.5} className="icon done-tick" aria-hidden="true" />
-                        ) : (
-                          <ForwardIcon size={16} />
-                        )}
-                      </a>
+                          <span className="course-done">
+                            <Check size={18} strokeWidth={3} />
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="course-body">
+                        <h3>
+                          <Dual ar={lesson.title_ar} en={lesson.title_en ?? lesson.title_ar} />
+                        </h3>
+                        {lesson.summary_ar ? (
+                          <Dual as="p" className="muted small" ar={lesson.summary_ar} en={lesson.summary_en ?? lesson.summary_ar} />
+                        ) : null}
+                        <div className="chips">
+                          <span className="chip">
+                            <Gamepad2 size={16} strokeWidth={2} className="icon" aria-hidden="true" />
+                            <Dual ar={`${games} ألعاب`} en={`${games} games`} />
+                          </span>
+                          {lesson.minutes ? (
+                            <span className="chip">
+                              <Clock size={16} strokeWidth={2} className="icon" aria-hidden="true" />
+                              <Dual ar={`${lesson.minutes} دقيقة`} en={`${lesson.minutes} min`} />
+                            </span>
+                          ) : null}
+                          {stat?.badge ? <ProgressBadge badge={stat.badge} /> : null}
+                        </div>
+                        {stat ? <ProgressBar value={stat.done} total={stat.total} /> : null}
+                        <a className={stat && stat.state !== "new" ? "btn secondary" : "btn"} href={`/student/lessons/${lesson.id}`}>
+                          <Dual
+                            ar={stat?.state === "complete" ? "راجع الدرس" : stat?.state === "learning" ? "أكمل" : "ابدأ"}
+                            en={stat?.state === "complete" ? "Review" : stat?.state === "learning" ? "Continue" : "Start"}
+                          />
+                          <ForwardIcon />
+                        </a>
+                      </div>
                     </li>
                   );
                 })}
@@ -248,6 +298,7 @@ export default function StudentHome() {
                 dialogRef.current?.showModal();
               }}
             >
+              <RotateCcw size={14} strokeWidth={2} className="icon" aria-hidden="true" />
               <Dual ar="إعادة ضبط التقدّم" en="Reset progress" />
             </button>
           </div>
@@ -265,13 +316,17 @@ export default function StudentHome() {
           />
           {resetState === "error" ? (
             <p className="feedback error" role="status">
-              <TriangleAlert size={20} strokeWidth={2} className="icon" aria-hidden="true" />
+              <TriangleAlert size={22} strokeWidth={2} className="icon" aria-hidden="true" />
               <Dual ar="تعذّرت إعادة الضبط. حاول مرة أخرى." en="Could not reset. Try again." />
             </p>
           ) : null}
           <div className="btn-row">
             <button type="button" className="btn danger" onClick={onReset} disabled={resetState === "busy"}>
-              <Dual ar={resetState === "busy" ? "جارٍ المسح…" : "امسح تقدّمي"} en={resetState === "busy" ? "Erasing…" : "Erase my progress"} />
+              <RotateCcw size={20} strokeWidth={2} className="icon" aria-hidden="true" />
+              <Dual
+                ar={resetState === "busy" ? "جارٍ المسح…" : "امسح تقدّمي"}
+                en={resetState === "busy" ? "Erasing…" : "Erase my progress"}
+              />
             </button>
             <button type="button" className="btn secondary" onClick={() => dialogRef.current?.close()}>
               <Dual ar="إلغاء" en="Cancel" />

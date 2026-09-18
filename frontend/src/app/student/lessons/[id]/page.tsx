@@ -290,7 +290,7 @@ export default function StudentPlayer() {
 
         <section className="step-body">
           <div className="step-head">
-            <span className="step-kind">
+            <span className="chip sign" style={{ justifySelf: "start" }}>
               {meta.icon}
               <Dual ar={meta.ar} en={meta.en} />
             </span>

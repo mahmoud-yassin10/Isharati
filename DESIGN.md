@@ -7,6 +7,8 @@
 Things that **are** contained: the physics lab, lesson units, game modules, sign videos, the quick-settings menu, dialogs.
 Things that **are not**: section intros, lists of benefits, the lesson method, role descriptions, settings groups.
 
+**The student dashboard is the deliberate exception.** `/student` is a workspace the student returns to daily, not a one-time read: a score panel (level, stars, lessons done), a bordered "continue" card, and lesson cards grouped by subject with a colored icon banner per subject. It's how the "lesson units get cards" rule actually looks in practice — genuinely independent objects a student scans and picks between, so the extra containment earns its keep here even though most of the site stays flatter. The teacher's lesson list stays plain rows; it's a list to scan top to bottom, not a set of things to pick between.
+
 ## The one strong visual
 
 The home page has one moment of identity: the real signing video of a word, joined by a dotted gesture path to the word itself and its physics symbol (قوة → force → **F**). Keep it small, square, and uncropped. Don't replace it with an avatar, illustration, or hand icon. Any other "movement" motif must stay rare (one per page at most).

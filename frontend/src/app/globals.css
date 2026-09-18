@@ -2233,218 +2233,273 @@ html[lang="en"] .hero-title {
 
 /* ============================================================ student home */
 
-.student-intro {
+.greeting {
+  display: grid;
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+}
+
+.student-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  gap: var(--s-5);
+  align-items: start;
   margin-bottom: var(--s-6);
 }
 
-.score-line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s-1) var(--s-3);
-  color: var(--ink-2) !important;
-  max-width: none !important;
+.student-top .greeting {
+  margin-bottom: 0;
 }
 
-.score-stars {
-  display: inline-flex;
+/* Level, stars, and lessons done: the student's standing at a glance. */
+.score-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-3) var(--s-4);
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: border-color var(--dur-1) var(--ease);
+}
+
+.score-card:hover {
+  border-color: var(--line-strong);
+}
+
+.score-level {
+  display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--s-3);
+  padding-inline-end: var(--s-4);
+  border-inline-end: 1px solid var(--line);
+  color: var(--gold-deep);
+}
+
+.score-big {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.score-stats {
+  display: grid;
+  gap: var(--s-1);
+  align-content: center;
+  font-size: var(--text-sm);
+}
+
+.score-stats p {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
 }
 
 .score-next {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 6px;
+}
+
+.star {
+  color: var(--line-strong);
+}
+
+.star.on {
+  color: var(--gold-deep);
+  fill: var(--gold);
+}
+
+/* The one thing to do next: always the first card on the page. */
+.continue-card {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: var(--s-5);
+  align-items: center;
+  padding: var(--s-4);
+  margin-bottom: var(--s-6);
+  border: 1px solid var(--line);
+  border-inline-start: 3px solid var(--primary);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.continue-card .body {
+  display: grid;
+  gap: var(--s-3);
+  align-content: center;
+}
+
+.lesson-thumb {
+  display: grid;
+  place-items: center;
+  height: 140px;
+  border-radius: var(--radius);
+  background: var(--subj-soft, var(--primary-soft));
+  color: var(--subj, var(--primary));
+}
+
+.subject-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-bottom: var(--s-6);
+}
+
+.subject-filter button {
   display: inline-flex;
   align-items: center;
   gap: var(--s-2);
-  margin-inline-start: var(--s-3);
-  font-size: var(--text-sm);
-}
-
-.score-next .progress-track {
-  display: block;
-  width: 96px;
-}
-
-.score-next .progress-fill {
-  display: block;
-}
-
-.continue {
-  display: grid;
-  gap: var(--s-3);
-  justify-items: start;
-  max-width: 640px;
-  margin-bottom: var(--s-8);
-  padding: var(--s-5) 0 0;
-  border-top: 3px solid var(--primary);
-}
-
-.continue-kicker {
-  color: var(--primary);
-  font-size: var(--text-sm);
-  font-weight: 600;
-}
-
-.continue h2 {
-  font-size: var(--text-2xl);
-}
-
-.continue .progress {
-  width: 100%;
-  max-width: 420px;
-}
-
-.continue .btn {
-  margin-top: var(--s-2);
-}
-
-.subject-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-1) var(--s-5);
-  margin-bottom: var(--s-7);
-  border-bottom: 1px solid var(--line);
-}
-
-.subject-tabs button {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
   min-height: var(--target);
-  padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: inset 0 -2px 0 transparent;
-  color: var(--ink-2);
+  padding-inline: var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
   font-weight: 500;
   cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
 }
 
-.subject-tabs button:hover {
-  color: var(--ink);
+.subject-filter button:hover {
+  background: var(--surface-2);
+  border-color: var(--ink-3);
 }
 
-.subject-tabs button[aria-pressed="true"] {
-  color: var(--ink);
-  font-weight: 600;
-  box-shadow: inset 0 -2px 0 var(--primary);
+.subject-filter button[aria-pressed="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-ink);
 }
 
-.subject-tabs .count {
-  color: var(--ink-3);
-  font-family: var(--font-mono);
+.subject-filter .count {
   font-size: var(--text-xs);
+  opacity: 0.8;
 }
 
 .subject-section {
-  margin-bottom: var(--s-8);
+  margin-bottom: var(--s-7);
 }
 
 .subject-head {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--s-2) var(--s-4);
+  align-items: center;
+  gap: var(--s-3);
+  padding-bottom: var(--s-3);
   margin-bottom: var(--s-4);
+  border-bottom: 1px solid var(--line);
 }
 
-.subject-head h2 {
-  font-size: var(--text-xl);
+.subject-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--subj-soft, var(--primary-soft));
+  color: var(--subj, var(--primary));
+}
+
+/* Each subject keeps its own identity color across the icon, the banner, and the thumb. */
+.subj-physics {
+  --subj: oklch(0.46 0.15 262);
+  --subj-soft: oklch(0.955 0.03 262);
+}
+.subj-science {
+  --subj: oklch(0.44 0.11 165);
+  --subj-soft: oklch(0.955 0.035 165);
+}
+.subj-math {
+  --subj: oklch(0.48 0.13 62);
+  --subj-soft: oklch(0.968 0.038 70);
+}
+.subj-language {
+  --subj: oklch(0.47 0.1 82);
+  --subj-soft: var(--gold-soft);
+}
+.subj-social {
+  --subj: oklch(0.45 0.11 236);
+  --subj-soft: oklch(0.955 0.03 236);
+}
+
+.lesson-thumb[class*="subj-"],
+.subject-icon,
+.course-banner {
+  background: var(--subj-soft);
+  color: var(--subj);
 }
 
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--s-4);
   list-style: none;
 }
 
 .course-card {
-  position: relative;
   display: grid;
-  align-content: start;
-  gap: var(--s-2);
-  padding: var(--s-4) var(--s-5) var(--s-5);
+  grid-template-rows: auto 1fr;
   border: 1px solid var(--line);
-  border-top: 3px solid var(--subj, var(--primary));
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
   background: var(--surface);
-  transition: border-color var(--dur-1) var(--ease);
+  overflow: hidden;
+  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
 
 .course-card:hover {
   border-color: var(--line-strong);
-  border-top-color: var(--subj, var(--primary));
+  box-shadow: 0 4px 12px -6px oklch(0.24 0.03 265 / 0.2);
+  transform: translateY(-1px);
 }
 
-.course-card h3 {
+.course-card:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.course-banner {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 96px;
+  border-bottom: 1px solid var(--line);
+}
+
+.course-done {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: 10px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ok);
+  color: var(--primary-ink);
+}
+
+.course-body {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding: var(--s-4);
+}
+
+.course-body h3 {
   font-size: var(--text-lg);
 }
 
-/* the whole card is the link target */
-.course-card h3 a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-.course-summary {
-  color: var(--ink-2);
-  font-size: var(--text-sm);
-  line-height: 1.6;
-}
-
-.course-meta {
+.course-body .chips {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s-1) var(--s-2);
-  color: var(--ink-2);
-  font-size: var(--text-xs);
+  gap: var(--s-2);
 }
 
-.course-card .text-link {
-  margin-top: var(--s-2);
-  font-size: var(--text-sm);
-}
-
-.done-tick {
-  color: var(--ok);
-}
-
-/* subject hues only mark the top edge of a lesson unit */
-.subj-physics {
-  --subj: var(--physics-force);
-}
-
-.subj-science {
-  --subj: var(--physics-velocity);
-}
-
-.subj-math {
-  --subj: var(--physics-acceleration);
-}
-
-.subj-language {
-  --subj: var(--gold-deep);
-}
-
-.subj-social {
-  --subj: var(--physics-mass);
-}
-
-.step-kind {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.course-body .btn {
   justify-self: start;
-  color: var(--ink-2);
-  font-size: var(--text-sm);
-  font-weight: 600;
 }
-
-
-/* ================================================================ progress */
 
 /* ================================================================= progress */
 
@@ -3900,6 +3955,7 @@ html.high-contrast :is(.text-link, .footer-links a) {
 @media (max-width: 960px) {
   .hero-grid,
   .teacher-layout,
+  .student-top,
   .player {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -4078,13 +4134,12 @@ html.high-contrast :is(.text-link, .footer-links a) {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 
-  .score-next {
-    margin-inline-start: 0;
-    width: 100%;
+  .continue-card {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .continue {
-    margin-bottom: var(--s-7);
+  .continue-card .lesson-thumb {
+    display: none;
   }
 
   .lesson-item {
