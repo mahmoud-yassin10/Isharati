@@ -461,6 +461,11 @@ html[lang="en"] body {
   line-height: 1.55;
 }
 
+html[lang="en"] .t-ar,
+html[lang="ar"] .t-en {
+  display: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;

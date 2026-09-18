@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { A11yProvider } from "@/lib/a11y";
 import { LangProvider } from "@/lib/lang";
+import { LANG_BOOTSTRAP, parseLang } from "@/lib/lang-shared";
 import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
@@ -20,11 +22,16 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const lang = parseLang(cookieStore.get("raqeeb_lang")?.value);
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: LANG_BOOTSTRAP }} />
+      </head>
       <body>
-        <LangProvider>
+        <LangProvider initialLang={lang}>
           <A11yProvider>{children}</A11yProvider>
         </LangProvider>
       </body>
