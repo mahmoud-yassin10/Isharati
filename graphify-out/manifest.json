@@ -6,8 +6,8 @@
     "semantic_hash": ""
   },
   "backend/api/routes/auth.py": {
-    "mtime": 1789314854.5261068,
-    "seen": 1789315566.4201875,
+    "mtime": 1789419236.779559,
+    "seen": 1789473975.2190862,
     "ast_hash": "b8f404f7f6bdc069aa0350863ad980da",
     "semantic_hash": ""
   },
@@ -18,33 +18,33 @@
     "semantic_hash": ""
   },
   "backend/api/routes/lessons.py": {
-    "mtime": 1789314828.0702462,
-    "seen": 1789315566.420193,
-    "ast_hash": "fe534ffec2b20ad7f6d352bbd304750c",
+    "mtime": 1789744362.1524537,
+    "seen": 1789745098.949028,
+    "ast_hash": "3c98679d4b40bc8c9e20f578483f7be3",
     "semantic_hash": ""
   },
   "backend/api/routes/sign_to_text.py": {
-    "mtime": 1789130529.703138,
-    "seen": 1789315566.420195,
-    "ast_hash": "b90da8a58b5921c549edb71d4ff5302d",
+    "mtime": 1789566773.9049304,
+    "seen": 1789571275.3048182,
+    "ast_hash": "d81a959bdafe7b4af3688890dc5a9484",
     "semantic_hash": ""
   },
   "backend/api/routes/text_to_sign.py": {
-    "mtime": 1789319434.9758213,
-    "seen": 1789320028.3930745,
+    "mtime": 1789419236.779559,
+    "seen": 1789473975.219108,
     "ast_hash": "6c6e4fad87386f0b1dc994c5e86b8cae",
     "semantic_hash": ""
   },
   "backend/api/routes/video.py": {
-    "mtime": 1789319929.5227118,
-    "seen": 1789320028.3930767,
+    "mtime": 1789419236.7942188,
+    "seen": 1789473975.2191114,
     "ast_hash": "eded2afc2c90b4f9d96ef8284616f537",
     "semantic_hash": ""
   },
   "backend/config.py": {
-    "mtime": 1789315223.961157,
-    "seen": 1789315566.4202,
-    "ast_hash": "b68815db502bc2789d0938c4e4079fb0",
+    "mtime": 1789569199.8578093,
+    "seen": 1789571275.304826,
+    "ast_hash": "7d113f2d55e21f96e8360ca9878a0d18",
     "semantic_hash": ""
   },
   "backend/configs/cloudinary_config.py": {
@@ -54,21 +54,21 @@
     "semantic_hash": ""
   },
   "backend/data/newton_2nd.json": {
-    "mtime": 1789319502.1409988,
-    "seen": 1789320028.3930852,
-    "ast_hash": "f4ce95cd436a5b32755c79aaaa56eb6a",
+    "mtime": 1789488645.161013,
+    "seen": 1789488791.3545682,
+    "ast_hash": "a8bb0aff08205a8db1c38c7bb3227d2b",
     "semantic_hash": ""
   },
   "backend/db.py": {
-    "mtime": 1789319515.310973,
-    "seen": 1789320028.3930876,
-    "ast_hash": "62b63d50bd2fc6ad5a32e0ebf299955b",
+    "mtime": 1789744101.916969,
+    "seen": 1789745098.9490554,
+    "ast_hash": "fdbb93246cbd83069ce710e0e9775e30",
     "semantic_hash": ""
   },
   "backend/main.py": {
-    "mtime": 1789319766.4097683,
-    "seen": 1789320028.3930902,
-    "ast_hash": "ef37a8776b08fb194a367d74a4501fc6",
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.9490566,
+    "ast_hash": "1b7075c92edc72464b854dae9d8c3327",
     "semantic_hash": ""
   },
   "backend/models/aux_10A_names.json": {
@@ -84,8 +84,8 @@
     "semantic_hash": ""
   },
   "backend/pose_loader.py": {
-    "mtime": 1789319409.3366647,
-    "seen": 1789320028.3930972,
+    "mtime": 1789419236.779559,
+    "seen": 1789473975.2191424,
     "ast_hash": "5c921cb5488e82e57924035c3ff83352",
     "semantic_hash": ""
   },
@@ -96,20 +96,20 @@
     "semantic_hash": ""
   },
   "backend/security.py": {
-    "mtime": 1789314795.2301114,
-    "seen": 1789315566.4202144,
+    "mtime": 1789419236.8265765,
+    "seen": 1789473975.219154,
     "ast_hash": "b0b35c98cefbc1dfa6628b401529d295",
     "semantic_hash": ""
   },
   "backend/services/animation_generator.py": {
-    "mtime": 1789319929.4887764,
-    "seen": 1789320028.3931072,
+    "mtime": 1789419236.7870493,
+    "seen": 1789473975.2191575,
     "ast_hash": "f7442d13c6674868fb20e2afa17c7227",
     "semantic_hash": ""
   },
   "backend/services/arabic_normalizer.py": {
-    "mtime": 1789319764.8948932,
-    "seen": 1789320028.3931088,
+    "mtime": 1789419236.7853856,
+    "seen": 1789473975.219161,
     "ast_hash": "93a3848404acaaf91c21a2d5a49f9a35",
     "semantic_hash": ""
   },
@@ -132,8 +132,8 @@
     "semantic_hash": ""
   },
   "backend/services/pose_retriever.py": {
-    "mtime": 1789319410.4132404,
-    "seen": 1789320028.3931148,
+    "mtime": 1789419236.828283,
+    "seen": 1789473975.2191763,
     "ast_hash": "71ee9f8efb9b801cda6f2fc6b781ed20",
     "semantic_hash": ""
   },
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "backend/services/sign_predictor.py": {
-    "mtime": 1789130530.455961,
-    "seen": 1789315566.4202292,
-    "ast_hash": "429e971353b787d28b3a9276ed8ef7d0",
+    "mtime": 1789566767.0279949,
+    "seen": 1789571275.3048596,
+    "ast_hash": "506a198f4f21f728a1809fc20f8e5000",
     "semantic_hash": ""
   },
   "backend/services/speech_to_text.py": {
@@ -168,129 +168,129 @@
     "semantic_hash": ""
   },
   "frontend/next-env.d.ts": {
-    "mtime": 1789315430.3507555,
-    "seen": 1789315566.4202356,
+    "mtime": 1789419236.7853856,
+    "seen": 1789473975.2191994,
     "ast_hash": "90426577ad8f38459f3e566411c85589",
     "semantic_hash": ""
   },
   "frontend/next.config.ts": {
-    "mtime": 1789314857.527177,
-    "seen": 1789315566.420237,
+    "mtime": 1789419236.7853856,
+    "seen": 1789473975.2192032,
     "ast_hash": "ce940dfdb356e52e790139b9d6993f79",
     "semantic_hash": ""
   },
   "frontend/package.json": {
-    "mtime": 1789314856.0163977,
-    "seen": 1789315566.4202387,
+    "mtime": 1789419236.7757797,
+    "seen": 1789473975.2192068,
     "ast_hash": "34a0878c0943aada5c6c56fb71713b60",
     "semantic_hash": ""
   },
   "frontend/src/app/layout.tsx": {
-    "mtime": 1789320434.1979659,
-    "seen": 1789320440.7609618,
-    "ast_hash": "6132661eff59b4dac96d7e3bbe71fd7b",
+    "mtime": 1789736573.5845022,
+    "seen": 1789745098.9490857,
+    "ast_hash": "5f8fa9ca5609123a6435a7610b37fcd8",
     "semantic_hash": ""
   },
   "frontend/src/app/login/page.tsx": {
-    "mtime": 1789320336.419189,
-    "seen": 1789320440.7609646,
-    "ast_hash": "be6041052676c23ff061a6a59de9a2b7",
+    "mtime": 1789737281.9507515,
+    "seen": 1789745098.9490867,
+    "ast_hash": "c48972251a33fbdc0b4d0c7d5dfad4c7",
     "semantic_hash": ""
   },
   "frontend/src/app/page.tsx": {
-    "mtime": 1789319525.966582,
-    "seen": 1789320028.3931365,
-    "ast_hash": "da69858cef975311f47d521cd95269d5",
+    "mtime": 1789737715.0654902,
+    "seen": 1789745098.949088,
+    "ast_hash": "199eb94cd4957cee3483b023f148d27e",
     "semantic_hash": ""
   },
   "frontend/src/app/student/lessons/[id]/page.tsx": {
-    "mtime": 1789320369.2398021,
-    "seen": 1789320440.7609692,
-    "ast_hash": "551c144882799656bfdda79f57cabef6",
+    "mtime": 1789742291.6640193,
+    "seen": 1789745098.9490898,
+    "ast_hash": "5ef56400a9f9f3691e698a2a127a732e",
     "semantic_hash": ""
   },
   "frontend/src/app/student/page.tsx": {
-    "mtime": 1789320340.0745306,
-    "seen": 1789320440.760971,
-    "ast_hash": "9e10919975cd8f2f8341cc8c4ae6ac7d",
+    "mtime": 1789742276.7872033,
+    "seen": 1789745098.9490907,
+    "ast_hash": "e6478ba627aecc2afa9984ca5af39f2e",
     "semantic_hash": ""
   },
   "frontend/src/app/teacher/lessons/[id]/page.tsx": {
-    "mtime": 1789320389.7362995,
-    "seen": 1789320440.760973,
-    "ast_hash": "b2cd0e28d56c3e01c2c64d42ac337366",
+    "mtime": 1789744817.7141788,
+    "seen": 1789745098.9490921,
+    "ast_hash": "754144c2cd8e8c3261c1ee2cf9aa8c5d",
     "semantic_hash": ""
   },
   "frontend/src/app/teacher/page.tsx": {
-    "mtime": 1789320340.5763133,
-    "seen": 1789320440.760975,
-    "ast_hash": "d7d71bd23edc9aef6a56b537d29195e8",
+    "mtime": 1789744674.264439,
+    "seen": 1789745098.9490938,
+    "ast_hash": "4a6b64ffa7820093e90c797a8598602d",
     "semantic_hash": ""
   },
   "frontend/src/components/AppShell.tsx": {
-    "mtime": 1789320434.1979659,
-    "seen": 1789320440.7609766,
-    "ast_hash": "1e28fe86a87c3031433b086878ab190e",
+    "mtime": 1789744538.3681588,
+    "seen": 1789745098.9490983,
+    "ast_hash": "4a2f66e86c5b6e426e5e4649db4ed9ab",
     "semantic_hash": ""
   },
   "frontend/src/components/NewtonLab.tsx": {
-    "mtime": 1789320330.8312092,
-    "seen": 1789320440.7609801,
-    "ast_hash": "0c83e065d543c0eec85bf8981267dfc7",
+    "mtime": 1789740250.8416185,
+    "seen": 1789745098.9491029,
+    "ast_hash": "fb6377b452f2cdaf3423b29fc77940c0",
     "semantic_hash": ""
   },
   "frontend/src/components/SignCheck.tsx": {
-    "mtime": 1789320335.2350173,
-    "seen": 1789320440.760982,
-    "ast_hash": "2fa66d5e05ee56e5f6beb73084393fed",
+    "mtime": 1789670247.1083477,
+    "seen": 1789745098.9491072,
+    "ast_hash": "731705fc324bd4b9345de1b0d2fe6970",
     "semantic_hash": ""
   },
   "frontend/src/components/SignPanel.tsx": {
-    "mtime": 1789320334.1846962,
-    "seen": 1789320440.7609837,
-    "ast_hash": "13ac9b2fec7cbda56250a54853f27269",
+    "mtime": 1789737077.9710064,
+    "seen": 1789745098.9491081,
+    "ast_hash": "323f22890768b4235979f548b7f1463c",
     "semantic_hash": ""
   },
   "frontend/src/lib/api.ts": {
-    "mtime": 1789314884.783219,
-    "seen": 1789315566.4202583,
-    "ast_hash": "9499dd39113ae1bbebe73a9b0e316e0f",
+    "mtime": 1789744531.2363927,
+    "seen": 1789745098.949119,
+    "ast_hash": "4ae9be1d4d9233bab5cc3f8bfbb62892",
     "semantic_hash": ""
   },
   "frontend/src/lib/physics.ts": {
-    "mtime": 1789314863.0980024,
-    "seen": 1789315566.4202614,
+    "mtime": 1789419236.7853856,
+    "seen": 1789473975.2192612,
     "ast_hash": "eadb09afbd045fda20bb16266682979f",
     "semantic_hash": ""
   },
   "frontend/src/lib/types.ts": {
-    "mtime": 1789319479.6647596,
-    "seen": 1789320028.3931649,
-    "ast_hash": "d1f5e4ddb3d7a4fec5f1fe021476a1f9",
+    "mtime": 1789744520.5294244,
+    "seen": 1789745098.9491274,
+    "ast_hash": "eb78524d6d07cd95aeb63d337987b519",
     "semantic_hash": ""
   },
   "frontend/src/lib/useUser.ts": {
-    "mtime": 1789314991.6054919,
-    "seen": 1789315566.4202647,
+    "mtime": 1789419236.8298063,
+    "seen": 1789473975.219268,
     "ast_hash": "e3a9dec2d5cc9777884a5689dd956bed",
     "semantic_hash": ""
   },
   "frontend/tsconfig.json": {
-    "mtime": 1789314856.945533,
-    "seen": 1789315566.4202664,
+    "mtime": 1789419236.7853856,
+    "seen": 1789473975.219272,
     "ast_hash": "45a8863238549ff399b46a27348ea3e7",
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1789320390.0516467,
-    "seen": 1789320440.7609994,
-    "ast_hash": "0319580b95fab0bd80cef593387487e9",
+    "mtime": 1789742513.2595904,
+    "seen": 1789745098.9492393,
+    "ast_hash": "6558b481ffb467d9548d63d5729a5962",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
-    "mtime": 1789314581.952233,
-    "seen": 1789315566.4202697,
-    "ast_hash": "d55f1e98ed051a5983f54af078f20187",
+    "mtime": 1789744101.9189796,
+    "seen": 1789745098.9492402,
+    "ast_hash": "53abc26e018315934b637e3bcdb7ffcd",
     "semantic_hash": ""
   },
   "README.md": {
@@ -300,9 +300,9 @@
     "semantic_hash": ""
   },
   "backend/README.md": {
-    "mtime": 1789130621.9301467,
-    "seen": 1789315566.4202728,
-    "ast_hash": "ce5496d1fc3989bd70ed4b06e4b5b81b",
+    "mtime": 1789744101.916969,
+    "seen": 1789745098.9492428,
+    "ast_hash": "f8f02efdd51aa855c83be59572e18058",
     "semantic_hash": ""
   },
   "backend/requirements.txt": {
@@ -318,20 +318,20 @@
     "semantic_hash": ""
   },
   "docs/raqeeb-spec.md": {
-    "mtime": 1789313854.2403202,
-    "seen": 1789315566.420278,
+    "mtime": 1789419236.8298063,
+    "seen": 1789473975.2193036,
     "ast_hash": "de4740f98a3b27617a09b96e26a1bd89",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-09-13-raqeeb.md": {
-    "mtime": 1789313920.8370688,
-    "seen": 1789315566.4202795,
+    "mtime": 1789419236.7853856,
+    "seen": 1789473975.2193074,
     "ast_hash": "1a5f4307a589aa273ba1e4edcd84765b",
     "semantic_hash": ""
   },
   "frontend/README.md": {
-    "mtime": 1789315092.6861331,
-    "seen": 1789315566.4202812,
+    "mtime": 1789419236.7757797,
+    "seen": 1789473975.219311,
     "ast_hash": "2af5efeed503ce0bf70e691cc012a827",
     "semantic_hash": ""
   },
@@ -366,15 +366,897 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Dual.tsx": {
-    "mtime": 1789320308.219738,
-    "seen": 1789320440.7609782,
-    "ast_hash": "baec325c454aec9b0dd566cc74215097",
+    "mtime": 1789670134.807713,
+    "seen": 1789745098.949102,
+    "ast_hash": "0bd090bff6cf244f26a0992bdd0730b6",
     "semantic_hash": ""
   },
   "frontend/src/lib/lang.tsx": {
-    "mtime": 1789320309.1994002,
-    "seen": 1789320440.7609885,
+    "mtime": 1789419236.7819145,
+    "seen": 1789473975.2192576,
     "ast_hash": "9d674dd4ed3331facf16a2480bf29fad",
+    "semantic_hash": ""
+  },
+  "backend/requirements-fly.txt": {
+    "mtime": 1789569199.842673,
+    "seen": 1789571275.3051176,
+    "ast_hash": "750102ca4bb70ce47e86b3364ca2e2b7",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/heavy-light.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.9490457,
+    "ast_hash": "41ecf7a509a0ed986b9c15321f593d62",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/i-am-student.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.9490469,
+    "ast_hash": "d8c499ac902dcdb0a2146f8cf3258348",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/newton-2nd.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.949048,
+    "ast_hash": "5c626483f98994b688ff8ccd3654ee19",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/QuizPanel.tsx": {
+    "mtime": 1789670222.511028,
+    "seen": 1789745098.949106,
+    "ast_hash": "1dd5f558501c5783329b3ecfd6242d06",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/.lovable/project.json": {
+    "mtime": 1789479627.4268508,
+    "seen": 1789488791.354658,
+    "ast_hash": "fa71b72a875e520a4dab168d7f4950d7",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/components.json": {
+    "mtime": 1789479627.4268508,
+    "seen": 1789488791.3546598,
+    "ast_hash": "d9a5358de725b840c808a17fa6638620",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/eslint.config.js": {
+    "mtime": 1789479627.432061,
+    "seen": 1789488791.3546617,
+    "ast_hash": "20097f0c1a669549b3a8d3a194c3c25d",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/package.json": {
+    "mtime": 1789744101.9189796,
+    "seen": 1789745098.9491367,
+    "ast_hash": "8acde57140307721aa4a4470d9f7f76b",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/shared.tsx": {
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.9491448,
+    "ast_hash": "1b7cf8ff20aacbfdcf34b7d050664e87",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/site-header.tsx": {
+    "mtime": 1789744101.9058914,
+    "seen": 1789745098.9491456,
+    "ast_hash": "d9d2592a190883a6f35a36cc04935748",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/accordion.tsx": {
+    "mtime": 1789479627.433804,
+    "seen": 1789488791.3546689,
+    "ast_hash": "8ecf0fa176c31be17b45a60ee2e758b6",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/alert-dialog.tsx": {
+    "mtime": 1789479627.433804,
+    "seen": 1789488791.35467,
+    "ast_hash": "d93a897b2af34657fc5ba1d1db303095",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/alert.tsx": {
+    "mtime": 1789479627.433804,
+    "seen": 1789488791.3546722,
+    "ast_hash": "5a6d7c9719435e87ba5605fb5e7b0dc9",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/aspect-ratio.tsx": {
+    "mtime": 1789479627.433804,
+    "seen": 1789488791.3546736,
+    "ast_hash": "14c12661aad8c80328c86a18b506c088",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/avatar.tsx": {
+    "mtime": 1789479627.433804,
+    "seen": 1789488791.3546753,
+    "ast_hash": "1c3bd25e3806bbc82f9513b789b14a30",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/badge.tsx": {
+    "mtime": 1789479627.4384222,
+    "seen": 1789488791.3546767,
+    "ast_hash": "f712eba47d4263bea5f224eacc090cb0",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/breadcrumb.tsx": {
+    "mtime": 1789479627.4384222,
+    "seen": 1789488791.3546782,
+    "ast_hash": "53f1ec4c38907530050142e3afa85cc7",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/button.tsx": {
+    "mtime": 1789479627.4390385,
+    "seen": 1789488791.3546798,
+    "ast_hash": "21095592bdee9852eccd1906092a0446",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/calendar.tsx": {
+    "mtime": 1789479627.4390385,
+    "seen": 1789488791.3546815,
+    "ast_hash": "9d66ad77c85d11d6089d5b85e63eaab2",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/card.tsx": {
+    "mtime": 1789479627.4400492,
+    "seen": 1789488791.3546834,
+    "ast_hash": "053803f00d677727a20ac1af41ee599c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/carousel.tsx": {
+    "mtime": 1789479627.4400492,
+    "seen": 1789488791.3546848,
+    "ast_hash": "36dd085e09dbc3fe793c1708a6821204",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/chart.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3546865,
+    "ast_hash": "e5bff896623339713c67d40cd8b8a74a",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/checkbox.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3546906,
+    "ast_hash": "f365b7eb8243d81cb5eab455675212ac",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/collapsible.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3546925,
+    "ast_hash": "eda123bd06c97202f8cf1483e62d1580",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/command.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.354694,
+    "ast_hash": "9eba05d7f5d3fcfd642d9affb10b75c7",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/context-menu.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3546953,
+    "ast_hash": "2f69a8ab800dacdb72b9c8c8b0898f07",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/dialog.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3546972,
+    "ast_hash": "79b74d5876df6c4d696734273de5390a",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/drawer.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3546987,
+    "ast_hash": "ec99714627829d4a2ce0b03f3e2b3335",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/dropdown-menu.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3547006,
+    "ast_hash": "3dd019e4d754ff62a2ef8673c8c7ea45",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/form.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.354702,
+    "ast_hash": "5a003832fca7d213e5b805ec214d819c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/hover-card.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3547037,
+    "ast_hash": "82b2422c27dad853935c901f46966914",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/input-otp.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3547053,
+    "ast_hash": "84dcee336f40dd41293b2b69f640b6cd",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/input.tsx": {
+    "mtime": 1789479627.4407494,
+    "seen": 1789488791.3547072,
+    "ast_hash": "bc58ae801e789ef86349bf93809c3534",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/label.tsx": {
+    "mtime": 1789479627.4459658,
+    "seen": 1789488791.3547084,
+    "ast_hash": "919969cdd3255dc8aaed6ea15dc75166",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/menubar.tsx": {
+    "mtime": 1789479627.4469748,
+    "seen": 1789488791.3547103,
+    "ast_hash": "3fa3601c4b520cac77f096d9a8b0ae9f",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/navigation-menu.tsx": {
+    "mtime": 1789479627.4469748,
+    "seen": 1789488791.3547118,
+    "ast_hash": "c2b62d8c6898c6c5a15f50ce2c29b995",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/pagination.tsx": {
+    "mtime": 1789479627.4476027,
+    "seen": 1789488791.3547134,
+    "ast_hash": "0e8f9422cf3b259d1cfa8ff36bf8363c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/popover.tsx": {
+    "mtime": 1789479627.4476027,
+    "seen": 1789488791.3547149,
+    "ast_hash": "4db76837576da0621b5810d9bea6767f",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/progress.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547168,
+    "ast_hash": "77b2feba9a66fc89497a042b982bf7a1",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/radio-group.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547184,
+    "ast_hash": "b568877d2661e29b775d52222ed7e121",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/resizable.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547204,
+    "ast_hash": "1f93a1a9c4b1e770e17a34dcf67e939b",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/scroll-area.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547218,
+    "ast_hash": "004b51b8d40b7518596df3be92da6a17",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/select.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547237,
+    "ast_hash": "030580ae0c255538eca1667d9987703d",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/separator.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547254,
+    "ast_hash": "81c2922b4be835b7455accbff8ec0ecd",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/sheet.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547273,
+    "ast_hash": "a9760583b48b4192927e8f26bb2ef318",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/sidebar.tsx": {
+    "mtime": 1789479627.4489589,
+    "seen": 1789488791.3547287,
+    "ast_hash": "c7d7b7b0d8159cf245eb67638a4b0a29",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/skeleton.tsx": {
+    "mtime": 1789479627.4520211,
+    "seen": 1789488791.3547301,
+    "ast_hash": "07675852ac2c3e4380129369a31cb44d",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/slider.tsx": {
+    "mtime": 1789479627.4520211,
+    "seen": 1789488791.3547318,
+    "ast_hash": "f51437b9ee04349e8af16e6366c28fee",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/sonner.tsx": {
+    "mtime": 1789479627.4520211,
+    "seen": 1789488791.3547335,
+    "ast_hash": "bdd1b9b20e6cd7b6977d371849d4c1e9",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/switch.tsx": {
+    "mtime": 1789479627.452926,
+    "seen": 1789488791.3547354,
+    "ast_hash": "e36f4816956e06b38f81a563297acb8f",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/table.tsx": {
+    "mtime": 1789479627.452926,
+    "seen": 1789488791.3547368,
+    "ast_hash": "51562ced5e90e7352ed2694c903bd0d3",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/tabs.tsx": {
+    "mtime": 1789479627.452926,
+    "seen": 1789488791.3547382,
+    "ast_hash": "4175d0116efa9e701513e864bbdfae85",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/textarea.tsx": {
+    "mtime": 1789479627.4542341,
+    "seen": 1789488791.35474,
+    "ast_hash": "1b230007443ef12f365fbd94d443ea5c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/toggle-group.tsx": {
+    "mtime": 1789479627.4545805,
+    "seen": 1789488791.3547423,
+    "ast_hash": "e1a2ed5eafef66716f034692f9ad46f4",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/toggle.tsx": {
+    "mtime": 1789479627.4545805,
+    "seen": 1789488791.3547454,
+    "ast_hash": "b411abadaeca033bc272e0f2c2e84238",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/ui/tooltip.tsx": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.3547487,
+    "ast_hash": "6dd894a539d5f97a0615c049be79a355",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/hooks/use-mobile.tsx": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.3547518,
+    "ast_hash": "1bb3ebac7752b497a78d34e341975bbd",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/content.ts": {
+    "mtime": 1789744101.9271314,
+    "seen": 1789745098.9492042,
+    "ast_hash": "fbde0c23d582832d7ac6a5808cd218ff",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/error-capture.ts": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.3547628,
+    "ast_hash": "50ede47674ca5198e2c63380069dc66a",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/error-page.ts": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.354767,
+    "ast_hash": "cc10be665a4bf6be668d0c29c207b92d",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/lovable-error-reporting.ts": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.3547702,
+    "ast_hash": "2e3b79724493d9a113d8c61c4bd1c208",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/raqeeb-context.tsx": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.9492097,
+    "ast_hash": "00afe946a1755642b96885188bb2aa2c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/utils.ts": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.354775,
+    "ast_hash": "e3f848f1b39f863e6164cf58b5a8e752",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routeTree.gen.ts": {
+    "mtime": 1789744101.895259,
+    "seen": 1789745098.949214,
+    "ast_hash": "b822187594f665b3f3ff358eb5b69146",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/router.tsx": {
+    "mtime": 1789479627.4559524,
+    "seen": 1789488791.354782,
+    "ast_hash": "1399708ae830799467737d473ea53a30",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/__root.tsx": {
+    "mtime": 1789479627.4598544,
+    "seen": 1789488791.3547862,
+    "ast_hash": "ffdf310a24346d660ca519589411fdd3",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/accessibility.tsx": {
+    "mtime": 1789479627.4608662,
+    "seen": 1789488791.3547902,
+    "ast_hash": "919316e6678f73049b78be4444cb6ccd",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/index.tsx": {
+    "mtime": 1789744101.9271314,
+    "seen": 1789745098.9492188,
+    "ast_hash": "85e8db6752e67ce4350e3881baf52c90",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/my-lessons.tsx": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.949222,
+    "ast_hash": "ea9503dd5399247cbf080af7009b1e12",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/progress.tsx": {
+    "mtime": 1789744101.895259,
+    "seen": 1789745098.9492233,
+    "ast_hash": "1721f52812b3774dca6266e631011122",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/subjects.physics.tsx": {
+    "mtime": 1789744101.9189796,
+    "seen": 1789745098.949224,
+    "ast_hash": "7ab6c0bfb7428ed13c703607a2dc8311",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/subjects.tsx": {
+    "mtime": 1789479627.4615967,
+    "seen": 1789488791.3548064,
+    "ast_hash": "9cf854cf6e802e9845d3010d5194f631",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/teacher.physics.newton-second-law.tsx": {
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.9492276,
+    "ast_hash": "331230dea3507b9ed361850716d3052c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/server.ts": {
+    "mtime": 1789479627.4615967,
+    "seen": 1789488791.3548126,
+    "ast_hash": "2df9e6eef196729ff47146962fd38714",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/start.ts": {
+    "mtime": 1789479627.4615967,
+    "seen": 1789488791.3548155,
+    "ast_hash": "b7cd029451c44a6ca216f219251ef8e9",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/tsconfig.json": {
+    "mtime": 1789479627.4615967,
+    "seen": 1789488791.3548183,
+    "ast_hash": "f225136aed5e34ebf499ded16474571e",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/vite.config.ts": {
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.9492345,
+    "ast_hash": "bc41070bd74e513cd3d9e5651eb36103",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/.lovable/plan/raqeeb-static-tutoring-website-2026-09-15.md": {
+    "mtime": 1789479627.4268508,
+    "seen": 1789488791.3548734,
+    "ast_hash": "2932a8be53f4ef5f3710e0f3ec155005",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/AGENTS.md": {
+    "mtime": 1789479627.4268508,
+    "seen": 1789488791.354877,
+    "ast_hash": "0c4b4b50b295f3a5ce106d71eee276fc",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/README.md": {
+    "mtime": 1789479627.4268508,
+    "seen": 1789488791.35488,
+    "ast_hash": "0e90061254194f6f5d02a8d8ef0a1de0",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/public/robots.txt": {
+    "mtime": 1789479627.433074,
+    "seen": 1789488791.3548827,
+    "ast_hash": "a9b03494151fe90e5decd2405400e106",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/roadmap.md": {
+    "mtime": 1789479627.433804,
+    "seen": 1789488791.3548853,
+    "ast_hash": "f8da8cae02b0acbb9e2006d55f30ffa3",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/README.md": {
+    "mtime": 1789479627.4598544,
+    "seen": 1789488791.3548884,
+    "ast_hash": "7c596cbb4d31d216707c1fb18d7d4d3b",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/walk-stop.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.9490511,
+    "ast_hash": "04e7dd9c817e40d266686d90f08eb1fa",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/weight-mass.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.9490526,
+    "ast_hash": "2d3ed9d8a5c5f6034d57fde296254712",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/a11y.tsx": {
+    "mtime": 1789736573.6067915,
+    "seen": 1789745098.9491177,
+    "ast_hash": "396d871ad77c55c72455fda84376f56b",
+    "semantic_hash": ""
+  },
+  "scripts/deploy-fly.ps1": {
+    "mtime": 1789744101.9271314,
+    "seen": 1789745098.9492354,
+    "ast_hash": "6db67f71f22cf17c40285bc285b2d814",
+    "semantic_hash": ""
+  },
+  "scripts/deploy-vercel.ps1": {
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.9492366,
+    "ast_hash": "78e866d5f9b4a5320068428a5a9bba2b",
+    "semantic_hash": ""
+  },
+  "backend/data/_pose_keys.txt": {
+    "mtime": 1789491751.839526,
+    "seen": 1789492228.9980106,
+    "ast_hash": "d34f06ecce6fb8e3c4dc03f8795a181c",
+    "semantic_hash": ""
+  },
+  "backend/data/_pose_report.txt": {
+    "mtime": 1789491751.839526,
+    "seen": 1789492228.9980137,
+    "ast_hash": "a71134820f81f90e75d73b4ad1621e6b",
+    "semantic_hash": ""
+  },
+  "docs/hackathon-gaps.md": {
+    "mtime": 1789569199.8599532,
+    "seen": 1789571275.3051236,
+    "ast_hash": "eab103009377d217f02027c6ba037ccb",
+    "semantic_hash": ""
+  },
+  "frontend/vercel.json": {
+    "mtime": 1789569199.855438,
+    "seen": 1789571275.304917,
+    "ast_hash": "86d82b4ad5e8e9d40f8c6307c942b812",
+    "semantic_hash": ""
+  },
+  "backend/scripts/eval_lesson_vocab.py": {
+    "mtime": 1789566722.5151918,
+    "seen": 1789571275.304848,
+    "ast_hash": "ba7b236525afb4112fab653d68199b18",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ProgressBadge.tsx": {
+    "mtime": 1789670137.4822595,
+    "seen": 1789745098.9491053,
+    "ast_hash": "c6974ddf6424a6199f5175c3cde93a6c",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/gamification.ts": {
+    "mtime": 1789720421.4062555,
+    "seen": 1789745098.9491212,
+    "ast_hash": "cae66a7fd6c7c868a05ca4eb156f5ae6",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/NewtonLab.tsx": {
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.949139,
+    "ast_hash": "913bd1e93521040420453ab3d4133c88",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/QuizPanel.tsx": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.9491405,
+    "ast_hash": "272a192ea9e86e45574468da47477d01",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/SignCheck.tsx": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.9491415,
+    "ast_hash": "b695fc3deb4bb5e128b901240ab6e719",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/SignPanel.tsx": {
+    "mtime": 1789744101.916969,
+    "seen": 1789745098.9491425,
+    "ast_hash": "233baa41065a8840ea6aade34e7292a3",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/components/raqeeb/dual.tsx": {
+    "mtime": 1789744101.903882,
+    "seen": 1789745098.9491436,
+    "ast_hash": "1dce1b71cebfa4a020555481e943665c",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/api.ts": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.949203,
+    "ast_hash": "a24c2b78d1867c3e79d9ba41ef516ec9",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/physics.ts": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.9492087,
+    "ast_hash": "eadb09afbd045fda20bb16266682979f",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/types.ts": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.949211,
+    "ast_hash": "b2b7a3ef186cc23874b65a3e519e4ba7",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/lib/useUser.ts": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.9492118,
+    "ast_hash": "b173e41423ef78285ba89cf51b93f217",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/lessons.$lessonId.tsx": {
+    "mtime": 1789744101.9004927,
+    "seen": 1789745098.94922,
+    "ast_hash": "e40e9040f48690d5bea3d1b7cd5148e5",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/login.tsx": {
+    "mtime": 1789744101.9058914,
+    "seen": 1789745098.949221,
+    "ast_hash": "a843f42a20390437356f0ef583686de3",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/routes/teacher.index.tsx": {
+    "mtime": 1789744101.9271314,
+    "seen": 1789745098.9492264,
+    "ast_hash": "325a39c08a0d34e3a1ba3e0aae449a43",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/src/vite-env.d.ts": {
+    "mtime": 1789744101.925131,
+    "seen": 1789745098.949231,
+    "ast_hash": "680247a0b76eebd2af1860e2253e9831",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/vercel.json": {
+    "mtime": 1789744101.9332552,
+    "seen": 1789745098.9492328,
+    "ast_hash": "c2b9f94a5620585eefcce614cf5850aa",
+    "semantic_hash": ""
+  },
+  "tmp-sign.json": {
+    "mtime": 1789559443.7297933,
+    "seen": 1789571275.305101,
+    "ast_hash": "6e759283efcb6ad5b7cb3cd1c6259d79",
+    "semantic_hash": ""
+  },
+  "backend/requirements-fly-full.txt": {
+    "mtime": 1789570151.161749,
+    "seen": 1789571275.3051155,
+    "ast_hash": "cc1e480c7f2402dfcd4b88b36284bbcc",
+    "semantic_hash": ""
+  },
+  "docs/pitch-deck-copy.md": {
+    "mtime": 1789569466.0427217,
+    "seen": 1789571275.3051252,
+    "ast_hash": "eb5dbece1ef1b0975be5d39a859b53dc",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-09-16-hackathon-sprint.md": {
+    "mtime": 1789642983.551695,
+    "seen": 1789745098.9492557,
+    "ast_hash": "20afe637f8dcf59d818e4d88a3a54f0f",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/codex-handoff-prompt.md": {
+    "mtime": 1789569026.105477,
+    "seen": 1789571275.3051324,
+    "ast_hash": "9f51fff7ea725219aa2407372c80f087",
+    "semantic_hash": ""
+  },
+  "lovable build/raqeeb-learn-arabic/scripts/copy-spa-shell.mjs": {
+    "mtime": 1789744101.895259,
+    "seen": 1789745098.949138,
+    "ast_hash": "c5174706304609f825a48bcec75b8cfd",
+    "semantic_hash": ""
+  },
+  ".claude/launch.json": {
+    "mtime": 1789654926.0290403,
+    "seen": 1789745098.9490125,
+    "ast_hash": "97385593595fd2a03281789fb46f7bcf",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/add-subtract.json": {
+    "mtime": 1789720966.7737014,
+    "seen": 1789745098.9490368,
+    "ast_hash": "0f6251c9525a9c30162464b16a03ad20",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/colors.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.9490383,
+    "ast_hash": "6432dbefe7094bb7f330b0c21d3ddc1b",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/day-night.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.94904,
+    "ast_hash": "2ec62a048cfac2a3ab41892d1d3fe9a3",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/days-of-week.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.949041,
+    "ast_hash": "bc0439dc6e61a1f0ee712ed8fa44bc8d",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/digestive-system.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.9490416,
+    "ast_hash": "40dc16e4aa0d472aed15b67052abc4f1",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/directions-egypt.json": {
+    "mtime": 1789720966.7737014,
+    "seen": 1789745098.9490428,
+    "ast_hash": "51465d62c016a7d4e7b581793cd95c63",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/family.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.949044,
+    "ast_hash": "13704f1cc995823f59af53d8abfa1e60",
+    "semantic_hash": ""
+  },
+  "backend/data/lessons/numbers-0-10.json": {
+    "mtime": 1789720966.768152,
+    "seen": 1789745098.949049,
+    "ast_hash": "8f68ceab7fd671ab72c714d646cde898",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/accessibility/page.tsx": {
+    "mtime": 1789736573.5808506,
+    "seen": 1789745098.9490845,
+    "ast_hash": "3dbcbba001a5800cc89dcadcdebc01f9",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/settings/page.tsx": {
+    "mtime": 1789737254.3537173,
+    "seen": 1789745098.9490888,
+    "ast_hash": "28bc1b78a96e6355a6ae6bf02635cb28",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/teacher/lessons/page.tsx": {
+    "mtime": 1789744867.749638,
+    "seen": 1789745098.9490929,
+    "ast_hash": "8eeabd96f2752e8e7673fd63db4c383c",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/teacher/reports/page.tsx": {
+    "mtime": 1789744895.199474,
+    "seen": 1789745098.949095,
+    "ast_hash": "f0d13a908c464cf6394e2884a3c0b578",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/teacher/students/page.tsx": {
+    "mtime": 1789744839.7228873,
+    "seen": 1789745098.949096,
+    "ast_hash": "700314b50a525578dd2c3c11aa45faf4",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/A11yControls.tsx": {
+    "mtime": 1789737242.337495,
+    "seen": 1789745098.9490972,
+    "ast_hash": "7312f51fecbee97bccaeccce851037c5",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/Brand.tsx": {
+    "mtime": 1789736573.5983095,
+    "seen": 1789745098.949099,
+    "ast_hash": "43a4639246418f7e0e19241d29a91cd5",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/CreateLessonButton.tsx": {
+    "mtime": 1789744645.2448413,
+    "seen": 1789745098.9491003,
+    "ast_hash": "d08ac0f1f9f962fbca3b93d3cec185da",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/OverflowMenu.tsx": {
+    "mtime": 1789744630.674734,
+    "seen": 1789745098.9491038,
+    "ast_hash": "5694757e820eac074a9d1204c2743c97",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/DiagramGame.tsx": {
+    "mtime": 1789720361.2497528,
+    "seen": 1789745098.9491093,
+    "ast_hash": "746dc67a2e2bbaa4b628faba24345cf0",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/GameStep.tsx": {
+    "mtime": 1789720414.128988,
+    "seen": 1789745098.9491103,
+    "ast_hash": "dc2c2f9253d170bb82ded19dfb03ccba",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/MatchGame.tsx": {
+    "mtime": 1789720320.5213773,
+    "seen": 1789745098.9491112,
+    "ast_hash": "27576422e3c40ad3a4cce8c085348763",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/OrderGame.tsx": {
+    "mtime": 1789720320.5983813,
+    "seen": 1789745098.9491122,
+    "ast_hash": "3ac2f8e828833258839c2c2e7cc19848",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/SortGame.tsx": {
+    "mtime": 1789720320.561432,
+    "seen": 1789745098.949113,
+    "ast_hash": "3db4b78a69479a3a205d1ad6c9d070b1",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/TableGame.tsx": {
+    "mtime": 1789720399.438544,
+    "seen": 1789745098.9491138,
+    "ast_hash": "2675dc6a8a3ed75a77b754fb95a6091d",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/TrueFalseGame.tsx": {
+    "mtime": 1789720399.4800847,
+    "seen": 1789745098.9491146,
+    "ast_hash": "21217a5bcbae382c3f3fbae7bfd18ec1",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/games/shared.tsx": {
+    "mtime": 1789720282.8525915,
+    "seen": 1789745098.9491153,
+    "ast_hash": "69339b9ece44aa6610e6c17e0adfb377",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/ui.tsx": {
+    "mtime": 1789661525.697273,
+    "seen": 1789745098.9491165,
+    "ast_hash": "6ab8d726c4ed70e5135cc596e254190c",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/brand.ts": {
+    "mtime": 1789736573.6078248,
+    "seen": 1789745098.94912,
+    "ast_hash": "8eb421c9c3069409e9407a22155720bf",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/reports.ts": {
+    "mtime": 1789744849.7443182,
+    "seen": 1789745098.949125,
+    "ast_hash": "317a4b290b8dde9d12080ee0027af9ec",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/subjects.tsx": {
+    "mtime": 1789720414.0856338,
+    "seen": 1789745098.9491262,
+    "ast_hash": "b19690faa53c346b41566379cf6848ed",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/icon.svg": {
+    "mtime": 1789736573.5834517,
+    "seen": 1789745098.9492698,
+    "ast_hash": "4e6f38b483c6f60050aee7e4858e25ca",
     "semantic_hash": ""
   }
 }
