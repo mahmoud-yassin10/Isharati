@@ -1,4 +1,4 @@
-import type { Lesson, ProgressItem, StepSnapshot, User } from "./types";
+import type { Lesson, ProgressItem, StepSnapshot, TeacherStudent, User } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
 const TOKEN_KEY = "raqeeb_token";
@@ -157,6 +157,63 @@ export async function publishLesson(id: string) {
     headers: authHeaders(),
   });
   return parseJson<Lesson>(response);
+}
+
+export async function unpublishLesson(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}/unpublish`, {
+    method: "POST",
+    headers: authHeaders(),
+  });
+  return parseJson<Lesson>(response);
+}
+
+/** Starts a new draft lesson: a title and a subject, no steps yet. */
+export async function createLesson(payload: { title_ar: string; subject: Lesson["subject"] }) {
+  const response = await fetch(`${API_URL}/lessons`, {
+    method: "POST",
+    headers: authHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify(payload),
+  });
+  return parseJson<Lesson>(response);
+}
+
+/** Saves title/subject/summary/glossary/steps edits from the lesson editor. */
+export async function updateLesson(
+  id: string,
+  payload: Partial<Pick<Lesson, "title_ar" | "title_en" | "subject" | "summary_ar" | "summary_en" | "minutes" | "glossary" | "steps">>,
+) {
+  const response = await fetch(`${API_URL}/lessons/${id}`, {
+    method: "PATCH",
+    headers: authHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify(payload),
+  });
+  return parseJson<Lesson>(response);
+}
+
+/** Clones a lesson (with its steps) into a new draft. */
+export async function duplicateLesson(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}/duplicate`, {
+    method: "POST",
+    headers: authHeaders(),
+  });
+  return parseJson<Lesson>(response);
+}
+
+/** Deletes a draft lesson. The lesson must be unpublished first. */
+export async function deleteLesson(id: string) {
+  const response = await fetch(`${API_URL}/lessons/${id}`, {
+    method: "DELETE",
+    headers: authHeaders(),
+  });
+  return parseJson<{ ok: boolean }>(response);
+}
+
+/** Every student assigned to one of the signed-in teacher's lessons. */
+export async function listStudents() {
+  const response = await fetch(`${API_URL}/students`, {
+    headers: authHeaders(),
+  });
+  return parseJson<TeacherStudent[]>(response);
 }
 
 export async function assignLesson(id: string) {

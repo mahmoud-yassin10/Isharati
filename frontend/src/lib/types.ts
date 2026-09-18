@@ -175,3 +175,12 @@ export type ProgressItem = {
   predicted_sign: string | null;
   updated_at: string | null;
 };
+
+export type TeacherStudent = {
+  id: string;
+  name: string;
+  email: string;
+  assigned_count: number;
+  completed_count: number;
+  last_activity: string | null;
+};
