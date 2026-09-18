@@ -312,7 +312,7 @@ export default function StudentPlayer() {
           {showSigns ? <SignPanels entries={terms} /> : null}
 
           <GameStep
-            key={step.id}
+            key={`${step.id}-game`}
             step={step}
             glossary={glossary}
             onComplete={(result) => {
@@ -334,7 +334,7 @@ export default function StudentPlayer() {
 
           {step.type === "quiz" && step.quiz ? (
             <QuizPanel
-              key={step.id}
+              key={`${step.id}-quiz`}
               quiz={step.quiz}
               stems={terms}
               onSolved={() => {
@@ -346,7 +346,7 @@ export default function StudentPlayer() {
 
           {step.type === "simulate" && step.simulation ? (
             <NewtonLab
-              key={step.id}
+              key={`${step.id}-lab`}
               initialForce={step.simulation.params.F ?? 10}
               initialMass={step.simulation.params.m ?? 2}
             />
@@ -354,7 +354,7 @@ export default function StudentPlayer() {
 
           {step.type === "challenge" && step.simulation ? (
             <NewtonLab
-              key={step.id}
+              key={`${step.id}-challenge`}
               initialForce={step.simulation.params.F ?? 10}
               initialMass={step.simulation.params.m ?? 2}
               challenge={step.simulation.goal}
@@ -364,7 +364,7 @@ export default function StudentPlayer() {
 
           {step.type === "sign_check" && step.sign_target ? (
             <SignCheck
-              key={step.id}
+              key={`${step.id}-sign`}
               target={step.sign_target}
               onResult={(predicted, ok) => {
                 if (ok) setNudge({ ar: "أحسنت. الإشارة صحيحة.", en: "Well done. The sign is right." });

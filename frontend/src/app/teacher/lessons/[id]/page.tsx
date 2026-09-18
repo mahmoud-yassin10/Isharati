@@ -230,9 +230,9 @@ export default function TeacherLessonPage() {
                   {previewStep.body_ar ? (
                     <Dual as="p" className="muted" ar={previewStep.body_ar} en={previewStep.body_en ?? previewStep.body_ar} />
                   ) : null}
-                  <GameStep key={previewStep.id} step={previewStep} glossary={lesson.glossary} onComplete={() => undefined} />
+                  <GameStep key={`${previewStep.id}-game`} step={previewStep} glossary={lesson.glossary} onComplete={() => undefined} />
                   {previewStep.type === "quiz" && previewStep.quiz ? (
-                    <QuizPanel key={previewStep.id} quiz={previewStep.quiz} onSolved={() => undefined} />
+                    <QuizPanel key={`${previewStep.id}-quiz`} quiz={previewStep.quiz} onSolved={() => undefined} />
                   ) : null}
                   {(previewStep.type === "esl_term" || previewStep.type === "explain") ? (
                     <SignPanels

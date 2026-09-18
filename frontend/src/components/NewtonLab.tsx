@@ -132,14 +132,18 @@ export function NewtonLab({
   const arrowWidth = 20 + (force / MAX_F) * 70;
   const boxWidth = 52 + (mass / MAX_M) * 40;
   const boxHeight = 40 + (mass / MAX_M) * 30;
+  const accelWidth = 18 + (Math.min(accel, MAX_A) / MAX_A) * 54;
 
   return (
     <section className="lab" aria-label={pick(lang, "مختبر نيوتن", "Newton lab")}>
       <div className="lab-head">
-        <h3>
-          <FlaskConical size={22} strokeWidth={1.75} className="icon" aria-hidden="true" />
-          <Dual ar="المختبر" en="The lab" />
-        </h3>
+        <div className="lab-title">
+          <h3>
+            <FlaskConical size={22} strokeWidth={1.75} className="icon" aria-hidden="true" />
+            <Dual ar="المختبر" en="The lab" />
+          </h3>
+          <Dual as="p" className="lab-sub" ar="قانون نيوتن الثاني" en="Newton's second law" />
+        </div>
         {challenge ? (
           <p className={met ? "chip goal-chip met" : "chip goal-chip"}>
             {met ? (
@@ -154,6 +158,24 @@ export function NewtonLab({
           </p>
         ) : null}
       </div>
+
+      <ul className="lab-legend">
+        <li>
+          <span className="rel-swatch force" aria-hidden="true" />
+          <Dual as="strong" ar="قوة F" en="Force F" />
+          <Dual as="span" ar="تدفع الصندوق" en="pushes the box" />
+        </li>
+        <li>
+          <span className="rel-swatch mass" aria-hidden="true" />
+          <Dual as="strong" ar="كتلة m" en="Mass m" />
+          <Dual as="span" ar="تقاوم الحركة" en="resists motion" />
+        </li>
+        <li>
+          <span className="rel-swatch accel" aria-hidden="true" />
+          <Dual as="strong" ar="تسارع a" en="Acceleration a" />
+          <Dual as="span" ar="النتيجة" en="the result" />
+        </li>
+      </ul>
 
       <div className="readout" aria-live="polite">
         <div className="readout-cell force">
@@ -199,6 +221,7 @@ export function NewtonLab({
             <Dual ar="كتلة" en="Mass" />
             <strong>{mass.toFixed(1)} kg</strong>
           </div>
+          <span className="accel-arrow" style={{ width: `${accelWidth}px` }} aria-hidden="true" />
         </div>
       </div>
 

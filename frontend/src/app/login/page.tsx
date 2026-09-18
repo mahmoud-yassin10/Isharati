@@ -7,6 +7,7 @@ import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { ForwardIcon } from "@/components/ui";
 import { login } from "@/lib/api";
+import { BRAND } from "@/lib/brand";
 import type { Role } from "@/lib/types";
 
 const DEMOS: Record<Role, { email: string; password: string }> = {
@@ -48,22 +49,6 @@ function LoginForm() {
   return (
     <AppShell user={null} bare>
       <div className="auth">
-        <aside className="auth-aside">
-          <h2>
-            <Dual ar="رقيب يشرح بالإشارة أولاً" en="Raqeeb explains in sign first" />
-          </h2>
-          <Dual
-            as="p"
-            className="muted prose"
-            ar="ادخل بحسابك المدرسي لتكمل دروسك، أو استخدم حساب التجربة الجاهز بالأسفل."
-            en="Log in with your school account to continue your lessons, or use the ready demo account below."
-          />
-          <div className="sign-preview">
-            <Hand size={64} strokeWidth={1.25} aria-hidden="true" />
-            <Dual as="p" ar="كل مصطلح له فيديو إشارة" en="Every term has a sign video" />
-          </div>
-        </aside>
-
         <div className="auth-main">
           <form className="auth-form" onSubmit={onSubmit}>
             <div className="stack-sm">
@@ -148,6 +133,36 @@ function LoginForm() {
             </p>
           </form>
         </div>
+
+        <aside className="auth-aside">
+          <h2>
+            <Dual
+              ar={`${BRAND.ar} يشرح بالإشارة أولًا`}
+              en={`${BRAND.en} explains in sign first`}
+            />
+          </h2>
+          <Dual
+            as="p"
+            className="muted prose"
+            ar="ادخل بحسابك المدرسي لتكمل دروسك، أو استخدم حساب التجربة الجاهز بالأسفل."
+            en="Log in with your school account to continue your lessons, or use the ready demo account below."
+          />
+          <div className="sign-preview">
+            <Hand size={64} strokeWidth={1.25} aria-hidden="true" />
+            <Dual as="p" ar="كل مصطلح له فيديو إشارة" en="Every term has a sign video" />
+          </div>
+          <ol className="step-chips">
+            <li>
+              <Dual ar="إشارة" en="Sign" />
+            </li>
+            <li>
+              <Dual ar="تجربة" en="Experiment" />
+            </li>
+            <li>
+              <Dual ar="فهم" en="Understanding" />
+            </li>
+          </ol>
+        </aside>
       </div>
     </AppShell>
   );

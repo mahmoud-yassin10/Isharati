@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookOpen, Check, FileEdit, Gamepad2, TriangleAlert } from "lucide-react";
+import { BookOpen, Check, Eye, FileEdit, Gamepad2, Send, TriangleAlert, UserPlus } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { GAME_TYPES } from "@/components/games/GameStep";
@@ -69,6 +69,37 @@ export default function TeacherHome() {
             </div>
           ) : null}
         </div>
+
+        <ol className="step-chips" style={{ marginBottom: "var(--s-5)" }}>
+          <li>
+            <span className="role-step-n" aria-hidden="true">
+              1
+            </span>
+            <Eye size={17} strokeWidth={1.75} className="icon" aria-hidden="true" />
+            <Dual ar="عاين الدرس والمختبر" en="Preview lesson and lab" />
+          </li>
+          <li>
+            <span className="role-step-n" aria-hidden="true">
+              2
+            </span>
+            <Send size={17} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
+            <Dual ar="انشر" en="Publish" />
+          </li>
+          <li>
+            <span className="role-step-n" aria-hidden="true">
+              3
+            </span>
+            <UserPlus size={17} strokeWidth={1.75} className="icon" aria-hidden="true" />
+            <Dual ar="عيّن لطلابك" en="Assign" />
+          </li>
+          <li>
+            <span className="role-step-n" aria-hidden="true">
+              4
+            </span>
+            <Check size={17} strokeWidth={2.4} className="icon" aria-hidden="true" />
+            <Dual ar="تابع من أكمل أي خطوة" en="Track every step" />
+          </li>
+        </ol>
 
         {error ? (
           <p className="feedback error" role="status">
