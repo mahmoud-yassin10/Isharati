@@ -2,14 +2,39 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import {
+  BookOpen,
+  Check,
+  FileEdit,
+  Hand,
+  HelpCircle,
+  Send,
+  SlidersHorizontal,
+  Target,
+  TriangleAlert,
+  UserPlus,
+  Users,
+} from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { NewtonLab } from "@/components/NewtonLab";
 import { ProgressBadge } from "@/components/ProgressBadge";
-import { badgeForLesson } from "@/lib/gamification";
+import { BackIcon, LoadingBlock, ProgressBar } from "@/components/ui";
+import { lessonStats } from "@/lib/gamification";
 import { assignLesson, getLesson, lessonProgress, publishLesson } from "@/lib/api";
 import { useUser } from "@/lib/useUser";
-import type { Lesson, ProgressItem } from "@/lib/types";
+import type { Lesson, ProgressItem, StepType } from "@/lib/types";
+
+const STEP_ICON: Record<StepType, React.ReactNode> = {
+  esl_term: <Hand size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
+  explain: <BookOpen size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
+  simulate: <SlidersHorizontal size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
+  challenge: <Target size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
+  sign_check: <Hand size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
+  quiz: <HelpCircle size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
+};
+
+type Note = { kind: "ok" | "error"; ar: string; en: string };
 
 export default function TeacherLessonPage() {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +42,7 @@ export default function TeacherLessonPage() {
   const { user, ready } = useUser();
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [progress, setProgress] = useState<ProgressItem[]>([]);
-  const [note, setNote] = useState<string | null>(null);
+  const [note, setNote] = useState<Note | null>(null);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
@@ -26,8 +51,12 @@ export default function TeacherLessonPage() {
       router.replace("/login?role=teacher");
       return;
     }
-    getLesson(id).then(setLesson).catch(() => setNote("تعذر فتح الدرس."));
-    lessonProgress(id).then(setProgress).catch(() => undefined);
+    getLesson(id)
+      .then(setLesson)
+      .catch(() => setNote({ kind: "error", ar: "تعذّر فتح الدرس.", en: "Could not open the lesson." }));
+    lessonProgress(id)
+      .then(setProgress)
+      .catch(() => undefined);
   }, [ready, user, router, id]);
 
   const simStep = lesson?.steps.find((step) => step.simulation);
@@ -35,11 +64,10 @@ export default function TeacherLessonPage() {
   async function onPublish() {
     setBusy(true);
     try {
-      const next = await publishLesson(id);
-      setLesson(next);
-      setNote("نُشر الدرس.");
+      setLesson(await publishLesson(id));
+      setNote({ kind: "ok", ar: "نُشر الدرس.", en: "The lesson is published." });
     } catch {
-      setNote("تعذر النشر.");
+      setNote({ kind: "error", ar: "تعذّر النشر.", en: "Could not publish." });
     } finally {
       setBusy(false);
     }
@@ -49,9 +77,13 @@ export default function TeacherLessonPage() {
     setBusy(true);
     try {
       const result = await assignLesson(id);
-      setNote(`عُيّن لطالب التجربة: ${result.student_name}`);
+      setNote({
+        kind: "ok",
+        ar: `عُيّن الدرس للطالب: ${result.student_name}`,
+        en: `Assigned to student: ${result.student_name}`,
+      });
     } catch {
-      setNote("تعذر التعيين.");
+      setNote({ kind: "error", ar: "تعذّر التعيين.", en: "Could not assign." });
     } finally {
       setBusy(false);
     }
@@ -60,157 +92,215 @@ export default function TeacherLessonPage() {
   if (!ready || !user) {
     return (
       <AppShell user={null}>
-        <Dual as="p" ar="جارٍ التحميل…" en="Loading…" />
+        <div className="wrap page">
+          <LoadingBlock rows={2} />
+        </div>
       </AppShell>
     );
   }
 
+  const studentIds = Array.from(new Set(progress.map((item) => item.student_id)));
+
   return (
     <AppShell user={user}>
-      <div className="stack">
-        <p className="hint">
-          <a className="muted-link" href="/teacher">
-            <Dual ar="الدروس" en="Lessons" />
+      <div className="wrap page">
+        <p>
+          <a className="back-link" href="/teacher">
+            <BackIcon />
+            <Dual ar="كل الدروس" en="All lessons" />
           </a>
         </p>
-        <h1>
-          <Dual ar={lesson?.title_ar ?? "الدرس"} en={lesson?.title_en ?? "Lesson"} />
-        </h1>
-        <Dual
-          as="p"
-          className="hint"
-          ar={lesson?.status === "published" ? "منشور" : "مسودة"}
-          en={lesson?.status === "published" ? "Published" : "Draft"}
-        />
-        <div className="role-actions">
-          <button type="button" className="btn" onClick={onPublish} disabled={busy}>
-            <Dual ar="انشر الدرس" en="Publish lesson" />
-          </button>
-          <button type="button" className="btn ghost" onClick={onAssign} disabled={busy}>
-            <Dual ar="عيّن لطالب التجربة" en="Assign to demo student" />
-          </button>
-        </div>
-        {note ? (
-          <Dual
-            as="p"
-            className="hint"
-            ar={note}
-            en={
-              note === "نُشر الدرس."
-                ? "Lesson published."
-                : note === "تعذر النشر."
-                  ? "Could not publish."
-                  : note === "تعذر التعيين."
-                    ? "Could not assign."
-                    : note === "تعذر فتح الدرس."
-                      ? "Could not open the lesson."
-                      : note.startsWith("عُيّن لطالب التجربة:")
-                        ? note.replace("عُيّن لطالب التجربة:", "Assigned to demo student:")
-                        : note
-            }
-          />
-        ) : null}
 
-        {simStep?.simulation ? (
-          <NewtonLab
-            initialForce={simStep.simulation.params.F ?? 10}
-            initialMass={simStep.simulation.params.m ?? 2}
-            challenge={simStep.simulation.goal}
-          />
-        ) : null}
-
-        <section>
-          <h2>
-            <Dual ar="الخطوات" en="Steps" />
-          </h2>
-          <ol>
-            {lesson?.steps.map((step) => (
-              <li key={step.id}>
-                <Dual ar={step.title_ar} en={step.title_en ?? step.title_ar} />
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section>
-          <h2>
-            <Dual ar="تقدّم الطلاب" en="Student progress" />
-          </h2>
-          {lesson && progress.length > 0 ? (
-            <div className="badge-summary">
-              {Array.from(new Set(progress.map((item) => item.student_id))).map((studentId) => {
-                const studentProgress = progress.filter((item) => item.student_id === studentId);
-                const badge = badgeForLesson(lesson, studentProgress);
-                return (
-                  <p key={studentId} className="hint">
-                    {studentProgress[0]?.student_name}
-                    {badge ? (
-                      <>
-                        {" "}
-                        <ProgressBadge badge={badge} />
-                      </>
-                    ) : null}
-                  </p>
-                );
-              })}
+        <div className="page-head">
+          <div className="titles">
+            <h1>
+              <Dual ar={lesson?.title_ar ?? "الدرس"} en={lesson?.title_en ?? "Lesson"} />
+            </h1>
+            <div className="chips" style={{ display: "flex", gap: "0.5rem" }}>
+              {lesson?.status === "published" ? (
+                <span className="chip ok">
+                  <Check size={16} strokeWidth={2.5} className="icon" aria-hidden="true" />
+                  <Dual ar="منشور" en="Published" />
+                </span>
+              ) : (
+                <span className="chip draft">
+                  <FileEdit size={16} strokeWidth={2} className="icon" aria-hidden="true" />
+                  <Dual ar="مسودة" en="Draft" />
+                </span>
+              )}
+              {lesson ? (
+                <span className="chip">
+                  <Dual ar={`${lesson.steps.length} خطوات`} en={`${lesson.steps.length} steps`} />
+                </span>
+              ) : null}
+              <span className="chip">
+                <Users size={16} strokeWidth={2} className="icon" aria-hidden="true" />
+                <Dual ar={`${studentIds.length} طالب`} en={`${studentIds.length} students`} />
+              </span>
             </div>
-          ) : null}
-          {progress.length === 0 ? (
-            <Dual
-              as="p"
-              className="hint"
-              ar="لا يوجد تقدّم بعد. عيّن الدرس وافتحه من حساب الطالب."
-              en="No progress yet. Assign the lesson and open it from the student account."
-            />
-          ) : (
-            <table className="progress-table">
-              <thead>
-                <tr>
-                  <th>
-                    <Dual ar="الطالب" en="Student" />
-                  </th>
-                  <th>
-                    <Dual ar="الخطوة" en="Step" />
-                  </th>
-                  <th>
-                    <Dual ar="الحالة" en="Status" />
-                  </th>
-                  <th>a</th>
-                  <th>
-                    <Dual ar="الإشارة" en="Sign" />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {progress.map((item) => (
-                  <tr key={`${item.student_id}-${item.step_id}`}>
-                    <td>{item.student_name}</td>
-                    <td>
-                      <Dual
-                        ar={lesson?.steps.find((step) => step.id === item.step_id)?.title_ar ?? item.step_id}
-                        en={
-                          lesson?.steps.find((step) => step.id === item.step_id)?.title_en ??
-                          lesson?.steps.find((step) => step.id === item.step_id)?.title_ar ??
-                          item.step_id
-                        }
-                      />
-                    </td>
-                    <td>
-                      <span className={`status-dot ${item.status === "done" ? "done" : ""}`} />
-                      {item.status === "done" ? (
-                        <Dual ar="مكتمل" en="Done" />
-                      ) : (
-                        item.status
-                      )}
-                    </td>
-                    <td className="mono">{item.sim_snapshot?.a?.toFixed(2) ?? "—"}</td>
-                    <td>{item.predicted_sign ?? "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </section>
+          </div>
+          <div className="btn-row">
+            <button type="button" className="btn" onClick={onPublish} disabled={busy}>
+              <Send size={20} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
+              <Dual ar="انشر الدرس" en="Publish lesson" />
+            </button>
+            <button type="button" className="btn secondary" onClick={onAssign} disabled={busy}>
+              <UserPlus size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
+              <Dual ar="عيّن لطالب التجربة" en="Assign to demo student" />
+            </button>
+          </div>
+        </div>
+
+        {note ? (
+          <p className={`feedback ${note.kind}`} role="status" style={{ marginBottom: "1.5rem" }}>
+            {note.kind === "ok" ? (
+              <Check size={22} strokeWidth={2.5} className="icon" aria-hidden="true" />
+            ) : (
+              <TriangleAlert size={22} strokeWidth={2} className="icon" aria-hidden="true" />
+            )}
+            <Dual ar={note.ar} en={note.en} />
+          </p>
+        ) : null}
+
+        {!lesson ? <LoadingBlock rows={2} height={160} /> : null}
+
+        {lesson ? (
+          <div className="teacher-layout">
+            <div className="stack">
+              {simStep?.simulation ? (
+                <section className="stack-sm">
+                  <h2>
+                    <Dual ar="معاينة المختبر" en="Lab preview" />
+                  </h2>
+                  <Dual
+                    as="p"
+                    className="muted"
+                    ar="هذا ما يراه الطالب في خطوة التجربة."
+                    en="This is what the student sees on the experiment step."
+                  />
+                  <NewtonLab
+                    initialForce={simStep.simulation.params.F ?? 10}
+                    initialMass={simStep.simulation.params.m ?? 2}
+                    challenge={simStep.simulation.goal}
+                  />
+                </section>
+              ) : null}
+
+              <section className="stack-sm">
+                <h2>
+                  <Dual ar="خطوات الدرس" en="Lesson steps" />
+                </h2>
+                <div className="panel" style={{ paddingBlock: 0 }}>
+                  <ol className="step-outline">
+                    {lesson.steps.map((step, stepIndex) => (
+                      <li key={step.id}>
+                        <span className="n" aria-hidden="true">
+                          {stepIndex + 1}
+                        </span>
+                        {STEP_ICON[step.type]}
+                        <Dual ar={step.title_ar} en={step.title_en ?? step.title_ar} />
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </section>
+            </div>
+
+            <section className="stack-sm">
+              <h2>
+                <Dual ar="تقدّم الطلاب" en="Student progress" />
+              </h2>
+
+              {studentIds.length === 0 ? (
+                <div className="empty">
+                  <Users size={36} strokeWidth={1.5} className="icon" aria-hidden="true" />
+                  <Dual as="p" ar="لا يوجد تقدّم بعد." en="No progress yet." />
+                  <Dual
+                    as="p"
+                    className="small"
+                    ar="عيّن الدرس، ثم افتحه من حساب الطالب."
+                    en="Assign the lesson, then open it from the student account."
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="panel">
+                    {studentIds.map((studentId) => {
+                      const rows = progress.filter((item) => item.student_id === studentId);
+                      const stat = lessonStats(lesson, rows);
+                      return (
+                        <div className="student-row" key={studentId}>
+                          <span className="who">
+                            <span className="avatar" aria-hidden="true">
+                              {(rows[0]?.student_name ?? "?").trim().charAt(0)}
+                            </span>
+                            {rows[0]?.student_name}
+                          </span>
+                          {stat.badge ? <ProgressBadge badge={stat.badge} /> : null}
+                          <span style={{ flex: "1 1 160px", maxWidth: 200 }}>
+                            <ProgressBar value={stat.done} total={stat.total} />
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="table-wrap">
+                    <table className="data-table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <Dual ar="الطالب" en="Student" />
+                          </th>
+                          <th>
+                            <Dual ar="الخطوة" en="Step" />
+                          </th>
+                          <th>
+                            <Dual ar="الحالة" en="Status" />
+                          </th>
+                          <th>a</th>
+                          <th>
+                            <Dual ar="الإشارة" en="Sign" />
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {progress.map((item) => {
+                          const step = lesson.steps.find((candidate) => candidate.id === item.step_id);
+                          return (
+                            <tr key={`${item.student_id}-${item.step_id}`}>
+                              <td>{item.student_name}</td>
+                              <td>
+                                <Dual
+                                  ar={step?.title_ar ?? item.step_id}
+                                  en={step?.title_en ?? step?.title_ar ?? item.step_id}
+                                />
+                              </td>
+                              <td>
+                                {item.status === "done" ? (
+                                  <span className="chip ok">
+                                    <Check size={14} strokeWidth={2.5} className="icon" aria-hidden="true" />
+                                    <Dual ar="مكتمل" en="Done" />
+                                  </span>
+                                ) : (
+                                  <span className="chip">
+                                    <Dual ar="محاولة" en="Attempted" />
+                                  </span>
+                                )}
+                              </td>
+                              <td className="mono">{item.sim_snapshot?.a?.toFixed(2) ?? "—"}</td>
+                              <td>{item.predicted_sign ?? "—"}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+            </section>
+          </div>
+        ) : null}
       </div>
     </AppShell>
   );

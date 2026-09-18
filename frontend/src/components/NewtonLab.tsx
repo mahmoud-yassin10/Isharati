@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Check, FlaskConical, Minus, Plus, RotateCcw, Target } from "lucide-react";
 import { Dual } from "@/components/Dual";
 import { useA11y } from "@/lib/a11y";
 import { pick, useLang } from "@/lib/lang";
@@ -12,14 +13,31 @@ type NewtonLabProps = {
   initialForce?: number;
   initialMass?: number;
   challenge?: { value: number; tolerance: number };
+  /** Hides the graph. Used where the lab is a preview next to other content. */
+  compact?: boolean;
   onSnapshot?: (snapshot: Snapshot) => void;
   onChallengeMet?: (snapshot: Snapshot) => void;
 };
+
+const MAX_F = 20;
+const MIN_F = 1;
+const MAX_M = 10;
+const MIN_M = 0.5;
+const MAX_A = 12;
+
+/* graph plot area */
+const GX0 = 44;
+const GX1 = 288;
+const GY0 = 172;
+const GY1 = 22;
+const gx = (f: number) => GX0 + (Math.min(f, MAX_F) / MAX_F) * (GX1 - GX0);
+const gy = (a: number) => GY0 - (Math.min(a, MAX_A) / MAX_A) * (GY0 - GY1);
 
 export function NewtonLab({
   initialForce = 10,
   initialMass = 2,
   challenge,
+  compact = false,
   onSnapshot,
   onChallengeMet,
 }: NewtonLabProps) {
@@ -30,8 +48,8 @@ export function NewtonLab({
   const [reduced, setReduced] = useState(false);
   const [met, setMet] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
-  const boxRef = useRef<HTMLDivElement>(null);
-  const stateRef = useRef({ x: 40, v: 0, F: initialForce, m: initialMass });
+  const cartRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({ x: 16, v: 0, F: initialForce, m: initialMass });
   const lastRef = useRef<number | null>(null);
   const metOnce = useRef(false);
   const onSnapshotRef = useRef(onSnapshot);
@@ -79,9 +97,9 @@ export function NewtonLab({
       const dt = Math.min((now - last) / 1000, 0.05);
       lastRef.current = now;
       const track = trackRef.current;
-      const box = boxRef.current;
-      if (track && box) {
-        const max = Math.max(track.clientWidth - box.offsetWidth - 8, 8);
+      const cart = cartRef.current;
+      if (track && cart) {
+        const max = Math.max(track.clientWidth - cart.offsetWidth - 8, 8);
         const a = newtonAccel(stateRef.current.F, stateRef.current.m);
         stateRef.current.v += a * dt;
         stateRef.current.x += stateRef.current.v * dt * 28;
@@ -93,7 +111,7 @@ export function NewtonLab({
           stateRef.current.x = max;
           stateRef.current.v = 0;
         }
-        box.style.transform = `translateX(${stateRef.current.x}px)`;
+        cart.style.transform = `translateX(${stateRef.current.x}px)`;
       }
       frame = requestAnimationFrame(tick);
     };
@@ -102,132 +120,230 @@ export function NewtonLab({
   }, [reduced]);
 
   function resetMotion() {
-    stateRef.current.x = 40;
+    stateRef.current.x = 16;
     stateRef.current.v = 0;
     lastRef.current = null;
-    if (boxRef.current) boxRef.current.style.transform = "translateX(40px)";
+    if (cartRef.current) cartRef.current.style.transform = "translateX(16px)";
   }
 
-  const maxF = 20;
-  const maxA = 12;
-  const lineX2 = 180;
-  const lineY2 = 140 - (newtonAccel(maxF, mass) / maxA) * 120;
-  const dotX = 20 + (force / maxF) * 160;
-  const dotY = 140 - (Math.min(accel, maxA) / maxA) * 120;
-  const arrowWidth = 24 + (force / maxF) * 72;
+  const clampF = (value: number) => Math.min(MAX_F, Math.max(MIN_F, Math.round(value * 10) / 10));
+  const clampM = (value: number) => Math.min(MAX_M, Math.max(MIN_M, Math.round(value * 10) / 10));
+
+  const arrowWidth = 20 + (force / MAX_F) * 70;
+  const boxWidth = 52 + (mass / MAX_M) * 40;
+  const boxHeight = 40 + (mass / MAX_M) * 30;
 
   return (
     <section className="lab" aria-label={pick(lang, "مختبر نيوتن", "Newton lab")}>
-      <div className="lab-formula" aria-live="polite">
-        <span className="mono">
-          a = F / m = {force.toFixed(1)} / {mass.toFixed(1)} ={" "}
-          <em>{accel.toFixed(2)}</em> m/s²
-        </span>
+      <div className="lab-head">
+        <h3>
+          <FlaskConical size={22} strokeWidth={1.75} className="icon" aria-hidden="true" />
+          <Dual ar="المختبر" en="The lab" />
+        </h3>
         {challenge ? (
-          <span className={met ? "goal ok" : "goal"}>
-            {pick(lang, "الهدف", "Goal")}: a ≈ {challenge.value}
-            {met ? pick(lang, " · وصلت", " · done") : ""}
-          </span>
+          <p className={met ? "chip goal-chip met" : "chip goal-chip"}>
+            {met ? (
+              <Check size={16} strokeWidth={2.5} className="icon" aria-hidden="true" />
+            ) : (
+              <Target size={16} strokeWidth={2} className="icon" aria-hidden="true" />
+            )}
+            <Dual
+              ar={met ? `وصلت: a ≈ ${challenge.value}` : `الهدف: a ≈ ${challenge.value}`}
+              en={met ? `Reached: a ≈ ${challenge.value}` : `Goal: a ≈ ${challenge.value}`}
+            />
+          </p>
         ) : null}
       </div>
 
-      <div className="track-wrap" ref={trackRef}>
-        <div className="rail" aria-hidden="true" />
-        <div
-          className="force-arrow"
-          style={{ width: `${arrowWidth}px` }}
-          title={pick(lang, "قوة", "Force")}
-        >
-          <span>
-            {pick(lang, "قوة", "Force")} {force.toFixed(1)} N
+      <div className="readout" aria-live="polite">
+        <div className="readout-cell force">
+          <span className="label">
+            <Dual ar="قوة F" en="Force F" />
           </span>
+          <span className="value">{force.toFixed(1)} N</span>
         </div>
+        <div className="readout-cell mass">
+          <span className="label">
+            <Dual ar="كتلة m" en="Mass m" />
+          </span>
+          <span className="value">{mass.toFixed(1)} kg</span>
+        </div>
+        <div className="readout-cell accel">
+          <span className="label">
+            <Dual ar="تسارع a" en="Acceleration a" />
+          </span>
+          <span className="value">{accel.toFixed(2)} m/s²</span>
+        </div>
+      </div>
+
+      <p className="formula">
+        <b>a</b> = <b>F</b> ÷ <b>m</b> = {force.toFixed(1)} ÷ {mass.toFixed(1)} = {accel.toFixed(2)}
+      </p>
+
+      <div className="track" ref={trackRef}>
+        {reduced ? (
+          <span className="speed-tag">
+            <Dual ar="الحركة موقوفة" en="Motion is off" />
+          </span>
+        ) : null}
         <div
-          ref={boxRef}
-          className="mass-box"
-          style={{
-            ...(reduced ? { transform: "translateX(40%)" } : undefined),
-            ["--mass-lift" as string]: `${6 + (mass / 10) * 14}px`,
-            ["--mass-blur" as string]: `${10 + (mass / 10) * 16}px`,
-            ["--mass-opacity" as string]: `${0.14 + (mass / 10) * 0.22}`,
-          }}
+          ref={cartRef}
+          className="cart"
+          style={reduced ? { transform: "translateX(16px)" } : undefined}
         >
-          {pick(lang, "كتلة", "Mass")}
-          <strong className="mono">{mass.toFixed(1)} kg</strong>
+          <span className="cart-label">
+            {pick(lang, "قوة", "Force")} F = {force.toFixed(1)} N
+          </span>
+          <div className="push-arrow" style={{ width: `${arrowWidth}px` }} />
+          <div className="mass-box" style={{ width: `${boxWidth}px`, height: `${boxHeight}px` }}>
+            <Dual ar="كتلة" en="Mass" />
+            <strong>{mass.toFixed(1)} kg</strong>
+          </div>
         </div>
       </div>
 
       <div className="lab-controls">
-        <label className="slider-field">
-          <span>
+        <div className="slider force">
+          <label className="slider-top" htmlFor="lab-force">
             <span>
-              {pick(lang, "قوة", "Force")} <span className="mono">F</span>
+              <span className="swatch" style={{ background: "var(--force)" }} aria-hidden="true" />
+              <Dual ar="القوة F" en="Force F" />
             </span>
-            <b className="mono">{force.toFixed(1)} N</b>
-          </span>
-          <input
-            type="range"
-            min={1}
-            max={20}
-            step={0.1}
-            value={force}
-            onChange={(event) => setForce(Number(event.target.value))}
-            aria-valuetext={`${force.toFixed(1)} ${pick(lang, "نيوتن", "newtons")}`}
-            style={{ ["--slider-fill" as string]: `${((force - 1) / (20 - 1)) * 100}%` }}
-          />
-        </label>
-        <label className="slider-field">
-          <span>
+            <span className="val">{force.toFixed(1)} N</span>
+          </label>
+          <div className="slider-row">
+            <button
+              type="button"
+              className="step-btn"
+              onClick={() => setForce((v) => clampF(v - 1))}
+              aria-label={pick(lang, "أنقص القوة", "Decrease force")}
+            >
+              <Minus size={20} strokeWidth={2} aria-hidden="true" />
+            </button>
+            <input
+              id="lab-force"
+              type="range"
+              min={MIN_F}
+              max={MAX_F}
+              step={0.1}
+              value={force}
+              onChange={(event) => setForce(Number(event.target.value))}
+              aria-valuetext={`${force.toFixed(1)} ${pick(lang, "نيوتن", "newtons")}`}
+              style={{ ["--fill" as string]: `${((force - MIN_F) / (MAX_F - MIN_F)) * 100}%` }}
+            />
+            <button
+              type="button"
+              className="step-btn"
+              onClick={() => setForce((v) => clampF(v + 1))}
+              aria-label={pick(lang, "زد القوة", "Increase force")}
+            >
+              <Plus size={20} strokeWidth={2} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+        <div className="slider mass">
+          <label className="slider-top" htmlFor="lab-mass">
             <span>
-              {pick(lang, "كتلة", "Mass")} <span className="mono">m</span>
+              <span className="swatch" style={{ background: "var(--mass)" }} aria-hidden="true" />
+              <Dual ar="الكتلة m" en="Mass m" />
             </span>
-            <b className="mono">{mass.toFixed(1)} kg</b>
-          </span>
-          <input
-            type="range"
-            min={0.5}
-            max={10}
-            step={0.1}
-            value={mass}
-            onChange={(event) => setMass(Number(event.target.value))}
-            aria-valuetext={`${mass.toFixed(1)} ${pick(lang, "كيلوغرام", "kilograms")}`}
-            style={{ ["--slider-fill" as string]: `${((mass - 0.5) / (10 - 0.5)) * 100}%` }}
-          />
-        </label>
-        <button type="button" className="btn ghost" onClick={resetMotion}>
-          <Dual ar="أعد الصندوق" en="Reset" />
-        </button>
+            <span className="val">{mass.toFixed(1)} kg</span>
+          </label>
+          <div className="slider-row">
+            <button
+              type="button"
+              className="step-btn"
+              onClick={() => setMass((v) => clampM(v - 0.5))}
+              aria-label={pick(lang, "أنقص الكتلة", "Decrease mass")}
+            >
+              <Minus size={20} strokeWidth={2} aria-hidden="true" />
+            </button>
+            <input
+              id="lab-mass"
+              type="range"
+              min={MIN_M}
+              max={MAX_M}
+              step={0.1}
+              value={mass}
+              onChange={(event) => setMass(Number(event.target.value))}
+              aria-valuetext={`${mass.toFixed(1)} ${pick(lang, "كيلوغرام", "kilograms")}`}
+              style={{ ["--fill" as string]: `${((mass - MIN_M) / (MAX_M - MIN_M)) * 100}%` }}
+            />
+            <button
+              type="button"
+              className="step-btn"
+              onClick={() => setMass((v) => clampM(v + 0.5))}
+              aria-label={pick(lang, "زد الكتلة", "Increase mass")}
+            >
+              <Plus size={20} strokeWidth={2} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      <figure className="graph">
-        <Dual
-          as="figcaption"
-          ar="F مقابل a. الميل = 1/m"
-          en="F versus a. Slope = 1/m"
-        />
-        <svg viewBox="0 0 200 160" role="img" aria-label={pick(lang, `رسم القوة والتسارع. التسارع الحالي ${accel.toFixed(2)}`, `Force vs acceleration. Current a ${accel.toFixed(2)}`)}>
-          <line x1="20" y1="140" x2="190" y2="140" className="axis" />
-          <line x1="20" y1="140" x2="20" y2="12" className="axis" />
-          <text x="14" y="152" className="axis-tick">
-            0
-          </text>
-          <text x="163" y="152" className="axis-tick">
-            {maxF}
-          </text>
-          <text x="186" y="154" className="axis-label">
-            F
-          </text>
-          <text x="6" y="16" className="axis-label">
-            a
-          </text>
-          <line x1="20" y1="140" x2={lineX2} y2={Math.max(lineY2, 12)} className="trend" />
-          <circle cx={dotX} cy={dotY} r="5" className="now">
-            {!reduced ? (
-              <animate attributeName="r" values="5;6.5;5" dur="1.6s" repeatCount="indefinite" />
-            ) : null}
-          </circle>
-        </svg>
-      </figure>
+      <div className="lab-foot">
+        {!compact ? (
+          <figure className="graph">
+            <Dual
+              as="figcaption"
+              ar="كل زيادة في القوة ترفع التسارع. الكتلة الأكبر تخفض الميل."
+              en="More force raises acceleration. More mass lowers the slope."
+            />
+            <svg
+              viewBox="0 0 300 200"
+              role="img"
+              aria-label={pick(
+                lang,
+                `رسم القوة والتسارع. التسارع الحالي ${accel.toFixed(2)} متر لكل ثانية مربعة`,
+                `Force against acceleration. Current a is ${accel.toFixed(2)} meters per second squared`,
+              )}
+            >
+              {[0.25, 0.5, 0.75, 1].map((f) => (
+                <line key={f} className="grid-line" x1={GX0} y1={GY0 - f * (GY0 - GY1)} x2={GX1} y2={GY0 - f * (GY0 - GY1)} />
+              ))}
+              <line className="axis" x1={GX0} y1={GY0} x2={GX1} y2={GY0} />
+              <line className="axis" x1={GX0} y1={GY0} x2={GX0} y2={GY1} />
+              <text x={GX0 - 8} y={GY0 + 5} textAnchor="end">
+                0
+              </text>
+              <text x={GX0 - 8} y={GY1 + 10} textAnchor="end">
+                {MAX_A}
+              </text>
+              <text x={GX1} y={GY0 + 18} textAnchor="end">
+                {MAX_F} N
+              </text>
+              <text className="axis-label" x={GX1} y={GY1 + 2} textAnchor="end">
+                {pick(lang, "القوة F ←", "Force F →")}
+              </text>
+              <text className="axis-label" x={GX0 - 8} y={GY1 - 8} textAnchor="start">
+                a
+              </text>
+              {goalValue != null ? (
+                <>
+                  <line className="goal-line" x1={GX0} y1={gy(goalValue)} x2={GX1} y2={gy(goalValue)} />
+                  <text x={GX1 - 2} y={gy(goalValue) - 6} textAnchor="end" fill="var(--accel-ink)">
+                    {pick(lang, "الهدف", "Goal")} {goalValue}
+                  </text>
+                </>
+              ) : null}
+              <line className="trend" x1={GX0} y1={GY0} x2={gx(MAX_F)} y2={gy(newtonAccel(MAX_F, mass))} />
+              <circle className="now" cx={gx(force)} cy={gy(accel)} r="7" />
+            </svg>
+          </figure>
+        ) : (
+          <p className="muted small">
+            <Dual
+              ar="حرّك القوة أو الكتلة وراقب الصندوق."
+              en="Move force or mass and watch the box."
+            />
+          </p>
+        )}
+        <button type="button" className="btn secondary" onClick={resetMotion}>
+          <RotateCcw size={20} strokeWidth={1.75} className="icon" aria-hidden="true" />
+          <Dual ar="أعد الصندوق" en="Reset the box" />
+        </button>
+      </div>
     </section>
   );
 }

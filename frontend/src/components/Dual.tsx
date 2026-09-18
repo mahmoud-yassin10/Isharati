@@ -5,7 +5,7 @@ import { useLang } from "@/lib/lang";
 type DualProps = {
   ar: string;
   en: string;
-  as?: "span" | "p" | "h1" | "h2" | "figcaption";
+  as?: "span" | "p" | "h1" | "h2" | "h3" | "strong" | "div" | "li" | "figcaption";
   className?: string;
 };
 

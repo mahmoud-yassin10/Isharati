@@ -56,3 +56,28 @@ export function badgeForLesson(lesson: Lesson, progress: ProgressItem[]): Badge 
 
   return { tier, label_ar: TIER_LABELS[tier].ar, label_en: TIER_LABELS[tier].en };
 }
+
+export type LessonStats = {
+  /** Required steps (everything except sign_check). */
+  total: number;
+  /** Required steps this student has finished. */
+  done: number;
+  mastery: number;
+  badge: Badge | null;
+  state: "new" | "learning" | "complete";
+};
+
+/** Per-lesson counts used by the student lesson list and the continue card. */
+export function lessonStats(lesson: Lesson, progress: ProgressItem[]): LessonStats {
+  const required = requiredStepIds(lesson);
+  const done = doneStepIds(progress);
+  const completed = required.filter((id) => done.has(id)).length;
+  const mastery = computeMastery(lesson, progress);
+  return {
+    total: required.length,
+    done: completed,
+    mastery,
+    badge: badgeForLesson(lesson, progress),
+    state: completed === 0 ? "new" : mastery >= 100 ? "complete" : "learning",
+  };
+}
