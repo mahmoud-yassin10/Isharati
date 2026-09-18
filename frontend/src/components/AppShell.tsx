@@ -40,6 +40,17 @@ function primaryNavFor(role: User["role"] | null): NavItem[] {
 
 const LAB_LINK = { ar: "المختبر", en: "Lab" };
 
+/** Section roots (dashboards) must match exactly so a nested route like
+ * /teacher/lessons/[id] doesn't also light up "Home". Everything else
+ * matches its own subtree, so /teacher/lessons/[id] still highlights "Lessons". */
+const EXACT_ONLY_HREFS = new Set(["/", "/student", "/teacher"]);
+
+function isNavActive(pathname: string, href: string): boolean {
+  if (pathname === href) return true;
+  if (EXACT_ONLY_HREFS.has(href)) return false;
+  return pathname.startsWith(`${href}/`);
+}
+
 export function AppShell({
   user,
   children,
@@ -120,7 +131,7 @@ export function AppShell({
 
           <nav className="topnav" aria-label={pick(lang, "التنقل الرئيسي", "Main navigation")}>
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
+              <a key={item.href} href={item.href} aria-current={isNavActive(pathname, item.href) ? "page" : undefined}>
                 {item.icon}
                 <span>
                   <Dual ar={item.ar} en={item.en} />
@@ -204,7 +215,7 @@ export function AppShell({
             <ul>
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
+                  <a href={item.href} aria-current={isNavActive(pathname, item.href) ? "page" : undefined}>
                     {item.icon}
                     <Dual ar={item.ar} en={item.en} />
                   </a>
@@ -217,7 +228,7 @@ export function AppShell({
                 </a>
               </li>
               <li>
-                <a href="/settings" aria-current={pathname === "/settings" ? "page" : undefined}>
+                <a href="/settings" aria-current={isNavActive(pathname, "/settings") ? "page" : undefined}>
                   {icon(Settings)}
                   <Dual ar="الإعدادات" en="Settings" />
                 </a>
