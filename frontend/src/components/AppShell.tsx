@@ -45,7 +45,8 @@ const LAB_LINK = { ar: "المختبر", en: "Lab" };
  * matches its own subtree, so /teacher/lessons/[id] still highlights "Lessons". */
 const EXACT_ONLY_HREFS = new Set(["/", "/student", "/teacher"]);
 
-function isNavActive(pathname: string, href: string): boolean {
+function isNavActive(pathname: string, href: string, inLab: boolean): boolean {
+  if (href === "/" && inLab) return false;
   if (pathname === href) return true;
   if (EXACT_ONLY_HREFS.has(href)) return false;
   return pathname.startsWith(`${href}/`);
@@ -65,6 +66,14 @@ export function AppShell({
   const { lang, setLang } = useLang();
   const [signReady, setSignReady] = useState<boolean | null>(null);
   const [navOpen, setNavOpen] = useState(false);
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
   useEffect(() => {
     let cancelled = false;
@@ -102,6 +111,7 @@ export function AppShell({
 
   const navItems = primaryNavFor(user?.role ?? null);
   const labHref = pathname === "/" ? "#lab" : "/#lab";
+  const inLab = pathname === "/" && hash === "#lab";
 
   const langSwitch = (
     <div className="lang-switch" role="group" aria-label={pick(lang, "اللغة", "Language")}>
@@ -131,14 +141,14 @@ export function AppShell({
 
           <nav className="topnav" aria-label={pick(lang, "التنقل الرئيسي", "Main navigation")}>
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} aria-current={isNavActive(pathname, item.href) ? "page" : undefined}>
+              <a key={item.href} href={item.href} aria-current={isNavActive(pathname, item.href, inLab) ? "page" : undefined}>
                 {item.icon}
                 <span>
                   <Dual ar={item.ar} en={item.en} />
                 </span>
               </a>
             ))}
-            <a href={labHref} aria-current={false}>
+            <a href={labHref} aria-current={inLab ? "page" : undefined}>
               <span className="nav-tick" aria-hidden="true" />
               <span>
                 <Dual ar={LAB_LINK.ar} en={LAB_LINK.en} />
@@ -215,14 +225,14 @@ export function AppShell({
             <ul>
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} aria-current={isNavActive(pathname, item.href) ? "page" : undefined}>
+                  <a href={item.href} aria-current={isNavActive(pathname, item.href, inLab) ? "page" : undefined}>
                     {item.icon}
                     <Dual ar={item.ar} en={item.en} />
                   </a>
                 </li>
               ))}
               <li>
-                <a href={labHref}>
+                <a href={labHref} aria-current={inLab ? "page" : undefined}>
                   <span className="nav-tick" aria-hidden="true" />
                   <Dual ar={LAB_LINK.ar} en={LAB_LINK.en} />
                 </a>
