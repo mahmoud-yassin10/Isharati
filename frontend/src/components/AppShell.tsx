@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, GraduationCap, LogOut, Menu, Settings, Users, VideoOff, X } from "lucide-react";
+import { BarChart3, BookOpen, GraduationCap, LayoutDashboard, LogOut, Menu, Settings, Users, VideoOff, X } from "lucide-react";
 import { A11yControls } from "@/components/A11yControls";
 import { BrandMark, BrandWordmark } from "@/components/Brand";
 import { Dual } from "@/components/Dual";
@@ -25,8 +25,10 @@ function primaryNavFor(role: User["role"] | null): NavItem[] {
   }
   if (role === "teacher") {
     return [
-      { href: "/teacher", ar: "الدروس", en: "Lessons", icon: icon(BookOpen) },
-      { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
+      { href: "/teacher", ar: "الرئيسية", en: "Home", icon: icon(LayoutDashboard) },
+      { href: "/teacher/lessons", ar: "الدروس", en: "Lessons", icon: icon(BookOpen) },
+      { href: "/teacher/students", ar: "الطلاب", en: "Students", icon: icon(Users) },
+      { href: "/teacher/reports", ar: "التقارير", en: "Reports", icon: icon(BarChart3) },
     ];
   }
   return [

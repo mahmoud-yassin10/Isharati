@@ -2799,6 +2799,158 @@ html[lang="en"] .hero-title {
   font-weight: 600;
 }
 
+/* ===================================================== teacher dashboard */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--s-3);
+  margin-bottom: var(--s-6);
+}
+
+.stat-tile {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.stat-tile .label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.stat-tile .value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Search field: a .field input with a leading icon. */
+.search-field {
+  position: relative;
+  max-width: 420px;
+  margin-bottom: var(--s-4);
+}
+
+.search-field .icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: var(--s-3);
+  translate: 0 -50%;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+.search-field input {
+  width: 100%;
+  padding-inline-start: calc(var(--s-3) * 2 + 18px);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-6);
+}
+
+/* Richer teacher lesson row: subject icon, meta + mini progress, actions. */
+.lesson-item.rich {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.lesson-item .progress.compact {
+  max-width: 260px;
+  margin-top: 2px;
+}
+
+.lesson-item .progress.compact .progress-track {
+  height: 6px;
+}
+
+.lesson-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* three-dot row menu */
+.overflow-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.overflow-menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  inset-inline-end: 0;
+  z-index: var(--z-popover);
+  display: grid;
+  gap: 2px;
+  min-width: 200px;
+  padding: var(--s-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-menu);
+}
+
+.overflow-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 40px;
+  padding-inline: var(--s-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--ink);
+  font-weight: 500;
+  text-align: start;
+  cursor: pointer;
+}
+
+.overflow-menu-item:hover {
+  background: var(--surface-2);
+}
+
+.overflow-menu-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.overflow-menu-item.danger {
+  color: var(--danger);
+}
+
+/* step editor: move/delete controls beside the outline row */
+.outline-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.outline-row .outline-btn {
+  flex: 1 1 auto;
+}
+
+.outline-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+}
+
 /* ------------------------------------------------------------- courses grid */
 
 
