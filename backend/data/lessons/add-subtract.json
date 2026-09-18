@@ -1,0 +1,550 @@
+{
+  "id": "add-subtract",
+  "slug": "add-subtract",
+  "title_ar": "الجمع والطرح حتى 10",
+  "title_en": "Adding and subtracting to 10",
+  "subject": "math",
+  "status": "published",
+  "summary_ar": "اجمع واطرح بالنقاط والجداول وجولات سريعة.",
+  "summary_en": "Add and subtract with dots, tables, and quick rounds.",
+  "minutes": 14,
+  "glossary": {
+    "n0": {
+      "term_ar": "صفر",
+      "term_en": "zero",
+      "esl_mode": "lexicon",
+      "lexicon_token": "0"
+    },
+    "n1": {
+      "term_ar": "واحد",
+      "term_en": "one",
+      "esl_mode": "lexicon",
+      "lexicon_token": "1"
+    },
+    "n2": {
+      "term_ar": "اثنان",
+      "term_en": "two",
+      "esl_mode": "lexicon",
+      "lexicon_token": "2"
+    },
+    "n3": {
+      "term_ar": "ثلاثة",
+      "term_en": "three",
+      "esl_mode": "lexicon",
+      "lexicon_token": "3"
+    },
+    "n4": {
+      "term_ar": "أربعة",
+      "term_en": "four",
+      "esl_mode": "lexicon",
+      "lexicon_token": "4"
+    },
+    "n5": {
+      "term_ar": "خمسة",
+      "term_en": "five",
+      "esl_mode": "lexicon",
+      "lexicon_token": "5"
+    },
+    "n6": {
+      "term_ar": "ستة",
+      "term_en": "six",
+      "esl_mode": "lexicon",
+      "lexicon_token": "6"
+    },
+    "n7": {
+      "term_ar": "سبعة",
+      "term_en": "seven",
+      "esl_mode": "lexicon",
+      "lexicon_token": "7"
+    },
+    "n8": {
+      "term_ar": "ثمانية",
+      "term_en": "eight",
+      "esl_mode": "lexicon",
+      "lexicon_token": "8"
+    },
+    "n9": {
+      "term_ar": "تسعة",
+      "term_en": "nine",
+      "esl_mode": "lexicon",
+      "lexicon_token": "9"
+    },
+    "n10": {
+      "term_ar": "عشرة",
+      "term_en": "ten",
+      "esl_mode": "lexicon",
+      "lexicon_token": "10"
+    },
+    "plus": {
+      "term_ar": "زائد",
+      "term_en": "plus",
+      "esl_mode": "fingerspell"
+    },
+    "minus": {
+      "term_ar": "ناقص",
+      "term_en": "minus",
+      "esl_mode": "fingerspell"
+    },
+    "equals": {
+      "term_ar": "يساوي",
+      "term_en": "equals",
+      "esl_mode": "fingerspell"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-plus",
+      "type": "esl_term",
+      "title_ar": "زائد +",
+      "title_en": "Plus +",
+      "body_ar": "الجمع يزيد العدد. 3 + 2 = 5.",
+      "body_en": "Adding makes a number bigger. 3 + 2 = 5.",
+      "glossary_ids": [
+        "plus"
+      ]
+    },
+    {
+      "id": "term-minus",
+      "type": "esl_term",
+      "title_ar": "ناقص −",
+      "title_en": "Minus −",
+      "body_ar": "الطرح ينقص العدد. 5 − 2 = 3.",
+      "body_en": "Subtracting makes a number smaller. 5 − 2 = 3.",
+      "glossary_ids": [
+        "minus"
+      ]
+    },
+    {
+      "id": "term-equals",
+      "type": "esl_term",
+      "title_ar": "يساوي =",
+      "title_en": "Equals =",
+      "body_ar": "يساوي يعني: الطرفان لهما نفس القيمة.",
+      "body_en": "Equals means both sides have the same value.",
+      "glossary_ids": [
+        "equals"
+      ]
+    },
+    {
+      "id": "match-sums",
+      "type": "match",
+      "title_ar": "لعبة: المسألة والناتج",
+      "title_en": "Game: problem and answer",
+      "match": {
+        "prompt_ar": "صِل كل مسألة بناتجها.",
+        "prompt_en": "Match each problem with its answer.",
+        "pairs": [
+          {
+            "id": "r7",
+            "a": {
+              "id": "r7",
+              "ar": "ثلاثة زائد أربعة",
+              "en": "Three plus four",
+              "visual": {
+                "kind": "symbol",
+                "value": "3 + 4"
+              }
+            },
+            "b": {
+              "id": "r7",
+              "ar": "سبعة",
+              "en": "Seven",
+              "visual": {
+                "kind": "dots",
+                "value": "7"
+              },
+              "sign": "n7"
+            }
+          },
+          {
+            "id": "r4",
+            "a": {
+              "id": "r4",
+              "ar": "اثنان زائد اثنان",
+              "en": "Two plus two",
+              "visual": {
+                "kind": "symbol",
+                "value": "2 + 2"
+              }
+            },
+            "b": {
+              "id": "r4",
+              "ar": "أربعة",
+              "en": "Four",
+              "visual": {
+                "kind": "dots",
+                "value": "4"
+              },
+              "sign": "n4"
+            }
+          },
+          {
+            "id": "r6",
+            "a": {
+              "id": "r6",
+              "ar": "تسعة ناقص ثلاثة",
+              "en": "Nine minus three",
+              "visual": {
+                "kind": "symbol",
+                "value": "9 − 3"
+              }
+            },
+            "b": {
+              "id": "r6",
+              "ar": "ستة",
+              "en": "Six",
+              "visual": {
+                "kind": "dots",
+                "value": "6"
+              },
+              "sign": "n6"
+            }
+          },
+          {
+            "id": "r2",
+            "a": {
+              "id": "r2",
+              "ar": "عشرة ناقص ثمانية",
+              "en": "Ten minus eight",
+              "visual": {
+                "kind": "symbol",
+                "value": "10 − 8"
+              }
+            },
+            "b": {
+              "id": "r2",
+              "ar": "اثنان",
+              "en": "Two",
+              "visual": {
+                "kind": "dots",
+                "value": "2"
+              },
+              "sign": "n2"
+            }
+          },
+          {
+            "id": "r9",
+            "a": {
+              "id": "r9",
+              "ar": "خمسة زائد أربعة",
+              "en": "Five plus four",
+              "visual": {
+                "kind": "symbol",
+                "value": "5 + 4"
+              }
+            },
+            "b": {
+              "id": "r9",
+              "ar": "تسعة",
+              "en": "Nine",
+              "visual": {
+                "kind": "dots",
+                "value": "9"
+              },
+              "sign": "n9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "table-sums",
+      "type": "table",
+      "title_ar": "جدول: أكمل النواتج",
+      "title_en": "Table: complete the answers",
+      "table": {
+        "prompt_ar": "احسب واختر الناتج الصحيح لكل صف.",
+        "prompt_en": "Work it out and pick the right answer for each row.",
+        "columns": [
+          {
+            "ar": "العدد الأول",
+            "en": "First number"
+          },
+          {
+            "ar": "العملية",
+            "en": "Operation"
+          },
+          {
+            "ar": "العدد الثاني",
+            "en": "Second number"
+          },
+          {
+            "ar": "الناتج",
+            "en": "Answer",
+            "tone": "accel"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "value": "4"
+            },
+            {
+              "value": "+"
+            },
+            {
+              "value": "3"
+            },
+            {
+              "answer": 7,
+              "choices": [
+                6,
+                7,
+                8
+              ]
+            }
+          ],
+          [
+            {
+              "value": "8"
+            },
+            {
+              "value": "−"
+            },
+            {
+              "value": "5"
+            },
+            {
+              "answer": 3,
+              "choices": [
+                3,
+                4,
+                13
+              ]
+            }
+          ],
+          [
+            {
+              "value": "6"
+            },
+            {
+              "value": "+"
+            },
+            {
+              "value": "4"
+            },
+            {
+              "answer": 10,
+              "choices": [
+                2,
+                9,
+                10
+              ]
+            }
+          ],
+          [
+            {
+              "value": "9"
+            },
+            {
+              "value": "−"
+            },
+            {
+              "value": "9"
+            },
+            {
+              "answer": 0,
+              "choices": [
+                0,
+                1,
+                9
+              ]
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "sort-results",
+      "type": "sort",
+      "title_ar": "لعبة: كبير أم صغير؟",
+      "title_en": "Game: big or small?",
+      "sort": {
+        "prompt_ar": "هل الناتج أقل من 5، أم 5 أو أكثر؟",
+        "prompt_en": "Is the answer less than 5, or 5 and more?",
+        "buckets": [
+          {
+            "id": "lt",
+            "ar": "الناتج أقل من 5",
+            "en": "Answer less than 5",
+            "visual": {
+              "kind": "symbol",
+              "value": "<5"
+            }
+          },
+          {
+            "id": "ge",
+            "ar": "الناتج 5 أو أكثر",
+            "en": "Answer 5 or more",
+            "visual": {
+              "kind": "symbol",
+              "value": "≥5"
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "a1",
+            "ar": "اثنان زائد واحد",
+            "en": "Two plus one",
+            "visual": {
+              "kind": "symbol",
+              "value": "2 + 1"
+            },
+            "bucket": "lt"
+          },
+          {
+            "id": "a2",
+            "ar": "ثلاثة زائد ثلاثة",
+            "en": "Three plus three",
+            "visual": {
+              "kind": "symbol",
+              "value": "3 + 3"
+            },
+            "bucket": "ge"
+          },
+          {
+            "id": "a3",
+            "ar": "سبعة ناقص خمسة",
+            "en": "Seven minus five",
+            "visual": {
+              "kind": "symbol",
+              "value": "7 − 5"
+            },
+            "bucket": "lt"
+          },
+          {
+            "id": "a4",
+            "ar": "أربعة زائد أربعة",
+            "en": "Four plus four",
+            "visual": {
+              "kind": "symbol",
+              "value": "4 + 4"
+            },
+            "bucket": "ge"
+          },
+          {
+            "id": "a5",
+            "ar": "تسعة ناقص ثمانية",
+            "en": "Nine minus eight",
+            "visual": {
+              "kind": "symbol",
+              "value": "9 − 8"
+            },
+            "bucket": "lt"
+          },
+          {
+            "id": "a6",
+            "ar": "خمسة زائد صفر",
+            "en": "Five plus zero",
+            "visual": {
+              "kind": "symbol",
+              "value": "5 + 0"
+            },
+            "bucket": "ge"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-results",
+      "type": "order",
+      "title_ar": "لعبة: رتّب حسب الناتج",
+      "title_en": "Game: order by answer",
+      "order": {
+        "prompt_ar": "رتّب المسائل من الناتج الأصغر إلى الأكبر.",
+        "prompt_en": "Order the problems from the smallest answer to the largest.",
+        "items": [
+          {
+            "id": "o2",
+            "ar": "واحد زائد واحد",
+            "en": "One plus one",
+            "visual": {
+              "kind": "symbol",
+              "value": "1 + 1"
+            }
+          },
+          {
+            "id": "o5",
+            "ar": "اثنان زائد ثلاثة",
+            "en": "Two plus three",
+            "visual": {
+              "kind": "symbol",
+              "value": "2 + 3"
+            }
+          },
+          {
+            "id": "o7",
+            "ar": "أربعة زائد ثلاثة",
+            "en": "Four plus three",
+            "visual": {
+              "kind": "symbol",
+              "value": "4 + 3"
+            }
+          },
+          {
+            "id": "o9",
+            "ar": "خمسة زائد أربعة",
+            "en": "Five plus four",
+            "visual": {
+              "kind": "symbol",
+              "value": "5 + 4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-sums",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "5 + 5 = 10",
+            "en": "5 + 5 = 10",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "8 − 3 = 4",
+            "en": "8 − 3 = 4",
+            "answer": false,
+            "why_ar": "8 − 3 = 5.",
+            "why_en": "8 − 3 = 5."
+          },
+          {
+            "id": "s3",
+            "ar": "أي عدد + 0 = نفس العدد.",
+            "en": "Any number + 0 = the same number.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "6 − 6 = 6",
+            "en": "6 − 6 = 6",
+            "answer": false,
+            "why_ar": "6 − 6 = 0.",
+            "why_en": "6 − 6 = 0."
+          },
+          {
+            "id": "s5",
+            "ar": "2 + 7 = 7 + 2",
+            "en": "2 + 7 = 7 + 2",
+            "answer": true,
+            "why_ar": "ترتيب الجمع لا يغيّر الناتج.",
+            "why_en": "The order of adding does not change the answer."
+          }
+        ]
+      }
+    }
+  ]
+}

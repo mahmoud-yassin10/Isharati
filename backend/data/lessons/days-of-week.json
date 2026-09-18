@@ -1,0 +1,409 @@
+{
+  "id": "days-of-week",
+  "slug": "days-of-week",
+  "title_ar": "أيام الأسبوع",
+  "title_en": "Days of the week",
+  "subject": "language",
+  "status": "published",
+  "summary_ar": "سبعة أيام بالإشارة، وأمس واليوم وغداً.",
+  "summary_en": "Seven days in sign, plus yesterday, today, and tomorrow.",
+  "minutes": 12,
+  "glossary": {
+    "sat": {
+      "term_ar": "السبت",
+      "term_en": "Saturday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "السبت"
+    },
+    "sun": {
+      "term_ar": "الأحد",
+      "term_en": "Sunday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الأحد"
+    },
+    "mon": {
+      "term_ar": "الأثنين",
+      "term_en": "Monday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الأثنين"
+    },
+    "tue": {
+      "term_ar": "الثلاثاء",
+      "term_en": "Tuesday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الثلاثاء"
+    },
+    "wed": {
+      "term_ar": "الأربعاء",
+      "term_en": "Wednesday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الأربعاء"
+    },
+    "thu": {
+      "term_ar": "الخميس",
+      "term_en": "Thursday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الخميس"
+    },
+    "fri": {
+      "term_ar": "الجمعة",
+      "term_en": "Friday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الجمعة"
+    },
+    "week": {
+      "term_ar": "اسبوع",
+      "term_en": "week",
+      "esl_mode": "lexicon",
+      "lexicon_token": "اسبوع"
+    },
+    "today": {
+      "term_ar": "اليوم",
+      "term_en": "today",
+      "esl_mode": "lexicon",
+      "lexicon_token": "اليوم"
+    },
+    "yesterday": {
+      "term_ar": "امس",
+      "term_en": "yesterday",
+      "esl_mode": "lexicon",
+      "lexicon_token": "امس"
+    },
+    "tomorrow": {
+      "term_ar": "غدا",
+      "term_en": "tomorrow",
+      "esl_mode": "lexicon",
+      "lexicon_token": "غدا"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-week",
+      "type": "esl_term",
+      "title_ar": "أسبوع",
+      "title_en": "Week",
+      "body_ar": "الأسبوع سبعة أيام.",
+      "body_en": "A week has seven days.",
+      "glossary_ids": [
+        "week"
+      ]
+    },
+    {
+      "id": "explain-days",
+      "type": "explain",
+      "title_ar": "الأيام",
+      "title_en": "The days",
+      "body_ar": "في مصر يبدأ أسبوع المدرسة يوم السبت. الجمعة يوم عطلة.",
+      "body_en": "In Egypt the school week starts on Saturday. Friday is a day off.",
+      "glossary_ids": [
+        "sat",
+        "sun",
+        "mon",
+        "tue"
+      ]
+    },
+    {
+      "id": "cycle-days",
+      "type": "diagram",
+      "title_ar": "رسم: دائرة الأسبوع",
+      "title_en": "Diagram: the week circle",
+      "diagram": {
+        "kind": "cycle",
+        "mode": "explore",
+        "prompt_ar": "اضغط كل يوم لتشاهد إشارته. بعد الجمعة يعود السبت.",
+        "prompt_en": "Tap each day to see its sign. After Friday comes Saturday again.",
+        "nodes": [
+          {
+            "id": "sat",
+            "ar": "السبت",
+            "en": "Saturday",
+            "sign": "sat"
+          },
+          {
+            "id": "sun",
+            "ar": "الأحد",
+            "en": "Sunday",
+            "sign": "sun"
+          },
+          {
+            "id": "mon",
+            "ar": "الأثنين",
+            "en": "Monday",
+            "sign": "mon"
+          },
+          {
+            "id": "tue",
+            "ar": "الثلاثاء",
+            "en": "Tuesday",
+            "sign": "tue"
+          },
+          {
+            "id": "wed",
+            "ar": "الأربعاء",
+            "en": "Wednesday",
+            "sign": "wed"
+          },
+          {
+            "id": "thu",
+            "ar": "الخميس",
+            "en": "Thursday",
+            "sign": "thu"
+          },
+          {
+            "id": "fri",
+            "ar": "الجمعة",
+            "en": "Friday",
+            "sign": "fri"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-days",
+      "type": "order",
+      "title_ar": "لعبة: رتّب الأيام",
+      "title_en": "Game: order the days",
+      "order": {
+        "prompt_ar": "رتّب أيام الأسبوع، ابدأ بالسبت.",
+        "prompt_en": "Put the days in order, starting with Saturday.",
+        "items": [
+          {
+            "id": "sat",
+            "ar": "السبت",
+            "en": "Saturday",
+            "sign": "sat"
+          },
+          {
+            "id": "sun",
+            "ar": "الأحد",
+            "en": "Sunday",
+            "sign": "sun"
+          },
+          {
+            "id": "mon",
+            "ar": "الأثنين",
+            "en": "Monday",
+            "sign": "mon"
+          },
+          {
+            "id": "tue",
+            "ar": "الثلاثاء",
+            "en": "Tuesday",
+            "sign": "tue"
+          },
+          {
+            "id": "wed",
+            "ar": "الأربعاء",
+            "en": "Wednesday",
+            "sign": "wed"
+          },
+          {
+            "id": "thu",
+            "ar": "الخميس",
+            "en": "Thursday",
+            "sign": "thu"
+          },
+          {
+            "id": "fri",
+            "ar": "الجمعة",
+            "en": "Friday",
+            "sign": "fri"
+          }
+        ]
+      }
+    },
+    {
+      "id": "explain-time",
+      "type": "explain",
+      "title_ar": "أمس واليوم وغداً",
+      "title_en": "Yesterday, today, tomorrow",
+      "body_ar": "أمس قبل اليوم. غداً بعد اليوم.",
+      "body_en": "Yesterday is before today. Tomorrow is after today.",
+      "glossary_ids": [
+        "yesterday",
+        "today",
+        "tomorrow"
+      ]
+    },
+    {
+      "id": "match-time",
+      "type": "match",
+      "title_ar": "لعبة: قبل وبعد",
+      "title_en": "Game: before and after",
+      "match": {
+        "prompt_ar": "إذا كان اليوم الأحد، صِل كل كلمة باليوم الصحيح.",
+        "prompt_en": "If today is Sunday, match each word with the right day.",
+        "pairs": [
+          {
+            "id": "yesterday",
+            "a": {
+              "id": "yesterday",
+              "ar": "أمس",
+              "en": "Yesterday",
+              "sign": "yesterday"
+            },
+            "b": {
+              "id": "yesterday",
+              "ar": "السبت",
+              "en": "Saturday",
+              "sign": "sat"
+            }
+          },
+          {
+            "id": "today",
+            "a": {
+              "id": "today",
+              "ar": "اليوم",
+              "en": "Today",
+              "sign": "today"
+            },
+            "b": {
+              "id": "today",
+              "ar": "الأحد",
+              "en": "Sunday",
+              "sign": "sun"
+            }
+          },
+          {
+            "id": "tomorrow",
+            "a": {
+              "id": "tomorrow",
+              "ar": "غداً",
+              "en": "Tomorrow",
+              "sign": "tomorrow"
+            },
+            "b": {
+              "id": "tomorrow",
+              "ar": "الأثنين",
+              "en": "Monday",
+              "sign": "mon"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "find-days",
+      "type": "diagram",
+      "title_ar": "ابحث: أين اليوم؟",
+      "title_en": "Find: where is the day?",
+      "diagram": {
+        "kind": "cycle",
+        "mode": "find",
+        "prompt_ar": "شاهد اسم اليوم، ثم اضغط مكانه في الدائرة.",
+        "prompt_en": "Read the day, then tap its place on the circle.",
+        "nodes": [
+          {
+            "id": "sat",
+            "ar": "السبت",
+            "en": "Saturday",
+            "sign": "sat"
+          },
+          {
+            "id": "sun",
+            "ar": "الأحد",
+            "en": "Sunday",
+            "sign": "sun"
+          },
+          {
+            "id": "mon",
+            "ar": "الأثنين",
+            "en": "Monday",
+            "sign": "mon"
+          },
+          {
+            "id": "tue",
+            "ar": "الثلاثاء",
+            "en": "Tuesday",
+            "sign": "tue"
+          },
+          {
+            "id": "wed",
+            "ar": "الأربعاء",
+            "en": "Wednesday",
+            "sign": "wed"
+          },
+          {
+            "id": "thu",
+            "ar": "الخميس",
+            "en": "Thursday",
+            "sign": "thu"
+          },
+          {
+            "id": "fri",
+            "ar": "الجمعة",
+            "en": "Friday",
+            "sign": "fri"
+          }
+        ],
+        "targets": [
+          "fri",
+          "tue",
+          "sat",
+          "thu"
+        ]
+      }
+    },
+    {
+      "id": "tf-days",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "في الأسبوع سبعة أيام.",
+            "en": "A week has seven days.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "الجمعة قبل الخميس.",
+            "en": "Friday comes before Thursday.",
+            "answer": false,
+            "why_ar": "الجمعة بعد الخميس.",
+            "why_en": "Friday comes after Thursday."
+          },
+          {
+            "id": "s3",
+            "ar": "إذا كان اليوم الثلاثاء، فغداً الأربعاء.",
+            "en": "If today is Tuesday, tomorrow is Wednesday.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "أمس بعد اليوم.",
+            "en": "Yesterday comes after today.",
+            "answer": false,
+            "why_ar": "أمس قبل اليوم.",
+            "why_en": "Yesterday comes before today."
+          },
+          {
+            "id": "s5",
+            "ar": "بعد الأحد يأتي الأثنين.",
+            "en": "Monday comes after Sunday.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "sign-friday",
+      "type": "sign_check",
+      "title_ar": "سجّل: الجمعة",
+      "title_en": "Sign: Friday",
+      "body_ar": "سجّل إشارة الجمعة، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for Friday, or skip this step.",
+      "sign_target": "الجمعة"
+    }
+  ]
+}

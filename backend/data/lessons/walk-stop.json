@@ -29,6 +29,42 @@
       "term_en": "no",
       "esl_mode": "lexicon",
       "lexicon_token": "لا"
+    },
+    "red": {
+      "term_ar": "أحمر",
+      "term_en": "red",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أحمر"
+    },
+    "green": {
+      "term_ar": "أخضر",
+      "term_en": "green",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أخضر"
+    },
+    "yellow": {
+      "term_ar": "أصفر",
+      "term_en": "yellow",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أصفر"
+    },
+    "car": {
+      "term_ar": "سيارة",
+      "term_en": "car",
+      "esl_mode": "lexicon",
+      "lexicon_token": "سيارة"
+    },
+    "sleep": {
+      "term_ar": "ينام",
+      "term_en": "sleeps",
+      "esl_mode": "lexicon",
+      "lexicon_token": "ينام"
+    },
+    "man": {
+      "term_ar": "رجل",
+      "term_en": "man",
+      "esl_mode": "lexicon",
+      "lexicon_token": "رجل"
     }
   },
   "steps": [
@@ -39,7 +75,9 @@
       "title_en": "Walks",
       "body_ar": "إشارة يمشي من المعجم.",
       "body_en": "The lexicon sign for walks.",
-      "glossary_ids": ["walk"]
+      "glossary_ids": [
+        "walk"
+      ]
     },
     {
       "id": "term-stop",
@@ -48,7 +86,9 @@
       "title_en": "Stops",
       "body_ar": "إشارة يقف من المعجم.",
       "body_en": "The lexicon sign for stops or stands.",
-      "glossary_ids": ["stop"]
+      "glossary_ids": [
+        "stop"
+      ]
     },
     {
       "id": "explain-walk-stop",
@@ -57,22 +97,182 @@
       "title_en": "Moving and stopping",
       "body_ar": "الجسم يمشي ثم يقف. لا تعني النفي.",
       "body_en": "The body walks, then stops. لا is negation.",
-      "glossary_ids": ["walk", "stop", "no"]
+      "glossary_ids": [
+        "walk",
+        "stop",
+        "no"
+      ]
+    },
+    {
+      "id": "match-traffic",
+      "type": "match",
+      "title_ar": "لعبة: إشارة المرور",
+      "title_en": "Game: traffic light",
+      "match": {
+        "prompt_ar": "صِل كل لون في إشارة المرور بما يعنيه.",
+        "prompt_en": "Match each traffic-light colour with what it means.",
+        "pairs": [
+          {
+            "id": "red",
+            "a": {
+              "id": "red",
+              "ar": "أحمر",
+              "en": "Red",
+              "visual": {
+                "kind": "color",
+                "value": "#d32f2f"
+              },
+              "sign": "red"
+            },
+            "b": {
+              "id": "red",
+              "ar": "يقف",
+              "en": "Stop",
+              "sign": "stop"
+            }
+          },
+          {
+            "id": "yellow",
+            "a": {
+              "id": "yellow",
+              "ar": "أصفر",
+              "en": "Yellow",
+              "visual": {
+                "kind": "color",
+                "value": "#f9c80e"
+              },
+              "sign": "yellow"
+            },
+            "b": {
+              "id": "yellow",
+              "ar": "انتبه واستعد",
+              "en": "Get ready"
+            }
+          },
+          {
+            "id": "green",
+            "a": {
+              "id": "green",
+              "ar": "أخضر",
+              "en": "Green",
+              "visual": {
+                "kind": "color",
+                "value": "#2e7d32"
+              },
+              "sign": "green"
+            },
+            "b": {
+              "id": "green",
+              "ar": "يمشي",
+              "en": "Go",
+              "sign": "walk"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-move",
+      "type": "sort",
+      "title_ar": "لعبة: يتحرك أم ثابت؟",
+      "title_en": "Game: moving or still?",
+      "sort": {
+        "prompt_ar": "ضع كل صورة في مجموعتها.",
+        "prompt_en": "Put each picture in its group.",
+        "buckets": [
+          {
+            "id": "move",
+            "ar": "يتحرك",
+            "en": "Moving",
+            "sign": "walk"
+          },
+          {
+            "id": "still",
+            "ar": "ثابت",
+            "en": "Still",
+            "sign": "stop"
+          }
+        ],
+        "items": [
+          {
+            "id": "m1",
+            "ar": "رجل يمشي",
+            "en": "A man walks",
+            "sign": "walk",
+            "bucket": "move"
+          },
+          {
+            "id": "m2",
+            "ar": "سيارة تسير",
+            "en": "A car drives",
+            "sign": "car",
+            "bucket": "move"
+          },
+          {
+            "id": "m3",
+            "ar": "ضوء أخضر، الناس تعبر",
+            "en": "Green light, people cross",
+            "visual": {
+              "kind": "color",
+              "value": "#2e7d32"
+            },
+            "bucket": "move"
+          },
+          {
+            "id": "s1",
+            "ar": "طالب يقف في الطابور",
+            "en": "A student stands in line",
+            "sign": "stop",
+            "bucket": "still"
+          },
+          {
+            "id": "s2",
+            "ar": "طفل ينام",
+            "en": "A child sleeps",
+            "sign": "sleep",
+            "bucket": "still"
+          },
+          {
+            "id": "s3",
+            "ar": "ضوء أحمر، السيارات تقف",
+            "en": "Red light, cars stop",
+            "visual": {
+              "kind": "color",
+              "value": "#d32f2f"
+            },
+            "bucket": "still"
+          }
+        ]
+      }
     },
     {
       "id": "quiz-walk",
       "type": "quiz",
       "title_ar": "اختبار: يمشي",
       "title_en": "Quiz: walks",
-      "glossary_ids": ["walk"],
+      "glossary_ids": [
+        "walk"
+      ],
       "quiz": {
         "prompt_ar": "هذه الإشارة تعني؟",
         "prompt_en": "This sign means?",
         "correct_id": "walk",
         "options": [
-          { "id": "walk", "label_ar": "يمشي", "label_en": "walks" },
-          { "id": "stop", "label_ar": "يقف", "label_en": "stops" },
-          { "id": "no", "label_ar": "لا", "label_en": "no" }
+          {
+            "id": "walk",
+            "label_ar": "يمشي",
+            "label_en": "walks"
+          },
+          {
+            "id": "stop",
+            "label_ar": "يقف",
+            "label_en": "stops"
+          },
+          {
+            "id": "no",
+            "label_ar": "لا",
+            "label_en": "no"
+          }
         ]
       }
     },
@@ -81,15 +281,29 @@
       "type": "quiz",
       "title_ar": "اختبار: يقف",
       "title_en": "Quiz: stops",
-      "glossary_ids": ["stop"],
+      "glossary_ids": [
+        "stop"
+      ],
       "quiz": {
         "prompt_ar": "عكس يمشي؟",
         "prompt_en": "The opposite of walks?",
         "correct_id": "stop",
         "options": [
-          { "id": "i", "label_ar": "أنا", "label_en": "I" },
-          { "id": "stop", "label_ar": "يقف", "label_en": "stops" },
-          { "id": "walk", "label_ar": "يمشي", "label_en": "walks" }
+          {
+            "id": "i",
+            "label_ar": "أنا",
+            "label_en": "I"
+          },
+          {
+            "id": "stop",
+            "label_ar": "يقف",
+            "label_en": "stops"
+          },
+          {
+            "id": "walk",
+            "label_ar": "يمشي",
+            "label_en": "walks"
+          }
         ]
       }
     },
@@ -98,15 +312,73 @@
       "type": "quiz",
       "title_ar": "اختبار: لا",
       "title_en": "Quiz: no",
-      "glossary_ids": ["no"],
+      "glossary_ids": [
+        "no"
+      ],
       "quiz": {
         "prompt_ar": "إشارة النفي؟",
         "prompt_en": "The negation sign?",
         "correct_id": "no",
         "options": [
-          { "id": "no", "label_ar": "لا", "label_en": "no" },
-          { "id": "walk", "label_ar": "يمشي", "label_en": "walks" },
-          { "id": "i", "label_ar": "أنا", "label_en": "I" }
+          {
+            "id": "no",
+            "label_ar": "لا",
+            "label_en": "no"
+          },
+          {
+            "id": "walk",
+            "label_ar": "يمشي",
+            "label_en": "walks"
+          },
+          {
+            "id": "i",
+            "label_ar": "أنا",
+            "label_en": "I"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-walk-stop",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "الضوء الأحمر يعني: قف.",
+            "en": "A red light means stop.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "الضوء الأخضر يعني: قف.",
+            "en": "A green light means stop.",
+            "answer": false,
+            "why_ar": "الأخضر يعني: امشِ.",
+            "why_en": "Green means go."
+          },
+          {
+            "id": "s3",
+            "ar": "«يقف» عكس «يمشي».",
+            "en": "“Stops” is the opposite of “walks”.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "النائم يتحرك بسرعة.",
+            "en": "A sleeping person moves fast.",
+            "answer": false,
+            "why_ar": "النائم ثابت.",
+            "why_en": "A sleeping person is still."
+          }
         ]
       }
     },
@@ -128,5 +400,8 @@
       "body_en": "Record the sign for stops, or skip this step.",
       "sign_target": "يقف"
     }
-  ]
+  ],
+  "summary_ar": "الحركة والتوقف، وإشارات المرور بالألوان.",
+  "summary_en": "Moving and stopping, and traffic lights by colour.",
+  "minutes": 10
 }

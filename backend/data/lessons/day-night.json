@@ -1,0 +1,374 @@
+{
+  "id": "day-night",
+  "slug": "day-night",
+  "title_ar": "الليل والنهار",
+  "title_en": "Day and night",
+  "subject": "science",
+  "status": "published",
+  "summary_ar": "لماذا يأتي الليل والنهار، ودائرة اليوم كاملة.",
+  "summary_en": "Why day and night happen, and the full circle of a day.",
+  "minutes": 12,
+  "glossary": {
+    "sun": {
+      "term_ar": "شمس",
+      "term_en": "sun",
+      "esl_mode": "lexicon",
+      "lexicon_token": "شمس"
+    },
+    "moon": {
+      "term_ar": "قمر",
+      "term_en": "moon",
+      "esl_mode": "lexicon",
+      "lexicon_token": "قمر"
+    },
+    "sunrise": {
+      "term_ar": "الشروق",
+      "term_en": "sunrise",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الشروق"
+    },
+    "sunset": {
+      "term_ar": "الغروب",
+      "term_en": "sunset",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الغروب"
+    },
+    "morning": {
+      "term_ar": "الصباح",
+      "term_en": "morning",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الصباح"
+    },
+    "evening": {
+      "term_ar": "المساء",
+      "term_en": "evening",
+      "esl_mode": "lexicon",
+      "lexicon_token": "المساء"
+    },
+    "noon": {
+      "term_ar": "الظهر",
+      "term_en": "noon",
+      "esl_mode": "fingerspell"
+    },
+    "night": {
+      "term_ar": "الليل",
+      "term_en": "night",
+      "esl_mode": "fingerspell"
+    },
+    "sleep": {
+      "term_ar": "ينام",
+      "term_en": "sleeps",
+      "esl_mode": "lexicon",
+      "lexicon_token": "ينام"
+    },
+    "school": {
+      "term_ar": "المدرسة",
+      "term_en": "school",
+      "esl_mode": "lexicon",
+      "lexicon_token": "المدرسة"
+    },
+    "hour": {
+      "term_ar": "ساعة",
+      "term_en": "hour",
+      "esl_mode": "lexicon",
+      "lexicon_token": "ساعة"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-sun",
+      "type": "esl_term",
+      "title_ar": "الشمس",
+      "title_en": "Sun",
+      "body_ar": "الشمس نجم يعطينا الضوء والحرارة.",
+      "body_en": "The sun is a star that gives us light and heat.",
+      "glossary_ids": [
+        "sun"
+      ]
+    },
+    {
+      "id": "term-moon",
+      "type": "esl_term",
+      "title_ar": "القمر",
+      "title_en": "Moon",
+      "body_ar": "القمر لا يصنع ضوءاً. يعكس ضوء الشمس.",
+      "body_en": "The moon makes no light. It reflects sunlight.",
+      "glossary_ids": [
+        "moon"
+      ]
+    },
+    {
+      "id": "explain-spin",
+      "type": "explain",
+      "title_ar": "لماذا الليل والنهار؟",
+      "title_en": "Why day and night?",
+      "body_ar": "الأرض تدور حول نفسها مرة كل 24 ساعة. الجانب المواجه للشمس نهار، والجانب الآخر ليل.",
+      "body_en": "The Earth spins once every 24 hours. The side facing the sun has day; the other side has night.",
+      "glossary_ids": [
+        "sun",
+        "hour"
+      ]
+    },
+    {
+      "id": "cycle-day",
+      "type": "diagram",
+      "title_ar": "رسم: دائرة اليوم",
+      "title_en": "Diagram: the circle of a day",
+      "diagram": {
+        "kind": "cycle",
+        "mode": "explore",
+        "prompt_ar": "اضغط كل وقت لتعرف ماذا يحدث فيه.",
+        "prompt_en": "Tap each time to learn what happens.",
+        "nodes": [
+          {
+            "id": "sunrise",
+            "ar": "الشروق",
+            "en": "Sunrise",
+            "sign": "sunrise",
+            "note_ar": "تظهر الشمس من الشرق.",
+            "note_en": "The sun appears in the east."
+          },
+          {
+            "id": "morning",
+            "ar": "الصباح",
+            "en": "Morning",
+            "sign": "morning",
+            "note_ar": "نذهب إلى المدرسة.",
+            "note_en": "We go to school."
+          },
+          {
+            "id": "noon",
+            "ar": "الظهر",
+            "en": "Noon",
+            "sign": "noon",
+            "note_ar": "الشمس في أعلى السماء.",
+            "note_en": "The sun is highest in the sky."
+          },
+          {
+            "id": "sunset",
+            "ar": "الغروب",
+            "en": "Sunset",
+            "sign": "sunset",
+            "note_ar": "تختفي الشمس في الغرب.",
+            "note_en": "The sun disappears in the west."
+          },
+          {
+            "id": "evening",
+            "ar": "المساء",
+            "en": "Evening",
+            "sign": "evening",
+            "note_ar": "السماء تُظلم.",
+            "note_en": "The sky gets dark."
+          },
+          {
+            "id": "night",
+            "ar": "الليل",
+            "en": "Night",
+            "sign": "night",
+            "note_ar": "يظهر القمر وننام.",
+            "note_en": "The moon appears and we sleep."
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-day",
+      "type": "order",
+      "title_ar": "لعبة: رتّب اليوم",
+      "title_en": "Game: order the day",
+      "order": {
+        "prompt_ar": "رتّب أوقات اليوم. ابدأ بالشروق.",
+        "prompt_en": "Order the times of day. Start with sunrise.",
+        "items": [
+          {
+            "id": "sunrise",
+            "ar": "الشروق",
+            "en": "Sunrise",
+            "sign": "sunrise"
+          },
+          {
+            "id": "morning",
+            "ar": "الصباح",
+            "en": "Morning",
+            "sign": "morning"
+          },
+          {
+            "id": "noon",
+            "ar": "الظهر",
+            "en": "Noon",
+            "sign": "noon"
+          },
+          {
+            "id": "sunset",
+            "ar": "الغروب",
+            "en": "Sunset",
+            "sign": "sunset"
+          },
+          {
+            "id": "evening",
+            "ar": "المساء",
+            "en": "Evening",
+            "sign": "evening"
+          },
+          {
+            "id": "night",
+            "ar": "الليل",
+            "en": "Night",
+            "sign": "night"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-day-night",
+      "type": "sort",
+      "title_ar": "لعبة: نهار أم ليل؟",
+      "title_en": "Game: day or night?",
+      "sort": {
+        "prompt_ar": "ضع كل مشهد في مجموعته.",
+        "prompt_en": "Put each scene in its group.",
+        "buckets": [
+          {
+            "id": "day",
+            "ar": "نهار",
+            "en": "Day",
+            "sign": "sun"
+          },
+          {
+            "id": "night",
+            "ar": "ليل",
+            "en": "Night",
+            "sign": "moon"
+          }
+        ],
+        "items": [
+          {
+            "id": "d1",
+            "ar": "الشمس في السماء",
+            "en": "The sun is in the sky",
+            "sign": "sun",
+            "bucket": "day"
+          },
+          {
+            "id": "d2",
+            "ar": "نذهب إلى المدرسة",
+            "en": "We go to school",
+            "sign": "school",
+            "bucket": "day"
+          },
+          {
+            "id": "d3",
+            "ar": "الشروق",
+            "en": "Sunrise",
+            "sign": "sunrise",
+            "bucket": "day"
+          },
+          {
+            "id": "n1",
+            "ar": "القمر والنجوم",
+            "en": "The moon and stars",
+            "sign": "moon",
+            "bucket": "night"
+          },
+          {
+            "id": "n2",
+            "ar": "ننام في السرير",
+            "en": "We sleep in bed",
+            "sign": "sleep",
+            "bucket": "night"
+          },
+          {
+            "id": "n3",
+            "ar": "السماء مظلمة",
+            "en": "The sky is dark",
+            "bucket": "night"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz-rise",
+      "type": "quiz",
+      "title_ar": "سؤال: من أين تشرق الشمس؟",
+      "title_en": "Question: where does the sun rise?",
+      "glossary_ids": [
+        "sunrise"
+      ],
+      "quiz": {
+        "prompt_ar": "من أي اتجاه تشرق الشمس؟",
+        "prompt_en": "Which direction does the sun rise from?",
+        "correct_id": "east",
+        "options": [
+          {
+            "id": "east",
+            "label_ar": "الشرق",
+            "label_en": "East"
+          },
+          {
+            "id": "west",
+            "label_ar": "الغرب",
+            "label_en": "West"
+          },
+          {
+            "id": "north",
+            "label_ar": "الشمال",
+            "label_en": "North"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-day-night",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "القمر يصنع ضوءه بنفسه.",
+            "en": "The moon makes its own light.",
+            "answer": false,
+            "why_ar": "القمر يعكس ضوء الشمس.",
+            "why_en": "The moon reflects sunlight."
+          },
+          {
+            "id": "s2",
+            "ar": "الليل والنهار بسبب دوران الأرض حول نفسها.",
+            "en": "Day and night happen because the Earth spins.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s3",
+            "ar": "اليوم الكامل 24 ساعة.",
+            "en": "A full day is 24 hours.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "الشمس تغرب في الشرق.",
+            "en": "The sun sets in the east.",
+            "answer": false,
+            "why_ar": "الشمس تغرب في الغرب.",
+            "why_en": "The sun sets in the west."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sign-moon",
+      "type": "sign_check",
+      "title_ar": "سجّل: قمر",
+      "title_en": "Sign: moon",
+      "body_ar": "سجّل إشارة قمر، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for moon, or skip this step.",
+      "sign_target": "قمر"
+    }
+  ]
+}

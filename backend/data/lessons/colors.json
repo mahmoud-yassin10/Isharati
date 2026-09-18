@@ -1,0 +1,427 @@
+{
+  "id": "colors",
+  "slug": "colors",
+  "title_ar": "الألوان",
+  "title_en": "Colours",
+  "subject": "language",
+  "status": "published",
+  "summary_ar": "ستة ألوان بالإشارة، وألوان علم مصر.",
+  "summary_en": "Six colours in sign, and the colours of Egypt's flag.",
+  "minutes": 10,
+  "glossary": {
+    "red": {
+      "term_ar": "أحمر",
+      "term_en": "red",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أحمر"
+    },
+    "green": {
+      "term_ar": "أخضر",
+      "term_en": "green",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أخضر"
+    },
+    "blue": {
+      "term_ar": "أزرق",
+      "term_en": "blue",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أزرق"
+    },
+    "yellow": {
+      "term_ar": "أصفر",
+      "term_en": "yellow",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أصفر"
+    },
+    "white": {
+      "term_ar": "أبيض",
+      "term_en": "white",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أبيض"
+    },
+    "black": {
+      "term_ar": "أسود",
+      "term_en": "black",
+      "esl_mode": "fingerspell"
+    },
+    "egypt": {
+      "term_ar": "مصر",
+      "term_en": "Egypt",
+      "esl_mode": "lexicon",
+      "lexicon_token": "مصر"
+    }
+  },
+  "steps": [
+    {
+      "id": "explain-colors",
+      "type": "explain",
+      "title_ar": "الألوان",
+      "title_en": "Colours",
+      "body_ar": "كل لون له إشارة. شاهد الإشارة، وانظر إلى المربع الملوّن.",
+      "body_en": "Every colour has a sign. Watch the sign and look at the coloured square.",
+      "glossary_ids": [
+        "red",
+        "green",
+        "blue",
+        "yellow",
+        "white"
+      ]
+    },
+    {
+      "id": "term-black",
+      "type": "esl_term",
+      "title_ar": "أسود",
+      "title_en": "Black",
+      "body_ar": "كلمة أسود تُهجّى حرفاً حرفاً.",
+      "body_en": "Black is fingerspelled letter by letter.",
+      "glossary_ids": [
+        "black"
+      ]
+    },
+    {
+      "id": "match-colors",
+      "type": "match",
+      "title_ar": "لعبة: اللون والكلمة",
+      "title_en": "Game: colour and word",
+      "match": {
+        "prompt_ar": "صِل كل مربع ملوّن باسمه.",
+        "prompt_en": "Match each coloured square with its name.",
+        "pairs": [
+          {
+            "id": "red",
+            "a": {
+              "id": "red",
+              "ar": "هذا اللون",
+              "en": "This colour",
+              "visual": {
+                "kind": "color",
+                "value": "#d32f2f"
+              }
+            },
+            "b": {
+              "id": "red",
+              "ar": "أحمر",
+              "en": "Red",
+              "sign": "red"
+            }
+          },
+          {
+            "id": "green",
+            "a": {
+              "id": "green",
+              "ar": "هذا اللون",
+              "en": "This colour",
+              "visual": {
+                "kind": "color",
+                "value": "#2e7d32"
+              }
+            },
+            "b": {
+              "id": "green",
+              "ar": "أخضر",
+              "en": "Green",
+              "sign": "green"
+            }
+          },
+          {
+            "id": "blue",
+            "a": {
+              "id": "blue",
+              "ar": "هذا اللون",
+              "en": "This colour",
+              "visual": {
+                "kind": "color",
+                "value": "#1565c0"
+              }
+            },
+            "b": {
+              "id": "blue",
+              "ar": "أزرق",
+              "en": "Blue",
+              "sign": "blue"
+            }
+          },
+          {
+            "id": "yellow",
+            "a": {
+              "id": "yellow",
+              "ar": "هذا اللون",
+              "en": "This colour",
+              "visual": {
+                "kind": "color",
+                "value": "#f9c80e"
+              }
+            },
+            "b": {
+              "id": "yellow",
+              "ar": "أصفر",
+              "en": "Yellow",
+              "sign": "yellow"
+            }
+          },
+          {
+            "id": "white",
+            "a": {
+              "id": "white",
+              "ar": "هذا اللون",
+              "en": "This colour",
+              "visual": {
+                "kind": "color",
+                "value": "#ffffff"
+              }
+            },
+            "b": {
+              "id": "white",
+              "ar": "أبيض",
+              "en": "White",
+              "sign": "white"
+            }
+          },
+          {
+            "id": "black",
+            "a": {
+              "id": "black",
+              "ar": "هذا اللون",
+              "en": "This colour",
+              "visual": {
+                "kind": "color",
+                "value": "#111111"
+              }
+            },
+            "b": {
+              "id": "black",
+              "ar": "أسود",
+              "en": "Black",
+              "sign": "black"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz-stop-color",
+      "type": "quiz",
+      "title_ar": "سؤال: لون التوقف",
+      "title_en": "Question: the stop colour",
+      "glossary_ids": [
+        "red"
+      ],
+      "quiz": {
+        "prompt_ar": "ما لون الضوء الذي يعني «قف»؟",
+        "prompt_en": "Which light colour means “stop”?",
+        "correct_id": "red",
+        "options": [
+          {
+            "id": "green",
+            "label_ar": "أخضر",
+            "label_en": "Green"
+          },
+          {
+            "id": "red",
+            "label_ar": "أحمر",
+            "label_en": "Red"
+          },
+          {
+            "id": "blue",
+            "label_ar": "أزرق",
+            "label_en": "Blue"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-flag",
+      "type": "sort",
+      "title_ar": "لعبة: علم مصر",
+      "title_en": "Game: Egypt's flag",
+      "sort": {
+        "prompt_ar": "هل هذا اللون في علم مصر؟",
+        "prompt_en": "Is this colour in Egypt's flag?",
+        "buckets": [
+          {
+            "id": "in",
+            "ar": "في علم مصر",
+            "en": "In Egypt's flag",
+            "sign": "egypt"
+          },
+          {
+            "id": "out",
+            "ar": "ليس في العلم",
+            "en": "Not in the flag"
+          }
+        ],
+        "items": [
+          {
+            "id": "red",
+            "ar": "أحمر",
+            "en": "Red",
+            "visual": {
+              "kind": "color",
+              "value": "#d32f2f"
+            },
+            "sign": "red",
+            "bucket": "in"
+          },
+          {
+            "id": "green",
+            "ar": "أخضر",
+            "en": "Green",
+            "visual": {
+              "kind": "color",
+              "value": "#2e7d32"
+            },
+            "sign": "green",
+            "bucket": "out"
+          },
+          {
+            "id": "white",
+            "ar": "أبيض",
+            "en": "White",
+            "visual": {
+              "kind": "color",
+              "value": "#ffffff"
+            },
+            "sign": "white",
+            "bucket": "in"
+          },
+          {
+            "id": "blue",
+            "ar": "أزرق",
+            "en": "Blue",
+            "visual": {
+              "kind": "color",
+              "value": "#1565c0"
+            },
+            "sign": "blue",
+            "bucket": "out"
+          },
+          {
+            "id": "black",
+            "ar": "أسود",
+            "en": "Black",
+            "visual": {
+              "kind": "color",
+              "value": "#111111"
+            },
+            "sign": "black",
+            "bucket": "in"
+          },
+          {
+            "id": "yellow",
+            "ar": "أصفر",
+            "en": "Yellow",
+            "visual": {
+              "kind": "color",
+              "value": "#f9c80e"
+            },
+            "sign": "yellow",
+            "bucket": "out"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-flag",
+      "type": "order",
+      "title_ar": "لعبة: رتّب العلم",
+      "title_en": "Game: build the flag",
+      "order": {
+        "prompt_ar": "رتّب ألوان علم مصر من الأعلى إلى الأسفل.",
+        "prompt_en": "Order Egypt's flag colours from top to bottom.",
+        "items": [
+          {
+            "id": "red",
+            "ar": "أحمر",
+            "en": "Red",
+            "visual": {
+              "kind": "color",
+              "value": "#d32f2f"
+            },
+            "sign": "red"
+          },
+          {
+            "id": "white",
+            "ar": "أبيض",
+            "en": "White",
+            "visual": {
+              "kind": "color",
+              "value": "#ffffff"
+            },
+            "sign": "white"
+          },
+          {
+            "id": "black",
+            "ar": "أسود",
+            "en": "Black",
+            "visual": {
+              "kind": "color",
+              "value": "#111111"
+            },
+            "sign": "black"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-colors",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "لون السماء الصافية أزرق.",
+            "en": "A clear sky is blue.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "لون أوراق الشجر أحمر.",
+            "en": "Tree leaves are red.",
+            "answer": false,
+            "why_ar": "أوراق الشجر خضراء.",
+            "why_en": "Tree leaves are green."
+          },
+          {
+            "id": "s3",
+            "ar": "في علم مصر لون أبيض.",
+            "en": "Egypt's flag has white in it.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "الموز الناضج لونه أصفر.",
+            "en": "A ripe banana is yellow.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s5",
+            "ar": "الضوء الأخضر يعني قف.",
+            "en": "A green light means stop.",
+            "answer": false,
+            "why_ar": "الأحمر يعني قف.",
+            "why_en": "Red means stop."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sign-red",
+      "type": "sign_check",
+      "title_ar": "سجّل: أحمر",
+      "title_en": "Sign: red",
+      "body_ar": "سجّل إشارة أحمر، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for red, or skip this step.",
+      "sign_target": "أحمر"
+    }
+  ]
+}

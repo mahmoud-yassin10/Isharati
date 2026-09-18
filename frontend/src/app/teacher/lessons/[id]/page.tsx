@@ -5,7 +5,9 @@ import { useParams, useRouter } from "next/navigation";
 import {
   BookOpen,
   Check,
+  Eye,
   FileEdit,
+  Gamepad2,
   Hand,
   HelpCircle,
   Send,
@@ -17,7 +19,10 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
+import { GameStep } from "@/components/games/GameStep";
 import { NewtonLab } from "@/components/NewtonLab";
+import { QuizPanel } from "@/components/QuizPanel";
+import { SignPanels } from "@/components/SignPanel";
 import { ProgressBadge } from "@/components/ProgressBadge";
 import { BackIcon, LoadingBlock, ProgressBar } from "@/components/ui";
 import { lessonStats } from "@/lib/gamification";
@@ -25,7 +30,9 @@ import { assignLesson, getLesson, lessonProgress, publishLesson } from "@/lib/ap
 import { useUser } from "@/lib/useUser";
 import type { Lesson, ProgressItem, StepType } from "@/lib/types";
 
-const STEP_ICON: Record<StepType, React.ReactNode> = {
+const GAME_ICON = <Gamepad2 size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />;
+
+const STEP_ICON: Partial<Record<StepType, React.ReactNode>> = {
   esl_term: <Hand size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
   explain: <BookOpen size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
   simulate: <SlidersHorizontal size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />,
@@ -44,6 +51,7 @@ export default function TeacherLessonPage() {
   const [progress, setProgress] = useState<ProgressItem[]>([]);
   const [note, setNote] = useState<Note | null>(null);
   const [busy, setBusy] = useState(false);
+  const [previewId, setPreviewId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!ready) return;
@@ -60,6 +68,7 @@ export default function TeacherLessonPage() {
   }, [ready, user, router, id]);
 
   const simStep = lesson?.steps.find((step) => step.simulation);
+  const previewStep = lesson?.steps.find((step) => step.id === previewId);
 
   async function onPublish() {
     setBusy(true);
@@ -194,16 +203,47 @@ export default function TeacherLessonPage() {
                   <ol className="step-outline">
                     {lesson.steps.map((step, stepIndex) => (
                       <li key={step.id}>
-                        <span className="n" aria-hidden="true">
-                          {stepIndex + 1}
-                        </span>
-                        {STEP_ICON[step.type]}
-                        <Dual ar={step.title_ar} en={step.title_en ?? step.title_ar} />
+                        <button
+                          type="button"
+                          className="outline-btn"
+                          aria-pressed={previewId === step.id}
+                          onClick={() => setPreviewId(previewId === step.id ? null : step.id)}
+                        >
+                          <span className="n" aria-hidden="true">
+                            {stepIndex + 1}
+                          </span>
+                          {STEP_ICON[step.type] ?? GAME_ICON}
+                          <Dual ar={step.title_ar} en={step.title_en ?? step.title_ar} />
+                          <Eye size={18} strokeWidth={1.75} className="icon outline-eye" aria-hidden="true" />
+                        </button>
                       </li>
                     ))}
                   </ol>
                 </div>
               </section>
+
+              {previewStep ? (
+                <section className="stack-sm" aria-live="polite">
+                  <h2>
+                    <Dual ar={`معاينة: ${previewStep.title_ar}`} en={`Preview: ${previewStep.title_en ?? previewStep.title_ar}`} />
+                  </h2>
+                  {previewStep.body_ar ? (
+                    <Dual as="p" className="muted" ar={previewStep.body_ar} en={previewStep.body_en ?? previewStep.body_ar} />
+                  ) : null}
+                  <GameStep key={previewStep.id} step={previewStep} glossary={lesson.glossary} onComplete={() => undefined} />
+                  {previewStep.type === "quiz" && previewStep.quiz ? (
+                    <QuizPanel key={previewStep.id} quiz={previewStep.quiz} onSolved={() => undefined} />
+                  ) : null}
+                  {(previewStep.type === "esl_term" || previewStep.type === "explain") ? (
+                    <SignPanels
+                      entries={(previewStep.glossary_ids ?? []).map((gid) => lesson.glossary[gid]).filter(Boolean)}
+                    />
+                  ) : null}
+                  {(previewStep.type === "simulate" || previewStep.type === "challenge") && previewStep.simulation ? (
+                    <Dual as="p" className="small muted" ar="المختبر معروض في الأعلى." en="The lab is shown above." />
+                  ) : null}
+                </section>
+              ) : null}
             </div>
 
             <section className="stack-sm">
@@ -258,7 +298,9 @@ export default function TeacherLessonPage() {
                           <th>
                             <Dual ar="الحالة" en="Status" />
                           </th>
-                          <th>a</th>
+                          <th>
+                            <Dual ar="النتيجة" en="Result" />
+                          </th>
                           <th>
                             <Dual ar="الإشارة" en="Sign" />
                           </th>
@@ -288,7 +330,13 @@ export default function TeacherLessonPage() {
                                   </span>
                                 )}
                               </td>
-                              <td className="mono">{item.sim_snapshot?.a?.toFixed(2) ?? "—"}</td>
+                              <td className="mono">
+                                {item.sim_snapshot?.a != null
+                                  ? `a = ${item.sim_snapshot.a.toFixed(2)}`
+                                  : item.sim_snapshot?.stars
+                                    ? `${"★".repeat(item.sim_snapshot.stars)}${"☆".repeat(3 - item.sim_snapshot.stars)}`
+                                    : "—"}
+                              </td>
                               <td>{item.predicted_sign ?? "—"}</td>
                             </tr>
                           );

@@ -147,6 +147,18 @@ def lesson_progress(lesson_id: str, claims: dict = Depends(current_claims)):
         return items
 
 
+@router.delete("/progress")
+def reset_progress(claims: dict = Depends(current_claims)):
+    """Clears every progress row for the signed-in student, across all lessons."""
+    user_id, role = require_user(claims)
+    if role != "student":
+        raise HTTPException(status_code=403, detail="للطالب فقط")
+    with SessionLocal() as session:
+        deleted = session.query(Progress).filter(Progress.student_id == user_id).delete()
+        session.commit()
+        return {"ok": True, "deleted": deleted}
+
+
 @router.post("/progress")
 def save_progress(body: ProgressBody, claims: dict = Depends(current_claims)):
     user_id, role = require_user(claims)

@@ -1,0 +1,432 @@
+{
+  "id": "family",
+  "slug": "family",
+  "title_ar": "الأسرة",
+  "title_en": "Family",
+  "subject": "language",
+  "status": "published",
+  "summary_ar": "أفراد الأسرة بالإشارة، ومن هو عمّك ومن هو خالك.",
+  "summary_en": "Family members in sign, and who is your uncle on each side.",
+  "minutes": 12,
+  "glossary": {
+    "father": {
+      "term_ar": "أب",
+      "term_en": "father",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أب"
+    },
+    "mother": {
+      "term_ar": "أم",
+      "term_en": "mother",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أم"
+    },
+    "brother": {
+      "term_ar": "أخ",
+      "term_en": "brother",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أخ"
+    },
+    "sister": {
+      "term_ar": "أخت",
+      "term_en": "sister",
+      "esl_mode": "lexicon",
+      "lexicon_token": "أخت"
+    },
+    "grandpa": {
+      "term_ar": "جد",
+      "term_en": "grandfather",
+      "esl_mode": "lexicon",
+      "lexicon_token": "جد"
+    },
+    "grandma": {
+      "term_ar": "جدة",
+      "term_en": "grandmother",
+      "esl_mode": "lexicon",
+      "lexicon_token": "جدة"
+    },
+    "uncle_f": {
+      "term_ar": "عم",
+      "term_en": "uncle (father's side)",
+      "esl_mode": "lexicon",
+      "lexicon_token": "عم"
+    },
+    "aunt_f": {
+      "term_ar": "عمة",
+      "term_en": "aunt (father's side)",
+      "esl_mode": "lexicon",
+      "lexicon_token": "عمة"
+    },
+    "uncle_m": {
+      "term_ar": "خال",
+      "term_en": "uncle (mother's side)",
+      "esl_mode": "lexicon",
+      "lexicon_token": "خال"
+    },
+    "aunt_m": {
+      "term_ar": "خالة",
+      "term_en": "aunt (mother's side)",
+      "esl_mode": "lexicon",
+      "lexicon_token": "خالة"
+    },
+    "i": {
+      "term_ar": "انا",
+      "term_en": "I",
+      "esl_mode": "lexicon",
+      "lexicon_token": "انا"
+    }
+  },
+  "steps": [
+    {
+      "id": "explain-family",
+      "type": "explain",
+      "title_ar": "أسرتي",
+      "title_en": "My family",
+      "body_ar": "الأب والأم والأخ والأخت. شاهد إشارة كل كلمة.",
+      "body_en": "Father, mother, brother, sister. Watch the sign for each word.",
+      "glossary_ids": [
+        "father",
+        "mother",
+        "brother",
+        "sister"
+      ]
+    },
+    {
+      "id": "explain-grand",
+      "type": "explain",
+      "title_ar": "الأجداد",
+      "title_en": "Grandparents",
+      "body_ar": "الجد والجدة هما أبو أبيك أو أمك، وأم أبيك أو أمك.",
+      "body_en": "Grandfather and grandmother are the parents of your father or mother.",
+      "glossary_ids": [
+        "grandpa",
+        "grandma"
+      ]
+    },
+    {
+      "id": "match-family-signs",
+      "type": "match",
+      "title_ar": "لعبة: الإشارة والكلمة",
+      "title_en": "Game: sign and word",
+      "match": {
+        "prompt_ar": "اضغط زر اليد لتشاهد الإشارة، ثم صِلها بكلمتها.",
+        "prompt_en": "Press the hand button to watch the sign, then match it with its word.",
+        "pairs": [
+          {
+            "id": "father",
+            "a": {
+              "id": "father",
+              "ar": "الإشارة أ",
+              "en": "Sign A",
+              "sign": "father"
+            },
+            "b": {
+              "id": "father",
+              "ar": "أب",
+              "en": "Father"
+            }
+          },
+          {
+            "id": "mother",
+            "a": {
+              "id": "mother",
+              "ar": "الإشارة ب",
+              "en": "Sign B",
+              "sign": "mother"
+            },
+            "b": {
+              "id": "mother",
+              "ar": "أم",
+              "en": "Mother"
+            }
+          },
+          {
+            "id": "brother",
+            "a": {
+              "id": "brother",
+              "ar": "الإشارة ج",
+              "en": "Sign C",
+              "sign": "brother"
+            },
+            "b": {
+              "id": "brother",
+              "ar": "أخ",
+              "en": "Brother"
+            }
+          },
+          {
+            "id": "sister",
+            "a": {
+              "id": "sister",
+              "ar": "الإشارة د",
+              "en": "Sign D",
+              "sign": "sister"
+            },
+            "b": {
+              "id": "sister",
+              "ar": "أخت",
+              "en": "Sister"
+            }
+          },
+          {
+            "id": "grandpa",
+            "a": {
+              "id": "grandpa",
+              "ar": "الإشارة ه",
+              "en": "Sign E",
+              "sign": "grandpa"
+            },
+            "b": {
+              "id": "grandpa",
+              "ar": "جد",
+              "en": "Grandfather"
+            }
+          },
+          {
+            "id": "grandma",
+            "a": {
+              "id": "grandma",
+              "ar": "الإشارة و",
+              "en": "Sign F",
+              "sign": "grandma"
+            },
+            "b": {
+              "id": "grandma",
+              "ar": "جدة",
+              "en": "Grandmother"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-family",
+      "type": "sort",
+      "title_ar": "لعبة: ذكر أم أنثى؟",
+      "title_en": "Game: male or female?",
+      "sort": {
+        "prompt_ar": "ضع كل فرد في مجموعته.",
+        "prompt_en": "Put each family member in their group.",
+        "buckets": [
+          {
+            "id": "m",
+            "ar": "ذكر",
+            "en": "Male"
+          },
+          {
+            "id": "f",
+            "ar": "أنثى",
+            "en": "Female"
+          }
+        ],
+        "items": [
+          {
+            "id": "father",
+            "ar": "أب",
+            "en": "Father",
+            "sign": "father",
+            "bucket": "m"
+          },
+          {
+            "id": "mother",
+            "ar": "أم",
+            "en": "Mother",
+            "sign": "mother",
+            "bucket": "f"
+          },
+          {
+            "id": "brother",
+            "ar": "أخ",
+            "en": "Brother",
+            "sign": "brother",
+            "bucket": "m"
+          },
+          {
+            "id": "sister",
+            "ar": "أخت",
+            "en": "Sister",
+            "sign": "sister",
+            "bucket": "f"
+          },
+          {
+            "id": "grandpa",
+            "ar": "جد",
+            "en": "Grandfather",
+            "sign": "grandpa",
+            "bucket": "m"
+          },
+          {
+            "id": "grandma",
+            "ar": "جدة",
+            "en": "Grandmother",
+            "sign": "grandma",
+            "bucket": "f"
+          },
+          {
+            "id": "uncle_f",
+            "ar": "عم",
+            "en": "Uncle (father's side)",
+            "sign": "uncle_f",
+            "bucket": "m"
+          },
+          {
+            "id": "aunt_f",
+            "ar": "عمة",
+            "en": "Aunt (father's side)",
+            "sign": "aunt_f",
+            "bucket": "f"
+          },
+          {
+            "id": "uncle_m",
+            "ar": "خال",
+            "en": "Uncle (mother's side)",
+            "sign": "uncle_m",
+            "bucket": "m"
+          },
+          {
+            "id": "aunt_m",
+            "ar": "خالة",
+            "en": "Aunt (mother's side)",
+            "sign": "aunt_m",
+            "bucket": "f"
+          }
+        ]
+      }
+    },
+    {
+      "id": "explain-uncles",
+      "type": "explain",
+      "title_ar": "العم والخال",
+      "title_en": "Uncles and aunts",
+      "body_ar": "أخو أبيك عمّك، وأخته عمّتك. أخو أمك خالك، وأختها خالتك.",
+      "body_en": "Your father's brother is عم and his sister is عمة. Your mother's brother is خال and her sister is خالة.",
+      "glossary_ids": [
+        "uncle_f",
+        "aunt_f",
+        "uncle_m",
+        "aunt_m"
+      ]
+    },
+    {
+      "id": "match-relations",
+      "type": "match",
+      "title_ar": "لعبة: من هو؟",
+      "title_en": "Game: who is it?",
+      "match": {
+        "prompt_ar": "صِل كل وصف بالكلمة الصحيحة.",
+        "prompt_en": "Match each description with the right word.",
+        "pairs": [
+          {
+            "id": "uncle_f",
+            "a": {
+              "id": "d1",
+              "ar": "أخو أبي",
+              "en": "My father's brother"
+            },
+            "b": {
+              "id": "uncle_f",
+              "ar": "عمّي",
+              "en": "My uncle (عم)",
+              "sign": "uncle_f"
+            }
+          },
+          {
+            "id": "aunt_m",
+            "a": {
+              "id": "d2",
+              "ar": "أخت أمي",
+              "en": "My mother's sister"
+            },
+            "b": {
+              "id": "aunt_m",
+              "ar": "خالتي",
+              "en": "My aunt (خالة)",
+              "sign": "aunt_m"
+            }
+          },
+          {
+            "id": "grandma",
+            "a": {
+              "id": "d3",
+              "ar": "أم أمي",
+              "en": "My mother's mother"
+            },
+            "b": {
+              "id": "grandma",
+              "ar": "جدّتي",
+              "en": "My grandmother",
+              "sign": "grandma"
+            }
+          },
+          {
+            "id": "uncle_m",
+            "a": {
+              "id": "d4",
+              "ar": "أخو أمي",
+              "en": "My mother's brother"
+            },
+            "b": {
+              "id": "uncle_m",
+              "ar": "خالي",
+              "en": "My uncle (خال)",
+              "sign": "uncle_m"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-family",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "أبو أبي هو جدّي.",
+            "en": "My father's father is my grandfather.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "أخت أمي هي عمّتي.",
+            "en": "My mother's sister is my عمة.",
+            "answer": false,
+            "why_ar": "أخت أمي هي خالتي.",
+            "why_en": "My mother's sister is my خالة."
+          },
+          {
+            "id": "s3",
+            "ar": "أخو أبي هو عمّي.",
+            "en": "My father's brother is my عم.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "الجدة أصغر من الأم.",
+            "en": "A grandmother is younger than a mother.",
+            "answer": false,
+            "why_ar": "الجدة أكبر.",
+            "why_en": "A grandmother is older."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sign-mother",
+      "type": "sign_check",
+      "title_ar": "سجّل: أم",
+      "title_en": "Sign: mother",
+      "body_ar": "سجّل إشارة أم، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for mother, or skip this step.",
+      "sign_target": "أم"
+    }
+  ]
+}

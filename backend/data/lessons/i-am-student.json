@@ -35,6 +35,18 @@
       "term_en": "no",
       "esl_mode": "lexicon",
       "lexicon_token": "لا"
+    },
+    "man": {
+      "term_ar": "رجل",
+      "term_en": "man",
+      "esl_mode": "lexicon",
+      "lexicon_token": "رجل"
+    },
+    "school": {
+      "term_ar": "المدرسة",
+      "term_en": "school",
+      "esl_mode": "lexicon",
+      "lexicon_token": "المدرسة"
     }
   },
   "steps": [
@@ -45,7 +57,9 @@
       "title_en": "I",
       "body_ar": "هذه إشارة كلمة أنا كما في المعجم.",
       "body_en": "This is the lexicon sign for I.",
-      "glossary_ids": ["i"]
+      "glossary_ids": [
+        "i"
+      ]
     },
     {
       "id": "term-student",
@@ -54,7 +68,9 @@
       "title_en": "Student",
       "body_ar": "طالب في المدرسة.",
       "body_en": "A student at school.",
-      "glossary_ids": ["student"]
+      "glossary_ids": [
+        "student"
+      ]
     },
     {
       "id": "term-house",
@@ -63,14 +79,18 @@
       "title_en": "House",
       "body_ar": "البيت مكان السكن.",
       "body_en": "A house is where you live.",
-      "glossary_ids": ["house"]
+      "glossary_ids": [
+        "house"
+      ]
     },
     {
       "id": "term-girl",
       "type": "esl_term",
       "title_ar": "بنت",
       "title_en": "Girl",
-      "glossary_ids": ["girl"]
+      "glossary_ids": [
+        "girl"
+      ]
     },
     {
       "id": "term-no",
@@ -79,7 +99,9 @@
       "title_en": "No",
       "body_ar": "لا للنفي.",
       "body_en": "No for negation.",
-      "glossary_ids": ["no"]
+      "glossary_ids": [
+        "no"
+      ]
     },
     {
       "id": "explain-i-student",
@@ -88,22 +110,121 @@
       "title_en": "A sentence",
       "body_ar": "أنا طالب. انظر الإشارتين ثم كوّن الجملة.",
       "body_en": "I am a student. Watch both signs, then hold the sentence.",
-      "glossary_ids": ["i", "student"]
+      "glossary_ids": [
+        "i",
+        "student"
+      ]
+    },
+    {
+      "id": "match-signs",
+      "type": "match",
+      "title_ar": "لعبة: الإشارة والكلمة",
+      "title_en": "Game: sign and word",
+      "match": {
+        "prompt_ar": "اضغط زر اليد لتشاهد كل إشارة، ثم صِلها بكلمتها.",
+        "prompt_en": "Press the hand button to watch each sign, then match it with its word.",
+        "pairs": [
+          {
+            "id": "i",
+            "a": {
+              "id": "i",
+              "ar": "الإشارة أ",
+              "en": "Sign A",
+              "sign": "i"
+            },
+            "b": {
+              "id": "i",
+              "ar": "أنا",
+              "en": "I"
+            }
+          },
+          {
+            "id": "student",
+            "a": {
+              "id": "student",
+              "ar": "الإشارة ب",
+              "en": "Sign B",
+              "sign": "student"
+            },
+            "b": {
+              "id": "student",
+              "ar": "طالب",
+              "en": "student"
+            }
+          },
+          {
+            "id": "house",
+            "a": {
+              "id": "house",
+              "ar": "الإشارة ج",
+              "en": "Sign C",
+              "sign": "house"
+            },
+            "b": {
+              "id": "house",
+              "ar": "بيت",
+              "en": "house"
+            }
+          },
+          {
+            "id": "girl",
+            "a": {
+              "id": "girl",
+              "ar": "الإشارة د",
+              "en": "Sign D",
+              "sign": "girl"
+            },
+            "b": {
+              "id": "girl",
+              "ar": "بنت",
+              "en": "girl"
+            }
+          },
+          {
+            "id": "no",
+            "a": {
+              "id": "no",
+              "ar": "الإشارة هـ",
+              "en": "Sign E",
+              "sign": "no"
+            },
+            "b": {
+              "id": "no",
+              "ar": "لا",
+              "en": "no"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "quiz-i",
       "type": "quiz",
       "title_ar": "اختبار: أنا",
       "title_en": "Quiz: I",
-      "glossary_ids": ["i"],
+      "glossary_ids": [
+        "i"
+      ],
       "quiz": {
         "prompt_ar": "هذه الإشارة تعني؟",
         "prompt_en": "This sign means?",
         "correct_id": "i",
         "options": [
-          { "id": "i", "label_ar": "أنا", "label_en": "I" },
-          { "id": "student", "label_ar": "طالب", "label_en": "student" },
-          { "id": "no", "label_ar": "لا", "label_en": "no" }
+          {
+            "id": "i",
+            "label_ar": "أنا",
+            "label_en": "I"
+          },
+          {
+            "id": "student",
+            "label_ar": "طالب",
+            "label_en": "student"
+          },
+          {
+            "id": "no",
+            "label_ar": "لا",
+            "label_en": "no"
+          }
         ]
       }
     },
@@ -112,15 +233,29 @@
       "type": "quiz",
       "title_ar": "اختبار: طالب",
       "title_en": "Quiz: student",
-      "glossary_ids": ["student"],
+      "glossary_ids": [
+        "student"
+      ],
       "quiz": {
         "prompt_ar": "كلمة طالب تعني؟",
         "prompt_en": "طالب means?",
         "correct_id": "student",
         "options": [
-          { "id": "house", "label_ar": "بيت", "label_en": "house" },
-          { "id": "student", "label_ar": "طالب", "label_en": "student" },
-          { "id": "girl", "label_ar": "بنت", "label_en": "girl" }
+          {
+            "id": "house",
+            "label_ar": "بيت",
+            "label_en": "house"
+          },
+          {
+            "id": "student",
+            "label_ar": "طالب",
+            "label_en": "student"
+          },
+          {
+            "id": "girl",
+            "label_ar": "بنت",
+            "label_en": "girl"
+          }
         ]
       }
     },
@@ -129,15 +264,139 @@
       "type": "quiz",
       "title_ar": "اختبار: لا",
       "title_en": "Quiz: no",
-      "glossary_ids": ["no"],
+      "glossary_ids": [
+        "no"
+      ],
       "quiz": {
         "prompt_ar": "إشارة لا للنفي. اختر معناها.",
         "prompt_en": "The sign لا is for negation. Pick its meaning.",
         "correct_id": "no",
         "options": [
-          { "id": "i", "label_ar": "أنا", "label_en": "I" },
-          { "id": "no", "label_ar": "لا", "label_en": "no" },
-          { "id": "house", "label_ar": "بيت", "label_en": "house" }
+          {
+            "id": "i",
+            "label_ar": "أنا",
+            "label_en": "I"
+          },
+          {
+            "id": "no",
+            "label_ar": "لا",
+            "label_en": "no"
+          },
+          {
+            "id": "house",
+            "label_ar": "بيت",
+            "label_en": "house"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-people-places",
+      "type": "sort",
+      "title_ar": "لعبة: شخص أم مكان؟",
+      "title_en": "Game: person or place?",
+      "sort": {
+        "prompt_ar": "ضع كل كلمة في مجموعتها.",
+        "prompt_en": "Put each word in its group.",
+        "buckets": [
+          {
+            "id": "person",
+            "ar": "شخص",
+            "en": "Person"
+          },
+          {
+            "id": "place",
+            "ar": "مكان",
+            "en": "Place"
+          }
+        ],
+        "items": [
+          {
+            "id": "i",
+            "ar": "أنا",
+            "en": "I",
+            "sign": "i",
+            "bucket": "person"
+          },
+          {
+            "id": "student",
+            "ar": "طالب",
+            "en": "Student",
+            "sign": "student",
+            "bucket": "person"
+          },
+          {
+            "id": "girl",
+            "ar": "بنت",
+            "en": "Girl",
+            "sign": "girl",
+            "bucket": "person"
+          },
+          {
+            "id": "man",
+            "ar": "رجل",
+            "en": "Man",
+            "sign": "man",
+            "bucket": "person"
+          },
+          {
+            "id": "house",
+            "ar": "بيت",
+            "en": "House",
+            "sign": "house",
+            "bucket": "place"
+          },
+          {
+            "id": "school",
+            "ar": "المدرسة",
+            "en": "School",
+            "sign": "school",
+            "bucket": "place"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-i-student",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "إشارة «أنا» تشير إلى نفسك.",
+            "en": "The sign for I points to yourself.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "«بيت» اسم شخص.",
+            "en": "“House” is a person.",
+            "answer": false,
+            "why_ar": "البيت مكان.",
+            "why_en": "A house is a place."
+          },
+          {
+            "id": "s3",
+            "ar": "«لا» تُستخدم للنفي.",
+            "en": "“No” is used to say no.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "الطالب يتعلّم في المدرسة.",
+            "en": "A student learns at school.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          }
         ]
       }
     },
@@ -150,5 +409,8 @@
       "body_en": "Record the sign for I.",
       "sign_target": "انا"
     }
-  ]
+  ],
+  "summary_ar": "أول كلمات: أنا، طالب، بيت، بنت، لا.",
+  "summary_en": "First words: I, student, house, girl, no.",
+  "minutes": 10
 }

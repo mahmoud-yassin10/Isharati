@@ -1,4 +1,4 @@
-import type { Lesson, ProgressItem, User } from "./types";
+import type { Lesson, ProgressItem, StepSnapshot, User } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
 const TOKEN_KEY = "raqeeb_token";
@@ -178,7 +178,7 @@ export async function saveProgress(payload: {
   lesson_id: string;
   step_id: string;
   status: string;
-  sim_snapshot?: { F: number; m: number; a: number };
+  sim_snapshot?: StepSnapshot;
   predicted_sign?: string;
 }) {
   const response = await fetch(`${API_URL}/progress`, {
@@ -187,6 +187,15 @@ export async function saveProgress(payload: {
     body: JSON.stringify(payload),
   });
   return parseJson<{ ok: boolean }>(response);
+}
+
+/** Deletes every progress row for the signed-in student. */
+export async function resetProgress() {
+  const response = await fetch(`${API_URL}/progress`, {
+    method: "DELETE",
+    headers: authHeaders(),
+  });
+  return parseJson<{ ok: boolean; deleted: number }>(response);
 }
 
 export function logout() {

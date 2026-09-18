@@ -26,6 +26,18 @@
       "term_ar": "تسارع",
       "term_en": "acceleration",
       "esl_mode": "fingerspell"
+    },
+    "scale": {
+      "term_ar": "الميزان",
+      "term_en": "scale",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الميزان"
+    },
+    "moon": {
+      "term_ar": "قمر",
+      "term_en": "moon",
+      "esl_mode": "lexicon",
+      "lexicon_token": "قمر"
     }
   },
   "steps": [
@@ -36,7 +48,9 @@
       "title_en": "Weight",
       "body_ar": "الوزن إشارة جاهزة في المعجم. على الأرض يرتبط بالكتلة.",
       "body_en": "Weight has a ready lexicon sign. On Earth it is tied to mass.",
-      "glossary_ids": ["weight"]
+      "glossary_ids": [
+        "weight"
+      ]
     },
     {
       "id": "term-mass",
@@ -45,7 +59,84 @@
       "title_en": "Mass",
       "body_ar": "الكتلة مقدار المادة. ليست نفس كلمة وزن. تُهجّى حرفاً حرفاً.",
       "body_en": "Mass is the amount of matter. It is not the same word as weight. It is fingerspelled.",
-      "glossary_ids": ["mass"]
+      "glossary_ids": [
+        "mass"
+      ]
+    },
+    {
+      "id": "match-units",
+      "type": "match",
+      "title_ar": "لعبة: الوحدات والأدوات",
+      "title_en": "Game: units and tools",
+      "match": {
+        "prompt_ar": "صِل كل كلمة بما يناسبها.",
+        "prompt_en": "Match each word with what fits it.",
+        "pairs": [
+          {
+            "id": "weight",
+            "a": {
+              "id": "weight",
+              "ar": "وزن",
+              "en": "Weight",
+              "sign": "weight"
+            },
+            "b": {
+              "id": "weight",
+              "ar": "يقاس بالنيوتن",
+              "en": "Measured in newtons",
+              "visual": {
+                "kind": "symbol",
+                "value": "N"
+              }
+            }
+          },
+          {
+            "id": "mass",
+            "a": {
+              "id": "mass",
+              "ar": "كتلة",
+              "en": "Mass",
+              "sign": "mass"
+            },
+            "b": {
+              "id": "mass",
+              "ar": "تقاس بالكيلوغرام",
+              "en": "Measured in kilograms",
+              "visual": {
+                "kind": "symbol",
+                "value": "kg"
+              }
+            }
+          },
+          {
+            "id": "scale",
+            "a": {
+              "id": "scale",
+              "ar": "الميزان ذو الكفتين",
+              "en": "Balance scale",
+              "sign": "scale"
+            },
+            "b": {
+              "id": "scale",
+              "ar": "يقارن الكتلة",
+              "en": "Compares mass"
+            }
+          },
+          {
+            "id": "spring",
+            "a": {
+              "id": "spring",
+              "ar": "الميزان الزنبركي",
+              "en": "Spring scale"
+            },
+            "b": {
+              "id": "spring",
+              "ar": "يقيس الوزن",
+              "en": "Measures weight"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "explain-weight-mass",
@@ -54,7 +145,82 @@
       "title_en": "The difference",
       "body_ar": "في المختبر نغيّر الكتلة m. الوزن على الأرض أكبر عندما تكون الكتلة أكبر. التسارع = القوة ÷ الكتلة.",
       "body_en": "In the lab we change mass m. Weight on Earth is larger when mass is larger. Acceleration = force ÷ mass.",
-      "glossary_ids": ["weight", "mass", "force", "accel"]
+      "glossary_ids": [
+        "weight",
+        "mass",
+        "force",
+        "accel"
+      ]
+    },
+    {
+      "id": "sort-weight-mass",
+      "type": "sort",
+      "title_ar": "لعبة: وزن أم كتلة؟",
+      "title_en": "Game: weight or mass?",
+      "sort": {
+        "prompt_ar": "كل جملة تصف الوزن أو الكتلة. صنّفها.",
+        "prompt_en": "Each sentence describes weight or mass. Sort it.",
+        "buckets": [
+          {
+            "id": "weight",
+            "ar": "وزن",
+            "en": "Weight",
+            "visual": {
+              "kind": "symbol",
+              "value": "N"
+            },
+            "sign": "weight"
+          },
+          {
+            "id": "mass",
+            "ar": "كتلة",
+            "en": "Mass",
+            "visual": {
+              "kind": "symbol",
+              "value": "kg"
+            },
+            "sign": "mass"
+          }
+        ],
+        "items": [
+          {
+            "id": "w1",
+            "ar": "وحدته النيوتن",
+            "en": "Its unit is the newton",
+            "bucket": "weight"
+          },
+          {
+            "id": "m1",
+            "ar": "وحدتها الكيلوغرام",
+            "en": "Its unit is the kilogram",
+            "bucket": "mass"
+          },
+          {
+            "id": "w2",
+            "ar": "يقل على القمر",
+            "en": "It gets smaller on the Moon",
+            "bucket": "weight"
+          },
+          {
+            "id": "m2",
+            "ar": "لا تتغيّر على القمر",
+            "en": "It does not change on the Moon",
+            "bucket": "mass"
+          },
+          {
+            "id": "w3",
+            "ar": "قوة جذب الأرض للجسم",
+            "en": "The pull of the Earth on the object",
+            "bucket": "weight"
+          },
+          {
+            "id": "m3",
+            "ar": "مقدار المادة في الجسم",
+            "en": "The amount of matter in the object",
+            "bucket": "mass"
+          }
+        ]
+      }
     },
     {
       "id": "quiz-lexicon-weight",
@@ -63,15 +229,29 @@
       "title_en": "Quiz: weight",
       "body_ar": "انظر الإشارة ثم اختر.",
       "body_en": "Watch the sign, then choose.",
-      "glossary_ids": ["weight"],
+      "glossary_ids": [
+        "weight"
+      ],
       "quiz": {
         "prompt_ar": "أي كلمة لها إشارة جاهزة في المعجم؟",
         "prompt_en": "Which word has a ready lexicon sign?",
         "correct_id": "weight",
         "options": [
-          { "id": "weight", "label_ar": "وزن", "label_en": "weight" },
-          { "id": "mass", "label_ar": "كتلة", "label_en": "mass" },
-          { "id": "accel", "label_ar": "تسارع", "label_en": "acceleration" }
+          {
+            "id": "weight",
+            "label_ar": "وزن",
+            "label_en": "weight"
+          },
+          {
+            "id": "mass",
+            "label_ar": "كتلة",
+            "label_en": "mass"
+          },
+          {
+            "id": "accel",
+            "label_ar": "تسارع",
+            "label_en": "acceleration"
+          }
         ]
       }
     },
@@ -80,16 +260,106 @@
       "type": "quiz",
       "title_ar": "اختبار: كتلة أكبر",
       "title_en": "Quiz: more mass",
-      "glossary_ids": ["mass", "accel"],
+      "glossary_ids": [
+        "mass",
+        "accel"
+      ],
       "quiz": {
         "prompt_ar": "نفس القوة على كتلة أكبر. التسارع؟",
         "prompt_en": "Same force on more mass. Acceleration?",
         "correct_id": "down",
         "options": [
-          { "id": "up", "label_ar": "يزيد", "label_en": "Increases" },
-          { "id": "down", "label_ar": "يقل", "label_en": "Decreases" },
-          { "id": "same", "label_ar": "لا يتغيّر", "label_en": "Stays the same" }
+          {
+            "id": "up",
+            "label_ar": "يزيد",
+            "label_en": "Increases"
+          },
+          {
+            "id": "down",
+            "label_ar": "يقل",
+            "label_en": "Decreases"
+          },
+          {
+            "id": "same",
+            "label_ar": "لا يتغيّر",
+            "label_en": "Stays the same"
+          }
         ]
+      }
+    },
+    {
+      "id": "table-weight",
+      "type": "table",
+      "title_ar": "جدول: من الكتلة إلى الوزن",
+      "title_en": "Table: from mass to weight",
+      "table": {
+        "prompt_ar": "على الأرض: الوزن ≈ الكتلة × 10. أكمل الجدول.",
+        "prompt_en": "On Earth: weight ≈ mass × 10. Complete the table.",
+        "columns": [
+          {
+            "ar": "الكتلة m",
+            "en": "Mass m",
+            "unit": "kg",
+            "tone": "mass"
+          },
+          {
+            "ar": "الوزن W",
+            "en": "Weight W",
+            "unit": "N",
+            "tone": "force"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "value": "1"
+            },
+            {
+              "value": "10"
+            }
+          ],
+          [
+            {
+              "value": "3"
+            },
+            {
+              "answer": 30,
+              "choices": [
+                3,
+                13,
+                30
+              ]
+            }
+          ],
+          [
+            {
+              "value": "5"
+            },
+            {
+              "answer": 50,
+              "choices": [
+                15,
+                50,
+                500
+              ]
+            }
+          ],
+          [
+            {
+              "value": "0.5"
+            },
+            {
+              "answer": 5,
+              "choices": [
+                0.5,
+                5,
+                50
+              ]
+            }
+          ]
+        ],
+        "note_ar": "على القمر يصبح الوزن سدس وزنك على الأرض تقريباً، والكتلة لا تتغيّر.",
+        "note_en": "On the Moon, weight is about one sixth of Earth weight, and mass does not change."
       }
     },
     {
@@ -99,10 +369,16 @@
       "title_en": "The lab",
       "body_ar": "زد الكتلة. راقب a وهو يقل.",
       "body_en": "Increase mass. Watch a get smaller.",
-      "glossary_ids": ["mass", "accel"],
+      "glossary_ids": [
+        "mass",
+        "accel"
+      ],
       "simulation": {
         "kind": "newton_2nd",
-        "params": { "F": 10, "m": 5 }
+        "params": {
+          "F": 10,
+          "m": 5
+        }
       }
     },
     {
@@ -112,11 +388,65 @@
       "title_en": "Challenge",
       "body_ar": "اجعل التسارع قريباً من 0.5 م/ث².",
       "body_en": "Make acceleration close to 0.5 m/s².",
-      "glossary_ids": ["mass", "accel"],
+      "glossary_ids": [
+        "mass",
+        "accel"
+      ],
       "simulation": {
         "kind": "newton_2nd",
-        "params": { "F": 10, "m": 5 },
-        "goal": { "key": "a", "value": 0.5, "tolerance": 0.12 }
+        "params": {
+          "F": 10,
+          "m": 5
+        },
+        "goal": {
+          "key": "a",
+          "value": 0.5,
+          "tolerance": 0.12
+        }
+      }
+    },
+    {
+      "id": "tf-weight-mass",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "اقرأ الجملة. هل هي صحيحة؟",
+        "prompt_en": "Read the statement. Is it true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "كتلتك على القمر مثل كتلتك على الأرض.",
+            "en": "Your mass on the Moon is the same as on Earth.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "وزنك على القمر مثل وزنك على الأرض.",
+            "en": "Your weight on the Moon is the same as on Earth.",
+            "answer": false,
+            "why_ar": "الوزن على القمر أقل.",
+            "why_en": "Weight on the Moon is less."
+          },
+          {
+            "id": "s3",
+            "ar": "الوزن قوة.",
+            "en": "Weight is a force.",
+            "answer": true,
+            "why_ar": "لذلك وحدته النيوتن.",
+            "why_en": "That is why its unit is the newton."
+          },
+          {
+            "id": "s4",
+            "ar": "جسم كتلته 2 كيلوغرام وزنه على الأرض حوالي 20 نيوتن.",
+            "en": "A 2 kg object weighs about 20 N on Earth.",
+            "answer": true,
+            "why_ar": "2 × 10 = 20.",
+            "why_en": "2 × 10 = 20."
+          }
+        ]
       }
     },
     {
@@ -128,5 +458,8 @@
       "body_en": "Record the sign for weight, or skip this step.",
       "sign_target": "وزن"
     }
-  ]
+  ],
+  "summary_ar": "الفرق بين الوزن والكتلة، على الأرض وعلى القمر.",
+  "summary_en": "The difference between weight and mass, on Earth and on the Moon.",
+  "minutes": 14
 }

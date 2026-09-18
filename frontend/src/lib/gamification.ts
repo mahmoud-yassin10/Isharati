@@ -81,3 +81,27 @@ export function lessonStats(lesson: Lesson, progress: ProgressItem[]): LessonSta
     state: completed === 0 ? "new" : mastery >= 100 ? "complete" : "learning",
   };
 }
+
+export type Score = { points: number; stars: number; level: number; toNext: number };
+
+const POINTS_PER_LEVEL = 150;
+
+/** 10 points per finished step, plus 10 per game star. */
+export function scoreFor(progress: ProgressItem[]): Score {
+  let points = 0;
+  let stars = 0;
+  for (const item of progress) {
+    if (item.status !== "done") continue;
+    const itemStars = item.sim_snapshot?.stars ?? 0;
+    points += 10 + itemStars * 10;
+    stars += itemStars;
+  }
+  return {
+    points,
+    stars,
+    level: Math.floor(points / POINTS_PER_LEVEL) + 1,
+    toNext: POINTS_PER_LEVEL - (points % POINTS_PER_LEVEL),
+  };
+}
+
+export const LEVEL_SIZE = POINTS_PER_LEVEL;

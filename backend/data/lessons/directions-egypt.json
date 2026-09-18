@@ -1,0 +1,393 @@
+{
+  "id": "directions-egypt",
+  "slug": "directions-egypt",
+  "title_ar": "الاتجاهات الأربعة وجيران مصر",
+  "title_en": "The four directions and Egypt's neighbours",
+  "subject": "social",
+  "status": "published",
+  "summary_ar": "الشمال والجنوب والشرق والغرب على البوصلة وخريطة مصر.",
+  "summary_en": "North, south, east, and west on the compass and on Egypt's map.",
+  "minutes": 14,
+  "glossary": {
+    "north": {
+      "term_ar": "شمال",
+      "term_en": "north",
+      "esl_mode": "lexicon",
+      "lexicon_token": "شمال"
+    },
+    "east": {
+      "term_ar": "شرق",
+      "term_en": "east",
+      "esl_mode": "lexicon",
+      "lexicon_token": "شرق"
+    },
+    "south": {
+      "term_ar": "جنوب",
+      "term_en": "south",
+      "esl_mode": "lexicon",
+      "lexicon_token": "جنوب"
+    },
+    "west": {
+      "term_ar": "غرب",
+      "term_en": "west",
+      "esl_mode": "lexicon",
+      "lexicon_token": "غرب"
+    },
+    "egypt": {
+      "term_ar": "مصر",
+      "term_en": "Egypt",
+      "esl_mode": "lexicon",
+      "lexicon_token": "مصر"
+    },
+    "sunrise": {
+      "term_ar": "الشروق",
+      "term_en": "sunrise",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الشروق"
+    },
+    "sunset": {
+      "term_ar": "الغروب",
+      "term_en": "sunset",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الغروب"
+    }
+  },
+  "steps": [
+    {
+      "id": "explain-directions",
+      "type": "explain",
+      "title_ar": "الاتجاهات الأربعة",
+      "title_en": "The four directions",
+      "body_ar": "الاتجاهات الأربعة هي الشمال والجنوب والشرق والغرب. شاهد إشارة كل اتجاه.",
+      "body_en": "The four directions are north, south, east, and west. Watch the sign for each.",
+      "glossary_ids": [
+        "north",
+        "south",
+        "east",
+        "west"
+      ]
+    },
+    {
+      "id": "compass-explore",
+      "type": "diagram",
+      "title_ar": "رسم: البوصلة",
+      "title_en": "Diagram: the compass",
+      "diagram": {
+        "kind": "compass",
+        "mode": "explore",
+        "prompt_ar": "اضغط كل اتجاه لتعرف ماذا يوجد فيه حول مصر.",
+        "prompt_en": "Tap each direction to see what lies there around Egypt.",
+        "nodes": [
+          {
+            "id": "north",
+            "ar": "الشمال",
+            "en": "North",
+            "sign": "north",
+            "note_ar": "البحر المتوسط شمال مصر.",
+            "note_en": "The Mediterranean Sea is north of Egypt."
+          },
+          {
+            "id": "east",
+            "ar": "الشرق",
+            "en": "East",
+            "sign": "east",
+            "note_ar": "البحر الأحمر شرق مصر، ومن الشرق تشرق الشمس.",
+            "note_en": "The Red Sea is east of Egypt, and the sun rises in the east."
+          },
+          {
+            "id": "south",
+            "ar": "الجنوب",
+            "en": "South",
+            "sign": "south",
+            "note_ar": "السودان جنوب مصر، ومنه يأتي نهر النيل.",
+            "note_en": "Sudan is south of Egypt, and the Nile flows from there."
+          },
+          {
+            "id": "west",
+            "ar": "الغرب",
+            "en": "West",
+            "sign": "west",
+            "note_ar": "ليبيا غرب مصر، وفي الغرب تغرب الشمس.",
+            "note_en": "Libya is west of Egypt, and the sun sets in the west."
+          }
+        ]
+      }
+    },
+    {
+      "id": "compass-find",
+      "type": "diagram",
+      "title_ar": "ابحث على البوصلة",
+      "title_en": "Find on the compass",
+      "diagram": {
+        "kind": "compass",
+        "mode": "find",
+        "prompt_ar": "الاتجاهات مخفية. اضغط مكان الاتجاه المطلوب.",
+        "prompt_en": "The directions are hidden. Tap where the named direction is.",
+        "nodes": [
+          {
+            "id": "north",
+            "ar": "الشمال",
+            "en": "North",
+            "sign": "north",
+            "note_ar": "البحر المتوسط شمال مصر.",
+            "note_en": "The Mediterranean Sea is north of Egypt."
+          },
+          {
+            "id": "east",
+            "ar": "الشرق",
+            "en": "East",
+            "sign": "east",
+            "note_ar": "البحر الأحمر شرق مصر، ومن الشرق تشرق الشمس.",
+            "note_en": "The Red Sea is east of Egypt, and the sun rises in the east."
+          },
+          {
+            "id": "south",
+            "ar": "الجنوب",
+            "en": "South",
+            "sign": "south",
+            "note_ar": "السودان جنوب مصر، ومنه يأتي نهر النيل.",
+            "note_en": "Sudan is south of Egypt, and the Nile flows from there."
+          },
+          {
+            "id": "west",
+            "ar": "الغرب",
+            "en": "West",
+            "sign": "west",
+            "note_ar": "ليبيا غرب مصر، وفي الغرب تغرب الشمس.",
+            "note_en": "Libya is west of Egypt, and the sun sets in the west."
+          }
+        ],
+        "targets": [
+          "east",
+          "west",
+          "north",
+          "south"
+        ]
+      }
+    },
+    {
+      "id": "match-neighbours",
+      "type": "match",
+      "title_ar": "لعبة: جيران مصر",
+      "title_en": "Game: Egypt's neighbours",
+      "match": {
+        "prompt_ar": "صِل كل مكان باتجاهه من مصر.",
+        "prompt_en": "Match each place with its direction from Egypt.",
+        "pairs": [
+          {
+            "id": "north",
+            "a": {
+              "id": "med",
+              "ar": "البحر المتوسط",
+              "en": "Mediterranean Sea"
+            },
+            "b": {
+              "id": "north",
+              "ar": "شمال مصر",
+              "en": "North of Egypt",
+              "sign": "north"
+            }
+          },
+          {
+            "id": "east",
+            "a": {
+              "id": "red",
+              "ar": "البحر الأحمر",
+              "en": "Red Sea"
+            },
+            "b": {
+              "id": "east",
+              "ar": "شرق مصر",
+              "en": "East of Egypt",
+              "sign": "east"
+            }
+          },
+          {
+            "id": "south",
+            "a": {
+              "id": "sudan",
+              "ar": "السودان",
+              "en": "Sudan"
+            },
+            "b": {
+              "id": "south",
+              "ar": "جنوب مصر",
+              "en": "South of Egypt",
+              "sign": "south"
+            }
+          },
+          {
+            "id": "west",
+            "a": {
+              "id": "libya",
+              "ar": "ليبيا",
+              "en": "Libya"
+            },
+            "b": {
+              "id": "west",
+              "ar": "غرب مصر",
+              "en": "West of Egypt",
+              "sign": "west"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz-sunset",
+      "type": "quiz",
+      "title_ar": "سؤال: الغروب",
+      "title_en": "Question: sunset",
+      "glossary_ids": [
+        "sunset"
+      ],
+      "quiz": {
+        "prompt_ar": "في أي اتجاه تغرب الشمس؟",
+        "prompt_en": "In which direction does the sun set?",
+        "correct_id": "west",
+        "options": [
+          {
+            "id": "east",
+            "label_ar": "الشرق",
+            "label_en": "East"
+          },
+          {
+            "id": "west",
+            "label_ar": "الغرب",
+            "label_en": "West"
+          },
+          {
+            "id": "south",
+            "label_ar": "الجنوب",
+            "label_en": "South"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-sun",
+      "type": "sort",
+      "title_ar": "لعبة: شروق أم غروب؟",
+      "title_en": "Game: sunrise or sunset?",
+      "sort": {
+        "prompt_ar": "هل هذا الوصف للشروق أم للغروب؟",
+        "prompt_en": "Does this describe sunrise or sunset?",
+        "buckets": [
+          {
+            "id": "rise",
+            "ar": "الشروق",
+            "en": "Sunrise",
+            "sign": "sunrise"
+          },
+          {
+            "id": "set",
+            "ar": "الغروب",
+            "en": "Sunset",
+            "sign": "sunset"
+          }
+        ],
+        "items": [
+          {
+            "id": "r1",
+            "ar": "الشمس تظهر",
+            "en": "The sun appears",
+            "bucket": "rise"
+          },
+          {
+            "id": "r2",
+            "ar": "في الشرق",
+            "en": "In the east",
+            "sign": "east",
+            "bucket": "rise"
+          },
+          {
+            "id": "r3",
+            "ar": "بداية النهار",
+            "en": "The start of the day",
+            "bucket": "rise"
+          },
+          {
+            "id": "s1",
+            "ar": "الشمس تختفي",
+            "en": "The sun disappears",
+            "bucket": "set"
+          },
+          {
+            "id": "s2",
+            "ar": "في الغرب",
+            "en": "In the west",
+            "sign": "west",
+            "bucket": "set"
+          },
+          {
+            "id": "s3",
+            "ar": "بداية الليل",
+            "en": "The start of the night",
+            "bucket": "set"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tf-directions",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "الشمس تشرق من الشرق.",
+            "en": "The sun rises in the east.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "السودان شمال مصر.",
+            "en": "Sudan is north of Egypt.",
+            "answer": false,
+            "why_ar": "السودان جنوب مصر.",
+            "why_en": "Sudan is south of Egypt."
+          },
+          {
+            "id": "s3",
+            "ar": "نهر النيل يجري من الجنوب إلى الشمال.",
+            "en": "The Nile flows from south to north.",
+            "answer": true,
+            "why_ar": "لذلك يصب في البحر المتوسط.",
+            "why_en": "That is why it reaches the Mediterranean."
+          },
+          {
+            "id": "s4",
+            "ar": "الغرب عكس الشرق.",
+            "en": "West is the opposite of east.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s5",
+            "ar": "البحر الأحمر غرب مصر.",
+            "en": "The Red Sea is west of Egypt.",
+            "answer": false,
+            "why_ar": "البحر الأحمر شرق مصر.",
+            "why_en": "The Red Sea is east of Egypt."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sign-north",
+      "type": "sign_check",
+      "title_ar": "سجّل: شمال",
+      "title_en": "Sign: north",
+      "body_ar": "سجّل إشارة شمال، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for north, or skip this step.",
+      "sign_target": "شمال"
+    }
+  ]
+}

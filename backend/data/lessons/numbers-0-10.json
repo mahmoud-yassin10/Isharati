@@ -1,0 +1,694 @@
+{
+  "id": "numbers-0-10",
+  "slug": "numbers-0-10",
+  "title_ar": "الأعداد من 0 إلى 10",
+  "title_en": "Numbers 0 to 10",
+  "subject": "math",
+  "status": "published",
+  "summary_ar": "العدد والإشارة والنقاط معاً، على خط الأعداد.",
+  "summary_en": "The number, its sign, and its dots together, on a number line.",
+  "minutes": 12,
+  "glossary": {
+    "n0": {
+      "term_ar": "صفر",
+      "term_en": "zero",
+      "esl_mode": "lexicon",
+      "lexicon_token": "0"
+    },
+    "n1": {
+      "term_ar": "واحد",
+      "term_en": "one",
+      "esl_mode": "lexicon",
+      "lexicon_token": "1"
+    },
+    "n2": {
+      "term_ar": "اثنان",
+      "term_en": "two",
+      "esl_mode": "lexicon",
+      "lexicon_token": "2"
+    },
+    "n3": {
+      "term_ar": "ثلاثة",
+      "term_en": "three",
+      "esl_mode": "lexicon",
+      "lexicon_token": "3"
+    },
+    "n4": {
+      "term_ar": "أربعة",
+      "term_en": "four",
+      "esl_mode": "lexicon",
+      "lexicon_token": "4"
+    },
+    "n5": {
+      "term_ar": "خمسة",
+      "term_en": "five",
+      "esl_mode": "lexicon",
+      "lexicon_token": "5"
+    },
+    "n6": {
+      "term_ar": "ستة",
+      "term_en": "six",
+      "esl_mode": "lexicon",
+      "lexicon_token": "6"
+    },
+    "n7": {
+      "term_ar": "سبعة",
+      "term_en": "seven",
+      "esl_mode": "lexicon",
+      "lexicon_token": "7"
+    },
+    "n8": {
+      "term_ar": "ثمانية",
+      "term_en": "eight",
+      "esl_mode": "lexicon",
+      "lexicon_token": "8"
+    },
+    "n9": {
+      "term_ar": "تسعة",
+      "term_en": "nine",
+      "esl_mode": "lexicon",
+      "lexicon_token": "9"
+    },
+    "n10": {
+      "term_ar": "عشرة",
+      "term_en": "ten",
+      "esl_mode": "lexicon",
+      "lexicon_token": "10"
+    }
+  },
+  "steps": [
+    {
+      "id": "explain-numbers",
+      "type": "explain",
+      "title_ar": "لكل عدد إشارة",
+      "title_en": "Every number has a sign",
+      "body_ar": "انظر الرقم، وعدّ النقاط، وشاهد الإشارة. الثلاثة تعني نفس العدد.",
+      "body_en": "Look at the digit, count the dots, and watch the sign. All three mean the same number.",
+      "glossary_ids": [
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    {
+      "id": "nl-explore",
+      "type": "diagram",
+      "title_ar": "رسم: خط الأعداد",
+      "title_en": "Diagram: the number line",
+      "diagram": {
+        "kind": "number_line",
+        "mode": "explore",
+        "prompt_ar": "اضغط كل عدد على الخط لتشاهد إشارته.",
+        "prompt_en": "Tap each number on the line to see its sign.",
+        "nodes": [
+          {
+            "id": "n0",
+            "ar": "صفر",
+            "en": "zero",
+            "visual": {
+              "kind": "symbol",
+              "value": "0"
+            },
+            "sign": "n0"
+          },
+          {
+            "id": "n1",
+            "ar": "واحد",
+            "en": "one",
+            "visual": {
+              "kind": "symbol",
+              "value": "1"
+            },
+            "sign": "n1"
+          },
+          {
+            "id": "n2",
+            "ar": "اثنان",
+            "en": "two",
+            "visual": {
+              "kind": "symbol",
+              "value": "2"
+            },
+            "sign": "n2"
+          },
+          {
+            "id": "n3",
+            "ar": "ثلاثة",
+            "en": "three",
+            "visual": {
+              "kind": "symbol",
+              "value": "3"
+            },
+            "sign": "n3"
+          },
+          {
+            "id": "n4",
+            "ar": "أربعة",
+            "en": "four",
+            "visual": {
+              "kind": "symbol",
+              "value": "4"
+            },
+            "sign": "n4"
+          },
+          {
+            "id": "n5",
+            "ar": "خمسة",
+            "en": "five",
+            "visual": {
+              "kind": "symbol",
+              "value": "5"
+            },
+            "sign": "n5"
+          },
+          {
+            "id": "n6",
+            "ar": "ستة",
+            "en": "six",
+            "visual": {
+              "kind": "symbol",
+              "value": "6"
+            },
+            "sign": "n6"
+          },
+          {
+            "id": "n7",
+            "ar": "سبعة",
+            "en": "seven",
+            "visual": {
+              "kind": "symbol",
+              "value": "7"
+            },
+            "sign": "n7"
+          },
+          {
+            "id": "n8",
+            "ar": "ثمانية",
+            "en": "eight",
+            "visual": {
+              "kind": "symbol",
+              "value": "8"
+            },
+            "sign": "n8"
+          },
+          {
+            "id": "n9",
+            "ar": "تسعة",
+            "en": "nine",
+            "visual": {
+              "kind": "symbol",
+              "value": "9"
+            },
+            "sign": "n9"
+          },
+          {
+            "id": "n10",
+            "ar": "عشرة",
+            "en": "ten",
+            "visual": {
+              "kind": "symbol",
+              "value": "10"
+            },
+            "sign": "n10"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-dots",
+      "type": "match",
+      "title_ar": "لعبة: العدد والنقاط",
+      "title_en": "Game: number and dots",
+      "match": {
+        "prompt_ar": "صِل كل عدد بعدد النقاط الصحيح.",
+        "prompt_en": "Match each number with the right number of dots.",
+        "pairs": [
+          {
+            "id": "n1",
+            "a": {
+              "id": "n1",
+              "ar": "واحد",
+              "en": "One",
+              "visual": {
+                "kind": "symbol",
+                "value": "1"
+              },
+              "sign": "n1"
+            },
+            "b": {
+              "id": "n1",
+              "ar": "عدّ النقاط",
+              "en": "Count the dots",
+              "visual": {
+                "kind": "dots",
+                "value": "1"
+              }
+            }
+          },
+          {
+            "id": "n3",
+            "a": {
+              "id": "n3",
+              "ar": "ثلاثة",
+              "en": "Three",
+              "visual": {
+                "kind": "symbol",
+                "value": "3"
+              },
+              "sign": "n3"
+            },
+            "b": {
+              "id": "n3",
+              "ar": "عدّ النقاط",
+              "en": "Count the dots",
+              "visual": {
+                "kind": "dots",
+                "value": "3"
+              }
+            }
+          },
+          {
+            "id": "n4",
+            "a": {
+              "id": "n4",
+              "ar": "أربعة",
+              "en": "Four",
+              "visual": {
+                "kind": "symbol",
+                "value": "4"
+              },
+              "sign": "n4"
+            },
+            "b": {
+              "id": "n4",
+              "ar": "عدّ النقاط",
+              "en": "Count the dots",
+              "visual": {
+                "kind": "dots",
+                "value": "4"
+              }
+            }
+          },
+          {
+            "id": "n6",
+            "a": {
+              "id": "n6",
+              "ar": "ستة",
+              "en": "Six",
+              "visual": {
+                "kind": "symbol",
+                "value": "6"
+              },
+              "sign": "n6"
+            },
+            "b": {
+              "id": "n6",
+              "ar": "عدّ النقاط",
+              "en": "Count the dots",
+              "visual": {
+                "kind": "dots",
+                "value": "6"
+              }
+            }
+          },
+          {
+            "id": "n8",
+            "a": {
+              "id": "n8",
+              "ar": "ثمانية",
+              "en": "Eight",
+              "visual": {
+                "kind": "symbol",
+                "value": "8"
+              },
+              "sign": "n8"
+            },
+            "b": {
+              "id": "n8",
+              "ar": "عدّ النقاط",
+              "en": "Count the dots",
+              "visual": {
+                "kind": "dots",
+                "value": "8"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-up",
+      "type": "order",
+      "title_ar": "لعبة: من الأصغر إلى الأكبر",
+      "title_en": "Game: smallest to largest",
+      "order": {
+        "prompt_ar": "رتّب الأعداد من الأصغر إلى الأكبر.",
+        "prompt_en": "Order the numbers from smallest to largest.",
+        "items": [
+          {
+            "id": "n2",
+            "ar": "اثنان",
+            "en": "Two",
+            "visual": {
+              "kind": "symbol",
+              "value": "2"
+            },
+            "sign": "n2"
+          },
+          {
+            "id": "n5",
+            "ar": "خمسة",
+            "en": "Five",
+            "visual": {
+              "kind": "symbol",
+              "value": "5"
+            },
+            "sign": "n5"
+          },
+          {
+            "id": "n6",
+            "ar": "ستة",
+            "en": "Six",
+            "visual": {
+              "kind": "symbol",
+              "value": "6"
+            },
+            "sign": "n6"
+          },
+          {
+            "id": "n8",
+            "ar": "ثمانية",
+            "en": "Eight",
+            "visual": {
+              "kind": "symbol",
+              "value": "8"
+            },
+            "sign": "n8"
+          },
+          {
+            "id": "n9",
+            "ar": "تسعة",
+            "en": "Nine",
+            "visual": {
+              "kind": "symbol",
+              "value": "9"
+            },
+            "sign": "n9"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-five",
+      "type": "sort",
+      "title_ar": "لعبة: أقل من 5؟",
+      "title_en": "Game: less than 5?",
+      "sort": {
+        "prompt_ar": "هل العدد أقل من 5، أم 5 أو أكثر؟",
+        "prompt_en": "Is the number less than 5, or 5 and more?",
+        "buckets": [
+          {
+            "id": "lt",
+            "ar": "أقل من 5",
+            "en": "Less than 5",
+            "visual": {
+              "kind": "symbol",
+              "value": "<5"
+            }
+          },
+          {
+            "id": "ge",
+            "ar": "5 أو أكثر",
+            "en": "5 or more",
+            "visual": {
+              "kind": "symbol",
+              "value": "≥5"
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "n1",
+            "ar": "واحد",
+            "en": "One",
+            "visual": {
+              "kind": "dots",
+              "value": "1"
+            },
+            "sign": "n1",
+            "bucket": "lt"
+          },
+          {
+            "id": "n7",
+            "ar": "سبعة",
+            "en": "Seven",
+            "visual": {
+              "kind": "dots",
+              "value": "7"
+            },
+            "sign": "n7",
+            "bucket": "ge"
+          },
+          {
+            "id": "n3",
+            "ar": "ثلاثة",
+            "en": "Three",
+            "visual": {
+              "kind": "dots",
+              "value": "3"
+            },
+            "sign": "n3",
+            "bucket": "lt"
+          },
+          {
+            "id": "n5",
+            "ar": "خمسة",
+            "en": "Five",
+            "visual": {
+              "kind": "dots",
+              "value": "5"
+            },
+            "sign": "n5",
+            "bucket": "ge"
+          },
+          {
+            "id": "n0",
+            "ar": "صفر",
+            "en": "Zero",
+            "visual": {
+              "kind": "dots",
+              "value": "0"
+            },
+            "sign": "n0",
+            "bucket": "lt"
+          },
+          {
+            "id": "n9",
+            "ar": "تسعة",
+            "en": "Nine",
+            "visual": {
+              "kind": "dots",
+              "value": "9"
+            },
+            "sign": "n9",
+            "bucket": "ge"
+          },
+          {
+            "id": "n4",
+            "ar": "أربعة",
+            "en": "Four",
+            "visual": {
+              "kind": "dots",
+              "value": "4"
+            },
+            "sign": "n4",
+            "bucket": "lt"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nl-find",
+      "type": "diagram",
+      "title_ar": "ابحث على خط الأعداد",
+      "title_en": "Find on the number line",
+      "diagram": {
+        "kind": "number_line",
+        "mode": "find",
+        "prompt_ar": "الأعداد مخفية. اضغط مكان العدد المطلوب.",
+        "prompt_en": "The numbers are hidden. Tap where the named number is.",
+        "nodes": [
+          {
+            "id": "n0",
+            "ar": "صفر",
+            "en": "zero",
+            "visual": {
+              "kind": "symbol",
+              "value": "0"
+            },
+            "sign": "n0"
+          },
+          {
+            "id": "n1",
+            "ar": "واحد",
+            "en": "one",
+            "visual": {
+              "kind": "symbol",
+              "value": "1"
+            },
+            "sign": "n1"
+          },
+          {
+            "id": "n2",
+            "ar": "اثنان",
+            "en": "two",
+            "visual": {
+              "kind": "symbol",
+              "value": "2"
+            },
+            "sign": "n2"
+          },
+          {
+            "id": "n3",
+            "ar": "ثلاثة",
+            "en": "three",
+            "visual": {
+              "kind": "symbol",
+              "value": "3"
+            },
+            "sign": "n3"
+          },
+          {
+            "id": "n4",
+            "ar": "أربعة",
+            "en": "four",
+            "visual": {
+              "kind": "symbol",
+              "value": "4"
+            },
+            "sign": "n4"
+          },
+          {
+            "id": "n5",
+            "ar": "خمسة",
+            "en": "five",
+            "visual": {
+              "kind": "symbol",
+              "value": "5"
+            },
+            "sign": "n5"
+          },
+          {
+            "id": "n6",
+            "ar": "ستة",
+            "en": "six",
+            "visual": {
+              "kind": "symbol",
+              "value": "6"
+            },
+            "sign": "n6"
+          },
+          {
+            "id": "n7",
+            "ar": "سبعة",
+            "en": "seven",
+            "visual": {
+              "kind": "symbol",
+              "value": "7"
+            },
+            "sign": "n7"
+          },
+          {
+            "id": "n8",
+            "ar": "ثمانية",
+            "en": "eight",
+            "visual": {
+              "kind": "symbol",
+              "value": "8"
+            },
+            "sign": "n8"
+          },
+          {
+            "id": "n9",
+            "ar": "تسعة",
+            "en": "nine",
+            "visual": {
+              "kind": "symbol",
+              "value": "9"
+            },
+            "sign": "n9"
+          },
+          {
+            "id": "n10",
+            "ar": "عشرة",
+            "en": "ten",
+            "visual": {
+              "kind": "symbol",
+              "value": "10"
+            },
+            "sign": "n10"
+          }
+        ],
+        "targets": [
+          "n7",
+          "n2",
+          "n9",
+          "n4",
+          "n0"
+        ]
+      }
+    },
+    {
+      "id": "tf-numbers",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "7 أكبر من 5.",
+            "en": "7 is greater than 5.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "3 أكبر من 9.",
+            "en": "3 is greater than 9.",
+            "answer": false,
+            "why_ar": "9 أكبر من 3.",
+            "why_en": "9 is greater than 3."
+          },
+          {
+            "id": "s3",
+            "ar": "صفر يعني لا شيء.",
+            "en": "Zero means nothing.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "بعد 6 يأتي 8.",
+            "en": "8 comes right after 6.",
+            "answer": false,
+            "why_ar": "بعد 6 يأتي 7.",
+            "why_en": "7 comes after 6."
+          },
+          {
+            "id": "s5",
+            "ar": "10 هو أكبر عدد في هذا الدرس.",
+            "en": "10 is the largest number in this lesson.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          }
+        ]
+      }
+    }
+  ]
+}

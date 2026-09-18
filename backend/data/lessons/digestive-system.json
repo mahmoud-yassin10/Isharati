@@ -1,0 +1,528 @@
+{
+  "id": "digestive-system",
+  "slug": "digestive-system",
+  "title_ar": "الجهاز الهضمي",
+  "title_en": "The digestive system",
+  "subject": "science",
+  "status": "published",
+  "summary_ar": "رحلة الطعام من الفم إلى الأمعاء، برسم تفاعلي وألعاب.",
+  "summary_en": "The food's journey from mouth to intestines, with an interactive diagram and games.",
+  "minutes": 16,
+  "glossary": {
+    "digestive": {
+      "term_ar": "جهاز هضمي",
+      "term_en": "digestive system",
+      "esl_mode": "lexicon",
+      "lexicon_token": "جهاز هضمي"
+    },
+    "eat": {
+      "term_ar": "يأكل",
+      "term_en": "eats",
+      "esl_mode": "lexicon",
+      "lexicon_token": "يأكل"
+    },
+    "mouth": {
+      "term_ar": "فم",
+      "term_en": "mouth",
+      "esl_mode": "fingerspell"
+    },
+    "pharynx": {
+      "term_ar": "بلعوم",
+      "term_en": "pharynx",
+      "esl_mode": "lexicon",
+      "lexicon_token": "بلعوم"
+    },
+    "esophagus": {
+      "term_ar": "مريء",
+      "term_en": "oesophagus",
+      "esl_mode": "fingerspell"
+    },
+    "stomach": {
+      "term_ar": "معدة",
+      "term_en": "stomach",
+      "esl_mode": "lexicon",
+      "lexicon_token": "معدة"
+    },
+    "small": {
+      "term_ar": "الأمعاء الدقيقة",
+      "term_en": "small intestine",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الأمعاء الدقيقة"
+    },
+    "large": {
+      "term_ar": "الأمعاء الغليظة",
+      "term_en": "large intestine",
+      "esl_mode": "lexicon",
+      "lexicon_token": "الأمعاء الغليظة"
+    },
+    "liver": {
+      "term_ar": "كبد",
+      "term_en": "liver",
+      "esl_mode": "lexicon",
+      "lexicon_token": "كبد"
+    },
+    "pancreas": {
+      "term_ar": "البنكرياس",
+      "term_en": "pancreas",
+      "esl_mode": "lexicon",
+      "lexicon_token": "البنكرياس"
+    },
+    "teeth": {
+      "term_ar": "اسنان",
+      "term_en": "teeth",
+      "esl_mode": "lexicon",
+      "lexicon_token": "اسنان"
+    },
+    "blood": {
+      "term_ar": "دم",
+      "term_en": "blood",
+      "esl_mode": "lexicon",
+      "lexicon_token": "دم"
+    }
+  },
+  "steps": [
+    {
+      "id": "term-digestive",
+      "type": "esl_term",
+      "title_ar": "الجهاز الهضمي",
+      "title_en": "Digestive system",
+      "body_ar": "الجهاز الهضمي يحوّل الطعام إلى غذاء يستفيد منه الجسم.",
+      "body_en": "The digestive system turns food into nutrients the body can use.",
+      "glossary_ids": [
+        "digestive"
+      ]
+    },
+    {
+      "id": "term-eat",
+      "type": "esl_term",
+      "title_ar": "يأكل",
+      "title_en": "Eats",
+      "body_ar": "عندما نأكل تبدأ رحلة الطعام.",
+      "body_en": "When we eat, the food's journey begins.",
+      "glossary_ids": [
+        "eat"
+      ]
+    },
+    {
+      "id": "explain-journey",
+      "type": "explain",
+      "title_ar": "رحلة الطعام",
+      "title_en": "The food's journey",
+      "body_ar": "الطعام يدخل الفم، ثم البلعوم والمريء، ثم المعدة، ثم الأمعاء الدقيقة، ثم الأمعاء الغليظة.",
+      "body_en": "Food enters the mouth, then the pharynx and oesophagus, then the stomach, the small intestine, and the large intestine.",
+      "glossary_ids": [
+        "stomach",
+        "small",
+        "large"
+      ]
+    },
+    {
+      "id": "flow-explore",
+      "type": "diagram",
+      "title_ar": "رسم: القناة الهضمية",
+      "title_en": "Diagram: the digestive tract",
+      "diagram": {
+        "kind": "flow",
+        "mode": "explore",
+        "prompt_ar": "اضغط كل جزء لتعرف اسمه وعمله.",
+        "prompt_en": "Tap each part to learn its name and job.",
+        "nodes": [
+          {
+            "id": "mouth",
+            "ar": "الفم",
+            "en": "Mouth",
+            "sign": "mouth",
+            "note_ar": "الأسنان تقطع الطعام وتطحنه، واللعاب يبلّله.",
+            "note_en": "Teeth cut and grind the food, and saliva wets it."
+          },
+          {
+            "id": "pharynx",
+            "ar": "البلعوم",
+            "en": "Pharynx",
+            "sign": "pharynx",
+            "note_ar": "ممر خلف الفم يوصل الطعام إلى المريء.",
+            "note_en": "A passage behind the mouth that sends food to the oesophagus."
+          },
+          {
+            "id": "esophagus",
+            "ar": "المريء",
+            "en": "Oesophagus",
+            "sign": "esophagus",
+            "note_ar": "أنبوب يدفع الطعام إلى المعدة.",
+            "note_en": "A tube that pushes food down to the stomach."
+          },
+          {
+            "id": "stomach",
+            "ar": "المعدة",
+            "en": "Stomach",
+            "sign": "stomach",
+            "note_ar": "تخلط الطعام بعصارات الهضم.",
+            "note_en": "Mixes food with digestive juices."
+          },
+          {
+            "id": "small",
+            "ar": "الأمعاء الدقيقة",
+            "en": "Small intestine",
+            "sign": "small",
+            "note_ar": "يُمتص فيها الغذاء إلى الدم.",
+            "note_en": "Food is absorbed into the blood here."
+          },
+          {
+            "id": "large",
+            "ar": "الأمعاء الغليظة",
+            "en": "Large intestine",
+            "sign": "large",
+            "note_ar": "يُمتص فيها الماء، وتخرج الفضلات.",
+            "note_en": "Water is absorbed here, and waste leaves the body."
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz-absorb",
+      "type": "quiz",
+      "title_ar": "سؤال: الامتصاص",
+      "title_en": "Question: absorption",
+      "glossary_ids": [
+        "small",
+        "blood"
+      ],
+      "quiz": {
+        "prompt_ar": "أين يُمتص الغذاء إلى الدم؟",
+        "prompt_en": "Where is food absorbed into the blood?",
+        "correct_id": "small",
+        "options": [
+          {
+            "id": "stomach",
+            "label_ar": "المعدة",
+            "label_en": "Stomach"
+          },
+          {
+            "id": "small",
+            "label_ar": "الأمعاء الدقيقة",
+            "label_en": "Small intestine"
+          },
+          {
+            "id": "esophagus",
+            "label_ar": "المريء",
+            "label_en": "Oesophagus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-path",
+      "type": "order",
+      "title_ar": "لعبة: رحلة الطعام",
+      "title_en": "Game: the food's journey",
+      "order": {
+        "prompt_ar": "رتّب الأجزاء بترتيب مرور الطعام فيها.",
+        "prompt_en": "Order the parts in the order food passes through them.",
+        "items": [
+          {
+            "id": "mouth",
+            "ar": "الفم",
+            "en": "Mouth",
+            "sign": "mouth"
+          },
+          {
+            "id": "pharynx",
+            "ar": "البلعوم",
+            "en": "Pharynx",
+            "sign": "pharynx"
+          },
+          {
+            "id": "esophagus",
+            "ar": "المريء",
+            "en": "Oesophagus",
+            "sign": "esophagus"
+          },
+          {
+            "id": "stomach",
+            "ar": "المعدة",
+            "en": "Stomach",
+            "sign": "stomach"
+          },
+          {
+            "id": "small",
+            "ar": "الأمعاء الدقيقة",
+            "en": "Small intestine",
+            "sign": "small"
+          },
+          {
+            "id": "large",
+            "ar": "الأمعاء الغليظة",
+            "en": "Large intestine",
+            "sign": "large"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-jobs",
+      "type": "match",
+      "title_ar": "لعبة: العضو ووظيفته",
+      "title_en": "Game: organ and job",
+      "match": {
+        "prompt_ar": "صِل كل عضو بعمله.",
+        "prompt_en": "Match each organ with its job.",
+        "pairs": [
+          {
+            "id": "teeth",
+            "a": {
+              "id": "teeth",
+              "ar": "الأسنان",
+              "en": "Teeth",
+              "sign": "teeth"
+            },
+            "b": {
+              "id": "teeth",
+              "ar": "تقطع الطعام وتطحنه",
+              "en": "Cut and grind food"
+            }
+          },
+          {
+            "id": "stomach",
+            "a": {
+              "id": "stomach",
+              "ar": "المعدة",
+              "en": "Stomach",
+              "sign": "stomach"
+            },
+            "b": {
+              "id": "stomach",
+              "ar": "تخلط الطعام بالعصارات",
+              "en": "Mixes food with juices"
+            }
+          },
+          {
+            "id": "small",
+            "a": {
+              "id": "small",
+              "ar": "الأمعاء الدقيقة",
+              "en": "Small intestine",
+              "sign": "small"
+            },
+            "b": {
+              "id": "small",
+              "ar": "تمتص الغذاء",
+              "en": "Absorbs nutrients"
+            }
+          },
+          {
+            "id": "large",
+            "a": {
+              "id": "large",
+              "ar": "الأمعاء الغليظة",
+              "en": "Large intestine",
+              "sign": "large"
+            },
+            "b": {
+              "id": "large",
+              "ar": "تمتص الماء",
+              "en": "Absorbs water"
+            }
+          },
+          {
+            "id": "liver",
+            "a": {
+              "id": "liver",
+              "ar": "الكبد",
+              "en": "Liver",
+              "sign": "liver"
+            },
+            "b": {
+              "id": "liver",
+              "ar": "يصنع العصارة الصفراء",
+              "en": "Makes bile"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "sort-organs",
+      "type": "sort",
+      "title_ar": "لعبة: القناة أم عضو مساعد؟",
+      "title_en": "Game: tract or helper organ?",
+      "sort": {
+        "prompt_ar": "الطعام يمر في القناة الهضمية. الأعضاء المساعدة تصنع عصارات ولا يمر فيها الطعام.",
+        "prompt_en": "Food passes through the tract. Helper organs make juices, and food does not pass through them.",
+        "buckets": [
+          {
+            "id": "tract",
+            "ar": "القناة الهضمية",
+            "en": "Digestive tract",
+            "sign": "digestive"
+          },
+          {
+            "id": "helper",
+            "ar": "عضو مساعد",
+            "en": "Helper organ"
+          }
+        ],
+        "items": [
+          {
+            "id": "mouth",
+            "ar": "الفم",
+            "en": "Mouth",
+            "sign": "mouth",
+            "bucket": "tract"
+          },
+          {
+            "id": "esophagus",
+            "ar": "المريء",
+            "en": "Oesophagus",
+            "sign": "esophagus",
+            "bucket": "tract"
+          },
+          {
+            "id": "stomach",
+            "ar": "المعدة",
+            "en": "Stomach",
+            "sign": "stomach",
+            "bucket": "tract"
+          },
+          {
+            "id": "small",
+            "ar": "الأمعاء الدقيقة",
+            "en": "Small intestine",
+            "sign": "small",
+            "bucket": "tract"
+          },
+          {
+            "id": "liver",
+            "ar": "الكبد",
+            "en": "Liver",
+            "sign": "liver",
+            "bucket": "helper"
+          },
+          {
+            "id": "pancreas",
+            "ar": "البنكرياس",
+            "en": "Pancreas",
+            "sign": "pancreas",
+            "bucket": "helper"
+          }
+        ]
+      }
+    },
+    {
+      "id": "flow-find",
+      "type": "diagram",
+      "title_ar": "ابحث في الرسم",
+      "title_en": "Find on the diagram",
+      "diagram": {
+        "kind": "flow",
+        "mode": "find",
+        "prompt_ar": "الأجزاء مخفية. اضغط مكان الجزء المطلوب.",
+        "prompt_en": "The parts are hidden. Tap where the named part is.",
+        "nodes": [
+          {
+            "id": "mouth",
+            "ar": "الفم",
+            "en": "Mouth",
+            "sign": "mouth"
+          },
+          {
+            "id": "pharynx",
+            "ar": "البلعوم",
+            "en": "Pharynx",
+            "sign": "pharynx"
+          },
+          {
+            "id": "esophagus",
+            "ar": "المريء",
+            "en": "Oesophagus",
+            "sign": "esophagus"
+          },
+          {
+            "id": "stomach",
+            "ar": "المعدة",
+            "en": "Stomach",
+            "sign": "stomach"
+          },
+          {
+            "id": "small",
+            "ar": "الأمعاء الدقيقة",
+            "en": "Small intestine",
+            "sign": "small"
+          },
+          {
+            "id": "large",
+            "ar": "الأمعاء الغليظة",
+            "en": "Large intestine",
+            "sign": "large"
+          }
+        ],
+        "targets": [
+          "stomach",
+          "esophagus",
+          "large",
+          "mouth"
+        ]
+      }
+    },
+    {
+      "id": "tf-digestion",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "هل الجملة صحيحة؟",
+        "prompt_en": "Is the statement true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "يبدأ الهضم في الفم.",
+            "en": "Digestion starts in the mouth.",
+            "answer": true,
+            "why_ar": "الأسنان واللعاب يبدآن العمل.",
+            "why_en": "Teeth and saliva start the work."
+          },
+          {
+            "id": "s2",
+            "ar": "الطعام يمر داخل الكبد.",
+            "en": "Food passes through the liver.",
+            "answer": false,
+            "why_ar": "الكبد عضو مساعد، لا يمر فيه الطعام.",
+            "why_en": "The liver is a helper organ; food does not pass through it."
+          },
+          {
+            "id": "s3",
+            "ar": "المريء يصل الفم بالمعدة.",
+            "en": "The oesophagus links the mouth to the stomach.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "الأمعاء الغليظة تأتي قبل المعدة.",
+            "en": "The large intestine comes before the stomach.",
+            "answer": false,
+            "why_ar": "تأتي في آخر الرحلة.",
+            "why_en": "It comes at the end of the journey."
+          },
+          {
+            "id": "s5",
+            "ar": "يُمتص الغذاء في الأمعاء الدقيقة.",
+            "en": "Nutrients are absorbed in the small intestine.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "sign-stomach",
+      "type": "sign_check",
+      "title_ar": "سجّل: معدة",
+      "title_en": "Sign: stomach",
+      "body_ar": "سجّل إشارة معدة، أو تخطَّ هذه الخطوة.",
+      "body_en": "Record the sign for stomach, or skip this step.",
+      "sign_target": "معدة"
+    }
+  ]
+}

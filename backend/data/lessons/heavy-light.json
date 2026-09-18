@@ -32,6 +32,24 @@
       "term_ar": "تسارع",
       "term_en": "acceleration",
       "esl_mode": "fingerspell"
+    },
+    "car": {
+      "term_ar": "سيارة",
+      "term_en": "car",
+      "esl_mode": "lexicon",
+      "lexicon_token": "سيارة"
+    },
+    "train": {
+      "term_ar": "قطار",
+      "term_en": "train",
+      "esl_mode": "lexicon",
+      "lexicon_token": "قطار"
+    },
+    "pen": {
+      "term_ar": "قلم",
+      "term_en": "pen",
+      "esl_mode": "lexicon",
+      "lexicon_token": "قلم"
     }
   },
   "steps": [
@@ -42,7 +60,9 @@
       "title_en": "Heavy",
       "body_ar": "الجسم الثقيل كتلته أكبر.",
       "body_en": "A heavy object has more mass.",
-      "glossary_ids": ["heavy"]
+      "glossary_ids": [
+        "heavy"
+      ]
     },
     {
       "id": "term-light",
@@ -51,7 +71,74 @@
       "title_en": "Light",
       "body_ar": "الجسم الخفيف كتلته أصغر.",
       "body_en": "A light object has less mass.",
-      "glossary_ids": ["light"]
+      "glossary_ids": [
+        "light"
+      ]
+    },
+    {
+      "id": "sort-heavy-light",
+      "type": "sort",
+      "title_ar": "لعبة: ثقيل أم خفيف؟",
+      "title_en": "Game: heavy or light?",
+      "sort": {
+        "prompt_ar": "ضع كل شيء في مجموعته.",
+        "prompt_en": "Put each thing in its group.",
+        "buckets": [
+          {
+            "id": "heavy",
+            "ar": "ثقيل",
+            "en": "Heavy",
+            "sign": "heavy"
+          },
+          {
+            "id": "light",
+            "ar": "خفيف",
+            "en": "Light",
+            "sign": "light"
+          }
+        ],
+        "items": [
+          {
+            "id": "car",
+            "ar": "سيارة",
+            "en": "Car",
+            "sign": "car",
+            "bucket": "heavy"
+          },
+          {
+            "id": "train",
+            "ar": "قطار",
+            "en": "Train",
+            "sign": "train",
+            "bucket": "heavy"
+          },
+          {
+            "id": "elephant",
+            "ar": "فيل",
+            "en": "Elephant",
+            "bucket": "heavy"
+          },
+          {
+            "id": "pen",
+            "ar": "قلم",
+            "en": "Pen",
+            "sign": "pen",
+            "bucket": "light"
+          },
+          {
+            "id": "paper",
+            "ar": "ورقة",
+            "en": "Sheet of paper",
+            "bucket": "light"
+          },
+          {
+            "id": "feather",
+            "ar": "ريشة",
+            "en": "Feather",
+            "bucket": "light"
+          }
+        ]
+      }
     },
     {
       "id": "term-mass-again",
@@ -60,7 +147,9 @@
       "title_en": "Mass",
       "body_ar": "الكتلة هي مقدار المادة. ليست «ثقيل» نفسها، لكن الثقيل غالباً كتلته أكبر.",
       "body_en": "Mass is the amount of matter. It is not the same word as heavy, but heavy usually means more mass.",
-      "glossary_ids": ["mass"]
+      "glossary_ids": [
+        "mass"
+      ]
     },
     {
       "id": "explain-mass-a",
@@ -69,7 +158,104 @@
       "title_en": "Mass and acceleration",
       "body_ar": "نفس القوة على كتلة أكبر تعطي تسارعاً أصغر. الصندوق الثقيل يتغيّر أبطأ.",
       "body_en": "The same force on more mass gives smaller acceleration. The heavier box changes speed more slowly.",
-      "glossary_ids": ["mass", "force", "accel"]
+      "glossary_ids": [
+        "mass",
+        "force",
+        "accel"
+      ]
+    },
+    {
+      "id": "table-same-force",
+      "type": "table",
+      "title_ar": "جدول: نفس القوة",
+      "title_en": "Table: the same force",
+      "table": {
+        "prompt_ar": "القوة ثابتة 8 نيوتن. كلما زادت الكتلة، ماذا يحدث للتسارع؟ أكمل الجدول.",
+        "prompt_en": "Force stays at 8 N. As mass grows, what happens to acceleration? Complete the table.",
+        "columns": [
+          {
+            "ar": "القوة F",
+            "en": "Force F",
+            "unit": "N",
+            "tone": "force"
+          },
+          {
+            "ar": "الكتلة m",
+            "en": "Mass m",
+            "unit": "kg",
+            "tone": "mass"
+          },
+          {
+            "ar": "التسارع a",
+            "en": "Acceleration a",
+            "unit": "m/s²",
+            "tone": "accel"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "value": "8"
+            },
+            {
+              "value": "1"
+            },
+            {
+              "value": "8"
+            }
+          ],
+          [
+            {
+              "value": "8"
+            },
+            {
+              "value": "2"
+            },
+            {
+              "answer": 4,
+              "choices": [
+                4,
+                10,
+                16
+              ]
+            }
+          ],
+          [
+            {
+              "value": "8"
+            },
+            {
+              "value": "4"
+            },
+            {
+              "answer": 2,
+              "choices": [
+                2,
+                4,
+                32
+              ]
+            }
+          ],
+          [
+            {
+              "value": "8"
+            },
+            {
+              "value": "8"
+            },
+            {
+              "answer": 1,
+              "choices": [
+                1,
+                8,
+                64
+              ]
+            }
+          ]
+        ],
+        "note_ar": "لاحظ: الكتلة تتضاعف، والتسارع ينقسم على 2.",
+        "note_en": "Notice: mass doubles, acceleration halves."
+      }
     },
     {
       "id": "quiz-which-heavy",
@@ -78,15 +264,29 @@
       "title_en": "Quiz: heavy",
       "body_ar": "انظر الإشارة ثم اختر الكلمة.",
       "body_en": "Watch the sign, then pick the word.",
-      "glossary_ids": ["heavy"],
+      "glossary_ids": [
+        "heavy"
+      ],
       "quiz": {
         "prompt_ar": "أي كلمة تعني heavy؟",
         "prompt_en": "Which word means heavy?",
         "correct_id": "heavy",
         "options": [
-          { "id": "heavy", "label_ar": "ثقيل", "label_en": "heavy" },
-          { "id": "light", "label_ar": "خفيف", "label_en": "light" },
-          { "id": "force", "label_ar": "قوة", "label_en": "force" }
+          {
+            "id": "heavy",
+            "label_ar": "ثقيل",
+            "label_en": "heavy"
+          },
+          {
+            "id": "light",
+            "label_ar": "خفيف",
+            "label_en": "light"
+          },
+          {
+            "id": "force",
+            "label_ar": "قوة",
+            "label_en": "force"
+          }
         ]
       }
     },
@@ -95,15 +295,95 @@
       "type": "quiz",
       "title_ar": "اختبار: نفس القوة",
       "title_en": "Quiz: same force",
-      "glossary_ids": ["mass", "accel"],
+      "glossary_ids": [
+        "mass",
+        "accel"
+      ],
       "quiz": {
         "prompt_ar": "نفس القوة على كتلة أكبر. التسارع؟",
         "prompt_en": "Same force on more mass. Acceleration?",
         "correct_id": "down",
         "options": [
-          { "id": "up", "label_ar": "يزيد", "label_en": "Increases" },
-          { "id": "down", "label_ar": "يقل", "label_en": "Decreases" },
-          { "id": "same", "label_ar": "لا يتغيّر", "label_en": "Stays the same" }
+          {
+            "id": "up",
+            "label_ar": "يزيد",
+            "label_en": "Increases"
+          },
+          {
+            "id": "down",
+            "label_ar": "يقل",
+            "label_en": "Decreases"
+          },
+          {
+            "id": "same",
+            "label_ar": "لا يتغيّر",
+            "label_en": "Stays the same"
+          }
+        ]
+      }
+    },
+    {
+      "id": "match-heavy-light",
+      "type": "match",
+      "title_ar": "لعبة: صِل السبب بالنتيجة",
+      "title_en": "Game: match cause and result",
+      "match": {
+        "prompt_ar": "صِل كل حالة بما يحدث للتسارع.",
+        "prompt_en": "Match each case with what happens to acceleration.",
+        "pairs": [
+          {
+            "id": "heavy",
+            "a": {
+              "id": "heavy",
+              "ar": "صندوق ثقيل",
+              "en": "A heavy box",
+              "sign": "heavy"
+            },
+            "b": {
+              "id": "heavy",
+              "ar": "تسارع صغير",
+              "en": "Small acceleration",
+              "visual": {
+                "kind": "symbol",
+                "value": "a↓"
+              }
+            }
+          },
+          {
+            "id": "light",
+            "a": {
+              "id": "light",
+              "ar": "صندوق خفيف",
+              "en": "A light box",
+              "sign": "light"
+            },
+            "b": {
+              "id": "light",
+              "ar": "تسارع كبير",
+              "en": "Large acceleration",
+              "visual": {
+                "kind": "symbol",
+                "value": "a↑"
+              }
+            }
+          },
+          {
+            "id": "zero",
+            "a": {
+              "id": "zero",
+              "ar": "لا توجد قوة",
+              "en": "No force"
+            },
+            "b": {
+              "id": "zero",
+              "ar": "لا تسارع",
+              "en": "No acceleration",
+              "visual": {
+                "kind": "symbol",
+                "value": "a=0"
+              }
+            }
+          }
         ]
       }
     },
@@ -114,10 +394,17 @@
       "title_en": "The lab",
       "body_ar": "ثبّت القوة تقريباً. غيّر الكتلة. راقب a.",
       "body_en": "Keep force roughly fixed. Change mass. Watch a.",
-      "glossary_ids": ["heavy", "light", "mass"],
+      "glossary_ids": [
+        "heavy",
+        "light",
+        "mass"
+      ],
       "simulation": {
         "kind": "newton_2nd",
-        "params": { "F": 8, "m": 4 }
+        "params": {
+          "F": 8,
+          "m": 4
+        }
       }
     },
     {
@@ -129,8 +416,59 @@
       "body_en": "Make acceleration close to 1 m/s².",
       "simulation": {
         "kind": "newton_2nd",
-        "params": { "F": 8, "m": 4 },
-        "goal": { "key": "a", "value": 1, "tolerance": 0.15 }
+        "params": {
+          "F": 8,
+          "m": 4
+        },
+        "goal": {
+          "key": "a",
+          "value": 1,
+          "tolerance": 0.15
+        }
+      }
+    },
+    {
+      "id": "tf-heavy-light",
+      "type": "truefalse",
+      "title_ar": "جولة: صح أو خطأ",
+      "title_en": "Round: true or false",
+      "truefalse": {
+        "prompt_ar": "اقرأ الجملة. هل هي صحيحة؟",
+        "prompt_en": "Read the statement. Is it true?",
+        "statements": [
+          {
+            "id": "s1",
+            "ar": "الصندوق الخفيف يتسارع أسرع من الثقيل بنفس الدفعة.",
+            "en": "A light box speeds up faster than a heavy one with the same push.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s2",
+            "ar": "القطار خفيف.",
+            "en": "A train is light.",
+            "answer": false,
+            "why_ar": "القطار ثقيل جداً.",
+            "why_en": "A train is very heavy."
+          },
+          {
+            "id": "s3",
+            "ar": "لتحريك صندوق ثقيل بسرعة نحتاج قوة أكبر.",
+            "en": "To move a heavy box quickly we need more force.",
+            "answer": true,
+            "why_ar": "",
+            "why_en": ""
+          },
+          {
+            "id": "s4",
+            "ar": "الكتلة والتسارع يزيدان معاً بنفس القوة.",
+            "en": "With the same force, mass and acceleration grow together.",
+            "answer": false,
+            "why_ar": "إذا زادت الكتلة يقل التسارع.",
+            "why_en": "If mass grows, acceleration drops."
+          }
+        ]
       }
     },
     {
@@ -142,5 +480,8 @@
       "body_en": "Record the sign for heavy, or skip this step.",
       "sign_target": "ثقيل"
     }
-  ]
+  ],
+  "summary_ar": "ثقيل وخفيف بالإشارة، ولماذا يتسارع الخفيف أسرع.",
+  "summary_en": "Heavy and light in sign, and why light things speed up faster.",
+  "minutes": 12
 }
