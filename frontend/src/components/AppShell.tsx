@@ -2,23 +2,41 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, Settings, X } from "lucide-react";
+import { BookOpen, GraduationCap, LogOut, Menu, Settings, Users, VideoOff, X } from "lucide-react";
 import { A11yControls } from "@/components/A11yControls";
-import { BrandMark } from "@/components/Brand";
+import { BrandMark, BrandWordmark } from "@/components/Brand";
 import { Dual } from "@/components/Dual";
 import { BRAND } from "@/lib/brand";
 import { health, logout } from "@/lib/api";
 import { pick, useLang } from "@/lib/lang";
 import type { User } from "@/lib/types";
 
-type NavItem = { href: string; ar: string; en: string };
+type NavItem = { href: string; ar: string; en: string; icon: React.ReactNode };
 
-/** Only what each person actually needs from the top bar. The logo is "home". */
-function navFor(role: User["role"] | null, onHome: boolean): NavItem[] {
-  if (role === "student") return [{ href: "/student", ar: "دروسي", en: "My lessons" }];
-  if (role === "teacher") return [{ href: "/teacher", ar: "الدروس", en: "Lessons" }];
-  return [{ href: onHome ? "#lab" : "/#lab", ar: "المختبر", en: "The lab" }];
+const icon = (Icon: typeof BookOpen) => <Icon size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />;
+
+/** Real routes only. Signed-in users get their own workspace first, then home. */
+function primaryNavFor(role: User["role"] | null): NavItem[] {
+  if (role === "student") {
+    return [
+      { href: "/student", ar: "دروسي", en: "My lessons", icon: icon(GraduationCap) },
+      { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
+    ];
+  }
+  if (role === "teacher") {
+    return [
+      { href: "/teacher", ar: "الدروس", en: "Lessons", icon: icon(BookOpen) },
+      { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
+    ];
+  }
+  return [
+    { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
+    { href: "/login?role=student", ar: "للطلاب", en: "Students", icon: icon(GraduationCap) },
+    { href: "/login?role=teacher", ar: "للمعلمين", en: "Teachers", icon: icon(Users) },
+  ];
 }
+
+const LAB_LINK = { ar: "المختبر", en: "Lab" };
 
 export function AppShell({
   user,
@@ -69,14 +87,14 @@ export function AppShell({
     router.push("/");
   }
 
-  const navItems = navFor(user?.role ?? null, pathname === "/");
+  const navItems = primaryNavFor(user?.role ?? null);
+  const labHref = pathname === "/" ? "#lab" : "/#lab";
 
   const langSwitch = (
     <div className="lang-switch" role="group" aria-label={pick(lang, "اللغة", "Language")}>
       <button type="button" lang="ar" aria-pressed={lang === "ar"} onClick={() => setLang("ar")}>
         عربي
       </button>
-      <span aria-hidden="true">/</span>
       <button type="button" lang="en" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
         EN
       </button>
@@ -92,35 +110,47 @@ export function AppShell({
       <header className={navOpen ? "topbar nav-open" : "topbar"}>
         <div className="wrap topbar-inner">
           <a className="brand" href={user ? `/${user.role}` : "/"}>
-            <BrandMark size={26} />
-            <span className="brand-name" lang="ar">
-              {BRAND.ar}
+            <span className="brand-mark" aria-hidden="true">
+              <BrandMark size={28} />
             </span>
+            <BrandWordmark compact />
           </a>
 
           <nav className="topnav" aria-label={pick(lang, "التنقل الرئيسي", "Main navigation")}>
             {navItems.map((item) => (
               <a key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
-                <Dual ar={item.ar} en={item.en} />
+                {item.icon}
+                <span>
+                  <Dual ar={item.ar} en={item.en} />
+                </span>
               </a>
             ))}
+            <a href={labHref} aria-current={false}>
+              <span className="nav-tick" aria-hidden="true" />
+              <span>
+                <Dual ar={LAB_LINK.ar} en={LAB_LINK.en} />
+              </span>
+            </a>
           </nav>
 
           <div className="topbar-tools">
             {signReady === false ? (
-              <p className="status-note" title={pick(lang, "فيديو الإشارة غير متاح الآن", "Sign video is unavailable now")}>
-                <Dual ar="الإشارة غير متاحة الآن" en="Signs unavailable" />
+              <p className="status-chip" title={pick(lang, "فيديو الإشارة غير متاح الآن", "Sign video is unavailable now")}>
+                <VideoOff size={16} strokeWidth={1.75} className="icon" aria-hidden="true" />
+                <span>
+                  <Dual ar="الإشارة غير متاحة" en="Signs unavailable" />
+                </span>
               </p>
             ) : null}
 
             <button
               type="button"
-              className="settings-trigger"
+              className="btn ghost a11y-trigger"
               popoverTarget="a11y-menu"
-              aria-label={pick(lang, "الإعدادات", "Settings")}
+              aria-label={pick(lang, "الإعدادات السريعة", "Quick settings")}
             >
-              <Settings size={18} strokeWidth={1.75} aria-hidden="true" />
-              <span className="settings-trigger-label">
+              <Settings size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />
+              <span className="a11y-trigger-label">
                 <Dual ar="الإعدادات" en="Settings" />
               </span>
             </button>
@@ -129,13 +159,25 @@ export function AppShell({
 
             {user ? (
               <div className="account">
-                <span className="account-name">{user.name}</span>
-                <button type="button" className="link-btn" onClick={onLogout}>
-                  <Dual ar="خروج" en="Log out" />
+                <span className="avatar" aria-hidden="true">
+                  {user.name.trim().charAt(0)}
+                </span>
+                <span className="account-name">
+                  <span>{user.name}</span>
+                  <span>
+                    <Dual
+                      ar={user.role === "teacher" ? "معلم" : "طالب"}
+                      en={user.role === "teacher" ? "Teacher" : "Student"}
+                    />
+                  </span>
+                </span>
+                <button type="button" className="btn quiet icon-only" onClick={onLogout} aria-label={pick(lang, "خروج", "Log out")} title={pick(lang, "خروج", "Log out")}>
+                  <LogOut size={18} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
                 </button>
               </div>
             ) : (
-              <a className="btn small" href="/login">
+              <a className="btn" href="/login">
+                <Users size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />
                 <Dual ar="دخول" en="Log in" />
               </a>
             )}
@@ -156,33 +198,41 @@ export function AppShell({
         </div>
 
         <div className="mobile-nav" id="mobile-nav" hidden={!navOpen}>
-          <nav className="wrap" aria-label={pick(lang, "القائمة", "Menu")}>
+          <nav className="wrap" aria-label={pick(lang, "تنقل الجوال", "Mobile navigation")}>
             <ul>
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href}>
+                  <a href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
+                    {item.icon}
                     <Dual ar={item.ar} en={item.en} />
                   </a>
                 </li>
               ))}
               <li>
-                <a href="/settings" aria-current={pathname === "/settings" ? "page" : undefined}>
-                  <Dual ar="الإعدادات" en="Settings" />
+                <a href={labHref}>
+                  <span className="nav-tick" aria-hidden="true" />
+                  <Dual ar={LAB_LINK.ar} en={LAB_LINK.en} />
                 </a>
               </li>
               <li>
-                {user ? (
-                  <button type="button" onClick={onLogout}>
-                    <Dual ar={`خروج (${user.name})`} en={`Log out (${user.name})`} />
-                  </button>
-                ) : (
-                  <a href="/login">
-                    <Dual ar="دخول" en="Log in" />
-                  </a>
-                )}
+                <a href="/settings" aria-current={pathname === "/settings" ? "page" : undefined}>
+                  {icon(Settings)}
+                  <Dual ar="الإعدادات" en="Settings" />
+                </a>
               </li>
             </ul>
             {langSwitch}
+            {user ? (
+              <button type="button" className="btn secondary block" onClick={onLogout}>
+                <LogOut size={18} strokeWidth={1.75} className="icon flip-rtl" aria-hidden="true" />
+                <Dual ar="خروج" en="Log out" />
+              </button>
+            ) : (
+              <a className="btn block" href="/login">
+                <Users size={18} strokeWidth={1.75} className="icon" aria-hidden="true" />
+                <Dual ar="دخول" en="Log in" />
+              </a>
+            )}
           </nav>
         </div>
       </header>

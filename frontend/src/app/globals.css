@@ -683,108 +683,186 @@ main {
 .topbar-inner {
   display: flex;
   align-items: center;
-  gap: var(--s-6);
+  gap: var(--s-3);
   min-height: var(--header);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--s-2);
-  color: var(--primary);
+  gap: var(--s-3);
+  padding-inline-end: var(--s-3);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--primary);
+  color: var(--primary-ink);
+  --brand-dot: var(--gold);
+}
+
+.brand-text {
+  display: grid;
+  line-height: 1.1;
 }
 
 .brand-name {
-  color: var(--ink);
-  font-size: 1.25rem;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
   font-weight: 700;
-  line-height: 1;
+  color: var(--ink);
 }
 
+.brand-latin {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-2);
+}
+
+/* Primary destinations live right beside the logo, like any real product nav:
+   a short set of tabs, not a lone link stranded in empty space. */
 .topnav {
   display: flex;
-  align-self: stretch;
-  gap: var(--s-5);
+  align-items: center;
+  gap: 2px;
 }
 
 .topnav a {
   display: inline-flex;
   align-items: center;
+  gap: var(--s-2);
+  height: 40px;
+  padding-inline: var(--s-3);
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
   color: var(--ink-2);
   font-weight: 500;
-  box-shadow: inset 0 -2px 0 transparent;
-  transition: color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+  transition: background-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
 }
 
 .topnav a:hover {
+  background: var(--surface-2);
   color: var(--ink);
 }
 
 .topnav a[aria-current="page"] {
-  color: var(--ink);
-  box-shadow: inset 0 -2px 0 var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 600;
 }
 
+.nav-tick {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-deep);
+}
+
+/* Everything that isn't "go somewhere" lives in one cluster, pinned to the end. */
 .topbar-tools {
   display: flex;
   align-items: center;
-  gap: var(--s-5);
+  gap: var(--s-2);
   margin-inline-start: auto;
 }
 
-.status-note {
-  color: var(--danger);
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px var(--s-3);
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--ink-2);
   font-size: var(--text-xs);
   font-weight: 600;
 }
 
-.settings-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: var(--target);
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--ink-2);
-  font-weight: 500;
-  cursor: pointer;
+.status-chip .icon {
+  color: var(--danger);
 }
 
-.settings-trigger:hover {
-  color: var(--ink);
+.a11y-trigger {
+  border-radius: var(--radius-pill);
+  padding-inline: var(--s-4);
 }
 
+/* A real segmented control, not two words separated by a slash. */
 .lang-switch {
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--ink-3);
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
 }
 
 .lang-switch button {
-  min-height: var(--target);
-  padding: 0 2px;
+  min-height: 34px;
+  padding-inline: var(--s-3);
   border: 0;
-  background: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
   color: var(--ink-2);
-  font-weight: 500;
+  font-size: var(--text-sm);
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+}
+
+.lang-switch button:hover {
+  color: var(--ink);
 }
 
 .lang-switch button[aria-pressed="true"] {
-  color: var(--ink);
-  font-weight: 700;
+  background: var(--primary);
+  color: var(--primary-ink);
 }
 
+/* The signed-in person, set apart from the settings/language utilities by a rule. */
 .account {
   display: inline-flex;
-  align-items: baseline;
-  gap: var(--s-3);
+  align-items: center;
+  gap: var(--s-2);
+  padding-inline-start: var(--s-3);
+  border-inline-start: 1px solid var(--line);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-sm);
 }
 
 .account-name {
+  display: grid;
+  line-height: 1.2;
+  font-size: var(--text-sm);
   font-weight: 600;
+}
+
+.account-name span:last-child {
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.btn.icon-only {
+  min-height: 36px;
+  width: 36px;
+  padding: 0;
 }
 
 .nav-toggle {
@@ -821,6 +899,7 @@ main {
 .mobile-nav li > button {
   display: flex;
   align-items: center;
+  gap: var(--s-3);
   width: 100%;
   min-height: 52px;
   padding: 0;
@@ -831,6 +910,10 @@ main {
   font-weight: 500;
   text-align: start;
   cursor: pointer;
+}
+
+.mobile-nav a[aria-current="page"] {
+  color: var(--primary);
 }
 
 /* quick settings popover */
@@ -3925,7 +4008,7 @@ button.game-card:active:not(:disabled) {
 html.focus-mode .steps-rail,
 html.focus-mode .topnav,
 html.focus-mode .footer,
-html.focus-mode .status-note,
+html.focus-mode .status-chip,
 html.focus-mode .lesson-bar-subject {
   display: none;
 }
@@ -4031,12 +4114,24 @@ html.high-contrast :is(.text-link, .footer-links a) {
   .topnav,
   .topbar-tools .lang-switch,
   .topbar-tools .account,
-  .settings-trigger-label {
+  .status-chip span,
+  .a11y-trigger-label {
     display: none;
   }
 
   .topbar-tools {
-    gap: var(--s-4);
+    gap: var(--s-2);
+  }
+
+  .a11y-trigger {
+    padding-inline: 0;
+    width: 44px;
+    justify-content: center;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
   }
 
   .nav-toggle {
