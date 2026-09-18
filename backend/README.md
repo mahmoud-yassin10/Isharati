@@ -422,6 +422,26 @@ Large model files should not be committed directly to GitHub if they exceed GitH
 
 ## Deployment Notes
 
+### Fly.io (Raqeeb API)
+
+Config lives at the repo root: `fly.toml` + `backend/Dockerfile`. The image installs a slim `requirements-fly.txt` (lessons, auth, text-to-sign, MP4). Sign-to-text / Torch stay off this machine.
+
+From the repo root, with [flyctl](https://fly.io/docs/flyctl/install/) installed:
+
+```bash
+fly auth login
+fly apps create raqeeb-api --org personal
+fly volumes create raqeeb_data --region fra --size 1 --app raqeeb-api
+fly secrets set --app raqeeb-api RAQEEB_JWT_SECRET="replace-me" CORS_ORIGINS="https://your-frontend.vercel.app"
+fly deploy
+```
+
+If `raqeeb-api` is taken, change `app` in `fly.toml` and the `--app` flags. Health check: `https://raqeeb-api.fly.dev/health`.
+
+On demo day set `min_machines_running = 1` in `fly.toml` (or `fly scale count 1`) so the first student request is not a cold start.
+
+Then point Vercel `NEXT_PUBLIC_API_URL` at `https://raqeeb-api.fly.dev` and rebuild.
+
 For production deployment:
 
 - Use environment variables instead of hardcoded secrets.

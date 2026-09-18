@@ -33,6 +33,7 @@ cors_origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -52,10 +53,17 @@ app.include_router(lessons_router)
 
 init_db()
 
+ROUTES_LOADED = {
+    "text_to_sign": False,
+    "video": False,
+    "sign_to_text": False,
+}
+
 try:
     from api.routes.text_to_sign import text_router
 
     app.include_router(text_router)
+    ROUTES_LOADED["text_to_sign"] = True
     print("Text-to-sign routes loaded")
 except Exception as exc:
     print(f"Text-to-sign routes not loaded: {exc}")
@@ -64,6 +72,7 @@ try:
     from api.routes.video import video_router
 
     app.include_router(video_router)
+    ROUTES_LOADED["video"] = True
     print("Video routes loaded")
 except Exception as exc:
     print(f"Video routes not loaded: {exc}")
@@ -76,13 +85,20 @@ try:
     app.include_router(speech_router)
     app.include_router(sign_to_text_router)
     app.include_router(sentence_video_router)
+    ROUTES_LOADED["sign_to_text"] = True
 except Exception as exc:
     print(f"Speech/sign-to-text routes not loaded: {exc}")
 
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "raqeeb-api"}
+    pose_count = len(state.POSE_DATA) if state.POSE_DATA else 0
+    return {
+        "status": "ok",
+        "service": "raqeeb-api",
+        "pose_count": pose_count,
+        "routes": ROUTES_LOADED,
+    }
 
 
 static_dir = BASE_DIR / "static"

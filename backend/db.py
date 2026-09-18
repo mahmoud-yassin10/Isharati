@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -10,8 +11,11 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 from config import BASE_DIR
 from security import hash_password
 
-DB_PATH = BASE_DIR / "raqeeb.db"
-LESSON_SEED_PATH = BASE_DIR / "data" / "newton_2nd.json"
+DATA_DIR = Path(os.getenv("RAQEEB_DATA_DIR", str(BASE_DIR)))
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+DB_PATH = DATA_DIR / "raqeeb.db"
+SEED_DIR = BASE_DIR / "data" / "lessons"
+LEGACY_SEED_PATH = BASE_DIR / "data" / "newton_2nd.json"
 DEMO_PASSWORD = "raqeeb-demo"
 
 engine = create_engine(
@@ -77,10 +81,19 @@ def lesson_document(row: LessonRow) -> dict:
     return data
 
 
+def load_seed_lessons() -> list[dict]:
+    paths = sorted(SEED_DIR.glob("*.json"))
+    if not paths and LEGACY_SEED_PATH.exists():
+        paths = [LEGACY_SEED_PATH]
+    lessons: list[dict] = []
+    for path in paths:
+        lessons.append(json.loads(path.read_text(encoding="utf-8")))
+    return lessons
+
+
 def init_db() -> None:
     Base.metadata.create_all(engine)
-    seed_path = Path(LESSON_SEED_PATH)
-    lesson_json = json.loads(seed_path.read_text(encoding="utf-8"))
+    seeds = load_seed_lessons()
     with SessionLocal() as session:
         if session.get(User, "teacher-demo") is None:
             teacher = User(
@@ -98,20 +111,35 @@ def init_db() -> None:
                 name="طالب التجربة",
             )
             session.add_all([teacher, student])
-            session.add(Assignment(lesson_id=lesson_json["id"], student_id=student.id))
-
-        row = session.get(LessonRow, lesson_json["id"])
-        payload = json.dumps(lesson_json, ensure_ascii=False)
-        if row is None:
-            session.add(
-                LessonRow(
-                    id=lesson_json["id"],
-                    teacher_id="teacher-demo",
-                    json_body=payload,
-                    status=lesson_json.get("status", "published"),
-                )
-            )
         else:
-            row.json_body = payload
-            row.status = lesson_json.get("status", row.status)
+            student = session.get(User, "student-demo")
+
+        for lesson_json in seeds:
+            payload = json.dumps(lesson_json, ensure_ascii=False)
+            row = session.get(LessonRow, lesson_json["id"])
+            if row is None:
+                session.add(
+                    LessonRow(
+                        id=lesson_json["id"],
+                        teacher_id="teacher-demo",
+                        json_body=payload,
+                        status=lesson_json.get("status", "published"),
+                    )
+                )
+            else:
+                row.json_body = payload
+                row.status = lesson_json.get("status", row.status)
+            if student is not None:
+                existing = (
+                    session.query(Assignment)
+                    .filter(
+                        Assignment.lesson_id == lesson_json["id"],
+                        Assignment.student_id == student.id,
+                    )
+                    .one_or_none()
+                )
+                if existing is None:
+                    session.add(
+                        Assignment(lesson_id=lesson_json["id"], student_id=student.id)
+                    )
         session.commit()
