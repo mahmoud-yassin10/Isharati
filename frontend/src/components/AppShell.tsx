@@ -132,10 +132,8 @@ export function AppShell({
 
       <header className={navOpen ? "topbar nav-open" : "topbar"}>
         <div className="wrap topbar-inner">
-          <a className="brand" href={user ? `/${user.role}` : "/"}>
-            <span className="brand-mark" aria-hidden="true">
-              <BrandMark size={28} />
-            </span>
+          <a className="brand" href={user ? `/${user.role}` : "/"} aria-label={pick(lang, BRAND.ar, BRAND.en)}>
+            <BrandMark size={32} />
             <BrandWordmark compact />
           </a>
 
@@ -287,8 +285,13 @@ export function AppShell({
         <footer className="footer">
           <div className="wrap footer-inner">
             <p className="footer-brand">
-              <span lang="ar">{BRAND.ar}</span>
-              <Dual ar={` · ${BRAND.tagline.ar}`} en={` · ${BRAND.tagline.en}`} />
+              <BrandMark size={28} />
+              <span className="footer-brand-copy">
+                <span className="brand-name" lang={lang === "ar" ? "ar" : "en"}>
+                  {pick(lang, BRAND.ar, BRAND.en)}
+                </span>
+                <Dual ar={` · ${BRAND.tagline.ar}`} en={` · ${BRAND.tagline.en}`} />
+              </span>
             </p>
             <nav className="footer-links" aria-label={pick(lang, "روابط", "Links")}>
               <a href={pathname === "/" ? "#lab" : "/#lab"}>

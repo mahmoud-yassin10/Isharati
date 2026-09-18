@@ -13,9 +13,8 @@ export const metadata: Metadata = {
     template: `%s · ${BRAND.ar}`,
   },
   description:
-    "إشارتي: منصة تعليمية مصرية تشرح الفيزياء بلغة الإشارة المصرية، بإشارة لكل مصطلح ومختبر تفاعلي يعمل بدون صوت.",
+    "إمكان: منصة تعليمية مصرية تشرح الفيزياء بلغة الإشارة المصرية، بإشارة لكل مصطلح ومختبر تفاعلي يعمل بدون صوت.",
   applicationName: BRAND.en,
-  icons: { icon: "/icon.svg" },
 };
 
 export const viewport: Viewport = {

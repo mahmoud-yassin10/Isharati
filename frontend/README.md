@@ -1,4 +1,4 @@
-# Isharati website
+# Imkan website
 
 Next.js App Router, Arabic RTL. The typed FastAPI client lives in `src/lib/api.ts`.
 

@@ -4,6 +4,7 @@ import { FormEvent, Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { TriangleAlert } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
+import { BrandLockup } from "@/components/Brand";
 import { Dual } from "@/components/Dual";
 import { login } from "@/lib/api";
 import { BRAND } from "@/lib/brand";
@@ -49,6 +50,9 @@ function LoginForm() {
     <AppShell user={null} bare>
       <div className="wrap auth">
         <form className="auth-form" onSubmit={onSubmit}>
+          <div className="auth-brand">
+            <BrandLockup height={88} />
+          </div>
           <h1>
             <Dual ar="تسجيل الدخول" en="Log in" />
           </h1>

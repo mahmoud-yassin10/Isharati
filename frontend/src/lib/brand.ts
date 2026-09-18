@@ -7,9 +7,9 @@
  * and change the backend contract, which this redesign must not do.
  */
 export const BRAND = {
-  ar: "إشارتي",
-  en: "Isharati",
-  latin: "ISHARATI",
+  ar: "إمكان",
+  en: "Imkan",
+  latin: "Imkan",
   tagline: {
     ar: "منهج مصري بلغة الإشارة المصرية",
     en: "The Egyptian curriculum in Egyptian Sign Language",

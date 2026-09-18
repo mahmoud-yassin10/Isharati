@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap");
 
 /*
-  Isharati visual system.
+  Imkan visual system.
 
   Type: Instrument Sans carries Latin (a narrow, slightly editorial grotesque);
   IBM Plex Sans Arabic carries Arabic (a humanist, book-like Arabic). One stack,
@@ -710,19 +710,24 @@ main {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--s-3);
+  gap: var(--s-2);
   padding-inline-end: var(--s-3);
+  min-width: 0;
 }
 
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 11px;
-  background: var(--primary);
-  color: var(--primary-ink);
-  --brand-dot: var(--gold);
+.brand-mark-img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.brand-lockup-img {
+  display: block;
+  width: auto;
+  height: 88px;
+  object-fit: contain;
 }
 
 .brand-text {
@@ -735,6 +740,7 @@ main {
   font-size: var(--text-lg);
   font-weight: 700;
   color: var(--ink);
+  white-space: nowrap;
 }
 
 .brand-latin {
@@ -1005,9 +1011,24 @@ main {
   padding-block: var(--s-5) var(--s-6);
 }
 
-.footer-brand span[lang="ar"] {
-  color: var(--ink);
-  font-weight: 700;
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+}
+
+.footer-brand .brand-mark-img {
+  width: 28px;
+  height: 28px;
+}
+
+.footer-brand-copy {
+  min-width: 0;
+}
+
+.footer-brand .brand-name {
+  font-size: var(--text-sm);
 }
 
 .footer-links {
@@ -2300,6 +2321,11 @@ html[lang="en"] .hero-title {
   display: grid;
   gap: var(--s-5);
   width: min(420px, 100%);
+}
+
+.auth-brand {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .auth-form h1 {
@@ -4396,9 +4422,13 @@ html.high-contrast :is(.text-link, .footer-links a) {
     justify-content: center;
   }
 
-  .brand-mark {
-    width: 36px;
-    height: 36px;
+  .brand-mark-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-lockup-img {
+    height: 76px;
   }
 
   .nav-toggle {
