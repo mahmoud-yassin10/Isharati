@@ -18,10 +18,7 @@ const icon = (Icon: typeof BookOpen) => <Icon size={18} strokeWidth={1.75} class
 /** Real routes only. Signed-in users get their own workspace first, then home. */
 function primaryNavFor(role: User["role"] | null): NavItem[] {
   if (role === "student") {
-    return [
-      { href: "/student", ar: "دروسي", en: "My lessons", icon: icon(GraduationCap) },
-      { href: "/", ar: "الرئيسية", en: "Home", icon: icon(BookOpen) },
-    ];
+    return [{ href: "/student", ar: "الرئيسية", en: "Home", icon: icon(GraduationCap) }];
   }
   if (role === "teacher") {
     return [

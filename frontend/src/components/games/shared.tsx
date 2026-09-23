@@ -98,6 +98,7 @@ export function GameShell({
   glossary,
   signId,
   onCloseSign,
+  concealTerm = false,
   children,
 }: {
   kind: { ar: string; en: string; icon: React.ReactNode };
@@ -108,6 +109,7 @@ export function GameShell({
   glossary: Record<string, GlossaryEntry>;
   signId: string | null;
   onCloseSign: () => void;
+  concealTerm?: boolean;
   children: React.ReactNode;
 }) {
   const { lang } = useLang();
@@ -141,6 +143,7 @@ export function GameShell({
             termEn={entry.term_en}
             playAr={entry.lexicon_token ?? entry.term_ar}
             mode={entry.esl_mode}
+            concealTerm={concealTerm}
           />
           <button type="button" className="btn quiet" onClick={onCloseSign}>
             <X size={18} strokeWidth={2} className="icon" aria-hidden="true" />

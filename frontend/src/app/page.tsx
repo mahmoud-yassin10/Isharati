@@ -1,11 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AppShell } from "@/components/AppShell";
 import { Dual } from "@/components/Dual";
 import { NewtonLab } from "@/components/NewtonLab";
 import { SignPanel } from "@/components/SignPanel";
-import { ForwardIcon } from "@/components/ui";
+import { ForwardIcon, LoadingBlock } from "@/components/ui";
 import { useLang } from "@/lib/lang";
+import { useUser } from "@/lib/useUser";
 
 /**
  * The path a hand travels between the interpreter and the word it spells.
@@ -23,9 +26,31 @@ function GesturePath() {
 
 export default function HomePage() {
   const { lang } = useLang();
+  const { user, ready } = useUser();
+  const router = useRouter();
+  const [keepHome, setKeepHome] = useState(false);
+
+  useEffect(() => {
+    if (!ready) return;
+    if (user && window.location.hash !== "#lab") {
+      router.replace(`/${user.role}`);
+      return;
+    }
+    setKeepHome(true);
+  }, [ready, user, router]);
+
+  if (!ready || (user && !keepHome)) {
+    return (
+      <AppShell user={user}>
+        <div className="wrap page">
+          <LoadingBlock rows={2} />
+        </div>
+      </AppShell>
+    );
+  }
 
   return (
-    <AppShell user={null}>
+    <AppShell user={user}>
       <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-copy">

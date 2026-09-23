@@ -76,16 +76,17 @@ function useSignVideo(playback: string, mode: "lexicon" | "fingerspell" | "none"
   const [src, setSrc] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [requested, setRequested] = useState(autoSign);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    setRequested(autoSign);
+    if (autoSign) setAttempt(1);
+    else setAttempt(0);
   }, [autoSign, playback, mode]);
 
   useEffect(() => {
     let cancelled = false;
-    async function load() {
-      if (mode === "none" || !requested) return;
+    async function play() {
+      if (mode === "none" || attempt === 0) return;
       setLoading(true);
       setFailed(false);
       try {
@@ -107,13 +108,17 @@ function useSignVideo(playback: string, mode: "lexicon" | "fingerspell" | "none"
         if (!cancelled) setLoading(false);
       }
     }
-    void load();
+    void play();
     return () => {
       cancelled = true;
     };
-  }, [playback, mode, requested]);
+  }, [playback, mode, attempt]);
 
-  return { src, failed, loading, requested, show: () => setRequested(true) };
+  function show() {
+    setAttempt((n) => n + 1);
+  }
+
+  return { src, failed, loading, show, replay: show };
 }
 
 function SignVideo({ src, termAr, videoRef }: { src: string; termAr: string; videoRef: React.RefObject<HTMLVideoElement | null> }) {
@@ -155,6 +160,7 @@ export function SignPanel({
   mode,
   playAr,
   variant = "card",
+  concealTerm = false,
 }: {
   termAr: string;
   termEn?: string;
@@ -162,6 +168,8 @@ export function SignPanel({
   playAr?: string;
   /** "specimen": the bare interpreter, used where the word is set beside it. */
   variant?: "card" | "specimen";
+  /** Hide the Arabic word so a matching game does not show the answer beside the sign. */
+  concealTerm?: boolean;
 }) {
   const { signSpeed } = useA11y();
   const video = useSignVideo(playAr ?? termAr, mode);
@@ -184,7 +192,7 @@ export function SignPanel({
       ) : (
         <div className="sign-placeholder">
           <span className="word" lang="ar">
-            {termAr}
+            {concealTerm ? "…" : termAr}
           </span>
           <span className="small">
             {video.loading ? (
@@ -224,10 +232,10 @@ export function SignPanel({
       {stage}
       <figcaption className="sign-caption">
         <span className="term" lang="ar">
-          {termAr}
+          {concealTerm ? "الإشارة" : termAr}
         </span>
         <span className="sign-meta">
-          {termEn ? <span lang="en">{termEn}</span> : null}
+          {!concealTerm && termEn ? <span lang="en">{termEn}</span> : null}
           <Dual
             ar={fingerspelled ? "تُهجّى حرفاً حرفاً" : "إشارة من المعجم"}
             en={fingerspelled ? "fingerspelled" : "dictionary sign"}

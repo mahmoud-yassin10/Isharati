@@ -24,8 +24,7 @@
     "brother": {
       "term_ar": "أخ",
       "term_en": "brother",
-      "esl_mode": "lexicon",
-      "lexicon_token": "أخ"
+      "esl_mode": "fingerspell"
     },
     "sister": {
       "term_ar": "أخت",

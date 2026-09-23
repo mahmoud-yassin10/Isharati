@@ -235,8 +235,8 @@
       "title_ar": "لعبة: علم مصر",
       "title_en": "Game: Egypt's flag",
       "sort": {
-        "prompt_ar": "هل هذا اللون في علم مصر؟",
-        "prompt_en": "Is this colour in Egypt's flag?",
+        "prompt_ar": "هل هذا اللون من خطوط علم مصر الثلاثة؟ النسر ذهبي، والسؤال هنا عن الأحمر والأبيض والأسود فقط.",
+        "prompt_en": "Is this one of the three stripes on Egypt's flag? The eagle is gold; this question is only about red, white, and black.",
         "buckets": [
           {
             "id": "in",

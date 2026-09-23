@@ -88,6 +88,14 @@ try:
     ROUTES_LOADED["sign_to_text"] = True
 except Exception as exc:
     print(f"Speech/sign-to-text routes not loaded: {exc}")
+    try:
+        from api.routes.sign_media import router as sign_media_router
+
+        app.include_router(sign_media_router)
+        ROUTES_LOADED["sign_to_text"] = True
+        print("Sign upload route loaded without the recognition model")
+    except Exception as light_exc:
+        print(f"Sign upload route not loaded: {light_exc}")
 
 
 @app.get("/health")

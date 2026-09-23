@@ -92,6 +92,7 @@ export function MatchGame({ game, glossary, onComplete }: GameProps<MatchGameDat
       glossary={glossary}
       signId={signId}
       onCloseSign={() => setSignId(null)}
+      concealTerm
     >
       <p className="game-hint small muted">
         <Dual

@@ -29,6 +29,8 @@ export type SignToTextResponse = {
   raw_sentence: string;
   final_sentence: string;
   predictions?: SignPrediction[];
+  readable?: boolean;
+  recognized?: boolean;
 };
 
 export type FullSentenceResponse = SignToTextResponse & {

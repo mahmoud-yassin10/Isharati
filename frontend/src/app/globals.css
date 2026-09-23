@@ -3432,8 +3432,41 @@ a.lesson-item:hover {
 
 .camera-stage.recording {
   border: 2px solid var(--danger);
-  background: var(--danger-soft);
-  color: var(--danger);
+  background: #111;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.camera-preview {
+  width: 100%;
+  height: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  background: #111;
+}
+
+.camera-preview.live {
+  transform: scaleX(-1);
+}
+
+.camera-stage.recording .rec-dot,
+.camera-stage.recording p {
+  position: absolute;
+  z-index: 1;
+}
+
+.camera-stage.recording .rec-dot {
+  top: 12px;
+  inset-inline-start: 12px;
+}
+
+.camera-stage.recording p {
+  bottom: 12px;
+  inset-inline: 12px;
+  margin: 0;
+  text-shadow: 0 1px 2px #000;
 }
 
 .rec-dot {
